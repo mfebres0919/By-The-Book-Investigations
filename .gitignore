@@ -1,0 +1,6 @@
+.DS_Store
+node_modules/
+documentation/private/
+documentation/client-brief/
+documentation/source-images/
+*.log

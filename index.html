@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- DRAFT title and description: to be finalised in the SEO pass -->
+    <title>By-the-Book Workplace Investigations</title>
+    <meta name="description" content="Impartial third-party workplace investigations, investigator training and AI-enhanced support. Fair, thorough, defensible results. Schedule a conversation.">
+    <link rel="canonical" href="https://www.bythebookinvestigations.com/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="By-the-Book Workplace Investigations">
+    <meta property="og:description" content="Impartial third-party workplace investigations that hold up to scrutiny.">
+    <meta property="og:url" content="https://www.bythebookinvestigations.com/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#0A1A33">
+    <!-- Still to add before launch: favicon set, site.webmanifest, og:image, LocalBusiness schema -->
+
+    <!-- Preload what the first screen needs: the two upright fonts and the hero background -->
+    <link rel="preload" href="fonts/source-sans-3-v20-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/libre-baskerville-v24-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" as="image" href="images/backgrounds/hero-m.webp" type="image/webp" media="(max-width: 47.99rem)">
+    <link rel="preload" as="image" href="images/backgrounds/hero.webp" type="image/webp" media="(min-width: 48rem)">
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Only loads when JavaScript is off, so the phone menu is still reachable -->
+    <noscript><link rel="stylesheet" href="css/no-js.css"></noscript>
+
+    <script src="javascript/global.js" defer></script>
+</head>
+<body id="top">
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- ============ HEADER AND NAVIGATION (shared by every page) ============ -->
+    <header class="site-header">
+        <div class="site-header__inner container">
+            <!-- The logo's alt text names the business; the hidden "home" tells screen readers where the link goes -->
+            <a class="site-header__logo" href="./">
+                <span class="visually-hidden">Home:</span>
+                <picture>
+                    <source srcset="images/brand/by-the-book-logo-sm.webp" type="image/webp">
+                    <img src="images/brand/by-the-book-logo-sm.png" alt="By-the-Book Workplace Investigations"
+                         width="280" height="212" decoding="async">
+                </picture>
+            </a>
+
+            <!-- Phone menu button. aria-expanded tells screen readers whether the menu is open. -->
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+                <span class="visually-hidden">Menu</span>
+                <span class="nav-toggle__bars" aria-hidden="true">
+                    <span class="nav-toggle__bar"></span>
+                    <span class="nav-toggle__bar"></span>
+                </span>
+            </button>
+
+            <nav class="site-nav" id="site-nav" aria-label="Main">
+                <!-- Links follow the order of the homepage sections. "Our Process" jumps to the CLEAR framework
+                     section on the homepage (it has no page of its own); the others go to their own pages. -->
+                <ul class="site-nav__list">
+                    <li class="site-nav__item"><a class="site-nav__link" href="services/">Services</a></li>
+                    <li class="site-nav__item"><a class="site-nav__link" href="#process">Our Process</a></li>
+                    <li class="site-nav__item"><a class="site-nav__link" href="about/">About</a></li>
+                    <li class="site-nav__item"><a class="site-nav__link" href="investigation-capacity/">Investigation Capacity</a></li>
+                    <li class="site-nav__item"><a class="site-nav__link" href="contact/">Contact</a></li>
+                </ul>
+
+                <a class="btn btn--primary site-nav__cta" href="contact/">Schedule a Conversation</a>
+
+                <!-- Contact details: shown in the phone menu only. Taken from the current live site; confirm with the client. -->
+                <address class="site-nav__contact">
+                    <a class="site-nav__contact-link" href="tel:+18883976352">(888) 397-6352</a>
+                    <a class="site-nav__contact-link" href="mailto:hello@bythebookinvestigations.com">hello@bythebookinvestigations.com</a>
+                    <span class="site-nav__contact-text">2591 Dallas Parkway, Suite 300<br>Frisco, TX 75034</span>
+                </address>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+
+        <!-- ============ HERO ============ -->
+        <section class="hero" aria-labelledby="hero-title">
+            <!-- Background image. It is decorative, so alt is empty and it is hidden from screen readers. -->
+            <picture class="hero__bg">
+                <source media="(min-width: 48rem)" srcset="images/backgrounds/hero.webp" type="image/webp">
+                <source media="(min-width: 48rem)" srcset="images/backgrounds/hero.jpg">
+                <source srcset="images/backgrounds/hero-m.webp" type="image/webp">
+                <img src="images/backgrounds/hero-m.jpg" alt="" aria-hidden="true"
+                     width="720" height="1210" fetchpriority="high" decoding="async">
+            </picture>
+
+            <div class="hero__inner container">
+                <!-- DRAFT copy, written from the client's own mission statement and site. Needs her approval. -->
+                <h1 class="hero__title" id="hero-title">Workplace investigations that hold up to scrutiny.</h1>
+                <p class="hero__lead">Impartial third-party investigations, investigator training and AI-enhanced support that give your organization fair, thorough and defensible results.</p>
+                <a class="btn btn--light hero__btn" href="contact/">Schedule a Conversation</a>
+            </div>
+
+            <!-- INVEXTRA sits in its own band, apart from the main button, so it reads as a second, separate offer -->
+            <div class="hero__invextra">
+                <div class="hero__invextra-inner container">
+                    <p class="hero__invextra-text"><strong class="hero__invextra-name">INVEXTRA</strong> Investigation expertise, amplified.</p>
+                    <a class="btn btn--outline-light hero__invextra-btn" href="https://invextra.ai/" target="_blank" rel="noopener">
+                        Join the INVEXTRA Waitlist<span class="visually-hidden"> (opens in a new tab)</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SERVICES ============
+             Three cards, one per practice area. Each card lists its services as links to their detail pages.
+             TEMPORARY LIST: taken from the client's current site on 2026-11-17. Replace with her confirmed
+             list of services. The wording is hers, lightly trimmed. The detail pages are not built yet. -->
+        <section class="services" id="services" aria-labelledby="services-title">
+            <div class="container">
+                <div class="services__intro">
+                    <h2 class="services__title" id="services-title">Our services</h2>
+                    <p class="services__lead">Most firms can give you compliance. Most firms can give you empathy. Almost none can integrate the two. We deliver investigations, training and AI solutions that drive both legal defensibility and organizational impact.</p>
+                </div>
+
+                <!-- role="list" keeps these announced as lists by VoiceOver even though the bullets are removed -->
+                <ul class="services__cards" role="list">
+                    <li class="service-card">
+                        <h3 class="service-card__title">Investigations</h3>
+                        <p class="service-card__text">Impartial, protected-class competent, legally defensible and operationally grounded. Built for clarity, credibility and next-step decision-making.</p>
+                        <ul class="service-card__list" role="list">
+                            <li class="service-card__item">
+                                <a class="service-card__link" href="services/third-party-investigations/"><span>Third-Party Investigations</span><svg class="service-card__arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                            </li>
+                            <li class="service-card__item">
+                                <a class="service-card__link" href="services/overflow-investigation-support/"><span>Overflow Investigation Support</span><svg class="service-card__arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="service-card">
+                        <h3 class="service-card__title">Training &amp; Capacity Building</h3>
+                        <p class="service-card__text">Not generic. Not theoretical. We train your team in the exact skills real investigators need, customized to your cases, culture and complexity.</p>
+                        <ul class="service-card__list" role="list">
+                            <li class="service-card__item">
+                                <a class="service-card__link" href="services/investigation-readiness-intensive/"><span>Investigation Readiness Intensive</span><svg class="service-card__arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                            </li>
+                            <li class="service-card__item">
+                                <a class="service-card__link" href="services/fair-housing-investigation-program/"><span>Fair Housing Investigation Advancement Program</span><svg class="service-card__arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="service-card">
+                        <h3 class="service-card__title service-card__title--ai">AI Solutions</h3>
+                        <p class="service-card__text">AI tools built by actual investigators, not tech vendors guessing at workflows. Enhances consistency, clarity and rigor without replacing human judgment.</p>
+                        <ul class="service-card__list" role="list">
+                            <li class="service-card__item">
+                                <a class="service-card__link" href="services/invextra/"><span>INVEXTRA</span><svg class="service-card__arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <a class="btn btn--navy services__all" href="services/">View all services</a>
+            </div>
+        </section>
+
+        <!-- Next section: the CLEAR framework. Give it id="process" so the "Our Process" nav link lands on it. -->
+
+    </main>
+
+    <!-- Back-to-top button (required on every page) -->
+    <a class="back-to-top" href="#top">
+        <span class="visually-hidden">Back to top</span>
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20"><path d="M10 16V4m-5 5 5-5 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+</body>
+</html>

@@ -1,0 +1,39 @@
+/* no-js.css: loaded only when JavaScript is switched off (see the <noscript> tag in <head>).
+   Without JavaScript the menu button can't open the phone menu, so the menu is simply
+   shown in the page instead. Desktop is unaffected. */
+
+.nav-toggle { display: none; }
+
+.site-header__inner {
+  flex-wrap: wrap;
+  height: auto;
+  padding-block: 0.625rem;
+}
+
+.site-nav {
+  position: static;
+  width: 100%;
+  padding: 0.5rem 0 1rem;
+  overflow: visible;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.site-nav__item,
+.site-nav__cta,
+.site-nav__contact {
+  opacity: 1;
+  transform: none;
+}
+
+/* The back-to-top link is always available */
+.back-to-top {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (min-width: 62rem) {
+  .site-header__inner { flex-wrap: nowrap; height: var(--header-h); padding-block: 0; }
+  .site-nav { width: auto; padding: 0; }
+}

@@ -247,7 +247,7 @@ Project-specific exceptions to the handbook: none.
 **Pick up here next session**
 1. Miguelle is asking Marquita for her real list of services. When it arrives, update the service cards (they are a stand-in from her current site).
 2. The **"Our process" (CLEAR framework) section is built** (2026-11-17, see the change log). Miguelle to review it.
-3. The **About and proof sections are built** (2026-11-18). Next: a closing call to action, then the footer (her tagline belongs there).
+3. The **About, proof and closing call-to-action sections are built** (2026-11-18). Next: the footer (her tagline belongs there). Miguelle was to write the footer themselves in the Next.js practice project only; on this client site Claude builds it unless told otherwise.
 4. Still to do before launch: full audit of the current site and the URL map, the inner pages, the launch files (favicons, manifest, `og:image`, schema, `robots.txt`, `sitemap.xml`, `404.html`), `git init`, and a Netlify preview.
 
 **How the site is being built:** section by section. Miguelle reviews each section before the next one starts, and sometimes edits the CSS directly, so read the current files before changing them.
@@ -265,7 +265,7 @@ Project-specific exceptions to the handbook: none.
 
 **Known gaps on the page (deliberate, to finish later)**
 - The nav links and buttons point at pages that don't exist yet (`about/`, `services/`, `investigation-capacity/`, `contact/`), so they give "not found" for now.
-- No favicon set, `site.webmanifest`, `og:image`, schema, `robots.txt`, `sitemap.xml` or `404.html` yet.
+- No `og:image`, schema, `robots.txt`, `sitemap.xml` or `404.html` yet (the favicon set and `site.webmanifest` were added on 2026-11-18).
 - No footer yet, and her tagline ("Precision in Process. Integrity in Practice.") is not on the page yet. It was left out of the hero on purpose to keep it quiet; it belongs in the next section or the footer.
 - Title and meta description are drafts.
 
@@ -289,6 +289,8 @@ Project-specific exceptions to the handbook: none.
 5. **About section:** confirm the photo sent as "Headshot.png" is her, how her name and title should read ("Marquita M. Booker, Founder and Chief Legal Officer" is used), and approve the wording, which is assembled from her current site.
 
 6. **Proof section:** confirm the three testimonials used (Maedgen, Chrispin, Levingston), the people's current titles and their permission; and send the names and logo files for "Who we've worked with", with each organisation's agreement to be shown.
+
+7. **Closing call to action:** the fire wording appears in two neighbouring sections; confirm "30 minutes" and the button wording ("Schedule a Conversation" or her current "Get Your Investigation Strategy Audit").
 
 **Follow-ups on images**
 3. A larger copy of the **Haya Abusway** headshot. The one sent is 200×200.
@@ -329,6 +331,22 @@ Project-specific exceptions to the handbook: none.
 
 Newest first. One entry per working session or per significant change: what changed, which files, and anything left unverified.
 
+
+### 2026-11-18: favicon set and web manifest
+- Made from the cube mark at the top of her logo (cropped from `documentation/source-images/by-the-book-logo-from-pdf-3335px.png`), without the "Workplace Investigations" wording, which is unreadable at icon size.
+- Files at the site root: `favicon.ico` (16, 32 and 48 px, white rounded square behind the mark so it shows on dark browser tabs), `favicon.svg`, `apple-touch-icon.png` (180), `icon-192.png`, `icon-512.png`, `site.webmanifest` (name, short name, the two PNG icons, theme colour `#0A1A33`). Linked from the `<head>` of `index.html`; every later page needs the same four lines, with `../` in front of each path for pages in folders.
+- **`favicon.svg` is not a true vector:** no SVG of the logo has been supplied and this Mac has no PDF-to-SVG tool, so it is an SVG wrapper round a 128px picture of the mark. Replace it if she sends an SVG logo (already on the list in Section 8).
+- A favicon is not a ranking factor. It is what Google shows beside the site's name in mobile results and what appears in tabs and bookmarks, so it helps recognition and clicks.
+- Checked: the icons viewed at 16, 32, 48 and 512 px. Not checked: in a real browser tab, on a phone home screen, or in Google results (needs the live site).
+- Still to add before launch: `og:image`, LocalBusiness schema, `robots.txt`, `sitemap.xml`, `404.html`.
+
+### 2026-11-18: closing call to action built
+- **Section:** `section.cta` in `index.html`, styles at the end of `css/styles.css` (`.cta…`). It is the page's one large burgundy area: the `layered-paper-edges` photo under a 90% burgundy layer. Made a phone crop, `images/backgrounds/layered-paper-edges-m` (720×1210, JPG and WebP).
+- **Layout:** heading, one sentence, a white "Schedule a Conversation" button and an "or call (888) 397-6352" link; beside it on desktop (below it on smaller screens) "In 30 minutes, you'll get a clear picture of:" with three lines under thin rules.
+- **Copy is hers,** from the closing block of her current homepage: the heading "Ready to Stop Putting Out Fires and Start Preventing Them?" (set in sentence case), the sentence "Let's look at your investigative system...", and the three list items. Only the button differs: her current site says "Get Your Investigation Strategy Audit"; the new site uses "Schedule a Conversation" throughout.
+- In this section the white button fills with navy on hover (its usual burgundy fill would vanish on burgundy), and the keyboard focus ring is white.
+- **To raise with her:** the proof section's line ("stop firefighting and start preventing fires") and this heading ("stop putting out fires and start preventing them") use the same image one section apart. Both are hers; she may want to change one. Also confirm "30 minutes" still describes the call, and which button wording she wants.
+- Checked: screenshots at 390 and 1440 wide. Not checked: hover and focus states, tablet width, real devices, other browsers.
 
 ### 2026-11-18: proof section built (testimonials and sectors)
 - **Section:** `section.proof#testimonials` in `index.html`, styles at the end of `css/styles.css` (`.proof…`, `.quote…`). Pale grey background (new token `--color-wash: #F3F4F6` in `css/global.css`) so it reads as its own block after the white About section. New helper `.nowrap` in `global.css` keeps "By-the-Book" on one line in the heading.

@@ -1,6 +1,6 @@
 /* ==========================================================================
    global.js: behavior shared by every page
-   1. Phone menu   2. Back-to-top button
+   1. Phone menu   2. Back-to-top button   3. Tabs
    Loaded with "defer", so the HTML is ready by the time this runs.
    ========================================================================== */
 
@@ -70,4 +70,45 @@
   }, { passive: true });
 
   update();
+})();
+
+/* ---------- 3. Tabs ----------
+   Works for any block marked data-tabs (the three pillars on the homepage).
+   Without this script every panel simply shows. With it: the row of tab buttons is revealed
+   and one panel shows at a time. Click a tab, or use the arrow keys, Home and End. */
+(function () {
+  var groups = document.querySelectorAll('[data-tabs]');
+
+  Array.prototype.forEach.call(groups, function (group) {
+    var list = group.querySelector('[role="tablist"]');
+    var tabs = Array.prototype.slice.call(group.querySelectorAll('[role="tab"]'));
+    if (!list || !tabs.length) return;
+
+    function select(tab, moveFocus) {
+      tabs.forEach(function (other) {
+        var active = other === tab;
+        other.setAttribute('aria-selected', active ? 'true' : 'false');
+        other.tabIndex = active ? 0 : -1;        // only the open tab is in the Tab-key order
+        var panel = document.getElementById(other.getAttribute('aria-controls'));
+        if (panel) panel.classList.toggle('is-active', active);
+      });
+      if (moveFocus) tab.focus();
+    }
+
+    tabs.forEach(function (tab, index) {
+      tab.addEventListener('click', function () { select(tab, false); });
+
+      tab.addEventListener('keydown', function (event) {
+        var next = null;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = tabs[(index + 1) % tabs.length];
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = tabs[(index - 1 + tabs.length) % tabs.length];
+        if (event.key === 'Home') next = tabs[0];
+        if (event.key === 'End') next = tabs[tabs.length - 1];
+        if (next) { event.preventDefault(); select(next, true); }
+      });
+    });
+
+    list.hidden = false;                 // show the tab buttons
+    group.classList.add('is-ready');     // switch the CSS from "show everything" to "one at a time"
+  });
 })();

@@ -246,8 +246,8 @@ Project-specific exceptions to the handbook: none.
 
 **Pick up here next session**
 1. Miguelle is asking Marquita for her real list of services. When it arrives, update the service cards (they are a stand-in from her current site).
-2. Next homepage section: the **CLEAR framework** (five steps). Give it `id="process"` so the "Our Process" menu link lands on it.
-3. After that: About and proof (firm intro, who they've worked with, testimonials), a closing call to action, then the footer (her tagline belongs there or in the next section).
+2. The **"Our process" (CLEAR framework) section is built** (2026-11-17, see the change log). Miguelle to review it.
+3. The **About and proof sections are built** (2026-11-18). Next: a closing call to action, then the footer (her tagline belongs there).
 4. Still to do before launch: full audit of the current site and the URL map, the inner pages, the launch files (favicons, manifest, `og:image`, schema, `robots.txt`, `sitemap.xml`, `404.html`), `git init`, and a Netlify preview.
 
 **How the site is being built:** section by section. Miguelle reviews each section before the next one starts, and sometimes edits the CSS directly, so read the current files before changing them.
@@ -256,6 +256,8 @@ Project-specific exceptions to the handbook: none.
 - **Header:** white, sticky, logo left. On phones a two-bar menu button; from 992px (62rem) a row of links plus a burgundy "Schedule a Conversation" button.
 - **Phone menu:** a white panel that fades and slides in under the header and fills the screen. The links, then the button, then the contact details fade in one after another (70ms apart). It closes with the button, Escape or a link tap, and the page behind doesn't scroll while it is open. It holds the five links, the "Schedule a Conversation" button, and her phone, email and address.
 - **Hero:** the `h1`, a supporting sentence and a white "Schedule a Conversation" button over the hero background. Below it, in its own band, "INVEXTRA: Investigation expertise, amplified." with an outline "Join the INVEXTRA Waitlist" button.
+- **Services:** three grouped cards and a navy "View all services" button (stand-in service list).
+- **Our process:** navy section over the staircase photo; heading, paragraph and button, plus five numbered step cards that open and close.
 - **Back-to-top button:** in place (it appears once there is enough page to scroll).
 
 **Checked on 2026-11-16:** screenshots at 320, 360, 390, 768, 1024 and 1440 pixels wide, plus the open menu at 320 and 390. No overflow or clipped text. `global.js` passes a syntax check.
@@ -281,6 +283,12 @@ Project-specific exceptions to the handbook: none.
 2. **Navy is `#0A1A33`**, as in her brand guide. Her INVEXTRA logo keeps its own slightly different navy, which answers the question she asked in the questionnaire.
 
 3. **Hero wording is a draft.** The headline "Workplace investigations that hold up to scrutiny." and the sentence under it were written from her own mission statement and site copy. She should approve or replace them.
+
+4. **Process section wording is a draft.** The five CLEAR steps and their text were condensed from her current Third-Party Investigations page. She should approve or replace them.
+
+5. **About section:** confirm the photo sent as "Headshot.png" is her, how her name and title should read ("Marquita M. Booker, Founder and Chief Legal Officer" is used), and approve the wording, which is assembled from her current site.
+
+6. **Proof section:** confirm the three testimonials used (Maedgen, Chrispin, Levingston), the people's current titles and their permission; and send the names and logo files for "Who we've worked with", with each organisation's agreement to be shown.
 
 **Follow-ups on images**
 3. A larger copy of the **Haya Abusway** headshot. The one sent is 200×200.
@@ -309,6 +317,7 @@ Project-specific exceptions to the handbook: none.
 **Other things to confirm**
 - **The list of services** and the wording for each (Miguelle is asking her). The homepage list is a stand-in from her current site.
 - **The "Our Process" menu name** for the CLEAR framework section.
+- **The framework's name is settled for now: "CLEAR By-the-Book™"**, from her questionnaire (Miguelle's decision, 2026-11-17). Her live site says "CLEAR Investigation Framework™"; mention the difference when she reviews.
 - **The name of the fourth page.** The proposal calls it "The Investigation Capacity"; the menu currently says "Investigation Capacity". Her live site has an "Investigation Readiness Intensive" page, which may be the same service.
 - **Where "Schedule a Conversation" goes.** It points at `contact/` for now. It could instead open the consultation tab of the contact form, or Calendly.
 - **The INVEXTRA waitlist address.** The button points at `https://invextra.ai/`, from her questionnaire. Confirm the exact page. Her current site also has its own `/invextra-waitlist` page.
@@ -319,6 +328,69 @@ Project-specific exceptions to the handbook: none.
 ## 10. Change log
 
 Newest first. One entry per working session or per significant change: what changed, which files, and anything left unverified.
+
+
+### 2026-11-18: proof section built (testimonials and sectors)
+- **Section:** `section.proof#testimonials` in `index.html`, styles at the end of `css/styles.css` (`.proof…`, `.quote…`). Pale grey background (new token `--color-wash: #F3F4F6` in `css/global.css`) so it reads as its own block after the white About section. New helper `.nowrap` in `global.css` keeps "By-the-Book" on one line in the heading.
+- **Heading and lead are hers:** "The By-the-Book Effect" and "When you work with us, you stop firefighting and start preventing fires." (both from her current homepage).
+- **Three testimonials, copied unedited from her current homepage:** Dr. Jennifer Maedgen (The University of Texas at Austin), Gilbert Chrispin, SPHR (Nova Southeastern University), Kory Levingston (Tarrant County College). Side by side on desktop, stacked below 992px, names lined up along the bottom. No slider (her brief rules carousels out) and no cards: each sits under a thin navy rule with a burgundy quotation mark.
+- **Left out:** her two other testimonials (Ebonni Chrispin, Karen Skyers), because both name her earlier business, Course Correction Consulting.
+- **"Who we work with":** the seven sectors listed on her homepage, as a plain row.
+- **Not included: client logos.** Her site shows about nine under "Who we've worked with", but we have no logo files, and only four can be named from their file names (City of Dallas, University of New Mexico, probably New Mexico State University, and "SAFE"). Ask her for the list of names and the logo files, and whether each organisation has agreed to be shown (Section 8).
+- **To confirm with her:** which testimonials to keep, that each person is happy to be quoted on the new site, and the exact titles (Section 8).
+- Checked: screenshots at 390 and 1440 wide (before the one-line heading fix). Not checked: tablet width, real devices, other browsers.
+
+### 2026-11-18 (later still): the three pillars became tabs beside her photo
+- Miguelle shared a reference (a heading, a row of tab names, one description showing at a time) and asked for the pillars to work like that, next to her image. The row of three pillars under the section was removed; they are now **tabs inside the text column**: Precision in Process, Integrity in Practice, Actionable Outcomes.
+- **Styled for her brief, not like the reference's filled buttons:** plain text tab names on a thin rule, the open one marked by a burgundy underline that draws in (on phones the names stack and the marker is a burgundy bar at the left). The text fades between tabs with the site's linear timing. All panels share one grid cell, so the area keeps the height of the longest and the button below does not jump.
+- **Accessibility:** proper `tablist` / `tab` / `tabpanel` roles, arrow keys, Home and End. **Without JavaScript all three pillars show one after another with their headings**; `javascript/global.js` (new part 3, "Tabs", works for any `data-tabs` block) reveals the tab row and adds `is-ready`.
+- The two intro paragraphs were merged into one to make room. Each tab's text is longer than the old one-liners: her exact opening sentence plus a sentence condensed from her homepage. Draft for her approval.
+- Files: `index.html`, `css/styles.css` (`.tabs…`, in the About block), `javascript/global.js`.
+- Checked: screenshots at 390 and 1440 wide, first tab open; a second desktop screenshot with the second tab clicked by script (it switched correctly); `global.js` passes a syntax check. Not checked: keyboard use, a screen reader, the no-JavaScript view, tablet width, real devices, other browsers.
+
+### 2026-11-18 (later): About section filled out; text first on phones
+- Miguelle found the section "too plain and too basic" but wants to respect her brief. Two quiet additions, no cards or shadows:
+  1. **Her three pillars in a row under the photo and text** (`ul.about__pillars`, `.pillar`): Precision in Process, Integrity in Practice, Actionable Outcomes, each under a thin navy rule with a line from her current homepage. The first sentence of each is her exact wording; the second sentence of "Integrity in Practice" and "Actionable Outcomes" is condensed from her page. Draft for her approval. The first two pillar names are also her tagline, so the tagline now appears on the page.
+  2. **A flat tinted block behind the photo** (`.about__frame::before`, the mist colour), offset down and left so an L-shaped edge shows. It is a flat shape, not a shadow.
+- **Phone order changed at Miguelle's request:** text first, then the photo. The text is now first in the HTML; from 768px up the CSS moves the photo to the left column (`order: -1`).
+- Checked: screenshots at 390 and 1440 wide. Not checked: tablet width after this change, real devices, other browsers.
+
+### 2026-11-18: About section built, with a divider leading into it
+- **Layout (Miguelle's brief):** white background; her photo on the left with her name and title under it; on the right a heading, two short paragraphs and one button. On phones the photo comes first, then the text. Kept plain to match her brief (clean, minimal, professional, human-led): no cards, shadows or decoration beyond a thin burgundy rule above her name.
+- **Section:** `section.about#about` in `index.html`, styles at the end of `css/styles.css` (`.about…`). The button "About the firm" goes to `about/` (not built yet).
+- **Divider:** the same SVG shape now also sits at the foot of the process section (`.process__divider--bottom`), turned 180 degrees, so the white of the About section cuts up into the navy at an angle. The process section's bottom padding was increased to make room.
+- **Copy is a draft made only of her own sentences** (read from her live site on 2026-11-18): the heading "By-the-Book investigates like we have to live with the outcome." is from her homepage; the paragraphs join phrases from her About page ("a team of dedicated professionals with a deep commitment to fairness, integrity, and the well-being of your organization"; "We stand apart by combining deep legal expertise with a compassionate, trauma-informed approach"; "we not only uncover the facts but also help your organization heal and grow"). Her title on the live site is "Founder/Chief Legal Officer", shown here as "Founder and Chief Legal Officer". Her live site has no bio or credentials for her, so none are stated.
+- **Photo not confirmed:** the section uses `images/headshots/headshot-name-needed` (sent as "Headshot.png") and labels it Marquita M. Booker. **Confirm with her that this is her photo before anyone else sees the page** (Section 8). It is shown cropped to 4:5 by CSS; the file itself is unchanged.
+- Checked: screenshots at 390, 800 and 1440 wide. Not checked: real devices, other browsers, hover on the button.
+
+### 2026-11-17 (afternoon): hover effect on the process cards
+- At Miguelle's request each step card now reacts to the mouse: it lifts 6px, its burgundy top rule thickens and its title turns burgundy, all with the site's 0.25s linear timing. No shadow (her brief rules shadows out). It only applies on devices with a mouse or trackpad (`@media (hover: hover)`). Rules are in `css/styles.css` just above `.step-card__number`.
+- Not viewed in a browser: a hover can't be captured in a still screenshot, so Miguelle needs to check it by hand.
+
+### 2026-11-17 (afternoon): process cards always open
+- At Miguelle's request the five step cards no longer open and close. Each card now shows its number, title and text all the time, so the rows in the grid are even. The `<details>`/`<summary>` markup and the plus/minus icon were removed from `index.html`; the matching rules (`.step-card__details`, `.step-card__summary`, `.step-card__icon`) were removed from `css/styles.css`.
+- Checked: screenshots at 390, 800 and 1440 wide. Not checked: real devices, other browsers.
+
+### 2026-11-17 (afternoon): process section changed to a centred intro and a card grid
+- Miguelle did not like the left-text, right-cards layout. **New layout:** the heading, paragraph and button are centred above the cards from 768px up (left-aligned on phones, like the rest of the page). The cards are a grid: one column on phones, two from 768px (fifth card centred on its own row), three from 992px (fourth and fifth centred on the second row). The sticky left column and the left-to-right navy fade are gone; the navy layer over the photo is now an even 86%.
+- **Decisions from Miguelle:** the framework is called **"CLEAR By-the-Book™"**, as in her questionnaire (Miguelle changed the text in `index.html`). The cards keep opening in place; no separate "read more" pages.
+- Known effect: because only the open card grows, the row with the open card has empty space beside or under it. Raised with Miguelle; the alternative is to show every card's text all the time.
+- Files: `css/styles.css` (the two media queries at the end), a comment in `index.html`.
+- Checked: screenshots at 800 and 1440 wide. Not checked: phone width after this change, clicking the cards, real devices, other browsers.
+
+### 2026-11-17 (afternoon): angled divider between services and process
+- Miguelle supplied `triangle-asymmetrical-divider-inverse.svg` and asked for it between the services and process sections. It is placed inline at the top of `section.process` in `index.html` (`.process__divider`), filled white to match the services section above, so the white appears to cut into the navy at an angle. It stretches to any width; its height is the `--divider-h` value on `.process` in `css/styles.css` (40px on phones up to 104px on wide screens). The section's top padding was increased so the text and cards clear it.
+- If the services section's background ever changes from white, the divider's fill must change to match.
+- Checked: screenshots at 390 and 1440 wide. Not checked: tablet width, real devices, other browsers.
+
+### 2026-11-17 (afternoon): "Our process" section (CLEAR framework) built
+- Built to Miguelle's layout: a section with a background image, a heading, paragraph and "Schedule a Conversation" button, and five numbered step cards. On desktop (992px up) the text is on the left and stays in view while the cards sit on the right; on phones and tablets the text is on top and the cards stack below.
+- **Section:** `section.process#process` in `index.html`, so the "Our Process" menu link now lands on it. Styles are at the end of `css/styles.css` (`.process…`, `.step-card…`).
+- **Cards open and close.** Each card is a `<details>` element (no JavaScript). The number is top left, the title under it, a plus/minus sign on the right. Clicking a card shows its text; opening one closes the others (they share `name="clear-steps"`); the first starts open. In older browsers that don't support the shared name, more than one card can be open at once, which is harmless.
+- **Background:** `navy-silver-staircase` with a see-through navy layer over it (88% on phones; on desktop it is solid on the left and thinner on the right so the staircase shows behind the cards). Made a phone crop, `images/backgrounds/navy-silver-staircase-m` (720×1210, JPG and WebP).
+- **Copy is a draft.** The heading "Our investigation process", the five step names and their text come from the "Our Investigation Process" part of her current `/third-party-investigations` page, trimmed. The opening sentence of steps 1 to 4 is her wording; the rest is condensed from her page and should be checked against it, then approved by her (Section 8).
+- **Name of the framework:** her live site calls it the "CLEAR Investigation Framework™"; her questionnaire calls it "CLEAR By-the-Book™". The page uses the live-site name for now (Section 9).
+- Checked: screenshots at 390 and 1440 wide with the first card open. Not checked: opening and closing the cards by click or keyboard, the sticky text while scrolling, tablet width, real devices, other browsers.
 
 ### 2026-11-17: "View all services" button made solid navy
 - At Miguelle's request the "View all services" button changed from a navy outline to **solid navy with white text** (burgundy fill on hover). Added `.btn--navy` to `css/global.css`; the button in `index.html` now uses it. `.btn--outline` is still in the stylesheet but currently unused.

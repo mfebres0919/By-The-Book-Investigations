@@ -45,6 +45,7 @@
   --color-copper: #8C5A2B;       /* micro-accents only, never large areas or text on navy */
   --color-white: #FFFFFF;
   --color-mist: #D9DCE0;         /* a light tint of the silver, for body text on navy (12.7:1) */
+  --color-wash: #F3F4F6;         /* a very pale tint of the silver, for the background of quieter sections */
 
   /* Colors by job. Use these in rules, so a change here updates the whole site. */
   --color-text: var(--color-navy);
@@ -123,6 +124,9 @@ h1, h2, h3 {
   white-space: nowrap;
   border: 0;
 }
+
+/* Keeps a phrase on one line (used for "By-the-Book", which would otherwise break at its hyphens) */
+.nowrap { white-space: nowrap; }
 
 /* Hidden until a keyboard user tabs to it */
 .skip-link {

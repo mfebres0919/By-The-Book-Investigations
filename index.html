@@ -161,7 +161,243 @@
             </div>
         </section>
 
-        <!-- Next section: the CLEAR framework. Give it id="process" so the "Our Process" nav link lands on it. -->
+        <!-- ============ OUR PROCESS (the CLEAR framework) ============
+             Top: heading, intro and button (centred from tablets up). Below: five numbered step cards in a grid.
+             Every card shows its text all the time (no opening and closing).
+             DRAFT copy: taken from the "Our Investigation Process" part of her current
+             Third-Party Investigations page and trimmed. Needs her approval. -->
+        <section class="process" id="process" aria-labelledby="process-title">
+            <!-- Angled divider between the services section and this one. It is a white shape laid over
+                 the top of the navy section, so the white above appears to cut into the navy at an angle.
+                 preserveAspectRatio="none" lets it stretch to any screen width. Decorative, so aria-hidden. -->
+            <svg class="process__divider" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0 0v36L250 4l750 96V0H0z"/></svg>
+
+            <!-- Background image. Decorative, so alt is empty. Lazy-loaded because it is below the first screen. -->
+            <picture class="process__bg">
+                <source media="(min-width: 48rem)" srcset="images/backgrounds/navy-silver-staircase.webp" type="image/webp">
+                <source media="(min-width: 48rem)" srcset="images/backgrounds/navy-silver-staircase.jpg">
+                <source srcset="images/backgrounds/navy-silver-staircase-m.webp" type="image/webp">
+                <img src="images/backgrounds/navy-silver-staircase-m.jpg" alt="" aria-hidden="true"
+                     width="720" height="1210" loading="lazy" decoding="async">
+            </picture>
+
+            <div class="process__inner container">
+                <div class="process__intro">
+                    <h2 class="process__title" id="process-title">Our investigation process</h2>
+                    <p class="process__lead">Every investigation follows the CLEAR By-the-Book™ framework. It is the same structure we use in our own investigations, teach to internal teams and build into our AI tools.</p>
+                    <a class="btn btn--light process__btn" href="contact/">Schedule a Conversation</a>
+                </div>
+
+                <!-- An ordered list, because the steps happen in this order. The big numbers are for the eye
+                     only (aria-hidden); screen readers already announce "1 of 5" from the list itself. -->
+                <ol class="process__steps" role="list">
+                    <li class="step-card">
+                        <span class="step-card__number" aria-hidden="true">1</span>
+                        <h3 class="step-card__title">Capture the Complaint</h3>
+                        <p class="step-card__text">Build a clear starting point that anchors, not limits, the scope. We gather timelines, witnesses, documents, potential policy issues, risk indicators and context, and expand scope only when the evidence requires it.</p>
+                    </li>
+                    <li class="step-card">
+                        <span class="step-card__number" aria-hidden="true">2</span>
+                        <h3 class="step-card__title">Launch the Strategy</h3>
+                        <p class="step-card__text">Stabilize quickly. Plan deliberately. Within about 72 hours we support safety and retaliation assessments, supportive measures, evidence preservation and initial outreach, then build a defensible plan for the investigation.</p>
+                    </li>
+                    <li class="step-card">
+                        <span class="step-card__number" aria-hidden="true">3</span>
+                        <h3 class="step-card__title">Evaluate the Evidence</h3>
+                        <p class="step-card__text">Gather the available body of evidence: testimonial, digital, documentary, physical. We use trauma-informed interviewing, disciplined documentation and structured evidence matrices tied to policy elements.</p>
+                    </li>
+                    <li class="step-card">
+                        <span class="step-card__number" aria-hidden="true">4</span>
+                        <h3 class="step-card__title">Analyze Impartially</h3>
+                        <p class="step-card__text">Evaluate evidence objectively. Apply the correct standards. Assess credibility transparently. Reject unsupported conclusions.</p>
+                    </li>
+                    <li class="step-card">
+                        <span class="step-card__number" aria-hidden="true">5</span>
+                        <h3 class="step-card__title">Report with Clarity</h3>
+                        <p class="step-card__text">Plain-language findings, necessary qualifiers only, and a clear explanation of conduct and policy. We don't drop a report and disappear: we can guide you through what the findings mean for your organization.</p>
+                    </li>
+                </ol>
+            </div>
+
+            <!-- Angled divider leading into the About section: the same shape as the one at the top,
+                 turned upside down (in the CSS), so the white below cuts up into the navy at an angle. -->
+            <svg class="process__divider process__divider--bottom" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0 0v36L250 4l750 96V0H0z"/></svg>
+        </section>
+
+        <!-- ============ ABOUT ============
+             Photo on the left, statement and button on the right. On phones: text first, then the photo.
+             Her three pillars are tabs inside the text column.
+             DRAFT copy: every sentence is the firm's own wording, taken from her current homepage and
+             About page on 2026-11-18. Needs her approval.
+             TO CONFIRM: that this photo (sent as "Headshot.png") is Marquita. Her title is as shown on
+             her current About page. -->
+        <section class="about" id="about" aria-labelledby="about-title">
+            <div class="about__inner container">
+                <!-- The text comes first in the code, so on phones it is read first and the photo follows.
+                     From tablets up, the CSS moves the photo to the left-hand column. -->
+                <div class="about__content">
+                    <h2 class="about__title" id="about-title">By-the-Book investigates like we have to live with the outcome.</h2>
+                    <p class="about__text">We are a team of dedicated professionals who combine deep legal expertise with a compassionate, trauma-informed approach. We not only uncover the facts but also help your organization heal and grow.</p>
+
+                    <!-- Her three pillars as tabs: one row of names, and the text for the chosen one underneath.
+                         How it works: without JavaScript all three blocks simply show one after another, each
+                         with its heading. global.js then adds the class "is-ready", reveals the row of buttons
+                         and shows one block at a time. role="tablist" / "tab" / "tabpanel" and aria-selected
+                         tell screen readers these are tabs; the arrow keys move between them.
+                         DRAFT copy: the first sentence of each is her exact wording, the rest is condensed
+                         from her current homepage. Needs her approval. -->
+                    <div class="tabs about__tabs" data-tabs>
+                        <div class="tabs__list" role="tablist" aria-label="Our approach: the three pillars" hidden>
+                            <button class="tabs__tab" type="button" role="tab" id="pillar-tab-1" aria-controls="pillar-1" aria-selected="true">Precision in Process</button>
+                            <button class="tabs__tab" type="button" role="tab" id="pillar-tab-2" aria-controls="pillar-2" aria-selected="false" tabindex="-1">Integrity in Practice</button>
+                            <button class="tabs__tab" type="button" role="tab" id="pillar-tab-3" aria-controls="pillar-3" aria-selected="false" tabindex="-1">Actionable Outcomes</button>
+                        </div>
+                        <div class="tabs__panels">
+                            <div class="tabs__panel is-active" id="pillar-1" role="tabpanel" aria-labelledby="pillar-tab-1">
+                                <h3 class="tabs__heading">Precision in Process</h3>
+                                <p class="tabs__text">Civil-rights-level rigor. Real evidentiary discipline. Protected-class competency. Our investigations, trainings and AI are built to withstand regulatory, judicial and external scrutiny.</p>
+                            </div>
+                            <div class="tabs__panel" id="pillar-2" role="tabpanel" aria-labelledby="pillar-tab-2">
+                                <h3 class="tabs__heading">Integrity in Practice</h3>
+                                <p class="tabs__text">Investigations don't unfold in a vacuum. They unfold amid politics, culture, constraints, power dynamics and competing priorities, so we build solutions that work in the environment you actually operate in.</p>
+                            </div>
+                            <div class="tabs__panel" id="pillar-3" role="tabpanel" aria-labelledby="pillar-tab-3">
+                                <h3 class="tabs__heading">Actionable Outcomes</h3>
+                                <p class="tabs__text">Insight is only useful if it drives action. We answer three questions: what happened, what it means and what needs to happen next.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a class="btn btn--navy about__btn" href="about/">About the firm</a>
+                </div>
+
+                <figure class="about__figure">
+                    <!-- .about__frame holds the photo and the flat tinted block that sits behind its corner -->
+                    <div class="about__frame">
+                        <picture>
+                            <source media="(min-width: 48rem)" srcset="images/headshots/headshot-name-needed.webp" type="image/webp">
+                            <source media="(min-width: 48rem)" srcset="images/headshots/headshot-name-needed.jpg">
+                            <source srcset="images/headshots/headshot-name-needed-m.webp" type="image/webp">
+                            <img class="about__photo" src="images/headshots/headshot-name-needed-m.jpg"
+                                 alt="Marquita M. Booker, founder of By-the-Book Workplace Investigations"
+                                 width="600" height="800" loading="lazy" decoding="async">
+                        </picture>
+                    </div>
+                    <figcaption class="about__caption">
+                        <span class="about__name">Marquita M. Booker</span>
+                        <span class="about__role">Founder and Chief Legal Officer</span>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- ============ PROOF: testimonials and who she works with ============
+             Three testimonials side by side (stacked on phones). No slider: her brief rules carousels out.
+             The words are copied from her current homepage (2026-11-18), unedited. Her site has two more
+             testimonials, left out because they name her earlier business, Course Correction Consulting.
+             TO CONFIRM with her: which testimonials to keep, and that each person is happy to be quoted.
+             STILL TO ADD: client logos ("Who we've worked with"). We have no logo files or confirmed names yet. -->
+        <section class="proof" id="testimonials" aria-labelledby="proof-title">
+            <div class="container">
+                <div class="proof__intro">
+                    <h2 class="proof__title" id="proof-title">The <span class="nowrap">By-the-Book</span> Effect</h2>
+                    <p class="proof__lead">When you work with us, you stop firefighting and start preventing fires.</p>
+                </div>
+
+                <!-- Each testimonial is a <figure>: the quote in a <blockquote>, the person in a <figcaption>.
+                     That pairing tells browsers and screen readers who said what. -->
+                <ul class="proof__quotes" role="list">
+                    <li class="quote">
+                        <figure class="quote__figure">
+                            <blockquote class="quote__text">
+                                <p>Marquita applies a methodical approach to investigations, consistently achieving clear and compliant outcomes. Her unique blend of empathy, strategic insight, and technical expertise makes her an outstanding coach for investigators at all levels.</p>
+                            </blockquote>
+                            <figcaption class="quote__person">
+                                <span class="quote__name">Dr. Jennifer Maedgen</span>
+                                <span class="quote__role">Associate Vice President &amp; ADA Officer</span>
+                                <span class="quote__org">The University of Texas at Austin</span>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li class="quote">
+                        <figure class="quote__figure">
+                            <blockquote class="quote__text">
+                                <p>Marquita is a highly skilled investigator with a keen eye for detail and a dedication to fairness. Her systematic approach to investigations ensures clear, compliant results. Her ability to build rapport with witnesses and create a safe and inclusive environment sets her apart. Marquita's investigative prowess is unparalleled. Her ability to quickly identify key issues, gather relevant evidence, and deliver impactful results is truly impressive.</p>
+                            </blockquote>
+                            <figcaption class="quote__person">
+                                <span class="quote__name">Gilbert Chrispin, SPHR</span>
+                                <span class="quote__role">Assistant Director of Employee Relations</span>
+                                <span class="quote__org">Nova Southeastern University</span>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li class="quote">
+                        <figure class="quote__figure">
+                            <blockquote class="quote__text">
+                                <p>Marquita brings a systematic approach to investigations that delivers clear findings even in the most challenging investigations. Her methodology for analyzing credibility allows her to consistently come to sound conclusions. This makes her an excellent coach for investigators at any level.</p>
+                            </blockquote>
+                            <figcaption class="quote__person">
+                                <span class="quote__name">Kory Levingston</span>
+                                <span class="quote__role">District Title IX Compliance Officer</span>
+                                <span class="quote__org">Tarrant County College</span>
+                            </figcaption>
+                        </figure>
+                    </li>
+                </ul>
+
+                <!-- The sectors listed on her current homepage -->
+                <div class="proof__sectors">
+                    <h3 class="proof__sectors-title">Who we work with</h3>
+                    <ul class="proof__sectors-list" role="list">
+                        <li class="proof__sector">Corporate HR &amp; Legal</li>
+                        <li class="proof__sector">DEI &amp; Title IX</li>
+                        <li class="proof__sector">Non-Profits &amp; NGOs</li>
+                        <li class="proof__sector">Government Agencies</li>
+                        <li class="proof__sector">Higher Ed &amp; K-12</li>
+                        <li class="proof__sector">Healthcare</li>
+                        <li class="proof__sector">Compliance &amp; Ethics</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ CLOSING CALL TO ACTION ============
+             The one large area of burgundy on the page, so the last thing a visitor sees is the invitation.
+             Heading, sentence and the three list items are her wording from the closing block of her
+             current homepage. The button uses the new site's wording ("Schedule a Conversation");
+             her current site says "Get Your Investigation Strategy Audit". -->
+        <section class="cta" aria-labelledby="cta-title">
+            <!-- Background image under a burgundy layer. Decorative, so alt is empty. -->
+            <picture class="cta__bg">
+                <source media="(min-width: 48rem)" srcset="images/backgrounds/layered-paper-edges.webp" type="image/webp">
+                <source media="(min-width: 48rem)" srcset="images/backgrounds/layered-paper-edges.jpg">
+                <source srcset="images/backgrounds/layered-paper-edges-m.webp" type="image/webp">
+                <img src="images/backgrounds/layered-paper-edges-m.jpg" alt="" aria-hidden="true"
+                     width="720" height="1210" loading="lazy" decoding="async">
+            </picture>
+
+            <div class="cta__inner container">
+                <div class="cta__main">
+                    <h2 class="cta__title" id="cta-title">Ready to stop putting out fires and start preventing them?</h2>
+                    <p class="cta__lead">Let's look at your investigative system: what's working, what isn't, and where your risks really are.</p>
+                    <div class="cta__actions">
+                        <a class="btn btn--light cta__btn" href="contact/">Schedule a Conversation</a>
+                        <a class="cta__phone" href="tel:+18883976352">or call (888) 397-6352</a>
+                    </div>
+                </div>
+
+                <div class="cta__aside">
+                    <p class="cta__aside-title">In 30 minutes, you'll get a clear picture of:</p>
+                    <ul class="cta__list" role="list">
+                        <li class="cta__item">The gaps in your current process</li>
+                        <li class="cta__item">Your highest-priority risks</li>
+                        <li class="cta__item">A roadmap for how we can support you</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Next: the footer. -->
 
     </main>
 

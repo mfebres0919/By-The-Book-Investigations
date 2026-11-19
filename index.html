@@ -328,16 +328,17 @@
              paragraphs. In the first paragraph, the four gaps she lists are each a sentence, so they
              are shown as four short lines; nothing is reworded. -->
         <section class="intensive" id="readiness" aria-labelledby="intensive-title">
+            <!-- Background drawing: a line drawing of a building, stretched over the whole section and
+                 made very faint in the CSS, so it is barely there behind the text. Decorative, so alt
+                 is empty. This is the navy copy of the drawing (the original file is black). -->
+            <img class="intensive__bg" src="images/illustrations/modern-civic-building-navy.svg" alt="" aria-hidden="true"
+                 width="1536" height="1024" loading="lazy" decoding="async">
+
             <div class="intensive__inner container">
                 <div class="intensive__head">
                     <h2 class="intensive__title" id="intensive-title" data-split="words">Investigation Readiness Intensive</h2>
                     <p class="intensive__tagline" data-reveal="fade" data-delay="2">Not Investigations 101. A working look at whether your investigation process is ready for the cases it has to carry.</p>
                     <a class="btn btn--navy intensive__btn" data-reveal="fade" data-delay="3" href="contact/">Schedule a Conversation<span class="visually-hidden"> about the Investigation Readiness Intensive</span></a>
-                    <!-- Line drawing of a building: the Intensive is about the structure behind the work.
-                         Decorative, so alt is empty. This is the navy copy of the drawing; the original
-                         (modern-building-facade.svg) is black. -->
-                    <img class="intensive__art" data-reveal="fade" data-delay="4" src="images/illustrations/modern-building-facade-navy.svg" alt="" aria-hidden="true"
-                         width="1536" height="1024" loading="lazy" decoding="async">
                 </div>
 
                 <div class="intensive__body">
@@ -416,51 +417,21 @@
             </div>
         </section>
 
-        <!-- ============ ABOUT ============
-             Photo on the left, statement and button on the right. On phones: text first, then the photo.
-             Her three pillars are tabs inside the text column.
-             DRAFT copy: every sentence is the firm's own wording, taken from her current homepage and
-             About page on 2026-11-18. Needs her approval.
-             TO CONFIRM: that this photo (sent as "Headshot.png") is Marquita. Her title is as shown on
-             her current About page. -->
+        <!-- ============ FOUNDER (her section 10) ============
+             Photo on the left, her heading, two paragraphs and a text link on the right.
+             On phones: text first, then the photo. All wording is hers. Her notes say internal links
+             need not be buttons, so "Read why we started" is a text link to the About page.
+             TO CONFIRM: that this photo (sent as "Headshot.png") is Marquita, and the title under it
+             (taken from her current About page; her new copy does not give one). -->
         <section class="about" id="about" aria-labelledby="about-title">
             <div class="about__inner container">
                 <!-- The text comes first in the code, so on phones it is read first and the photo follows.
                      From tablets up, the CSS moves the photo to the left-hand column. -->
                 <div class="about__content">
-                    <h2 class="about__title" id="about-title" data-split="words">By-the-Book investigates like we have to live with the outcome.</h2>
-                    <p class="about__text" data-reveal="fade" data-delay="2">We are a team of dedicated professionals who combine deep legal expertise with a compassionate, trauma-informed approach. We not only uncover the facts but also help your organization heal and grow.</p>
-
-                    <!-- Her three pillars as tabs: one row of names, and the text for the chosen one underneath.
-                         How it works: without JavaScript all three blocks simply show one after another, each
-                         with its heading. global.js then adds the class "is-ready", reveals the row of buttons
-                         and shows one block at a time. role="tablist" / "tab" / "tabpanel" and aria-selected
-                         tell screen readers these are tabs; the arrow keys move between them.
-                         DRAFT copy: the first sentence of each is her exact wording, the rest is condensed
-                         from her current homepage. Needs her approval. -->
-                    <div class="tabs about__tabs" data-tabs data-reveal="fade" data-delay="3">
-                        <div class="tabs__list" role="tablist" aria-label="Our approach: the three pillars" hidden>
-                            <button class="tabs__tab" type="button" role="tab" id="pillar-tab-1" aria-controls="pillar-1" aria-selected="true">Precision in Process</button>
-                            <button class="tabs__tab" type="button" role="tab" id="pillar-tab-2" aria-controls="pillar-2" aria-selected="false" tabindex="-1">Integrity in Practice</button>
-                            <button class="tabs__tab" type="button" role="tab" id="pillar-tab-3" aria-controls="pillar-3" aria-selected="false" tabindex="-1">Actionable Outcomes</button>
-                        </div>
-                        <div class="tabs__panels">
-                            <div class="tabs__panel is-active" id="pillar-1" role="tabpanel" aria-labelledby="pillar-tab-1">
-                                <h3 class="tabs__heading">Precision in Process</h3>
-                                <p class="tabs__text">Civil-rights-level rigor. Real evidentiary discipline. Protected-class competency. Our investigations, trainings and AI are built to withstand regulatory, judicial and external scrutiny.</p>
-                            </div>
-                            <div class="tabs__panel" id="pillar-2" role="tabpanel" aria-labelledby="pillar-tab-2">
-                                <h3 class="tabs__heading">Integrity in Practice</h3>
-                                <p class="tabs__text">Investigations don't unfold in a vacuum. They unfold amid politics, culture, constraints, power dynamics and competing priorities, so we build solutions that work in the environment you actually operate in.</p>
-                            </div>
-                            <div class="tabs__panel" id="pillar-3" role="tabpanel" aria-labelledby="pillar-tab-3">
-                                <h3 class="tabs__heading">Actionable Outcomes</h3>
-                                <p class="tabs__text">Insight is only useful if it drives action. We answer three questions: what happened, what it means and what needs to happen next.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a class="btn btn--navy about__btn" data-reveal="fade" data-delay="4" href="about/">About the firm</a>
+                    <h2 class="about__title" id="about-title" data-split="words">Built by someone who has carried the caseload</h2>
+                    <p class="about__text about__text--lead" data-reveal="fade" data-delay="2">By-the-Book was built from experience inside investigative units, where the job did not end when a report was submitted. There were parties waiting for answers, leaders needing to make decisions, and colleagues trying to keep an entire caseload moving. That perspective shapes how we investigate today.</p>
+                    <p class="about__text" data-reveal="fade" data-delay="3">By-the-Book is led by Dr. Marquita M. Booker, Esq., a civil rights attorney and internal investigations leader with more than 15 years in the field. Across her career, she has conducted, led, or reviewed more than 2,000 protected-class investigations and trained more than 250 investigators. That experience shapes the way we approach each engagement.</p>
+                    <a class="about__link" data-reveal="fade" data-delay="4" href="about/">Read why we started</a>
                 </div>
 
                 <figure class="about__figure" data-reveal="left">
@@ -471,12 +442,12 @@
                             <source media="(min-width: 48rem)" srcset="images/headshots/headshot-name-needed.jpg">
                             <source srcset="images/headshots/headshot-name-needed-m.webp" type="image/webp">
                             <img class="about__photo" src="images/headshots/headshot-name-needed-m.jpg"
-                                 alt="Marquita M. Booker, founder of By-the-Book Workplace Investigations"
+                                 alt="Dr. Marquita M. Booker, Esq., founder of By-the-Book Workplace Investigations"
                                  width="600" height="800" loading="lazy" decoding="async">
                         </picture>
                     </div>
                     <figcaption class="about__caption">
-                        <span class="about__name">Marquita M. Booker</span>
+                        <span class="about__name">Dr. Marquita M. Booker, Esq.</span>
                         <span class="about__role">Founder and Chief Legal Officer</span>
                     </figcaption>
                 </figure>

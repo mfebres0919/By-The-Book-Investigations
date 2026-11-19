@@ -676,7 +676,20 @@
    White section. Phones: name, opening line and button, then the text.
    Desktop: those three on the left (they stay in view while you read), the text on the right. */
 .intensive {
+  position: relative;            /* so the background drawing can be pinned to this section */
+  isolation: isolate;            /* keeps the drawing's z-index inside this section */
   padding-block: var(--space-section);
+}
+/* The line drawing behind everything: it covers the whole section and is almost see-through.
+   0.07 means 7% visible. Raise the number to make the drawing stronger, lower it to fade it. */
+.intensive__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;             /* fills the section, cropping the drawing's edges if needed */
+  opacity: 0.07;
 }
 .intensive__inner {
   display: grid;
@@ -695,16 +708,6 @@
   line-height: 1.35;
 }
 .intensive__btn { margin-top: 2rem; }
-/* The building line drawing under the button. The file has empty space around the drawing,
-   so negative margins pull it back in line with the text. */
-.intensive__art {
-  display: block;
-  width: min(100%, 26rem);
-  height: auto;
-  margin: 0.5rem 0 -1.5rem -1.25rem;
-  opacity: 0.7;                  /* softens the navy lines so the drawing sits behind the words */
-}
-
 .intensive__text {
   font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
 }
@@ -744,7 +747,6 @@
     position: sticky;
     top: calc(var(--header-h) + 2.5rem);
   }
-  .intensive__art { width: 100%; }
 }
 
 /* ---------- Meet INVEXTRA™ ----------
@@ -904,11 +906,10 @@
   }
 }
 
-/* ---------- About ----------
-   White section. Phones: text (with the three pillars as tabs), then the photo.
-   Tablets and up: photo left, text right.
-   Kept plain on purpose (her brief): no cards or shadows. What holds it together is
-   a flat tinted block behind the photo and the thin rule under the tabs. */
+/* ---------- Founder ("Built by someone who has carried the caseload") ----------
+   White section. Phones: text, then the photo. Tablets and up: photo left, text right.
+   Kept plain on purpose (her brief): no cards or shadows. The photo is the picture here,
+   with a flat tinted block behind its corner. */
 .about {
   padding-block: var(--space-section);
 }
@@ -919,16 +920,33 @@
 }
 
 .about__title {
-  max-width: 18em;
-  font-size: clamp(1.75rem, 1.4rem + 1.7vw, 2.5rem);
-  line-height: 1.2;
+  max-width: 16em;
+  font-size: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);   /* same size as the other section headings */
 }
 .about__text {
-  max-width: 36rem;
+  max-width: 42rem;              /* keeps lines a comfortable length to read */
   margin-top: 1.25rem;
   font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
 }
-.about__btn { margin-top: 2.25rem; }
+/* Her first paragraph (the firm's story) is a step larger than the second (her credentials) */
+.about__text--lead {
+  margin-top: 1.5rem;
+  font-size: clamp(1.125rem, 1.05rem + 0.5vw, 1.375rem);
+  line-height: 1.5;
+}
+/* "Read why we started": a text link, not a button (her notes: internal links need not be buttons) */
+.about__link {
+  display: inline-block;
+  margin-top: 1.75rem;
+  padding-block: 0.75rem;                /* taller tap target */
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--color-burgundy);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.35em;
+  transition: color var(--speed) var(--ease);
+}
+.about__link:hover { color: var(--color-burgundy); }
 
 .about__figure {
   margin: 0;
@@ -970,93 +988,6 @@
   font-size: 1.1875rem;
 }
 .about__role { font-size: 0.9375rem; }
-
-/* ----- Tabs (her three pillars) -----
-   Default, before JavaScript runs: every block shows, one under another, with its heading.
-   Once global.js adds "is-ready": the row of tab buttons appears, the headings hide (the
-   buttons now name them) and only the active block is visible.
-   All the blocks sit in the same grid cell, on top of each other, so the area is always as
-   tall as the longest one and the button below never jumps when you switch tabs. */
-.about__tabs { margin-top: 2.25rem; }
-
-.tabs__panels { display: grid; gap: 1.5rem; }
-.tabs__heading { font-size: 1.3125rem; line-height: 1.25; }
-.tabs__text { max-width: 36rem; margin-top: 0.5rem; }
-
-.tabs.is-ready .tabs__panels { gap: 0; }
-.tabs.is-ready .tabs__panel {
-  grid-area: 1 / 1;              /* all in row 1, column 1: stacked on top of each other */
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity var(--speed) var(--ease), visibility 0s linear var(--speed);
-}
-.tabs.is-ready .tabs__panel.is-active {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity var(--speed) var(--ease), visibility 0s;
-}
-.tabs.is-ready .tabs__heading {          /* still read by screen readers, just not shown */
-  position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
-}
-.tabs.is-ready .tabs__text { margin-top: 1.5rem; }
-
-/* The row of tab names. Phones: stacked, each with a rule under it and a burgundy bar
-   beside the active one. Wider screens: side by side with a burgundy underline (below). */
-.tabs__list { display: grid; }
-.tabs__list[hidden] { display: none; }
-.tabs__tab {
-  position: relative;
-  min-height: 3rem;                      /* comfortable tap target */
-  padding: 0.75rem 0 0.75rem 1rem;
-  background: none;
-  border: 0;
-  border-bottom: 1px solid var(--color-rule);
-  color: rgba(10, 26, 51, 0.72);         /* quieter navy for the tabs that are not open (still passes AA) */
-  font-family: var(--font-body);
-  font-size: 1.0625rem;
-  font-weight: 600;
-  text-align: left;
-  cursor: pointer;
-  transition: color var(--speed) var(--ease);
-}
-.tabs__tab:hover,
-.tabs__tab[aria-selected="true"] { color: var(--color-navy); }
-/* The marker for the active tab: a burgundy bar that grows in */
-.tabs__tab::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.75rem;
-  bottom: 0.75rem;
-  width: 2px;
-  background: var(--color-burgundy);
-  transform: scaleY(0);
-  transition: transform var(--speed) var(--ease);
-}
-.tabs__tab[aria-selected="true"]::after { transform: scaleY(1); }
-
-@media (min-width: 36rem) {
-  .tabs__list {
-    display: flex;
-    gap: 2rem;
-    border-bottom: 1px solid var(--color-rule);
-  }
-  .tabs__tab {
-    padding: 0.75rem 0;
-    border-bottom: 0;
-    margin-bottom: -1px;                 /* the active underline sits exactly on the long rule */
-  }
-  .tabs__tab::after {
-    top: auto;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    transform: scaleX(0);
-    transform-origin: left;
-  }
-  .tabs__tab[aria-selected="true"]::after { transform: scaleX(1); }
-}
 
 @media (min-width: 48rem) {
   .about__inner {

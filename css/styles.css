@@ -1181,6 +1181,109 @@
   }
 }
 
+/* ---------- Questions we get asked ----------
+   An accordion on a very light grid texture.
+   Phones: heading, then the questions. Desktop: heading on the left, questions on the right. */
+.faq {
+  position: relative;
+  isolation: isolate;            /* keeps the texture's z-index inside this section */
+  padding-block: var(--space-section);
+  background: #FCF9F4;           /* the texture's own paper colour, shown while the image loads */
+}
+.faq__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+.faq__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.faq__inner {
+  display: grid;
+  gap: 2.5rem;
+}
+.faq__title {
+  font-size: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);   /* same size as the other section headings */
+}
+
+/* The questions sit on white, so the grid lines never run through the words */
+.faq__list {
+  background: var(--color-white);
+  border-top: 2px solid var(--color-navy);
+}
+.faq__item {
+  border-bottom: 1px solid var(--color-rule);
+}
+
+/* The clickable row: the question on the left, a plus sign on the right */
+.faq__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 3.5rem;            /* comfortable tap target */
+  padding: 1.25rem 1.25rem;
+  cursor: pointer;
+  list-style: none;              /* removes the browser's default triangle */
+  transition: color var(--speed) var(--ease);
+}
+.faq__question::-webkit-details-marker { display: none; }   /* the same, for Safari */
+.faq__question:hover { color: var(--color-burgundy); }
+.faq__question-text {
+  font-size: clamp(1.1875rem, 1.1rem + 0.5vw, 1.4375rem);
+  line-height: 1.3;
+}
+
+/* The plus sign, drawn from two thin bars. When the answer is open, the upright bar
+   turns to lie flat, so the plus becomes a minus. */
+.faq__icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-burgundy);
+}
+.faq__icon::before,
+.faq__icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  margin-top: -1px;
+  background: currentColor;
+  transition: transform var(--speed) var(--ease);
+}
+.faq__icon::after { transform: rotate(90deg); }
+.faq__item[open] .faq__icon::after { transform: rotate(0deg); }
+
+.faq__answer {
+  max-width: 44rem;              /* keeps lines a comfortable length to read */
+  padding: 0 1.25rem 1.5rem;
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+}
+
+@media (min-width: 48rem) {
+  .faq__question { padding: 1.5rem 2rem; }
+  .faq__answer { padding: 0 2rem 1.75rem; }
+}
+/* Desktop: heading left (it stays in view while the list scrolls), questions right */
+@media (min-width: 62rem) {
+  .faq__inner {
+    grid-template-columns: 4fr 8fr;
+    column-gap: clamp(3rem, 6vw, 5.5rem);
+    align-items: start;
+  }
+  .faq__title {
+    position: sticky;
+    top: calc(var(--header-h) + 2.5rem);
+  }
+}
+
 /* ---------- Closing call to action ----------
    Burgundy section with the layered-paper photo faintly behind it.
    Phones: heading, sentence, button, then the "In 30 minutes" list.
@@ -1202,7 +1305,7 @@
   left: 0;
   width: 100%;
   height: var(--divider-h);
-  fill: var(--color-bg);       /* white, like "How it starts" above. Change it if the section above changes. */
+  fill: #FCF9F4;                 /* the paper colour of the Questions section above. Change it if that section changes. */
 }
 .cta__bg {
   position: absolute;

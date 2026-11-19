@@ -550,6 +550,50 @@
             </div>
         </section>
 
+        <!-- ============ QUESTIONS WE GET ASKED (her section 13) ============
+             Her five questions as an accordion: click a question to open its answer. The first one
+             starts open so visitors can see how it works.
+             <details> and <summary> are built into HTML: the browser does the opening and closing,
+             so this needs no JavaScript and works with a keyboard and screen readers as it is.
+             Background: a very light grid texture with small burgundy dots. All wording is hers. -->
+        <section class="faq" aria-labelledby="faq-title">
+            <!-- Background texture. Decorative, so alt is empty. -->
+            <picture class="faq__bg">
+                <source media="(min-width: 48rem)" srcset="images/backgrounds/grid-dots.webp" type="image/webp">
+                <source media="(min-width: 48rem)" srcset="images/backgrounds/grid-dots.jpg">
+                <source srcset="images/backgrounds/grid-dots-m.webp" type="image/webp">
+                <img src="images/backgrounds/grid-dots-m.jpg" alt="" aria-hidden="true"
+                     width="720" height="1210" loading="lazy" decoding="async">
+            </picture>
+
+            <div class="faq__inner container">
+                <h2 class="faq__title" id="faq-title" data-split="words">Questions we get asked</h2>
+
+                <div class="faq__list" data-reveal="fade" data-delay="2">
+                    <details class="faq__item" open>
+                        <summary class="faq__question"><h3 class="faq__question-text">Can we send you just one case?</h3><span class="faq__icon" aria-hidden="true"></span></summary>
+                        <p class="faq__answer">Yes. The Single-Case Investigation exists for exactly that, with no ongoing commitment.</p>
+                    </details>
+                    <details class="faq__item">
+                        <summary class="faq__question"><h3 class="faq__question-text">How is confidentiality handled?</h3><span class="faq__icon" aria-hidden="true"></span></summary>
+                        <p class="faq__answer">Confidentiality is built into how we work, from intake through the report. We can walk through our practices for your specific matter on the call.</p>
+                    </details>
+                    <details class="faq__item">
+                        <summary class="faq__question"><h3 class="faq__question-text">Do you work within our policies?</h3><span class="faq__icon" aria-hidden="true"></span></summary>
+                        <p class="faq__answer">Yes. Your policies and applicable legal standards are the frame for the investigation, not an afterthought.</p>
+                    </details>
+                    <details class="faq__item">
+                        <summary class="faq__question"><h3 class="faq__question-text">We already have investigators. Is this for us?</h3><span class="faq__icon" aria-hidden="true"></span></summary>
+                        <p class="faq__answer">Often, yes. Teams with experienced investigators call us for capacity, for distance from a sensitive matter, or to strengthen the process behind the work.</p>
+                    </details>
+                    <details class="faq__item">
+                        <summary class="faq__question"><h3 class="faq__question-text">Who actually runs the investigation?</h3><span class="faq__icon" aria-hidden="true"></span></summary>
+                        <p class="faq__answer">Every engagement has a designated lead responsible for coordinating the work. We discuss who will handle the investigation, the oversight arrangements, and communication expectations before the engagement begins.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
         <!-- ============ CLOSING CALL TO ACTION ============
              The one large area of burgundy on the page, so the last thing a visitor sees is the invitation.
              Heading, sentence and the three list items are her wording from the closing block of her

@@ -342,6 +342,15 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-18: homepage realignment, step 13: "Questions we get asked"
+- New `section.faq` between "How it starts" and the closing section (`index.html`; "Questions we get asked" in `css/styles.css`). Her five questions and answers, word for word.
+- **Accordion**, built with the browser's own `<details>` / `<summary>` (no JavaScript; keyboard and screen readers work as standard). The first question starts open. A burgundy plus sign turns into a minus when a question is open (linear, 0.25s). More than one can be open at once. Reason for an accordion here and nowhere else: Miguelle finds the page text-heavy, and visitors only need the answers they came for.
+- Layout: heading on the left on desktop (stays in view), the list on the right on a white block with a navy rule on top; phones stack them.
+- Background: the **Minimalist Burgundy Grid Dots** texture (`images/backgrounds/grid-dots`, WebP and JPG plus `-m`; 4 to 31 KB). Its paper colour is `#FCF9F4`, a warm off-white that is not a brand token; it is written as a hex in `.faq` and in `.cta__divider`. The list sits on white so the grid lines never cross the words.
+- **The triangle at the top of the closing section is now `#FCF9F4`** to match this section. Seen in the screenshot: clean join.
+- Not done: FAQ structured data (schema) for search engines. Add it with the rest of the schema before launch.
+- Checked: screenshots at 390 and 1440 wide with the first answer open. Not checked: opening and closing by click, keyboard use, tablet width, real devices.
+
 ### 2026-11-18: homepage realignment, step 12: "How it starts"
 - New `section.start` between Proof and the closing section (`index.html`; "How it starts" in `css/styles.css`). White, no graphic. Her three steps word for word, as a **timeline**: one continuous navy line with a small burgundy square where each step begins, then a large burgundy "01" / "02" / "03", the step's title and its text. The line runs across the top on desktop (three columns with no gap, so their top edges join) and down the left side on phones and tablets.
 - The numbers are kept because this is a real sequence (and her copy numbers them). It is an ordered list; the big digits are hidden from screen readers since the list already numbers the steps.
@@ -459,7 +468,7 @@ Newest first. One entry per working session or per significant change: what chan
 - Checked: screenshots at 390 and 1440 wide, taken while the numbers were still counting (so the counting works; the layout is right). Not checked: the final figures on screen after the count, the motion itself, real devices.
 
 ### 2026-11-18: homepage realignment to her 14 sections, step 1: hero
-Miguelle approved realigning the whole homepage to `documentation/client-brief/Homepage and About Us.docx`, **one section at a time, reviewed as we go**. Progress: **sections 1 to 12 done** (Hero, Stat strip, When would you bring us in?, An outside investigation..., Two ways to get the work moving, CLEAR, Investigation Readiness Intensive, Meet INVEXTRA™, An outside investigator protects the finding, Founder, Proof, How it starts). Next: 13 Questions, 14 Closing. The old closing section is still on the page until section 14 is built.
+Miguelle approved realigning the whole homepage to `documentation/client-brief/Homepage and About Us.docx`, **one section at a time, reviewed as we go**. Progress: **sections 1 to 13 done** (Hero, Stat strip, When would you bring us in?, An outside investigation..., Two ways to get the work moving, CLEAR, Investigation Readiness Intensive, Meet INVEXTRA™, An outside investigator protects the finding, Founder, Proof, How it starts, Questions we get asked). Next: 14 Closing. The old closing section is still on the page until section 14 is built.
 - **Hero now uses her final copy word for word:** small line "Third-party protected-class investigations" (with the copper marker), H1 "Some investigations can't stay in-house. Others can't wait." (one sentence per line), her subhead, one button ("Schedule a Conversation"), a text link "How the work is structured" that jumps to `#services` (it should point at the "Two ways" section once that is rebuilt), and her trust line in the strip at the foot of the hero.
 - **INVEXTRA is no longer in the hero** (the strip is gone; her copy gives INVEXTRA its own section 8). It now has its own section 8 (built 2026-11-18) plus the footer column.
 - **Centred from 768px up** (Miguelle's call, since nothing sits beside the text); phones stay left-aligned like the rest of the page. A soft navy patch that fades to nothing sits behind the centred text so the burgundy line in the background never runs through the words (`.hero__inner::before`). Checked at 820 and 1440 wide before the patch was widened; not re-checked after.

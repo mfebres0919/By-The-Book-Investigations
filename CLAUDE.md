@@ -342,6 +342,15 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-18: Miguelle's new graphics arrived; first two placed (sections 7 and 9)
+- **Files received (14) and where they went.** They were loose in `images/`, which the handbook does not allow, so:
+  - Four line drawings, already SVG (Miguelle converted them): now in **`images/illustrations/`** as `modern-building-facade.svg`, `glass-office-tower.svg`, `modern-civic-building.svg`, `interior-staircase.svg` (the `01-` to `04-` prefixes were dropped). They are drawn with `currentColor`, which shows as black inside an `<img>`; to use one in a brand colour, save a copy with the colour written in (done for `modern-building-facade-navy.svg`, `#0A1A33`).
+  - Ten textures (PNG, 1 to 3 MB each): originals moved to `documentation/source-images/backgrounds/` (not in Git). Web copies are made only when one is used. Names: Burgundy Embossed Grid Texture, Graphite Curve on Handmade Paper, Layered Navy and Gray Paper Strata, Minimal Constellation on Navy, Minimalist Burgundy Grid Dots, Navy Paper Fold Texture, Navy Slate with Vertical Seam, Navy Topographic Contours with Burgundy Accent, Navy and Gray Panel Harmony, Soft Blinds Shadows on Textured Wall.
+- **Section 9 (navy):** background is now the contour-line texture (`images/backgrounds/navy-contours` in WebP and JPG, plus a tall `-m` phone crop; 13 to 69 KB) under a 62% navy layer (`.independence__bg`, `.independence::before`). The log entry below that calls this section "plain navy, no photo" is superseded.
+- **Section 7 (white):** the building facade line drawing sits under the button in the left column (`img.intensive__art`, navy lines at 70% opacity; 33 KB). On phones it sits between the button and the text. Reason for this drawing here: the Intensive is about the structure behind the work.
+- **Not used yet, with a suggested home for each** (to agree with Miguelle): Constellation on Navy (has a copper dot) for the INVEXTRA section; civic building or glass tower drawing for the founder section (10) or "How it starts" (12); Grid Dots (cream) behind the Questions section (13); Paper Fold or Slate behind the proof section (11); Burgundy Embossed Grid for the closing section (14) in place of the paper-edges photo. Probably leave out: Soft Blinds Shadows (reads as a stock photo), Graphite Curve and Paper Strata (cream and brown tones outside her palette), interior staircase drawing (the CLEAR section already has a staircase).
+- Checked: screenshots of sections 7 and 9 at 390 and 1440 wide. Not checked: tablet width, real devices; text over the contour lines was judged by eye only, not measured for contrast (the lines are thin and behind a navy layer).
+
 ### 2026-11-18: hero text widened on desktop; images to come; commits now automatic
 - Miguelle: on larger screens the hero text "feels a little clumped together". Changes in `css/styles.css` (end of the Hero block):
   - the paragraph under the headline may run wider: 52rem from 992px, 60rem and slightly larger type (1.3125rem) from 1200px (it was 40rem at every width);

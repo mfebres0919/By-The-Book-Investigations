@@ -11,6 +11,7 @@ The build standards are in the MigsFlow handbook (v2.1, HTML, CSS and JavaScript
 ## 1. How to work in this project
 
 - **Log every change.** Before ending any reply in which the site, its files, its settings, its accounts or its content changed, add a dated entry to the change log (Section 10) and update the other sections if a fact, decision or open question changed.
+- **Commit and push after every change** (Miguelle, 2026-11-18: "push and commit any changes you make moving forward automatically"). After logging, `git add -A`, commit with a short message saying what changed, and `git push` to `origin main` (github.com/mfebres0919/By-The-Book-Investigations). This is the code repository only; it does not cover Netlify, DNS or anything in the "Never change" rule below.
 - **Read first.** At the start of a session, read this file, then `documentation/project-checklist.md`.
 - **Follow the handbook** (`handbook/CLAUDE.md`). A one-off exception for this client is recorded in Section 6 here, not by editing the handbook. If Miguelle changes a standard for all sites, update the handbook and its change log (handbook Section 22).
 - **Stack: plain HTML, CSS and JavaScript.** No frameworks, no Tailwind, no build step. (Decided 2026-11-16, see Section 6.)
@@ -340,6 +341,14 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+
+### 2026-11-18: hero text widened on desktop; images to come; commits now automatic
+- Miguelle: on larger screens the hero text "feels a little clumped together". Changes in `css/styles.css` (end of the Hero block):
+  - the paragraph under the headline may run wider: 52rem from 992px, 60rem and slightly larger type (1.3125rem) from 1200px (it was 40rem at every width);
+  - from 1280px each sentence of the headline stays on one line (`.hero__line { white-space: nowrap }`) at 3.5rem, so the headline is two long lines instead of three short stacked ones. It was 4rem, but at that size the first sentence cannot fit on one line. Below 1280px nothing changed.
+- Checked: screenshots at 1280, 1440 and 1920 wide (first sentence fits with room to spare at 1280). Not checked: real devices, the entrance animation in motion.
+- **Direction from Miguelle: the page is "too much text" right now. Lean on her brief's "abstract, textural or brand-driven graphics".** Miguelle is generating more background images; when they arrive, place them in `images/backgrounds/` (WebP + JPG, with `-m` phone crops) and use them in the text-heavy sections (candidates: 7 Intensive, 9 Independence, and sections 10 to 13 as they are built). Still no stock people, no image added only to fill a column.
+- **Standing instruction: commit and push after every change** (added to Section 1).
 
 ### 2026-11-18: homepage realignment, step 9: "An outside investigator protects the finding"
 - New `section.independence` after Meet INVEXTRA™ (`index.html`; styles in `css/styles.css`). **Plain navy, no photo and no divider** (the CLEAR section is navy over a photo; this one is flat so the two differ, and it breaks the run of light sections 7 and 8). Her copy word for word.

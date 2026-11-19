@@ -163,8 +163,26 @@
   .hero__inner { position: relative; }
 }
 
+/* Desktop: the paragraph under the headline is allowed to run wider, so it is about as
+   wide as the headline above it instead of a narrow block in the middle. */
 @media (min-width: 62rem) {
+  .hero__lead { max-width: 52rem; }
   .hero__actions { margin-top: 2.75rem; }
+}
+/* Large desktop screens: a little wider again, and a touch larger */
+@media (min-width: 75rem) {
+  .hero__lead {
+    max-width: 60rem;
+    font-size: 1.3125rem;
+  }
+}
+/* Wide desktop screens (1280px and up): each sentence of the headline stays on ONE line, so
+   the headline is two long lines across the screen instead of three short ones stacked in
+   the middle. The type is slightly smaller here so the first sentence fits; if the headline
+   wording ever gets longer, lower this size or remove the nowrap line. */
+@media (min-width: 80rem) {
+  .hero__title { font-size: 3.5rem; }
+  .hero__line { white-space: nowrap; }
 }
 
 /* ---------- Stat strip ----------

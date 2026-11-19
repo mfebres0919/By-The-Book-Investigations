@@ -347,7 +347,7 @@ Newest first. One entry per working session or per significant change: what chan
 - The numbers are kept because this is a real sequence (and her copy numbers them). It is an ordered list; the big digits are hidden from screen readers since the list already numbers the steps.
 - No button in this section: her copy has none, and the closing section's button follows two sections later.
 - On desktop the step titles are slightly smaller (1.4375rem) so "Tell us what's on your desk." fits on one line like the other two.
-- The closing section's triangle is still filled navy (see the entry below) although this white section now sits above it. **It is corrected when section 13 is built.**
+- The closing section's triangle is now filled white to match this section above it (`.cta__divider`), which removes the navy seam noted in the entry below. **Change the fill again when section 13 is built** (to section 13's background).
 - Checked: screenshots at 390 and 1440 wide. Not checked: tablet width, the motion, real devices.
 
 ### 2026-11-18: section 7 drawing removed; homepage realignment, step 11: Proof

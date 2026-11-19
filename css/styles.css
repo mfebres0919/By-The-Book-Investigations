@@ -1195,14 +1195,14 @@
   color: var(--color-white);
 }
 /* The triangle divider: pinned to the top edge and filled with the colour of the section
-   above it (pale grey). If that section's background ever changes, change the fill to match. */
+   above it (white). If that section's background ever changes, change the fill to match. */
 .cta__divider {
   position: absolute;
   top: -1px;                     /* overlaps the edge by 1px so no hairline of burgundy shows above it */
   left: 0;
   width: 100%;
   height: var(--divider-h);
-  fill: var(--color-navy);   /* TEMPORARY: navy while the proof section sits above; change when sections 12 and 13 are built */
+  fill: var(--color-bg);       /* white, like "How it starts" above. Change it if the section above changes. */
 }
 .cta__bg {
   position: absolute;

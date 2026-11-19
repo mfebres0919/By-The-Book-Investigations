@@ -342,6 +342,11 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-18: section 13 texture removed
+- Miguelle on the grid-dots background: "I don't like the background, it's too much." **Removed.** Section 13 is now plain pale grey (`--color-wash`) with the white accordion block on it; the `grid-dots` image files were deleted from `images/backgrounds/` (the original PNG is still in `documentation/source-images/backgrounds/`), and the off-white `#FCF9F4` is no longer used anywhere. The closing section's triangle is pale grey again to match.
+- **Lesson on graphics so far:** rejected: the line drawings (section 7) and the light grid texture (section 13). Kept so far: the dark navy textures (contours in section 9, paper fold in section 11). Light sections should stay plain; textures belong on the dark sections, and quietly.
+- Checked: screenshot at 390 and 1440 wide.
+
 ### 2026-11-18: homepage realignment, step 13: "Questions we get asked"
 - New `section.faq` between "How it starts" and the closing section (`index.html`; "Questions we get asked" in `css/styles.css`). Her five questions and answers, word for word.
 - **Accordion**, built with the browser's own `<details>` / `<summary>` (no JavaScript; keyboard and screen readers work as standard). The first question starts open. A burgundy plus sign turns into a minus when a question is open (linear, 0.25s). More than one can be open at once. Reason for an accordion here and nowhere else: Miguelle finds the page text-heavy, and visitors only need the answers they came for.

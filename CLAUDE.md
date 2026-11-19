@@ -342,6 +342,11 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-18: PDF cover reworded: testimonials are not "missing"
+- Miguelle asked why the PDF said testimonials still needed confirming when they are in her document. **Miguelle is right: the four testimonials, names and titles are in her homepage document and are on the page exactly as she wrote them.** The line came from the last sentence of her own document ("Final publication check: Obtain approval for testimonial wording, titles, and client logos; confirm the anonymized founder story is appropriate to publish; and re-confirm the INVEXTRA launch timing before go-live."). That is **her** checklist to complete before go-live, not something MigsFlow is waiting on, and the old wording read as if content were missing.
+- The cover now says: the testimonials appear exactly as written and her final publication check is hers to complete; and lists only the **three things actually needed from her**: whether the founder photo and title are right (the photo arrived as "Headshot.png" with no name, and her new copy gives no title), whether the nine logos taken from her current site are the set she wants, and where "Schedule a Conversation" should lead. The cover picture was made slightly smaller so the cover still fits one page (17 pages total).
+- **Correction for the notes above and Section 8:** treat the testimonials as supplied and final. Do not ask her to "confirm" them again; at most, remind her of her own publication check.
+
 ### 2026-11-18: handbook v2.2; preview image remade to the Open Graph rules; client preview PDF
 - **Handbook updated to v2.2** (Miguelle's request), in the master (`New Web Design Folder/MigsFlow Handbook/CLAUDE.md`) and in this project's copy (`handbook/CLAUDE.md`):
   - every site's link preview image is a picture of the **homepage hero** (`images/social/og-home.jpg`), with the Open Graph requirements written out (1200 x 630, under 300 KB, important content inside the middle 630 x 630, full `https://` addresses, preview address during review and live domain at launch, the full tag list, remake when the hero changes, check with an inspector);

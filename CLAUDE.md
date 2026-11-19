@@ -342,6 +342,15 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-18: footer revised to her exact terms
+- Her design notes ask for these exact terms in the nav, footer and links: "Investigation Capacity Retainer", "Single-Case Investigation", "CLEAR Investigation Framework™", "Investigation Readiness Intensive", "INVEXTRA™". **The footer now uses all five.**
+- Columns (`index.html` footer; `css/global.css` section 9): logo and tagline | **Services** (Investigation Capacity Retainer, Single-Case Investigation, Investigation Readiness Intensive, CLEAR Investigation Framework™) | **Company** (About, Contact) | **Contact** (phone, email, address) | **INVEXTRA™** (her logo line and "Join the INVEXTRA waitlist", her exact button wording). The old "Explore" column is gone.
+- The four Services links jump to sections of the homepage (`#services`, `#services`, `#readiness`, `#process`). **When the Services page is built, point them at that page**, and remember that footers on inner pages need paths that work from a subfolder.
+- Layout: one row of five from 1200px; from 992px the logo takes its own row with the four columns beneath; two columns on tablets; stacked on phones.
+- **Not changed, to decide with Miguelle:** the main menu still says "Investigation Capacity" (a page link) where her term is "Investigation Capacity Retainer". The menu is already tight on small desktops, and that item came from the proposal's page list, so it was left alone.
+- **Question from Miguelle about "logos" in the proof section:** her copy for section 11 ends with "Organizations we've served: [logo row, unchanged from current site]", meaning the row of client organisation logos on her current website. We have none of those image files, and her own note says she must approve logos before publishing, so the row is not built.
+- Checked: footer screenshots at 390, 1040 and 1440 wide. Not checked: the links by clicking, hover, real devices.
+
 ### 2026-11-18: homepage realignment, step 14: closing call to action. **All 14 sections are now built.**
 - The closing section (`section.cta`) now uses her section 14 word for word: heading "Tell us what's on your desk.", her paragraph, and one button, "Schedule a Conversation" (white on burgundy, to `contact/`).
 - **Removed** (not in her copy): the old heading and sentence ("Ready to stop putting out fires..."), the "In 30 minutes, you'll get a clear picture of" list, and the "or call (888) 397-6352" link. The phone number is still in the footer and the phone menu.

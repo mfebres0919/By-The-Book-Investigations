@@ -461,7 +461,8 @@ h1, h2, h3 {
 
 /* ---------- 9. Footer ----------
    White with a navy rule on top. Phones: everything stacked. Tablets: two columns.
-   Desktop: logo and tagline on the left, three columns of links to the right. */
+   Desktop: logo and tagline on the left, four columns to the right
+   (Services, Company, Contact, INVEXTRA). */
 .site-footer {
   border-top: 2px solid var(--color-navy);
   background: var(--color-white);
@@ -526,13 +527,21 @@ h1, h2, h3 {
 @media (min-width: 36rem) {
   .site-footer__inner { grid-template-columns: 1fr 1fr; }
 }
+/* Small desktop: the logo and tagline take a row of their own, the four columns sit under them */
 @media (min-width: 62rem) {
   .site-footer__inner {
-    grid-template-columns: 4fr 2fr 3.5fr 2.5fr;
-    column-gap: 3rem;
+    grid-template-columns: 3.2fr 1.4fr 3.4fr 2.2fr;
+    column-gap: 2.5rem;
     padding-block: 4.5rem 3.5rem;
   }
+  .site-footer__brand { grid-column: 1 / -1; }   /* from the first column line to the last: the full row */
   .site-footer__bar-inner { padding-bottom: 1.25rem; }
+}
+/* Large desktop: everything on one row. The numbers are shares of the width: the Company
+   column has two short links so it gets the least, Contact holds the long email address. */
+@media (min-width: 75rem) {
+  .site-footer__inner { grid-template-columns: 2.7fr 3fr 1.4fr 3.4fr 2.2fr; }
+  .site-footer__brand { grid-column: auto; }
 }
 
 /* ---------- 10. Reveal on scroll ----------

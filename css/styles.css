@@ -1112,6 +1112,75 @@
   }
 }
 
+/* ---------- How it starts ----------
+   White section. The three steps hang off one continuous line, like a timeline.
+   Phones: the line runs down the left side. Desktop: it runs across the top. */
+.start {
+  padding-block: var(--space-section);
+}
+.start__title {
+  font-size: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);   /* same size as the other section headings */
+}
+
+.steps { margin-top: 2.5rem; }
+
+/* Phones: each step draws its own piece of the vertical line (its left border).
+   The pieces touch, so together they look like one line. */
+.step {
+  position: relative;            /* so the square marker can be pinned to the line */
+  padding: 0 0 2.5rem 1.75rem;
+  border-left: 1px solid var(--color-navy);
+}
+.step:last-child { padding-bottom: 0; }
+/* The burgundy square that marks where a step begins. It sits centred on the line. */
+.step::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -0.3125rem;              /* half the square's width, plus half the line, to centre it */
+  width: 0.5625rem;
+  height: 0.5625rem;
+  background: var(--color-burgundy);
+}
+.step__num {
+  display: block;
+  color: var(--color-burgundy);
+  font-family: var(--font-heading);
+  font-size: clamp(2.25rem, 1.8rem + 2vw, 3.25rem);
+  line-height: 0.85;             /* trims the space above the digits so they line up with the square */
+}
+.step__title {
+  margin-top: 1rem;
+  font-size: clamp(1.3125rem, 1.2rem + 0.6vw, 1.625rem);
+  line-height: 1.25;
+}
+.step__text {
+  max-width: 34rem;
+  margin-top: 0.625rem;
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+}
+
+/* Desktop: three columns. The line moves from the left side of each step to its top edge,
+   and the columns have no gap between them, so the three top edges join into one line. */
+@media (min-width: 62rem) {
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 3.5rem;
+  }
+  .step {
+    padding: 2.5rem 2.5rem 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--color-navy);
+  }
+  .step:last-child { padding-right: 0; }
+  .step__title { font-size: 1.4375rem; }   /* a touch smaller here so each step's title fits on one line */
+  .step::before {
+    top: -0.3125rem;
+    left: 0;
+  }
+}
+
 /* ---------- Closing call to action ----------
    Burgundy section with the layered-paper photo faintly behind it.
    Phones: heading, sentence, button, then the "In 30 minutes" list.

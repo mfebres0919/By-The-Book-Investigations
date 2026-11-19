@@ -342,6 +342,14 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-18: homepage realignment, step 12: "How it starts"
+- New `section.start` between Proof and the closing section (`index.html`; "How it starts" in `css/styles.css`). White, no graphic. Her three steps word for word, as a **timeline**: one continuous navy line with a small burgundy square where each step begins, then a large burgundy "01" / "02" / "03", the step's title and its text. The line runs across the top on desktop (three columns with no gap, so their top edges join) and down the left side on phones and tablets.
+- The numbers are kept because this is a real sequence (and her copy numbers them). It is an ordered list; the big digits are hidden from screen readers since the list already numbers the steps.
+- No button in this section: her copy has none, and the closing section's button follows two sections later.
+- On desktop the step titles are slightly smaller (1.4375rem) so "Tell us what's on your desk." fits on one line like the other two.
+- The closing section's triangle is still filled navy (see the entry below) although this white section now sits above it. **It is corrected when section 13 is built.**
+- Checked: screenshots at 390 and 1440 wide. Not checked: tablet width, the motion, real devices.
+
 ### 2026-11-18: section 7 drawing removed; homepage realignment, step 11: Proof
 - **Section 7: the architecture drawing is gone** (Miguelle: "get rid of the architecture drawing"). The section is plain white again. `modern-civic-building-navy.svg` deleted; the four original drawings remain in `images/illustrations/`, unused. **Do not put the line drawings back into sections without asking.**
 - **Section 11** replaces the old proof section (`section.proof#testimonials`; "Proof: testimonials" in `css/styles.css`). Heading: "Trusted by teams who could not afford to get it wrong." Her **four reworded testimonials, word for word and in her order**: Maedgen, Chrispin and Levingston side by side under thin rules (stacked on phones); Dr. Leonard Moore's, the most direct, set large in the heading font across the full width, with his name to the right on desktop. No slider, no cards.
@@ -451,7 +459,7 @@ Newest first. One entry per working session or per significant change: what chan
 - Checked: screenshots at 390 and 1440 wide, taken while the numbers were still counting (so the counting works; the layout is right). Not checked: the final figures on screen after the count, the motion itself, real devices.
 
 ### 2026-11-18: homepage realignment to her 14 sections, step 1: hero
-Miguelle approved realigning the whole homepage to `documentation/client-brief/Homepage and About Us.docx`, **one section at a time, reviewed as we go**. Progress: **sections 1 to 11 done** (Hero, Stat strip, When would you bring us in?, An outside investigation..., Two ways to get the work moving, CLEAR, Investigation Readiness Intensive, Meet INVEXTRA™, An outside investigator protects the finding, Founder, Proof). Next: 12 How it starts, 13 Questions, 14 Closing. The old closing section is still on the page until section 14 is built.
+Miguelle approved realigning the whole homepage to `documentation/client-brief/Homepage and About Us.docx`, **one section at a time, reviewed as we go**. Progress: **sections 1 to 12 done** (Hero, Stat strip, When would you bring us in?, An outside investigation..., Two ways to get the work moving, CLEAR, Investigation Readiness Intensive, Meet INVEXTRA™, An outside investigator protects the finding, Founder, Proof, How it starts). Next: 13 Questions, 14 Closing. The old closing section is still on the page until section 14 is built.
 - **Hero now uses her final copy word for word:** small line "Third-party protected-class investigations" (with the copper marker), H1 "Some investigations can't stay in-house. Others can't wait." (one sentence per line), her subhead, one button ("Schedule a Conversation"), a text link "How the work is structured" that jumps to `#services` (it should point at the "Two ways" section once that is rebuilt), and her trust line in the strip at the foot of the hero.
 - **INVEXTRA is no longer in the hero** (the strip is gone; her copy gives INVEXTRA its own section 8). It now has its own section 8 (built 2026-11-18) plus the footer column.
 - **Centred from 768px up** (Miguelle's call, since nothing sits beside the text); phones stay left-aligned like the rest of the page. A soft navy patch that fades to nothing sits behind the centred text so the burgundy line in the background never runs through the words (`.hero__inner::before`). Checked at 820 and 1440 wide before the patch was widened; not re-checked after.

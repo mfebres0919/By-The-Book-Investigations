@@ -26,7 +26,16 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: right bottom; /* on phones, keep the burgundy line low, under the text */
+  object-position: center;
+}
+/* A see-through navy sheet over the photo, so the white text is easy to read everywhere.
+   0.76 means 76% solid. Lower the number to show more of the room; raise it if the text
+   becomes hard to read. */
+.hero__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 26, 51, 0.76);
 }
 
 .hero__inner {
@@ -151,14 +160,14 @@
   .hero__actions { justify-content: center; }
   .hero__trust-inner { text-align: center; }
   .hero__trust-text { margin-inline: auto; }
-  /* A soft navy patch behind the text, so the burgundy line in the photo never runs
-     through the words. It fades out to nothing, so no edge shows. */
+  /* A soft, darker navy patch behind the text, on top of the sheet over the photo, so the
+     words never sit on a busy part of the room. It fades out to nothing, so no edge shows. */
   .hero__inner::before {
     content: "";
     position: absolute;
     inset: 5% 0 8%;
     z-index: -1;
-    background: radial-gradient(closest-side, rgba(10, 26, 51, 0.92) 55%, rgba(10, 26, 51, 0));
+    background: radial-gradient(closest-side, rgba(10, 26, 51, 0.7) 45%, rgba(10, 26, 51, 0));
   }
   .hero__inner { position: relative; }
 }
@@ -1112,49 +1121,67 @@
   }
 }
 
-/* ----- "Organizations we've served": the logo strip at the foot of the proof section -----
-   A white strip (the logo files have white backgrounds). The logos are shown in grey and
-   slightly faded, so nine different brand colours sit quietly beside her palette. */
+/* ----- "Organizations we've served": the logo block at the foot of the proof section -----
+   A white strip (the logo files have white backgrounds). Nine logos in a 3 x 3 table of
+   equal cells with thin lines between them. Every logo is centred in its cell and fitted
+   into the same invisible box, so a wide wordmark and a round seal carry the same weight.
+   The logos are shown in grey, so nine brand colours sit quietly beside her palette. */
 .orgs {
   margin-top: var(--space-section);      /* the space between the testimonials and the strip */
   background: var(--color-white);
   color: var(--color-navy);
 }
 .orgs__inner {
-  padding-block: 2.5rem;
+  display: grid;
+  gap: 1.75rem;
+  padding-block: 3rem;
 }
 .orgs__title {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: clamp(1.3125rem, 1.2rem + 0.6vw, 1.625rem);
+  line-height: 1.25;
 }
-/* A grid keeps the logos in tidy columns: 2 across on phones, 3 on tablets, 5 on desktop.
-   Each logo sits at the left of its cell and in the middle of its row's height. */
+/* The table. The 1px gaps let the list's grey background show through as the lines
+   between the cells; the cells themselves are white. */
 .orgs__list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--color-rule);
+  border: 1px solid var(--color-rule);
+}
+.orgs__item {
+  display: flex;
   align-items: center;
-  justify-items: start;
-  gap: 2rem 1.5rem;
-  margin-top: 1.5rem;
+  justify-content: center;
+  min-height: 5.5rem;
+  padding: 1rem 0.75rem;
+  background: var(--color-white);
 }
 .orgs__logo {
   display: block;
-  max-width: 100%;
+  width: auto;
   height: auto;
+  max-width: 100%;
+  max-height: 2.5rem;            /* the invisible box: no logo is taller than this... */
   filter: grayscale(1);          /* turns each logo grey */
   opacity: 0.8;
 }
+.orgs__item picture { max-width: 5.5rem; }   /* ...or wider than this */
 
-@media (min-width: 36rem) {
-  .orgs__list { grid-template-columns: repeat(3, 1fr); }
+@media (min-width: 48rem) {
+  .orgs__item { min-height: 7.5rem; padding: 1.5rem; }
+  .orgs__logo { max-height: 3.5rem; }
+  .orgs__item picture { max-width: 10rem; }
 }
+/* Desktop: the heading on the left, the table on the right */
 @media (min-width: 62rem) {
-  .orgs__inner { padding-block: 3rem; }
-  .orgs__list {
-    grid-template-columns: repeat(5, 1fr);
-    gap: 2.5rem 2rem;
+  .orgs__inner {
+    grid-template-columns: 3fr 9fr;
+    column-gap: clamp(2rem, 4vw, 4rem);
+    align-items: center;
+    padding-block: 4rem;
   }
+  .orgs__item { min-height: 8.5rem; }
 }
 
 /* ---------- How it starts ----------

@@ -323,7 +323,7 @@ Project-specific exceptions to the handbook: none.
 - **The framework's name is settled for now: "CLEAR By-the-Book™"**, from her questionnaire (Miguelle's decision, 2026-11-17). Her live site says "CLEAR Investigation Framework™"; mention the difference when she reviews.
 - **The name of the fourth page.** The proposal calls it "The Investigation Capacity"; the menu currently says "Investigation Capacity". Her live site has an "Investigation Readiness Intensive" page, which may be the same service.
 - **Where "Schedule a Conversation" goes.** It points at `contact/` for now. It could instead open the consultation tab of the contact form, or Calendly.
-- **The INVEXTRA waitlist address.** The button points at `https://invextra.ai/`, from her questionnaire. Confirm the exact page. Her current site also has its own `/invextra-waitlist` page.
+- ~~The INVEXTRA waitlist address.~~ **Settled 2026-11-18: the button goes to `https://invextra.ai/`.** Her questionnaire says so in her own words ("Join the INVEXTRA Waitlist" (routes to invextra.ai)). Do not ask her again.
 - **Contact details in the phone menu:** (888) 397-6352, hello@bythebookinvestigations.com, and 2591 Dallas Parkway, Suite 300, Frisco, TX 75034. Copied from her current site; confirm they are current and that she wants the street address shown.
 - Whether `IMG_1708.MOV` (in `documentation/source-images/`) belongs in this project.
 - Whether the GitHub repo will be private. The client brief and original images are git-ignored either way, so they exist only on this Mac unless backed up elsewhere.
@@ -341,6 +341,13 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+
+### 2026-11-18: INVEXTRA questions dropped from the list for Marquita
+- Miguelle asked why the draft message asked her about the INVEXTRA launch date and where the waitlist button should go. Neither needs asking:
+  - **Where the button goes:** her questionnaire already says "routes to invextra.ai". The question was a leftover from an early note about a `/invextra-waitlist` page on her old site. Section 9 now marks it settled.
+  - **Launch date:** "Planned launch: January 2027" is her wording. Re-confirming it before go-live is part of her own final publication check, not a question from MigsFlow.
+- The PDF cover does not ask either question (it only mentions the launch timing as part of her own check), so the PDF was not changed.
+- **Open point about scope:** Miguelle said the proposal includes remaking her **invextra.ai landing page**. The proposal on file (`documentation/client-brief/website-proposal-final-2026-10-20.pdf`, searched 2026-11-18) does not mention INVEXTRA or invextra.ai at all: its one landing page is "The Investigation Capacity", and the price covers "5 pages, service details, landing page". If an invextra.ai page was agreed somewhere else (a later proposal, an email, a call), add that document to `documentation/client-brief/` and record it in Section 3a. Until then, Section 3a stays as it is and no invextra.ai work is planned.
 
 ### 2026-11-18: PDF cover reworded: testimonials are not "missing"
 - Miguelle asked why the PDF said testimonials still needed confirming when they are in her document. **Miguelle is right: the four testimonials, names and titles are in her homepage document and are on the page exactly as she wrote them.** The line came from the last sentence of her own document ("Final publication check: Obtain approval for testimonial wording, titles, and client logos; confirm the anonymized founder story is appropriate to publish; and re-confirm the INVEXTRA launch timing before go-live."). That is **her** checklist to complete before go-live, not something MigsFlow is waiting on, and the old wording read as if content were missing.

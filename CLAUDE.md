@@ -342,6 +342,12 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-18: preview image address pointed at the GitHub Pages preview
+- The inspector then reported "Image is invalid: Failed to fetch image: Not Found", as expected: the tags pointed at the live domain, where the file does not exist yet.
+- **The site has a public preview on GitHub Pages: `https://mfebres0919.github.io/By-The-Book-Investigations/`** (found through GitHub's deployments list; it redeploys on every push to `main`). `og:image` and `twitter:image` now point at `…github.io/By-The-Book-Investigations/images/social/og-home.jpg`.
+- **AT LAUNCH: change both image addresses back to `https://www.bythebookinvestigations.com/images/social/og-home.jpg`** (a comment in the `<head>` says the same). The canonical link and `og:url` were left on the live domain on purpose, so search engines treat the preview as a copy of the real site, not a second site.
+- The preview is public: anyone with the link can see the draft, including the unapproved testimonials and logos.
+
 ### 2026-11-18: social preview image and missing meta tags
 - Miguelle ran a meta-tag inspector: `og:image` and `twitter:image` missing (errors), `og:site_name` missing (warning). **All three added** to the `<head>` of `index.html`, plus `og:locale`, the image's type, width, height and alt text, and `twitter:title`, `twitter:description`, `twitter:image:alt`.
 - **The preview image is a picture of the hero section**: `images/social/og-home.jpg`, 1200 x 630, 80 KB (conference room under navy, eyebrow, headline, paragraph, button and link; no menu bar or trust strip). Made by rendering the page at 1440 x 756 with everything except the hero hidden, then resizing. **Remake it whenever the hero's image or wording changes.**

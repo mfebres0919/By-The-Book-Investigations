@@ -112,6 +112,12 @@ h1, h2, h3 {
   text-wrap: balance;
 }
 
+/* A safety net against sideways scrolling: anything inside the page content or the footer that
+   sticks out past the left or right edge is cut off instead of widening the page.
+   "clip" (not "hidden") is used on purpose: "hidden" would stop the sticky headings from sticking. */
+main,
+.site-footer { overflow-x: clip; }
+
 /* ---------- 4. Accessibility helpers ---------- */
 .visually-hidden {
   position: absolute;
@@ -576,8 +582,15 @@ html.js [data-reveal] {
 }
 html.js [data-reveal="up"]    { transform: translateY(1.5rem); }
 html.js [data-reveal="down"]  { transform: translateY(-1.5rem); }
-html.js [data-reveal="left"]  { transform: translateX(-2rem); }
-html.js [data-reveal="right"] { transform: translateX(2rem); }
+/* Sideways distance: 1rem on phones, 2rem from tablets up. On phones the page's side margin is
+   only 1.25rem, so anything waiting 2rem to the right would poke past the screen edge and
+   let the page scroll sideways. 1rem keeps it inside the margin. */
+html.js [data-reveal="left"]  { transform: translateX(-1rem); }
+html.js [data-reveal="right"] { transform: translateX(1rem); }
+@media (min-width: 48rem) {
+  html.js [data-reveal="left"]  { transform: translateX(-2rem); }
+  html.js [data-reveal="right"] { transform: translateX(2rem); }
+}
 html.js [data-reveal].is-in {
   opacity: 1;
   transform: none;

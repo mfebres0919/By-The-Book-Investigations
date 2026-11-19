@@ -342,6 +342,13 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-18: sideways (horizontal) overflow fixed
+- Miguelle noticed a slight overflow in the x direction. Two causes found, three fixes made:
+  1. **Slide-in elements on phones.** Anything marked `data-reveal="right"` waits 2rem (32px) to the right before it appears. The phone side margin is 1.25rem (20px), so those elements stuck out about 12px past the right edge until they had scrolled into view, which lets the page scroll sideways. Now the sideways distance is **1rem on phones and 2rem from 768px up** (`css/global.css`, section 10). This one was reasoned from the CSS, not caught by the measurement (in the headless test every element had already been revealed).
+  2. **Stat strip on very narrow phones** (about 320px and under): the two columns could not shrink below their longest words, measured 5px too wide. The columns now use `minmax(0, 1fr)` and long words may wrap (`css/styles.css`, Stat strip).
+  3. **Safety net:** `main` and `.site-footer` have `overflow-x: clip`, so anything that sticks out sideways is cut off instead of widening the page. `clip`, not `hidden`, because `hidden` would stop the sticky headings (sections 7 and 13) from sticking.
+- **Measured after the fixes:** page width equals screen width, with no element past the right edge, at 285, 305, 320, 360, 375, 415, 485 and 685px wide (measured by script in headless Chrome). Not checked on a real phone; `overflow-x: clip` needs Safari 16 or newer (older Safari simply ignores it, and fixes 1 and 2 still apply).
+
 ### 2026-11-18: logos become their own section; smooth accordion; footer phone columns and MigsFlow credit
 - **"Organizations we've served" is now its own section** (Miguelle: the heading should be as bold as the other headings, centred on large screens, with the SVG divider above; the old strip "is a bit lazy").
   - `section.orgs` after the proof section (`index.html`; "Organizations we've served" in `css/styles.css`). The heading is a real `h2` at the same size as every other section heading, **centred from 992px up**, left-aligned on phones like the rest of the page. The 3 x 3 table now spans the full page width with taller cells and larger logos.

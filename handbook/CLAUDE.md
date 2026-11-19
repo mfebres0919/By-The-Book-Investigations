@@ -1,6 +1,6 @@
 # MigsFlow Web Development Handbook
 
-**Version 2.1 · November 10, 2026**
+**Version 2.2 · November 18, 2026**
 Front-end standards for every MigsFlow website: file structure, clean URLs, code rules, images, fonts, performance, accessibility, SEO, forms, client onboarding, migrations, and launch.
 
 This file is written for people and for AI coding agents. It lives in the root of every project as `CLAUDE.md`, so Claude Code reads it automatically before touching the code. Unless a project explicitly requires an exception, these rules are the standard.
@@ -23,7 +23,7 @@ This file is written for people and for AI coding agents. It lives in the root o
 8. SVG icons only. No Font Awesome and no jQuery.
 9. **Lighthouse mobile: Performance 98+ and Accessibility, Best Practices and SEO all 100 on every page.**
 10. Accessibility meets **WCAG 2.2 Level AA**.
-11. Every page has a unique title (**50 characters or fewer, never over 60**), meta description, canonical URL, one `h1` and Open Graph tags.
+11. Every page has a unique title (**50 characters or fewer, never over 60**), meta description, canonical URL, one `h1` and Open Graph tags, with a link preview image made from the homepage hero (Section 12). Every site has a full favicon set; generate it from the logo if the client gives none.
 12. Never put API keys, passwords, or secrets in front-end code or in the repo.
 13. Reviews, testimonials, stats, and credentials must be real. Never invent them.
 14. Every site has a **back-to-top button** fixed to the bottom-right corner (Section 4).
@@ -381,8 +381,16 @@ Reference: CodeStitch Page Speed Handbook, https://codestitch.app/page-speed-han
 <meta property="og:title" content="Move-Out Cleaning San Diego | Barry's Pro Cleaning">
 <meta property="og:description" content="Flat-rate move-out cleaning across San Diego County.">
 <meta property="og:url" content="https://domain.com/services/move-out-cleaning/">
-<meta property="og:image" content="https://domain.com/images/brand/og-image.jpg">
+<meta property="og:site_name" content="Barry's Pro Cleaning">
+<meta property="og:image" content="https://domain.com/images/social/og-home.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Barry's Pro Cleaning: flat-rate move-out cleaning across San Diego County.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Move-Out Cleaning San Diego | Barry's Pro Cleaning">
+<meta name="twitter:description" content="Flat-rate move-out cleaning across San Diego County.">
+<meta name="twitter:image" content="https://domain.com/images/social/og-home.jpg">
 <link rel="icon" href="../../favicon.ico" sizes="32x32">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
@@ -456,7 +464,15 @@ Reference: CodeStitch Page Speed Handbook, https://codestitch.app/page-speed-han
   | `icon-512.png` | 512×512 |
 
   Also add a `site.webmanifest` that lists the two PNG icons, the name and the theme color. RealFaviconGenerator.net produces the full set.
-- **Open Graph image:** `images/brand/og-image.jpg` at 1200×630, under 300 KB, showing the brand. It appears when the link is shared by text or on social media.
+  **If the client does not supply a favicon, make the set from their logo without waiting to be asked.** Use the logo's mark (the symbol, not the full wordmark, which is unreadable at 32px) on a solid or transparent square, check it is recognisable at 16px and 32px, and export all five files plus the manifest. If there is no usable mark, use the brand's initial in the brand color. Tell the client it was generated so they can approve or replace it. A site never launches, or goes to a client for preview, with the browser's blank default icon.
+- **Link preview image (Open Graph):** the picture shown when a link is shared by text, in Slack or on social media. **On every site it is a picture of the homepage's hero section**, so the preview looks like the site: `images/social/og-home.jpg`. Every page uses it unless a page has its own. Requirements:
+  - **Size and file:** exactly 1200×630 pixels (1.91:1), JPG, under 300 KB.
+  - **Safe area:** some apps crop the preview to a square. Keep the headline, logo and button inside the middle 630×630 pixels, with a margin, and nothing important near the left or right edge. Text must still be readable when the picture is shown thumbnail-size, so make a version of the hero with the text larger and more central if the real hero is wide.
+  - **How to make it:** render the page at 1200×630 with everything except the hero hidden and the animations finished, then save the result. Do not paste a full-width desktop screenshot: its text is too small and too wide.
+  - **Full address:** `og:image` and `twitter:image` must be complete `https://` addresses, never relative paths. While the site is on a preview address (GitHub Pages or a Netlify preview), point them at the preview address so previews work during review; **at launch, change them to the live domain.** Add this to the launch list.
+  - **Tags that go with it:** `og:image:width`, `og:image:height`, `og:image:type`, `og:image:alt`, `og:site_name`, `twitter:card` (`summary_large_image`), `twitter:title`, `twitter:description` and `twitter:image`. The example at the top of this section shows them all.
+  - **Keep it current:** it is a snapshot. Remake it whenever the hero's image or wording changes.
+  - **Check it:** run a meta-tag inspector on the preview address and fix every error and warning, then, after launch, LinkedIn's Post Inspector and Facebook's Sharing Debugger (they also clear old cached previews).
 - **`robots.txt`:**
   ```
   User-agent: *
@@ -685,7 +701,7 @@ Changing hosts doesn't remove a GA4 property, a Search Console property or a Goo
 
 **SEO**
 - [ ] Unique title (50 characters or fewer, 60 max), description, canonical, Open Graph and one `h1` on every page.
-- [ ] LocalBusiness schema validated. Favicon set, OG image, `robots.txt`, `sitemap.xml` and `404.html` in place.
+- [ ] LocalBusiness schema validated. Favicon set (generated from the logo if none was supplied), link preview image of the hero (1200×630, addresses changed to the live domain, meta-tag inspector clean), `robots.txt`, `sitemap.xml` and `404.html` in place.
 - [ ] Redirects from the URL map are tested, with no chains or loops, and there are no broken links.
 
 **Forms and integrations**
@@ -750,6 +766,10 @@ When working on a MigsFlow website, follow this handbook as the default standard
 - Build with HTML, CSS and vanilla JS before reaching for any dependency.
 - Keep the established naming, paths and responsive behavior.
 
+**Do without being asked:**
+- If no favicon was supplied, generate the full set from the client's logo (Section 12, Site files) and say that you did.
+- Make the link preview image from the homepage hero and add every Open Graph and X tag listed in Section 12. Remake it when the hero changes.
+
 **Never silently:**
 - Change the architecture.
 - Add frameworks, font CDNs or icon libraries.
@@ -776,6 +796,7 @@ Add an entry whenever a rule in this handbook changes: what changed, why, and wh
 
 | Date | Version | Change |
 |---|---|---|
+| 2026-11-18 | 2.2 | **Link preview image is always a picture of the homepage hero** (`images/social/og-home.jpg`), with the Open Graph requirements spelled out: 1200×630, under 300 KB, important content inside the middle 630×630, full `https://` addresses (preview address during review, live domain at launch), the full tag list, remake when the hero changes, check with a meta-tag inspector. **Favicons are generated from the logo automatically when the client supplies none.** Sections 0 (rule 11), 12 (head example, Site files), 19 (checklist) and 21 (AI agents). Came out of the By-the-Book Workplace Investigations build. |
 | 2026-11-16 | 2.1 | Copied unchanged from the master (`New Web Design Folder/MigsFlow Handbook/CLAUDE.md`, v2.1, Nov 10, 2026) into this project. Only additions: the "In this project" note at the top and this change log. |
 
 **Related:** a Next.js + Tailwind edition (v3.0) was written on 2026-11-16 and is kept at `New Web Design Folder/MigsFlow Handbook/v3.0-nextjs-tailwind/`. It is for app-like builds (portals, logins, dashboards). Brochure sites stay on this HTML, CSS and JavaScript edition.

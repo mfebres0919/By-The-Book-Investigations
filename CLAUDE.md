@@ -342,6 +342,23 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-18: client logo row added; menu term fixed; check against her nine design notes
+- **"Organizations we've served" logo row** (her section 11: "logo row, unchanged from current site"). Miguelle asked for the logos to be taken from her current homepage ("Who we've worked with"). Nine found and used, in her order: TCU, City of Dallas, The University of New Mexico, SAFE, New Mexico State University, Skyers Law Group, The Idea Inc., Austin Area Urban League, South Carolina Combat Veterans Group. Originals in `documentation/source-images/client-logos/` (not in Git); trimmed web copies in `images/logos/` (WebP + JPG, 3 to 10 KB each).
+  - Shown as a **white strip at the foot of the navy proof section** (`.orgs…` in `index.html` and `css/styles.css`), because the files have white backgrounds. Grid: 2 across on phones, 3 on tablets, 5 on desktop. **Shown in grey** (CSS `filter: grayscale(1)`, 80% opacity) so nine brand colours do not fight her palette; remove that one line to show them in colour. Alt text is each organisation's name, read from the logo itself.
+  - **To confirm with her:** that all nine may still be shown (her note says logos need her approval), and whether grey is acceptable. The files are small web copies from her site (some under 300px wide); ask her for better originals if any look soft.
+- **Main menu:** "Investigation Capacity" is now **"Investigation Capacity Retainer"** (her exact term, design note 4). Still on one line at 1000, 1100 and 1280 wide.
+- **Check against the nine design notes at the end of her homepage document:**
+  1. Two button actions only: **met.** Six "Schedule a Conversation" buttons and one "Join the INVEXTRA waitlist"; every other link is a text link.
+  2. One primary button in the hero, secondary text link to the engagement section: **met** ("How the work is structured" jumps to the two ways).
+  3. Sequence problem, approach, two ways: **met** (sections 3, 4, 5, in her order).
+  4. Terminology in nav, footer and links: **met after today's fixes.** Her own heading in section 6 says "CLEAR By-the-Book™ Investigation Framework", which is her wording and was left as written.
+  5 and 6. Hero video or image: **partly met.** The hero uses an abstract navy texture, which is a "neutral non-stock alternative", but it is not the conference room she points to. See below.
+  7. Figures credited to the founder's career: **met** (the stat strip's first label and the line under the strip).
+  8. No unsupported operational promises, no "Most chosen" badge: **met** (none on the page; all copy is hers).
+  9. INVEXTRA pre-launch language and separate waitlist destination: **met** (own section, "being developed", "Planned launch: January 2027", button goes to invextra.ai, not the contact page). The launch date still needs her confirmation before publishing.
+- **The conference room photo.** Her note refers to "the capacity page's calm, modern conference room shot". The matching photo on her current site is on `/third-party-investigations`: an empty, bright conference room. Saved as `documentation/source-images/conference-room-from-current-site.jpg`, but the copy her site serves is only **564 x 846 pixels, portrait**, far too small for a full-width hero. Not used. Options given to Miguelle: ask her for the original file (best), or generate a similar empty room. An empty room has no people, so it does not break her "no stock people" rule; an AI-generated room should be disclosed to her and approved, since her note asks for an "approved" image.
+- Checked: logo row at 390 and 1440 wide; menu at 1000, 1100 and 1280. Not checked: tablet width, real devices.
+
 ### 2026-11-18: footer revised to her exact terms
 - Her design notes ask for these exact terms in the nav, footer and links: "Investigation Capacity Retainer", "Single-Case Investigation", "CLEAR Investigation Framework™", "Investigation Readiness Intensive", "INVEXTRA™". **The footer now uses all five.**
 - Columns (`index.html` footer; `css/global.css` section 9): logo and tagline | **Services** (Investigation Capacity Retainer, Single-Case Investigation, Investigation Readiness Intensive, CLEAR Investigation Framework™) | **Company** (About, Contact) | **Contact** (phone, email, address) | **INVEXTRA™** (her logo line and "Join the INVEXTRA waitlist", her exact button wording). The old "Explore" column is gone.

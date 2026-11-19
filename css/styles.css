@@ -998,7 +998,7 @@
 .proof {
   position: relative;
   isolation: isolate;            /* keeps the z-index layers below inside this section */
-  padding-block: var(--space-section);
+  padding-top: var(--space-section);     /* no bottom padding: the white logo strip sits flush at the foot */
   background: var(--color-navy); /* shows while the image loads */
   color: var(--color-white);
 }
@@ -1109,6 +1109,51 @@
     padding-top: 0;
     padding-left: 2rem;
     border-left: 1px solid var(--color-rule-on-dark);
+  }
+}
+
+/* ----- "Organizations we've served": the logo strip at the foot of the proof section -----
+   A white strip (the logo files have white backgrounds). The logos are shown in grey and
+   slightly faded, so nine different brand colours sit quietly beside her palette. */
+.orgs {
+  margin-top: var(--space-section);      /* the space between the testimonials and the strip */
+  background: var(--color-white);
+  color: var(--color-navy);
+}
+.orgs__inner {
+  padding-block: 2.5rem;
+}
+.orgs__title {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+}
+/* A grid keeps the logos in tidy columns: 2 across on phones, 3 on tablets, 5 on desktop.
+   Each logo sits at the left of its cell and in the middle of its row's height. */
+.orgs__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-items: start;
+  gap: 2rem 1.5rem;
+  margin-top: 1.5rem;
+}
+.orgs__logo {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  filter: grayscale(1);          /* turns each logo grey */
+  opacity: 0.8;
+}
+
+@media (min-width: 36rem) {
+  .orgs__list { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 62rem) {
+  .orgs__inner { padding-block: 3rem; }
+  .orgs__list {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2.5rem 2rem;
   }
 }
 

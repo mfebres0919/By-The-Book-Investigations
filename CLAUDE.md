@@ -342,6 +342,11 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-18: phone version of the hero image
+- Miguelle supplied a portrait version of the conference room for phones (1086 x 1448; source: `documentation/source-images/backgrounds/hero-conference-room-mobile.png`). It replaces the tall crop of the wide image: `images/backgrounds/hero-m.webp` / `.jpg` (720 x 1210, 50 / 102 KB). Same file names and size, so no HTML or CSS changed.
+- **Correction to the entry below:** it said the room was "barely visible" on phones. That was a fault in the screenshot method (the phone view is captured inside an iframe, and the hero image had not loaded when the picture was taken). A direct capture at 500px wide shows the room clearly behind the text: ducts, lamp, table and chairs. **For the hero, capture the page directly at a narrow window instead of using `shot.py`'s phone view.**
+- Checked: direct screenshot at 500 wide. Not checked: a true 390-wide phone (headless Chrome will not go narrower than about 500), real devices, measured contrast.
+
 ### 2026-11-18: new hero image (conference room); logo block redesigned
 - **Hero image replaced.** Miguelle generated a conference room image to follow her design note 6 (calm, modern conference room, no people): navy wall, a burgundy panel, black table, grey chairs, glass partition. Source: `documentation/source-images/backgrounds/hero-conference-room.png` (1536 x 1024); the previous texture's source was renamed `hero-old-navy-texture.png`. Web files keep the same names, so the HTML and the preload links did not change: `images/backgrounds/hero.webp` / `.jpg` (1536 x 943, 75 / 154 KB) and `hero-m.webp` / `.jpg` (720 x 1210 tall crop around the table, 43 / 94 KB).
   - A **76% navy layer** now sits over the photo (`.hero__bg::after` in `css/styles.css`; the number is commented) so the white text reads everywhere; the soft patch behind the text on tablets and up was lightened to suit. Text stays centred, as Miguelle chose earlier.

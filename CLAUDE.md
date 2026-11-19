@@ -342,6 +342,12 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-18: social preview image and missing meta tags
+- Miguelle ran a meta-tag inspector: `og:image` and `twitter:image` missing (errors), `og:site_name` missing (warning). **All three added** to the `<head>` of `index.html`, plus `og:locale`, the image's type, width, height and alt text, and `twitter:title`, `twitter:description`, `twitter:image:alt`.
+- **The preview image is a picture of the hero section**: `images/social/og-home.jpg`, 1200 x 630, 80 KB (conference room under navy, eyebrow, headline, paragraph, button and link; no menu bar or trust strip). Made by rendering the page at 1440 x 756 with everything except the hero hidden, then resizing. **Remake it whenever the hero's image or wording changes.**
+- **The image address uses the live domain** (`https://www.bythebookinvestigations.com/images/social/og-home.jpg`), like the canonical and `og:url` already did, because social sites require a full address. Consequences: the tags are present, so the inspector's checks pass, but **the picture itself will not load in a preview until the new site is live on that domain** (today that address is her Squarespace site, which has no such file). To test real previews on a staging address first, temporarily point the two image tags at the staging domain. After launch, check with LinkedIn's Post Inspector and Facebook's Sharing Debugger.
+- Not checked: the inspector was not re-run here (it is Miguelle's tool); the tags were added to match its three findings.
+
 ### 2026-11-18: phone version of the hero image
 - Miguelle supplied a portrait version of the conference room for phones (1086 x 1448; source: `documentation/source-images/backgrounds/hero-conference-room-mobile.png`). It replaces the tall crop of the wide image: `images/backgrounds/hero-m.webp` / `.jpg` (720 x 1210, 50 / 102 KB). Same file names and size, so no HTML or CSS changed.
 - **Correction to the entry below:** it said the room was "barely visible" on phones. That was a fault in the screenshot method (the phone view is captured inside an iframe, and the hero image had not loaded when the picture was taken). A direct capture at 500px wide shows the room clearly behind the text: ducts, lamp, table and chairs. **For the hero, capture the page directly at a narrow window instead of using `shot.py`'s phone view.**

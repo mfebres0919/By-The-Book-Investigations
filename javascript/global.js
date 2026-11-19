@@ -1,6 +1,6 @@
 /* ==========================================================================
    global.js: behavior shared by every page
-   1. Phone menu   2. Back-to-top button   3. Tabs   4. Reveal on scroll   5. Footer year   6. Counting numbers
+   1. Phone menu   2. Back-to-top button   3. Tabs   4. Reveal on scroll   5. Footer year   6. Counting numbers   7. Smooth questions
    Loaded with "defer", so the HTML is ready by the time this runs.
    ========================================================================== */
 
@@ -236,4 +236,49 @@
   }, { threshold: 0.6 });
 
   Array.prototype.forEach.call(counters, function (el) { watcher.observe(el); });
+})();
+
+/* ---------- 7. Smooth questions (the accordion) ----------
+   A <details> element opens and closes by itself, but in one jump. This makes it slide.
+   The slide itself is CSS (styles.css, "Smooth open and close"); this script only adds or
+   removes the class "is-open" at the right moment:
+     opening: show the answer (open = true), then add the class so it slides down;
+     closing: remove the class so it slides up, and only then hide it (open = false).
+   With "reduce motion" on, the script does nothing and the browser's own instant
+   open and close is used. */
+(function () {
+  var items = document.querySelectorAll('.faq__item');
+  if (!items.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // No sliding: keep the class in step with the browser's own open/close, so the plus sign is right
+    Array.prototype.forEach.call(items, function (item) {
+      item.addEventListener('toggle', function () { item.classList.toggle('is-open', item.open); });
+    });
+    return;
+  }
+
+  var LENGTH = 300;   // milliseconds; matches the 0.3s in styles.css
+
+  Array.prototype.forEach.call(items, function (item) {
+    var summary = item.querySelector('summary');
+    var timer = null;
+    if (!summary) return;
+
+    summary.addEventListener('click', function (event) {
+      event.preventDefault();          // stop the browser's instant open/close; we do it below
+      window.clearTimeout(timer);
+
+      if (item.classList.contains('is-open')) {
+        // Close: slide up first, then really close it once the slide has finished
+        item.classList.remove('is-open');
+        timer = window.setTimeout(function () { item.open = false; }, LENGTH);
+      } else {
+        // Open: make the answer exist, then (one frame later) let it slide down
+        item.open = true;
+        window.requestAnimationFrame(function () {
+          window.requestAnimationFrame(function () { item.classList.add('is-open'); });
+        });
+      }
+    });
+  });
 })();

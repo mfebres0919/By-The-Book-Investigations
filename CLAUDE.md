@@ -342,6 +342,19 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-18: logos become their own section; smooth accordion; footer phone columns and MigsFlow credit
+- **"Organizations we've served" is now its own section** (Miguelle: the heading should be as bold as the other headings, centred on large screens, with the SVG divider above; the old strip "is a bit lazy").
+  - `section.orgs` after the proof section (`index.html`; "Organizations we've served" in `css/styles.css`). The heading is a real `h2` at the same size as every other section heading, **centred from 992px up**, left-aligned on phones like the rest of the page. The 3 x 3 table now spans the full page width with taller cells and larger logos.
+  - **Angled divider** at the foot of the navy proof section (`svg.proof__divider`, the usual shape turned upside down and filled white), so the white logo section cuts up into the navy. The proof section got its bottom padding back, plus room for the divider.
+  - **Hover:** logos are grey until you point at a cell, then that logo shows its own colours (0.25s, linear).
+- **Smooth accordion** (Miguelle: drop-downs feel "a little bit jumpy", opening and closing). The Questions section still uses `<details>`, but the answers now **slide open and shut over 0.3s and fade**, and the plus sign turns at the same time.
+  - How: each answer is wrapped in `.faq__panel` > `.faq__panel-inner`; the CSS animates `grid-template-rows` from `0fr` to `1fr` (styles.css, "Smooth open and close"); `javascript/global.js` **part 7** adds or removes the class `is-open` and only sets `open = false` after the slide up has finished. Without JavaScript, or with "reduce motion" on, the browser's own instant open and close is used.
+  - Other things that open or scroll were checked in the code: the phone menu already fades in with staggered items, and the back-to-top button already scrolls smoothly (`scroll-behavior: smooth` in `global.css`). The Questions accordion is the only accordion on the site.
+  - Tested with scripted clicks: after opening question 2 and closing question 1, the end state is right (answer 2 shown, answer 1 hidden, signs correct). **The slide itself cannot be seen in a still screenshot: Miguelle to confirm it feels smooth.**
+- **Footer on phones: two columns** where the content fits. Logo, Services and Contact stay full width (their lines are too long for half a phone screen); **Company and INVEXTRA sit side by side**; Contact follows them (`--wide` and `--contact` modifier classes, `css/global.css` section 9). Tablets and desktop unchanged.
+- **Footer credit added:** "Site made by MigsFlow", linking to `https://migsflow.com/` in a new tab, in the bottom bar beside the copyright and Privacy Policy. Written as one word, "MigsFlow", the way the business name appears on Miguelle's own site.
+- Checked: logo section at 390 and 1440 wide; footer at 390, 700 and 1440; `global.js` passes a syntax check. Not checked: the accordion's motion, the logo hover, real devices.
+
 ### 2026-11-18: preview image address pointed at the GitHub Pages preview
 - The inspector then reported "Image is invalid: Failed to fetch image: Not Found", as expected: the tags pointed at the live domain, where the file does not exist yet.
 - **The site has a public preview on GitHub Pages: `https://mfebres0919.github.io/By-The-Book-Investigations/`** (found through GitHub's deployments list; it redeploys on every push to `main`). `og:image` and `twitter:image` now point at `…github.io/By-The-Book-Investigations/images/social/og-home.jpg`.

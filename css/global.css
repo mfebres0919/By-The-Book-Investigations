@@ -468,11 +468,19 @@ h1, h2, h3 {
   background: var(--color-white);
   font-size: 1rem;
 }
+/* Phones: two columns. The logo, the Services list and the Contact details are too wide for
+   half a phone screen, so each takes the full width ("--wide"). The two short groups,
+   Company and INVEXTRA, sit side by side, which makes the footer shorter to scroll. */
 .site-footer__inner {
   display: grid;
-  gap: 2.5rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem 1.5rem;
   padding-block: 3.5rem 3rem;
 }
+.site-footer__brand,
+.site-footer__col--wide { grid-column: 1 / -1; }   /* from the first column line to the last: the full row */
+/* Contact comes before INVEXTRA in the code; "order" moves it after the side-by-side pair on phones */
+.site-footer__col--contact { order: 1; }
 .site-footer__logo { display: inline-block; }
 .site-footer__logo img { width: auto; height: 5.5rem; }
 .site-footer__tagline {
@@ -524,8 +532,13 @@ h1, h2, h3 {
   font-size: 0.9375rem;
 }
 
+/* "Site made by MigsFlow": the link is underlined so it reads as a link */
+.site-footer__credit .site-footer__link { text-decoration-color: var(--color-rule); }
+
+/* Tablets: there is room for every group at half width, in their normal order */
 @media (min-width: 36rem) {
-  .site-footer__inner { grid-template-columns: 1fr 1fr; }
+  .site-footer__col--wide { grid-column: auto; }
+  .site-footer__col--contact { order: 0; }
 }
 /* Small desktop: the logo and tagline take a row of their own, the four columns sit under them */
 @media (min-width: 62rem) {

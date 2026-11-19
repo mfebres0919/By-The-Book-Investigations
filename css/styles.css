@@ -38,221 +38,491 @@
   padding-block: 3.5rem;   /* the space above and below the hero text on phones */
 }
 
-.hero__title {
-  max-width: 14em;
-  font-size: clamp(2.125rem, 1.35rem + 3.9vw, 4.25rem);
-  line-height: 1.12;
-  letter-spacing: -0.01em;
+/* Small line above the headline, with the one copper touch the brand guide allows */
+.hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  color: var(--color-mist);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+.hero__eyebrow::before {
+  content: "";
+  flex-shrink: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--color-copper);
 }
 
+.hero__title {
+  font-size: clamp(2rem, 1.3rem + 3.5vw, 4rem);
+  line-height: 1.14;
+  letter-spacing: -0.01em;
+}
+/* Each sentence of the headline starts on its own line */
+.hero__line { display: block; }
+
 .hero__lead {
-  max-width: 34rem;
+  max-width: 40rem;
   margin-top: 1.5rem;
   color: var(--color-mist);
   font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
   line-height: 1.55;
 }
 
-.hero__btn { margin-top: 2.25rem; }
+/* The button and the text link beside it (they wrap onto two lines on narrow phones) */
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 2rem;
+  margin-top: 2.25rem;
+}
+.hero__link {
+  padding-block: 0.75rem;                /* taller tap target */
+  color: var(--color-white);
+  font-weight: 600;
+  text-decoration-color: rgba(255, 255, 255, 0.45);
+  text-underline-offset: 0.3em;
+  transition: text-decoration-color var(--speed) var(--ease);
+}
+.hero__link:hover { text-decoration-color: var(--color-white); }
 
-/* INVEXTRA band: its own strip at the foot of the hero */
-.hero__invextra {
-  width: 100%;   /* the band always spans the full width of the hero */
+/* Hero entrance (plays once when the page loads; CSS only, so it works without JavaScript).
+   The small line fades in, the headline's words rise in one after another (the second
+   sentence a beat after the first), then the paragraph, the button row and the trust line
+   fade in. "both" keeps each piece hidden until its turn and visible after.
+   --i is a word's place in its line; --o is how many steps its line waits before starting. */
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(0.45em); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes hero-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.hero__eyebrow { animation: hero-fade 0.5s linear 0.1s both; }
+.hero__word {
+  display: inline-block;
+  animation: hero-rise 0.5s linear both;
+  animation-delay: calc(0.3s + (var(--o, 0) + var(--i)) * 0.09s);
+}
+.hero__line:nth-child(2) { --o: 7; }     /* 5 words in line one, plus a 2-step pause */
+.hero__word:nth-child(1) { --i: 0; }
+.hero__word:nth-child(2) { --i: 1; }
+.hero__word:nth-child(3) { --i: 2; }
+.hero__word:nth-child(4) { --i: 3; }
+.hero__word:nth-child(5) { --i: 4; }
+.hero__lead { animation: hero-fade 0.6s linear 1.5s both; }
+.hero__actions { animation: hero-fade 0.6s linear 1.75s both; }
+.hero__trust-text { animation: hero-fade 0.6s linear 2s both; }
+
+/* Trust line: its own strip at the foot of the hero */
+.hero__trust {
+  width: 100%;   /* the strip always spans the full width of the hero */
   background: var(--color-navy);
   border-top: 1px solid var(--color-rule-on-dark);
 }
-.hero__invextra-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-  padding-block: 1.5rem;
-}
-.hero__invextra-text {
+.hero__trust-inner { padding-block: 1.25rem; }
+.hero__trust-text {
+  max-width: 60rem;                      /* wide enough to stay on one line on desktop */
+  text-wrap: balance;                    /* when it does wrap, the two lines come out even */
   color: var(--color-mist);
   font-size: 1rem;
-  line-height: 1.4;
-}
-.hero__invextra-name {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.625rem;
-  margin-right: 0.5rem;
-  color: var(--color-white);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-}
-/* The one copper touch the brand guide allows: a tiny marker beside the INVEXTRA name */
-.hero__invextra-name::before {
-  content: "";
-  width: 0.5rem;
-  height: 0.5rem;
-  background: var(--color-copper);
-}
-.hero__invextra-btn {
-  min-height: 2.875rem;
-  padding: 0.625rem 1.375rem;
+  line-height: 1.45;
 }
 
-/* Tablets and up: band becomes one row, text is centred vertically */
+/* Tablets and up: the hero gets a height, and everything is centred, both top-to-bottom
+   and left-to-right (there is nothing beside the text, so centring balances the screen).
+   Phones keep the text on the left, like the rest of the page. */
 @media (min-width: 48rem) {
   .hero { min-height: clamp(34rem, calc(100svh - var(--header-h)), 54rem); }
   .hero__bg img { object-position: center; }
   .hero__inner {
     justify-content: center;
+    align-items: center;         /* centres the blocks */
+    text-align: center;          /* centres the lines of text inside them */
     padding-block: 5rem;
   }
-  .hero__invextra-inner {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    padding-block: 1.25rem;
+  .hero__actions { justify-content: center; }
+  .hero__trust-inner { text-align: center; }
+  .hero__trust-text { margin-inline: auto; }
+  /* A soft navy patch behind the text, so the burgundy line in the photo never runs
+     through the words. It fades out to nothing, so no edge shows. */
+  .hero__inner::before {
+    content: "";
+    position: absolute;
+    inset: 5% 0 8%;
+    z-index: -1;
+    background: radial-gradient(closest-side, rgba(10, 26, 51, 0.92) 55%, rgba(10, 26, 51, 0));
   }
+  .hero__inner { position: relative; }
 }
 
 @media (min-width: 62rem) {
-  .hero__btn { margin-top: 2.75rem; }
+  .hero__actions { margin-top: 2.75rem; }
 }
 
-/* ---------- Services ----------
-   Three flat cards, one per practice area. No shadows or gradients (her brief):
-   a thin border, with a navy rule across the top of each card. */
-.services {
+/* ---------- Stat strip ----------
+   A white band under the hero. Phones: two by two. Desktop: four across.
+   No boxes: a thin navy rule sits above each item, the same device used elsewhere on the page. */
+.stats {
+  padding-block: clamp(2.5rem, 2rem + 3vw, 4.5rem);
+  border-bottom: 1px solid var(--color-rule);
+}
+.stats__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem 1.5rem;
+}
+.stat {
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-navy);
+}
+.stat__figure {
+  font-family: var(--font-heading);
+  font-size: clamp(2.25rem, 1.6rem + 3.2vw, 3.75rem);
+  line-height: 1;
+  font-variant-numeric: lining-nums tabular-nums;   /* every digit the same width, so the number doesn't wobble while it counts */
+  color: var(--color-burgundy);
+}
+.stat__label {
+  max-width: 16rem;
+  margin-top: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+/* The fourth item is a statement, not a number: same heading font, smaller */
+.stat__statement {
+  max-width: 12em;
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.625rem);
+  line-height: 1.25;
+}
+.stats__note {
+  margin-top: 1.75rem;
+  font-size: 0.9375rem;
+}
+
+@media (min-width: 62rem) {
+  .stats__list {
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 2.5rem;
+  }
+}
+
+/* ---------- When would you bring us in? ----------
+   Pale grey section, read top to bottom in three steps:
+   1. the heading and the five situations,
+   2. the "Sometimes..." statement, on a navy panel,
+   3. the closing paragraph.
+   Phones: the situations are a simple list and the statement is stacked.
+   Tablets and up: the situations become a grid of cells and the statement's three
+   sentences sit side by side. */
+.when {
   padding-block: var(--space-section);
+  background: var(--color-wash);
+}
+.when__title {
+  font-size: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);   /* same size as the other section headings */
 }
 
-.services__title {
-  font-size: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);
+/* The five situations. Phones: one per line with a thin rule under each. */
+.when__list { margin-top: 2rem; }
+.when__item {
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--color-rule);
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  line-height: 1.45;
 }
-.services__lead {
-  max-width: 40rem;
-  margin-top: 1.25rem;
+.when__item:first-child { border-top: 1px solid var(--color-navy); }
+
+/* "Sometimes..." on a navy panel, in the heading font, one sentence per line */
+.when__statement {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding: 1.75rem 1.5rem;
+  background: var(--color-navy);
+  border-radius: var(--radius);
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.5rem);
+  line-height: 1.3;
+}
+.when__line { display: block; }
+/* A short pale rule above each sentence (burgundy would vanish against navy) */
+.when__line::before {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 2px;
+  margin-bottom: 0.75rem;
+  background: var(--color-silver);
+}
+
+.when__text {
+  max-width: 44rem;
+  margin-top: 2rem;
   font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
 }
 
-/* Phones: cards stack. Desktop: three in a row (see the media query below). */
-.services__cards {
-  display: grid;
-  gap: 1.25rem;
-  margin-top: 2.5rem;
+/* Tablets: situations in two columns (the long fifth one takes a full row);
+   the three sentences of the statement side by side. */
+@media (min-width: 48rem) {
+  .when__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 2rem;
+    margin-top: 3rem;
+  }
+  .when__item,
+  .when__item:first-child {
+    padding-block: 1.25rem 0;
+    border-top: 1px solid var(--color-navy);
+    border-bottom: 0;
+  }
+  .when__item:nth-child(5) { grid-column: 1 / -1; }
+
+  .when__statement {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+    padding: 2.5rem;
+  }
+  .when__text { margin-top: 2.5rem; }
 }
 
-.service-card {
+/* Desktop: three situations in the first row, two wider ones in the second.
+   The grid has 6 tracks: the first three cells span 2 each, the last two span 3 each. */
+@media (min-width: 62rem) {
+  .when__list {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2.5rem 2.5rem;
+    margin-top: 3.5rem;
+  }
+  .when__item { grid-column: span 2; }
+  .when__item:nth-child(4),
+  .when__item:nth-child(5) { grid-column: span 3; }
+  .when__statement { padding: 3rem; column-gap: 3.5rem; }
+}
+
+/* ---------- An outside investigation shouldn't become another problem ----------
+   White section. Phones and tablets: one reading column. Desktop: the full page width in
+   two columns (see the media query at the end of this block). */
+.standard {
+  position: relative;
+  --divider-h: clamp(2.5rem, 7vw, 6.5rem);
+  padding-block: var(--space-section);
+  padding-top: calc(var(--space-section) + var(--divider-h) * 0.75);   /* room for the divider */
+}
+/* Angled divider: the grey of the section above, cutting down into this white one */
+.standard__divider {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: var(--divider-h);
+  fill: var(--color-wash);
+}
+
+/* The reading column. The container still supplies the side gutters; max-width narrows it. */
+.standard__inner {
+  max-width: calc(46rem + var(--gutter) * 2);
+}
+
+.standard__title {
+  font-size: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);
+}
+.standard__lead {
+  margin-top: 1.75rem;
+  font-size: clamp(1.125rem, 1.05rem + 0.5vw, 1.375rem);
+  line-height: 1.5;
+}
+
+/* The two ways it goes wrong, side by side, with "Neither..." across the bottom.
+   Phones: stacked. */
+.standard__pair {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 2.75rem;
+}
+.standard__side {
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-silver);
+}
+.standard__neither {
+  padding-top: 1.25rem;
+  border-top: 2px solid var(--color-burgundy);
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(1.1875rem, 1.1rem + 0.5vw, 1.375rem);
+  line-height: 1.3;
+}
+
+.standard__text {
+  margin-top: 2.75rem;
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+}
+
+/* Her closing line: the largest text in the section */
+.standard__closing {
+  margin-top: 2.75rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.625rem, 1.3rem + 1.6vw, 2.5rem);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+@media (min-width: 40rem) {
+  .standard__pair {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem 2.5rem;
+  }
+  .standard__neither { grid-column: 1 / -1; }   /* spans both columns */
+}
+
+/* Desktop: the section opens out to the full page width in two columns, so it no longer
+   sits as a narrow strip with empty space either side. The heading runs across the top;
+   under it the four pieces fill a two-by-two grid in reading order:
+       opening paragraph | the two cases and "Neither..."
+       third paragraph   | her closing line
+   (The pieces are in that order in the HTML, so the grid places them without extra rules.) */
+@media (min-width: 62rem) {
+  .standard__inner {
+    max-width: calc(var(--container) + var(--gutter) * 2);   /* back to the normal page width */
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    column-gap: clamp(3rem, 6vw, 5.5rem);
+    row-gap: 3.5rem;
+    align-items: start;
+  }
+  .standard__title {
+    grid-column: 1 / -1;
+    max-width: 20em;
+  }
+  .standard__lead,
+  .standard__pair,
+  .standard__text,
+  .standard__closing { margin-top: 0; }
+  .standard__text { padding-top: 1.25rem; border-top: 1px solid var(--color-silver); }
+  .standard__closing { padding-top: 1.25rem; border-top: 1px solid var(--color-navy); }
+}
+
+/* ---------- Two ways to get the work moving ----------
+   A dark band (brand image under navy) holds the heading; two white cards start on the band and
+   hang down onto the pale grey below it. Phones: cards stacked. Desktop: side by side, equal height.
+   Each card is a column (flex), and "margin-top: auto" on the button pushes it to the bottom,
+   so the two buttons line up even though the first card has more in it. */
+.ways {
+  --overlap: clamp(4.5rem, 3rem + 6vw, 8rem);   /* how far the cards climb up onto the dark band */
+  padding-bottom: var(--space-section);
+  background: var(--color-wash);
+}
+/* The dark band behind the heading: a brand image under a navy layer */
+.ways__band {
+  position: relative;
+  isolation: isolate;
+  padding-top: var(--space-section);
+  padding-bottom: calc(var(--overlap) + 3rem);   /* the cards cover the bottom part of the band */
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+.ways__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.ways__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.ways__band::before {                            /* 0.62 = how solid the navy layer is; lower shows more image */
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(10, 26, 51, 0.62);
+}
+.ways__title {
+  font-size: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);
+}
+.ways__cards {
+  position: relative;                            /* keeps the cards above the band */
+  display: grid;
+  gap: 1.25rem;
+  margin-top: calc(var(--overlap) * -1);         /* a negative margin pulls the cards up over the band */
+}
+
+.way {
   display: flex;
   flex-direction: column;
-  padding: 1.75rem 1.5rem 0.75rem;
-  border: 1px solid var(--color-rule);
+  align-items: flex-start;
+  padding: 2rem 1.5rem;
+  background: var(--color-white);
   border-top: 2px solid var(--color-navy);
   border-radius: var(--radius);
 }
-
-.service-card__title {
-  font-size: 1.5rem;
-  line-height: 1.25;
+.way__number {
+  color: var(--color-burgundy);
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  line-height: 1;
+  font-variant-numeric: lining-nums;
 }
-/* The one copper touch: a tiny marker on the AI card */
-.service-card__title--ai::before {
-  content: "";
-  display: inline-block;
-  width: 0.5rem;
-  height: 0.5rem;
-  margin-right: 0.625rem;
-  vertical-align: middle;
-  background: var(--color-copper);
+.way__title {
+  margin-top: 1rem;
+  font-size: clamp(1.5rem, 1.3rem + 0.9vw, 1.875rem);
+  line-height: 1.2;
 }
-
-.service-card__text {
+.way__tagline {
   margin-top: 0.75rem;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.125rem;
+  line-height: 1.4;
 }
-
-/* The services inside the card. margin-top: auto pushes the list to the bottom,
-   so the links line up across cards even when the text above is a different length. */
-.service-card__list {
-  margin-top: auto;
-  padding-top: 1.5rem;
-}
-.service-card__item {
-  border-top: 1px solid var(--color-rule);
-}
-.service-card__link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  min-height: 3.5rem;          /* comfortable tap target */
-  padding-block: 0.875rem;
+.way__text { margin-top: 1.25rem; }
+.way__list-title {
+  margin-top: 1.5rem;
   font-weight: 600;
-  line-height: 1.3;
-  text-decoration: none;
-  transition: color var(--speed) var(--ease);
 }
-.service-card__arrow {
-  flex-shrink: 0;
-  width: 1.375rem;
-  height: 1.375rem;
-  transition: transform var(--speed) var(--ease);
+/* The four things a retainer can include: one per line, thin rules between them */
+.way__list {
+  align-self: stretch;
+  margin-top: 0.5rem;
 }
-/* Hover and keyboard focus: the link turns burgundy and its arrow slides */
-.service-card__link:hover,
-.service-card__link:focus-visible { color: var(--color-burgundy); }
-.service-card__link:hover .service-card__arrow,
-.service-card__link:focus-visible .service-card__arrow { transform: translateX(0.25rem); }
+.way__item {
+  padding-block: 0.75rem;
+  border-top: 1px solid var(--color-rule);
+  line-height: 1.4;
+}
+.way__item:last-child { border-bottom: 1px solid var(--color-rule); }
+.way__btn {
+  margin-top: auto;            /* sits at the bottom of the card */
+}
+/* space above the button (margin-top: auto can shrink to nothing in the fuller card) */
+.way > :nth-last-child(2) { margin-bottom: 2rem; }
 
-.services__all { margin-top: 2.5rem; }
-
-/* Tablets: still one card per row, but inside each card the text sits on the left
-   and the service links on the right, so the cards stay short */
 @media (min-width: 48rem) {
-  .services__cards { margin-top: 3.5rem; }
-  .service-card {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 1fr;
-    column-gap: 2.5rem;
-    padding: 2rem 2rem 1.25rem;
-  }
-  .service-card__title { grid-column: 1; }
-  .service-card__text { grid-column: 1; }
-  .service-card__list {
-    grid-column: 2;
-    grid-row: 1 / -1;
-    align-self: center;
-    margin-top: 0;
-    padding-top: 0;
-  }
-  .service-card__item:first-child { border-top: 0; }
+  .way { padding: 2.5rem 2.25rem; }
 }
-
-/* Desktop: heading left and intro right; the three cards side by side */
 @media (min-width: 62rem) {
-  .services__intro {
-    display: grid;
-    grid-template-columns: 5fr 7fr;
-    column-gap: 4rem;
-    align-items: end;
-  }
-  .services__lead { margin-top: 0; }
-
-  .services__cards {
-    grid-template-columns: repeat(3, 1fr);
+  .ways__cards {
+    grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
   }
-  .service-card {
-    display: flex;               /* back to a simple column inside each card */
-    padding: 2rem 1.75rem 0.75rem;
-  }
-  .service-card__list {
-    align-self: stretch;         /* full width of the card again (the tablet rule centred it) */
-    margin-top: auto;
-    padding-top: 1.75rem;
-  }
-  .service-card__item:first-child { border-top: 1px solid var(--color-rule); }
+  .way { padding: 3rem 2.75rem; }
 }
 
 /* ---------- Our process (the CLEAR framework) ----------
-   A navy section with the staircase photo behind it. Phones: intro on top, the five
-   step cards stacked below. Tablets and up: intro centred, cards in rows and columns. */
+   A navy section with the staircase photo behind it. Heading and intro on top, then the
+   five steps as full-width rows led by their letters (C, L, E, A, R). No cards. */
 .process {
   position: relative;
   isolation: isolate;            /* keeps the z-index layers below inside this section */
@@ -264,16 +534,16 @@
   color: var(--color-white);
 }
 
-/* The angled divider: a white shape pinned to the top edge of the section.
-   It is white because the section above (services) is white. If that section's
-   background ever changes, change the fill here to match. */
+/* The angled divider: a shape pinned to the top edge of the section, filled with the
+   colour of the section above it ("Two ways", pale grey). If that section's background
+   ever changes, change the fill here to match. */
 .process__divider {
   position: absolute;
   top: -1px;                     /* overlaps the edge by 1px so no hairline of navy shows above it */
   left: 0;
   width: 100%;
   height: var(--divider-h);
-  fill: var(--color-bg);
+  fill: var(--color-wash);
 }
 
 /* The same shape at the foot of the section, turned upside down, leading into the About section.
@@ -282,6 +552,7 @@
   top: auto;
   bottom: -1px;
   transform: rotate(180deg);
+  fill: var(--color-bg);         /* the section below this one is white */
 }
 
 /* Layer 1 (furthest back): the photo, covering the whole section */
@@ -306,107 +577,281 @@
 }
 
 .process__title {
-  font-size: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);   /* same size as the services heading */
+  max-width: 20em;
+  font-size: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);   /* same size as the other section headings */
 }
 .process__lead {
-  max-width: 34rem;
+  max-width: 40rem;
   margin-top: 1.25rem;
   color: var(--color-mist);
   font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
 }
-.process__btn { margin-top: 2rem; }
 
-.process__steps {
+/* The five steps as rows. Each row is a small grid:
+   phones:   letter | name            desktop:  letter | name | description
+                    | description
+   so on desktop every row runs the full width of the page and the letters line up
+   in a column that spells CLEAR. */
+.clear {
+  margin-top: 2.75rem;
+  border-bottom: 1px solid var(--color-rule-on-dark);
+}
+.clear__row {
   display: grid;
-  gap: 0.75rem;
-  margin-top: 2.5rem;
+  grid-template-columns: 3.25rem 1fr;
+  column-gap: 1rem;
+  align-items: baseline;
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--color-rule-on-dark);
 }
-
-/* A step card: white and flat like the service cards, with a burgundy rule on top */
-.step-card {
-  background: var(--color-white);
-  color: var(--color-navy);
-  padding: 1.5rem 1.5rem 1.75rem;   /* number top left, title under it, then the text */
-  border-top: 2px solid var(--color-burgundy);
-  border-radius: var(--radius);
-}
-
-/* Hover effect: the card lifts a little, its burgundy top rule gets thicker, and the
-   title turns burgundy. Wrapped in (hover: hover) so it only applies to devices with a
-   mouse or trackpad; on touch screens a "hover" would stick after a tap.
-   The thicker rule is a ::before bar that grows with transform, which stays smooth. */
-.step-card {
-  position: relative;
-  transition: transform var(--speed) var(--ease);
-}
-.step-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: var(--color-burgundy);
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform var(--speed) var(--ease);
-}
-.step-card__title { transition: color var(--speed) var(--ease); }
-
-@media (hover: hover) {
-  .step-card:hover { transform: translateY(-0.375rem); }
-  .step-card:hover::before { transform: scaleY(1); }
-  .step-card:hover .step-card__title { color: var(--color-burgundy); }
-}
-
-.step-card__number {
-  display: block;
-  color: var(--color-burgundy);
+.clear__letter {
+  grid-row: 1 / span 2;
   font-family: var(--font-heading);
-  font-size: 1.75rem;
-  line-height: 1;
+  font-size: clamp(2.75rem, 2rem + 3.6vw, 4.5rem);
+  line-height: 0.9;
+  color: var(--color-white);
 }
-.step-card__title {
-  margin-top: 0.625rem;
-  font-size: 1.375rem;
+.clear__name {
+  font-size: clamp(1.3125rem, 1.2rem + 0.6vw, 1.625rem);
   line-height: 1.25;
 }
-.step-card__text {
-  max-width: 38rem;
-  margin-top: 0.875rem;
+.clear__text {
+  grid-column: 2;
+  margin-top: 0.5rem;
+  color: var(--color-mist);
 }
 
-/* Tablets and up: the heading, paragraph and button sit in the centre above the cards,
-   and the cards lay out in rows and columns.
-   How the columns work: the grid has 4 narrow tracks and every card spans 2 of them,
-   which gives 2 cards per row. The fifth card is alone on the last row, so it is told
-   to start at track 2, which puts it in the middle instead of on the left. */
+.process__closing {
+  max-width: 40rem;
+  margin-top: 2.25rem;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(1.125rem, 1.05rem + 0.5vw, 1.375rem);
+  line-height: 1.4;
+}
+
 @media (min-width: 48rem) {
-  .process__intro {
+  .clear { margin-top: 3.5rem; }
+  .clear__row {
+    grid-template-columns: 5rem 1fr;
+    column-gap: 1.5rem;
+    padding-block: 1.75rem;
+  }
+}
+/* Desktop: letter, name and description side by side on one line per step */
+@media (min-width: 62rem) {
+  .clear__row {
+    grid-template-columns: 7rem 5fr 7fr;
+    column-gap: 2.5rem;
+    padding-block: 2rem;
+  }
+  .clear__letter { grid-row: auto; }
+  .clear__text {
+    grid-column: 3;
+    margin-top: 0;
+    font-size: 1.125rem;
+  }
+  .process__closing { margin-top: 2.75rem; }
+}
+
+/* ---------- Investigation Readiness Intensive ----------
+   White section. Phones: name, opening line and button, then the text.
+   Desktop: those three on the left (they stay in view while you read), the text on the right. */
+.intensive {
+  padding-block: var(--space-section);
+}
+.intensive__inner {
+  display: grid;
+  gap: 2.5rem;
+}
+.intensive__title {
+  font-size: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);
+}
+/* Her bold opening line, in the heading font with a burgundy bar beside it */
+.intensive__tagline {
+  margin-top: 1.5rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--color-burgundy);
+  font-family: var(--font-heading);
+  font-size: clamp(1.1875rem, 1.1rem + 0.6vw, 1.5rem);
+  line-height: 1.35;
+}
+.intensive__btn { margin-top: 2rem; }
+
+.intensive__text {
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+}
+.intensive__text + .intensive__text,
+.intensive__gaps + .intensive__text { margin-top: 1.5rem; }
+
+/* The four gaps: one per line, each with a small burgundy square */
+.intensive__gaps {
+  margin-top: 1rem;
+  border-top: 1px solid var(--color-rule);
+}
+.intensive__gap {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.875rem;
+  align-items: baseline;
+  padding-block: 0.875rem;
+  border-bottom: 1px solid var(--color-rule);
+  font-weight: 600;
+  line-height: 1.4;
+}
+.intensive__gap::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--color-burgundy);
+  transform: translateY(-0.1em);
+}
+
+@media (min-width: 62rem) {
+  .intensive__inner {
+    grid-template-columns: 5fr 7fr;
+    column-gap: clamp(3rem, 6vw, 5.5rem);
+    align-items: start;
+  }
+  .intensive__head {
+    position: sticky;
+    top: calc(var(--header-h) + 2.5rem);
+  }
+}
+
+/* ---------- Meet INVEXTRA™ ----------
+   Pale grey section holding one white, framed panel. Nothing else on the page is a single
+   framed box, which is what sets INVEXTRA apart from the services (her note).
+   Phones: logo and launch date on top, text below. Desktop: logo left, text right. */
+.invextra {
+  padding-block: var(--space-section);
+  background: var(--color-wash);
+}
+.invextra__panel {
+  display: grid;
+  background: var(--color-white);
+  border: 1px solid var(--color-rule);
+  border-top: 2px solid var(--color-copper);   /* the one copper touch: her brand guide keeps copper for INVEXTRA */
+}
+
+/* The logo side */
+.invextra__brand {
+  padding: 2rem 1.5rem;
+  border-bottom: 1px solid var(--color-rule);
+}
+.invextra__logo {
+  width: min(100%, 15rem);       /* never wider than its box, and never larger than 240px */
+  height: auto;
+}
+/* The launch date, with a small copper square (the same marker as the line above the hero headline) */
+.invextra__launch {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-top: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.invextra__launch::before {
+  content: "";
+  flex-shrink: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--color-copper);
+}
+
+/* The text side */
+.invextra__body {
+  padding: 2rem 1.5rem 2.25rem;
+}
+.invextra__title {
+  font-size: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);   /* same size as the other section headings */
+}
+/* Her bold line, in the heading font */
+.invextra__lead {
+  margin-top: 1rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.1875rem, 1.1rem + 0.6vw, 1.5rem);
+  line-height: 1.35;
+}
+.invextra__text {
+  max-width: 44rem;              /* keeps lines a comfortable length to read */
+  margin-top: 1.25rem;
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+}
+.invextra__btn { margin-top: 2rem; }
+
+@media (min-width: 48rem) {
+  .invextra__brand { padding: 2.5rem; }
+  .invextra__body { padding: 2.5rem 2.5rem 3rem; }
+}
+/* Desktop: logo on the left, text on the right, a thin rule between them */
+@media (min-width: 62rem) {
+  .invextra__panel { grid-template-columns: 4fr 8fr; }
+  .invextra__brand {
     display: flex;
     flex-direction: column;
-    align-items: center;         /* centres the heading, paragraph and button */
-    text-align: center;
+    justify-content: center;     /* logo and date sit in the middle of the panel's height */
+    padding: 3.5rem;
+    border-bottom: 0;
+    border-right: 1px solid var(--color-rule);
   }
-  .process__steps {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin-top: 3.5rem;
-  }
-  .step-card { grid-column: span 2; }
-  .step-card:nth-child(5) { grid-column: 2 / span 2; }
-  .step-card { padding: 1.75rem 1.75rem 2rem; }
+  .invextra__logo { width: min(100%, 17.5rem); }
+  .invextra__body { padding: 4rem clamp(3rem, 5vw, 4.5rem); }
 }
 
-/* Desktop: 3 cards in the first row, 2 centred in the second.
-   Same idea with 6 tracks: each card spans 2, and the fourth card starts at track 2. */
+/* ---------- An outside investigator protects the finding ----------
+   Plain navy. Phones: heading, paragraph, then the closing line under a thin rule.
+   Desktop: heading and paragraph on the left, the closing line large on the right,
+   with a thin rule between the two sides. */
+.independence {
+  padding-block: var(--space-section);
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+.independence__inner {
+  display: grid;
+  gap: 2.5rem;
+}
+.independence__title {
+  max-width: 16em;
+  font-size: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);   /* same size as the other section headings */
+}
+.independence__text {
+  max-width: 40rem;              /* keeps lines a comfortable length to read */
+  margin-top: 1.5rem;
+  color: var(--color-mist);
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+}
+
+/* Her closing line: the largest text in the section, in the heading font */
+.independence__statement {
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-rule-on-dark);
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 1.2rem + 2.6vw, 3rem);
+  line-height: 1.2;
+}
+.independence__line { display: block; }             /* each sentence starts on its own line */
+.independence__line + .independence__line {
+  margin-top: 0.4em;
+  color: var(--color-mist);      /* the second sentence a shade quieter, so the two read as a pair */
+}
+
 @media (min-width: 62rem) {
-  .process__steps {
-    grid-template-columns: repeat(6, 1fr);
-    gap: 1.25rem;
+  .independence__inner {
+    grid-template-columns: 7fr 5fr;
+    column-gap: clamp(3rem, 6vw, 5.5rem);
+    align-items: center;         /* the closing line sits level with the middle of the text */
   }
-  .step-card:nth-child(4) { grid-column: 2 / span 2; }
-  .step-card:nth-child(5) { grid-column: span 2; }
+  /* The rule moves from above the line to its left side */
+  .independence__statement {
+    padding-top: 0;
+    padding-left: clamp(2.5rem, 4vw, 4rem);
+    border-top: 0;
+    border-left: 1px solid var(--color-rule-on-dark);
+    padding-block: 1.5rem;
+  }
 }
 
 /* ---------- About ----------
@@ -695,9 +1140,21 @@
 .cta {
   position: relative;
   isolation: isolate;
+  --divider-h: clamp(2rem, 5vw, 4.5rem);   /* height of the triangle divider at the top */
   padding-block: var(--space-section);
+  padding-top: calc(var(--space-section) + var(--divider-h) * 0.6);   /* extra room so the heading clears the triangle */
   background: var(--color-burgundy);
   color: var(--color-white);
+}
+/* The triangle divider: pinned to the top edge and filled with the colour of the section
+   above it (pale grey). If that section's background ever changes, change the fill to match. */
+.cta__divider {
+  position: absolute;
+  top: -1px;                     /* overlaps the edge by 1px so no hairline of burgundy shows above it */
+  left: 0;
+  width: 100%;
+  height: var(--divider-h);
+  fill: var(--color-wash);
 }
 .cta__bg {
   position: absolute;

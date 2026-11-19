@@ -6,12 +6,12 @@
 
     <!-- DRAFT title and description: to be finalised in the SEO pass -->
     <title>By-the-Book Workplace Investigations</title>
-    <meta name="description" content="Impartial third-party workplace investigations, investigator training and AI-enhanced support. Fair, thorough, defensible results. Schedule a conversation.">
+    <meta name="description" content="Independent, attorney-led protected-class investigations for when your team is at capacity, in transition or too close to the matter. Schedule a conversation.">
     <link rel="canonical" href="https://www.bythebookinvestigations.com/">
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="By-the-Book Workplace Investigations">
-    <meta property="og:description" content="Impartial third-party workplace investigations that hold up to scrutiny.">
+    <meta property="og:description" content="Some investigations can't stay in-house. Others can't wait. Independent, attorney-led protected-class investigations.">
     <meta property="og:url" content="https://www.bythebookinvestigations.com/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="theme-color" content="#0A1A33">
@@ -61,11 +61,11 @@
             </button>
 
             <nav class="site-nav" id="site-nav" aria-label="Main">
-                <!-- Links follow the order of the homepage sections. "Our Process" jumps to the CLEAR framework
+                <!-- Links follow the order of the homepage sections. "CLEAR Investigation Framework™" (her exact term) jumps to that
                      section on the homepage (it has no page of its own); the others go to their own pages. -->
                 <ul class="site-nav__list">
                     <li class="site-nav__item"><a class="site-nav__link" href="services/">Services</a></li>
-                    <li class="site-nav__item"><a class="site-nav__link" href="#process">Our Process</a></li>
+                    <li class="site-nav__item"><a class="site-nav__link" href="#process">CLEAR Investigation Framework™</a></li>
                     <li class="site-nav__item"><a class="site-nav__link" href="about/">About</a></li>
                     <li class="site-nav__item"><a class="site-nav__link" href="investigation-capacity/">Investigation Capacity</a></li>
                     <li class="site-nav__item"><a class="site-nav__link" href="contact/">Contact</a></li>
@@ -97,83 +97,176 @@
             </picture>
 
             <div class="hero__inner container">
-                <!-- DRAFT copy, written from the client's own mission statement and site. Needs her approval. -->
-                <h1 class="hero__title" id="hero-title">Workplace investigations that hold up to scrutiny.</h1>
-                <p class="hero__lead">Impartial third-party investigations, investigator training and AI-enhanced support that give your organization fair, thorough and defensible results.</p>
-                <a class="btn btn--light hero__btn" href="contact/">Schedule a Conversation</a>
+                <!-- All hero wording is from her final copy ("Homepage and About Us.docx", section 1). -->
+                <p class="hero__eyebrow">Third-party protected-class investigations</p>
+
+                <!-- Two sentences on two lines. Each word is in its own span so the CSS can bring the
+                     words in one after another on page load; the second sentence starts a beat later. -->
+                <h1 class="hero__title" id="hero-title">
+                    <span class="hero__line"><span class="hero__word">Some</span> <span class="hero__word">investigations</span> <span class="hero__word">can't</span> <span class="hero__word">stay</span> <span class="hero__word">in-house.</span></span>
+                    <span class="hero__line"><span class="hero__word">Others</span> <span class="hero__word">can't</span> <span class="hero__word">wait.</span></span>
+                </h1>
+                <p class="hero__lead">When your team is at capacity, in transition, or too close to the matter, By-the-Book Workplace Investigations steps in. Independent, attorney-led protected-class investigations with the legal and policy rigor, practical judgment, and care for people these cases demand.</p>
+
+                <!-- One button only (her design note). The second action is a plain text link that jumps
+                     down to the two ways of working together. -->
+                <div class="hero__actions">
+                    <a class="btn btn--light hero__btn" href="contact/">Schedule a Conversation</a>
+                    <a class="hero__link" href="#services">How the work is structured</a>
+                </div>
             </div>
 
-            <!-- INVEXTRA sits in its own band, apart from the main button, so it reads as a second, separate offer -->
-            <div class="hero__invextra">
-                <div class="hero__invextra-inner container">
-                    <p class="hero__invextra-text"><strong class="hero__invextra-name">INVEXTRA</strong> Investigation expertise, amplified.</p>
-                    <a class="btn btn--outline-light hero__invextra-btn" href="https://invextra.ai/" target="_blank" rel="noopener">
-                        Join the INVEXTRA Waitlist<span class="visually-hidden"> (opens in a new tab)</span>
-                    </a>
+            <!-- Trust line: a quiet strip along the foot of the hero -->
+            <div class="hero__trust">
+                <div class="hero__trust-inner container">
+                    <p class="hero__trust-text">Ongoing capacity, single-case investigations, and team readiness, all guided by the CLEAR Investigation Framework™.</p>
                 </div>
             </div>
         </section>
 
-        <!-- ============ SERVICES ============
-             Three cards, one per practice area. Each card lists its services as links to their detail pages.
-             TEMPORARY LIST: taken from the client's current site on 2026-11-17. Replace with her confirmed
-             list of services. The wording is hers, lightly trimmed. The detail pages are not built yet. -->
-        <section class="services" id="services" aria-labelledby="services-title">
+        <!-- ============ STAT STRIP (her section 2) ============
+             Three figures and one statement, straight from her copy. Her notes: the figures describe the
+             founder's whole career, not only work done under the By-the-Book name, so the line under the
+             strip says so (wording from her Services page).
+             Each number counts up once when it scrolls into view (global.js part 6). The counting span is
+             hidden from screen readers; they read the finished figure in the visually-hidden span beside it. -->
+        <section class="stats" aria-label="Experience">
             <div class="container">
-                <div class="services__intro">
-                    <h2 class="services__title" id="services-title">Our services</h2>
-                    <p class="services__lead">Most firms can give you compliance. Most firms can give you empathy. Almost none can integrate the two. We deliver investigations, training and AI solutions that drive both legal defensibility and organizational impact.</p>
-                </div>
-
-                <!-- role="list" keeps these announced as lists by VoiceOver even though the bullets are removed -->
-                <ul class="services__cards" role="list">
-                    <li class="service-card">
-                        <h3 class="service-card__title">Investigations</h3>
-                        <p class="service-card__text">Impartial, protected-class competent, legally defensible and operationally grounded. Built for clarity, credibility and next-step decision-making.</p>
-                        <ul class="service-card__list" role="list">
-                            <li class="service-card__item">
-                                <a class="service-card__link" href="services/third-party-investigations/"><span>Third-Party Investigations</span><svg class="service-card__arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-                            </li>
-                            <li class="service-card__item">
-                                <a class="service-card__link" href="services/overflow-investigation-support/"><span>Overflow Investigation Support</span><svg class="service-card__arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-                            </li>
-                        </ul>
+                <ul class="stats__list" role="list" data-reveal-group>
+                    <li class="stat" data-reveal="up">
+                        <p class="stat__figure"><span aria-hidden="true" data-count="2000" data-suffix="+">2,000+</span><span class="visually-hidden">2,000+</span></p>
+                        <p class="stat__label">Protected-class investigations conducted, led, or reviewed by our founder</p>
                     </li>
-                    <li class="service-card">
-                        <h3 class="service-card__title">Training &amp; Capacity Building</h3>
-                        <p class="service-card__text">Not generic. Not theoretical. We train your team in the exact skills real investigators need, customized to your cases, culture and complexity.</p>
-                        <ul class="service-card__list" role="list">
-                            <li class="service-card__item">
-                                <a class="service-card__link" href="services/investigation-readiness-intensive/"><span>Investigation Readiness Intensive</span><svg class="service-card__arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-                            </li>
-                            <li class="service-card__item">
-                                <a class="service-card__link" href="services/fair-housing-investigation-program/"><span>Fair Housing Investigation Advancement Program</span><svg class="service-card__arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-                            </li>
-                        </ul>
+                    <li class="stat" data-reveal="up">
+                        <p class="stat__figure"><span aria-hidden="true" data-count="15" data-suffix="+">15+</span><span class="visually-hidden">15+</span></p>
+                        <p class="stat__label">Years in investigation practice</p>
                     </li>
-                    <li class="service-card">
-                        <h3 class="service-card__title service-card__title--ai">AI Solutions</h3>
-                        <p class="service-card__text">AI tools built by actual investigators, not tech vendors guessing at workflows. Enhances consistency, clarity and rigor without replacing human judgment.</p>
-                        <ul class="service-card__list" role="list">
-                            <li class="service-card__item">
-                                <a class="service-card__link" href="services/invextra/"><span>INVEXTRA</span><svg class="service-card__arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-                            </li>
-                        </ul>
+                    <li class="stat" data-reveal="up">
+                        <p class="stat__figure"><span aria-hidden="true" data-count="250" data-suffix="+">250+</span><span class="visually-hidden">250+</span></p>
+                        <p class="stat__label">Investigators trained</p>
+                    </li>
+                    <li class="stat stat--statement" data-reveal="up">
+                        <p class="stat__statement">Independent, <span class="nowrap">attorney-led</span> <span class="nowrap">fact-finding</span></p>
                     </li>
                 </ul>
-
-                <a class="btn btn--navy services__all" href="services/">View all services</a>
+                <p class="stats__note" data-reveal="fade">Experience of our founder, Dr. Marquita M. Booker, Esq., across her career.</p>
             </div>
         </section>
 
-        <!-- ============ OUR PROCESS (the CLEAR framework) ============
-             Top: heading, intro and button (centred from tablets up). Below: five numbered step cards in a grid.
-             Every card shows its text all the time (no opening and closing).
-             DRAFT copy: taken from the "Our Investigation Process" part of her current
-             Third-Party Investigations page and trimmed. Needs her approval. -->
+        <!-- ============ WHEN WOULD YOU BRING US IN? (her section 3) ============
+             Her three paragraphs, word for word. The first paragraph is five situations, so each of
+             its sentences gets its own line in a list; nothing is added or removed. The second
+             paragraph ("Sometimes...") is set larger, as the point the list builds up to. -->
+        <section class="when" aria-labelledby="when-title">
+            <div class="container">
+                <h2 class="when__title" id="when-title" data-split="words">When would you bring us in?</h2>
+
+                <ul class="when__list" role="list" data-reveal-group>
+                    <li class="when__item" data-reveal="up">Your strongest investigator is already carrying more than they should.</li>
+                    <li class="when__item" data-reveal="up">A vacancy may take months to fill.</li>
+                    <li class="when__item" data-reveal="up">Your new leader is still getting oriented.</li>
+                    <li class="when__item" data-reveal="up">The allegation involves someone in the team's reporting line.</li>
+                    <li class="when__item" data-reveal="up">Or the case is sensitive enough that the choice of investigator will be scrutinized just as closely as the findings.</li>
+                </ul>
+
+                <p class="when__statement" data-reveal="up">
+                    <span class="when__line">Sometimes you need more capacity.</span>
+                    <span class="when__line">Sometimes you need distance from the people involved.</span>
+                    <span class="when__line">Sometimes you need both.</span>
+                </p>
+
+                <p class="when__text" data-reveal="fade">And yes, you may need another full-time hire. We understand that. But hiring and onboarding take time, and the complaint on your desk still needs to be handled now.</p>
+            </div>
+        </section>
+
+        <!-- ============ AN OUTSIDE INVESTIGATION SHOULDN'T BECOME ANOTHER PROBLEM (her section 4) ============
+             A single reading column in the middle of the page: this section is an argument, so it is
+             set like a short letter rather than a grid. Her four paragraphs, word for word, in order:
+             1. the opening paragraph, set a little larger;
+             2. her second paragraph describes two ways an outside report goes wrong, so its first two
+                sentences sit side by side and its third ("Neither...") sits under both;
+             3. the third paragraph as ordinary text;
+             4. her closing line, set large.
+             No picture: an earlier version had one beside the text and it added nothing. -->
+        <section class="standard" aria-labelledby="standard-title">
+            <!-- Angled divider from the grey section above: the same shape as the others, filled with that grey -->
+            <svg class="standard__divider" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0 0v36L250 4l750 96V0H0z"/></svg>
+
+            <div class="standard__inner container">
+                <h2 class="standard__title" id="standard-title" data-split="words">An outside investigation shouldn't become another problem to manage</h2>
+                <p class="standard__lead" data-reveal="fade" data-delay="2">You brought in help because the situation was already difficult. The last thing you needed was a report that arrived months late, cost far more than expected, or left leadership unsure what the findings actually meant.</p>
+
+                <div class="standard__pair">
+                    <p class="standard__side" data-reveal="left">We have seen reports with strong legal analysis that read more like a defense brief than neutral fact-finding.</p>
+                    <p class="standard__side" data-reveal="right">We have also seen people-centered approaches that did not fully address the policy, evidence, or legal standards at issue.</p>
+                    <p class="standard__neither" data-reveal="up" data-delay="2">Neither gives an organization what it needs.</p>
+                </div>
+
+                <p class="standard__text" data-reveal="fade">You should not have to choose between rigor and humanity. A sound investigation needs both. It should be fair to the person who made the complaint and the person responding to it, disciplined about the facts, and clear enough for the organization to decide what happens next.</p>
+
+                <p class="standard__closing" data-reveal="up">That is the standard we built <span class="nowrap">By-the-Book</span> around.</p>
+            </div>
+        </section>
+
+        <!-- ============ TWO WAYS TO GET THE WORK MOVING (her section 5) ============
+             Two cards side by side (stacked on phones), one per way of working, word for word from her copy.
+             The "01" and "02" are hers. Each card ends with the same button; the hidden words inside each
+             button tell screen-reader users which service it belongs to.
+             id="services" is what the hero link "How the work is structured" jumps to. -->
+        <section class="ways" id="services" aria-labelledby="ways-title">
+            <!-- The heading sits on a dark band with one of the brand images behind it. The two cards
+                 start on the band and hang down over its lower edge onto the pale grey. -->
+            <div class="ways__band">
+                <picture class="ways__bg">
+                    <source media="(min-width: 48rem)" srcset="images/backgrounds/silver-navy-diagonal.webp" type="image/webp">
+                    <source media="(min-width: 48rem)" srcset="images/backgrounds/silver-navy-diagonal.jpg">
+                    <source srcset="images/backgrounds/silver-navy-diagonal-m.webp" type="image/webp">
+                    <img src="images/backgrounds/silver-navy-diagonal-m.jpg" alt="" aria-hidden="true"
+                         width="800" height="600" loading="lazy" decoding="async">
+                </picture>
+                <div class="container">
+                    <h2 class="ways__title" id="ways-title" data-split="words">Two ways to get the work moving</h2>
+                </div>
+            </div>
+
+            <div class="container">
+
+                <div class="ways__cards" data-reveal-group>
+                    <article class="way" data-reveal="up">
+                        <p class="way__number" aria-hidden="true">01</p>
+                        <h3 class="way__title">Investigation Capacity Retainer</h3>
+                        <p class="way__tagline">For the cases that keep coming while your team is stretched.</p>
+                        <p class="way__text">Reserve a bank of investigation hours for continuing case volume, an extended vacancy, a leadership transition, or a backlog your team has not been able to clear. Rather than finding a new outside investigator every time a case arrives, you have an agreed way to send the work to a practice that understands your policies, timelines, and expectations.</p>
+                        <p class="way__list-title">A retainer can include:</p>
+                        <ul class="way__list">
+                            <li class="way__item">A defined bank of hours, referral process, and response expectations</li>
+                            <li class="way__item">A designated lead and coordinated investigation coverage</li>
+                            <li class="way__item">Clear scope, milestones, and updates on hours used</li>
+                            <li class="way__item">Flexibility to reassess capacity as your caseload changes</li>
+                        </ul>
+                        <p class="way__text">You keep responsibility for the organization's decisions. We take on the impartial fact-finding, analysis, and reporting within the agreed scope.</p>
+                        <a class="btn btn--navy way__btn" href="contact/">Schedule a Conversation<span class="visually-hidden"> about an Investigation Capacity Retainer</span></a>
+                    </article>
+
+                    <article class="way" data-reveal="up">
+                        <p class="way__number" aria-hidden="true">02</p>
+                        <h3 class="way__title">Single-Case Investigation</h3>
+                        <p class="way__tagline">For the case that needs to be handled outside your team.</p>
+                        <p class="way__text">Maybe the matter involves a senior executive, someone in the investigation unit's reporting chain, a potential conflict of interest, or likely public scrutiny. Maybe it is simply one case your team cannot absorb. We can take on a single investigation without an ongoing commitment.</p>
+                        <p class="way__text">We agree on the scope, likely milestones, and fee structure before beginning. Then we investigate the allegations, evaluate the evidence against the applicable standards, and provide a report your decision-makers can actually use.</p>
+                        <a class="btn btn--navy way__btn" href="contact/">Schedule a Conversation<span class="visually-hidden"> about a Single-Case Investigation</span></a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ CLEAR (her section 6) ============
+             Navy section over the staircase photo. No cards here (the section above has cards): the five
+             steps are full-width rows, each led by its letter, so the letters spell CLEAR down the page.
+             All wording is hers. id="process" is what the "CLEAR Investigation Framework™" menu link jumps to. -->
         <section class="process" id="process" aria-labelledby="process-title">
-            <!-- Angled divider between the services section and this one. It is a white shape laid over
-                 the top of the navy section, so the white above appears to cut into the navy at an angle.
+            <!-- Angled divider between the "Two ways" section and this one. It is a pale grey shape laid over
+                 the top of the navy section, so the grey above appears to cut into the navy at an angle.
                  preserveAspectRatio="none" lets it stretch to any screen width. Decorative, so aria-hidden. -->
             <svg class="process__divider" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0 0v36L250 4l750 96V0H0z"/></svg>
 
@@ -188,45 +281,124 @@
 
             <div class="process__inner container">
                 <div class="process__intro">
-                    <h2 class="process__title" id="process-title">Our investigation process</h2>
-                    <p class="process__lead">Every investigation follows the CLEAR By-the-Book™ framework. It is the same structure we use in our own investigations, teach to internal teams and build into our AI tools.</p>
-                    <a class="btn btn--light process__btn" href="contact/">Schedule a Conversation</a>
+                    <h2 class="process__title" id="process-title" data-split="words">Every case follows the CLEAR <span class="nowrap">By-the-Book™</span> Investigation Framework</h2>
+                    <p class="process__lead" data-reveal="fade" data-delay="3">The circumstances change from case to case. The discipline of the investigation should not. CLEAR gives our work a consistent structure from intake through report writing.</p>
                 </div>
 
-                <!-- An ordered list, because the steps happen in this order. The big numbers are for the eye
-                     only (aria-hidden); screen readers already announce "1 of 5" from the list itself. -->
-                <ol class="process__steps" role="list">
-                    <li class="step-card">
-                        <span class="step-card__number" aria-hidden="true">1</span>
-                        <h3 class="step-card__title">Capture the Complaint</h3>
-                        <p class="step-card__text">Build a clear starting point that anchors, not limits, the scope. We gather timelines, witnesses, documents, potential policy issues, risk indicators and context, and expand scope only when the evidence requires it.</p>
+                <!-- An ordered list, because the steps happen in this order. The big letter is for the eye
+                     only (aria-hidden): each step's name already starts with it. -->
+                <ol class="clear" role="list" data-reveal-group>
+                    <li class="clear__row" data-reveal="up">
+                        <span class="clear__letter" aria-hidden="true">C</span>
+                        <h3 class="clear__name">Capture the Complaint</h3>
+                        <p class="clear__text">Identify the actual allegations, the issues requiring a finding, and what still needs clarification.</p>
                     </li>
-                    <li class="step-card">
-                        <span class="step-card__number" aria-hidden="true">2</span>
-                        <h3 class="step-card__title">Launch the Strategy</h3>
-                        <p class="step-card__text">Stabilize quickly. Plan deliberately. Within about 72 hours we support safety and retaliation assessments, supportive measures, evidence preservation and initial outreach, then build a defensible plan for the investigation.</p>
+                    <li class="clear__row" data-reveal="up">
+                        <span class="clear__letter" aria-hidden="true">L</span>
+                        <h3 class="clear__name">Launch the Strategy</h3>
+                        <p class="clear__text">Build an allegation-specific plan for interviews, records, witnesses, and the limits of the inquiry.</p>
                     </li>
-                    <li class="step-card">
-                        <span class="step-card__number" aria-hidden="true">3</span>
-                        <h3 class="step-card__title">Evaluate the Evidence</h3>
-                        <p class="step-card__text">Gather the available body of evidence: testimonial, digital, documentary, physical. We use trauma-informed interviewing, disciplined documentation and structured evidence matrices tied to policy elements.</p>
+                    <li class="clear__row" data-reveal="up">
+                        <span class="clear__letter" aria-hidden="true">E</span>
+                        <h3 class="clear__name">Evaluate the Evidence</h3>
+                        <p class="clear__text">Examine what the evidence supports, where accounts conflict, and what remains unresolved.</p>
                     </li>
-                    <li class="step-card">
-                        <span class="step-card__number" aria-hidden="true">4</span>
-                        <h3 class="step-card__title">Analyze Impartially</h3>
-                        <p class="step-card__text">Evaluate evidence objectively. Apply the correct standards. Assess credibility transparently. Reject unsupported conclusions.</p>
+                    <li class="clear__row" data-reveal="up">
+                        <span class="clear__letter" aria-hidden="true">A</span>
+                        <h3 class="clear__name">Analyze Impartially</h3>
+                        <p class="clear__text">Assess credibility and apply the relevant policy and legal standards without starting from a preferred outcome.</p>
                     </li>
-                    <li class="step-card">
-                        <span class="step-card__number" aria-hidden="true">5</span>
-                        <h3 class="step-card__title">Report with Clarity</h3>
-                        <p class="step-card__text">Plain-language findings, necessary qualifiers only, and a clear explanation of conduct and policy. We don't drop a report and disappear: we can guide you through what the findings mean for your organization.</p>
+                    <li class="clear__row" data-reveal="up">
+                        <span class="clear__letter" aria-hidden="true">R</span>
+                        <h3 class="clear__name">Report with Clarity</h3>
+                        <p class="clear__text">Explain the evidence, reasoning, and findings in language the organization can use, while keeping its decisions separate from ours.</p>
                     </li>
                 </ol>
+
+                <p class="process__closing" data-reveal="fade">CLEAR is also the foundation for how we help internal teams strengthen their own work.</p>
             </div>
 
             <!-- Angled divider leading into the About section: the same shape as the one at the top,
                  turned upside down (in the CSS), so the white below cuts up into the navy at an angle. -->
             <svg class="process__divider process__divider--bottom" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0 0v36L250 4l750 96V0H0z"/></svg>
+        </section>
+
+        <!-- ============ INVESTIGATION READINESS INTENSIVE (her section 7) ============
+             White section. Left: the name, her bold opening line and the button. Right: her three
+             paragraphs. In the first paragraph, the four gaps she lists are each a sentence, so they
+             are shown as four short lines; nothing is reworded. -->
+        <section class="intensive" id="readiness" aria-labelledby="intensive-title">
+            <div class="intensive__inner container">
+                <div class="intensive__head">
+                    <h2 class="intensive__title" id="intensive-title" data-split="words">Investigation Readiness Intensive</h2>
+                    <p class="intensive__tagline" data-reveal="fade" data-delay="2">Not Investigations 101. A working look at whether your investigation process is ready for the cases it has to carry.</p>
+                    <a class="btn btn--navy intensive__btn" data-reveal="fade" data-delay="3" href="contact/">Schedule a Conversation<span class="visually-hidden"> about the Investigation Readiness Intensive</span></a>
+                </div>
+
+                <div class="intensive__body">
+                    <p class="intensive__text" data-reveal="fade">You may have experienced investigators and still have gaps in the system around them.</p>
+                    <ul class="intensive__gaps" role="list" data-reveal-group>
+                        <li class="intensive__gap" data-reveal="right">Intake misses important details.</li>
+                        <li class="intensive__gap" data-reveal="right">Investigations are scoped differently depending on who receives the complaint.</li>
+                        <li class="intensive__gap" data-reveal="right">Review and documentation vary from one case to the next.</li>
+                        <li class="intensive__gap" data-reveal="right">Policies and day-to-day practice are not always aligned.</li>
+                    </ul>
+                    <p class="intensive__text" data-reveal="fade">We examine your investigative infrastructure: policies, protocols, intake and triage, role clarity, evidence practices, timelines, analysis, quality review, and reporting. Then we work with your team on the gaps that matter most, using your actual cases and organizational constraints where appropriate.</p>
+                    <p class="intensive__text" data-reveal="fade">The goal is not another binder of training materials. It is a clearer process, practical priorities, and a method your investigators can apply consistently. Each intensive is scoped to your team's readiness needs, from a single working day to a multi-day build.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ MEET INVEXTRA™ (her section 8) ============
+             Her note: keep this visually separate from the services, so it reads as proof of depth
+             and not a competing offer. So it is the only part of the page built as a framed panel:
+             pale grey section, one white box with a thin copper line on top (copper is the INVEXTRA
+             colour in her brand guide), INVEXTRA's own logo, and an OUTLINE button. Every
+             "Schedule a Conversation" button on the page is filled, so this one looks different.
+             All wording is hers. The button opens invextra.ai in a new tab. -->
+        <section class="invextra" id="invextra" aria-labelledby="invextra-title">
+            <div class="container">
+                <div class="invextra__panel">
+                    <!-- Left side on desktop (top on phones): the product's logo and its launch date -->
+                    <div class="invextra__brand" data-reveal="fade">
+                        <picture>
+                            <source srcset="images/brand/invextra-logo.webp" type="image/webp">
+                            <img class="invextra__logo" src="images/brand/invextra-logo.png"
+                                 alt="INVEXTRA: Investigation expertise, amplified"
+                                 width="498" height="125" loading="lazy" decoding="async">
+                        </picture>
+                        <p class="invextra__launch">Planned launch: January 2027</p>
+                    </div>
+
+                    <div class="invextra__body">
+                        <h2 class="invextra__title" id="invextra-title" data-split="words">Meet INVEXTRA™</h2>
+                        <p class="invextra__lead" data-reveal="fade" data-delay="2">Bringing CLEAR into the investigation as it happens.</p>
+                        <p class="invextra__text" data-reveal="fade" data-delay="3">INVEXTRA is an investigator-aligned AI tool being developed for protected-class work. It is designed to support the CLEAR phases in real time: clarifying allegations, planning the investigation, examining gaps in the evidence, pressure-testing analysis, and improving the clarity of reports.</p>
+                        <p class="invextra__text" data-reveal="fade" data-delay="3">It does not make findings for you. It is built to support an investigator's thinking, not replace the professional judgment, accountability, or human care the work requires.</p>
+                        <a class="btn btn--outline invextra__btn" data-reveal="fade" data-delay="4" href="https://invextra.ai/" target="_blank" rel="noopener">Join the INVEXTRA waitlist<span class="visually-hidden"> (opens in a new tab)</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ AN OUTSIDE INVESTIGATOR PROTECTS THE FINDING (her section 9) ============
+             Plain navy section (no photo, unlike the CLEAR section). Left: her heading and paragraph.
+             Right: her closing line, "Independent in process. Clear in findings.", set large like a
+             pull quote, one sentence per block. All wording is hers. -->
+        <section class="independence" aria-labelledby="independence-title">
+            <div class="independence__inner container">
+                <div class="independence__main">
+                    <h2 class="independence__title" id="independence-title" data-split="words">An outside investigator protects the finding</h2>
+                    <p class="independence__text" data-reveal="fade" data-delay="3">Independence is more than bringing in someone from outside the organization. It starts with understanding reporting relationships, screening for potential conflicts, and setting a clear scope. An external investigator can reduce concerns about internal influence, but credibility still depends on a fair process, careful analysis, and findings grounded in the evidence. That is the standard we work to meet.</p>
+                </div>
+
+                <!-- One paragraph, so screen readers read it as one line. Each sentence is a span so it
+                     can sit on its own lines and arrive separately. -->
+                <p class="independence__statement" data-reveal-group>
+                    <span class="independence__line" data-reveal="right">Independent in process.</span>
+                    <span class="independence__line" data-reveal="right">Clear in findings.</span>
+                </p>
+            </div>
         </section>
 
         <!-- ============ ABOUT ============
@@ -241,8 +413,8 @@
                 <!-- The text comes first in the code, so on phones it is read first and the photo follows.
                      From tablets up, the CSS moves the photo to the left-hand column. -->
                 <div class="about__content">
-                    <h2 class="about__title" id="about-title">By-the-Book investigates like we have to live with the outcome.</h2>
-                    <p class="about__text">We are a team of dedicated professionals who combine deep legal expertise with a compassionate, trauma-informed approach. We not only uncover the facts but also help your organization heal and grow.</p>
+                    <h2 class="about__title" id="about-title" data-split="words">By-the-Book investigates like we have to live with the outcome.</h2>
+                    <p class="about__text" data-reveal="fade" data-delay="2">We are a team of dedicated professionals who combine deep legal expertise with a compassionate, trauma-informed approach. We not only uncover the facts but also help your organization heal and grow.</p>
 
                     <!-- Her three pillars as tabs: one row of names, and the text for the chosen one underneath.
                          How it works: without JavaScript all three blocks simply show one after another, each
@@ -251,7 +423,7 @@
                          tell screen readers these are tabs; the arrow keys move between them.
                          DRAFT copy: the first sentence of each is her exact wording, the rest is condensed
                          from her current homepage. Needs her approval. -->
-                    <div class="tabs about__tabs" data-tabs>
+                    <div class="tabs about__tabs" data-tabs data-reveal="fade" data-delay="3">
                         <div class="tabs__list" role="tablist" aria-label="Our approach: the three pillars" hidden>
                             <button class="tabs__tab" type="button" role="tab" id="pillar-tab-1" aria-controls="pillar-1" aria-selected="true">Precision in Process</button>
                             <button class="tabs__tab" type="button" role="tab" id="pillar-tab-2" aria-controls="pillar-2" aria-selected="false" tabindex="-1">Integrity in Practice</button>
@@ -273,10 +445,10 @@
                         </div>
                     </div>
 
-                    <a class="btn btn--navy about__btn" href="about/">About the firm</a>
+                    <a class="btn btn--navy about__btn" data-reveal="fade" data-delay="4" href="about/">About the firm</a>
                 </div>
 
-                <figure class="about__figure">
+                <figure class="about__figure" data-reveal="left">
                     <!-- .about__frame holds the photo and the flat tinted block that sits behind its corner -->
                     <div class="about__frame">
                         <picture>
@@ -305,14 +477,14 @@
         <section class="proof" id="testimonials" aria-labelledby="proof-title">
             <div class="container">
                 <div class="proof__intro">
-                    <h2 class="proof__title" id="proof-title">The <span class="nowrap">By-the-Book</span> Effect</h2>
-                    <p class="proof__lead">When you work with us, you stop firefighting and start preventing fires.</p>
+                    <h2 class="proof__title" id="proof-title" data-split="letters">The <span class="nowrap">By-the-Book</span> Effect</h2>
+                    <p class="proof__lead" data-reveal="right" data-delay="3">When you work with us, you stop firefighting and start preventing fires.</p>
                 </div>
 
                 <!-- Each testimonial is a <figure>: the quote in a <blockquote>, the person in a <figcaption>.
                      That pairing tells browsers and screen readers who said what. -->
-                <ul class="proof__quotes" role="list">
-                    <li class="quote">
+                <ul class="proof__quotes" role="list" data-reveal-group>
+                    <li class="quote" data-reveal="up">
                         <figure class="quote__figure">
                             <blockquote class="quote__text">
                                 <p>Marquita applies a methodical approach to investigations, consistently achieving clear and compliant outcomes. Her unique blend of empathy, strategic insight, and technical expertise makes her an outstanding coach for investigators at all levels.</p>
@@ -324,7 +496,7 @@
                             </figcaption>
                         </figure>
                     </li>
-                    <li class="quote">
+                    <li class="quote" data-reveal="up">
                         <figure class="quote__figure">
                             <blockquote class="quote__text">
                                 <p>Marquita is a highly skilled investigator with a keen eye for detail and a dedication to fairness. Her systematic approach to investigations ensures clear, compliant results. Her ability to build rapport with witnesses and create a safe and inclusive environment sets her apart. Marquita's investigative prowess is unparalleled. Her ability to quickly identify key issues, gather relevant evidence, and deliver impactful results is truly impressive.</p>
@@ -336,7 +508,7 @@
                             </figcaption>
                         </figure>
                     </li>
-                    <li class="quote">
+                    <li class="quote" data-reveal="up">
                         <figure class="quote__figure">
                             <blockquote class="quote__text">
                                 <p>Marquita brings a systematic approach to investigations that delivers clear findings even in the most challenging investigations. Her methodology for analyzing credibility allows her to consistently come to sound conclusions. This makes her an excellent coach for investigators at any level.</p>
@@ -352,15 +524,15 @@
 
                 <!-- The sectors listed on her current homepage -->
                 <div class="proof__sectors">
-                    <h3 class="proof__sectors-title">Who we work with</h3>
-                    <ul class="proof__sectors-list" role="list">
-                        <li class="proof__sector">Corporate HR &amp; Legal</li>
-                        <li class="proof__sector">DEI &amp; Title IX</li>
-                        <li class="proof__sector">Non-Profits &amp; NGOs</li>
-                        <li class="proof__sector">Government Agencies</li>
-                        <li class="proof__sector">Higher Ed &amp; K-12</li>
-                        <li class="proof__sector">Healthcare</li>
-                        <li class="proof__sector">Compliance &amp; Ethics</li>
+                    <h3 class="proof__sectors-title" data-reveal="fade">Who we work with</h3>
+                    <ul class="proof__sectors-list" role="list" data-reveal-group>
+                        <li class="proof__sector" data-reveal="fade">Corporate HR &amp; Legal</li>
+                        <li class="proof__sector" data-reveal="fade">DEI &amp; Title IX</li>
+                        <li class="proof__sector" data-reveal="fade">Non-Profits &amp; NGOs</li>
+                        <li class="proof__sector" data-reveal="fade">Government Agencies</li>
+                        <li class="proof__sector" data-reveal="fade">Higher Ed &amp; K-12</li>
+                        <li class="proof__sector" data-reveal="fade">Healthcare</li>
+                        <li class="proof__sector" data-reveal="fade">Compliance &amp; Ethics</li>
                     </ul>
                 </div>
             </div>
@@ -372,6 +544,12 @@
              current homepage. The button uses the new site's wording ("Schedule a Conversation");
              her current site says "Get Your Investigation Strategy Audit". -->
         <section class="cta" aria-labelledby="cta-title">
+            <!-- Triangle divider: the second divider shape on the site (the other is the angled one used
+                 higher up). The pale grey of the section above comes down to a point in the middle of
+                 this burgundy section, like an arrow towards the final call to action.
+                 Decorative, so aria-hidden. -->
+            <svg class="cta__divider" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0 0v4l500 96 500-96V0H0z"/></svg>
+
             <!-- Background image under a burgundy layer. Decorative, so alt is empty. -->
             <picture class="cta__bg">
                 <source media="(min-width: 48rem)" srcset="images/backgrounds/layered-paper-edges.webp" type="image/webp">
@@ -383,28 +561,81 @@
 
             <div class="cta__inner container">
                 <div class="cta__main">
-                    <h2 class="cta__title" id="cta-title">Ready to stop putting out fires and start preventing them?</h2>
-                    <p class="cta__lead">Let's look at your investigative system: what's working, what isn't, and where your risks really are.</p>
-                    <div class="cta__actions">
+                    <h2 class="cta__title" id="cta-title" data-split="words">Ready to stop putting out fires and start preventing them?</h2>
+                    <p class="cta__lead" data-reveal="fade" data-delay="3">Let's look at your investigative system: what's working, what isn't, and where your risks really are.</p>
+                    <div class="cta__actions" data-reveal="up" data-delay="4">
                         <a class="btn btn--light cta__btn" href="contact/">Schedule a Conversation</a>
                         <a class="cta__phone" href="tel:+18883976352">or call (888) 397-6352</a>
                     </div>
                 </div>
 
                 <div class="cta__aside">
-                    <p class="cta__aside-title">In 30 minutes, you'll get a clear picture of:</p>
-                    <ul class="cta__list" role="list">
-                        <li class="cta__item">The gaps in your current process</li>
-                        <li class="cta__item">Your highest-priority risks</li>
-                        <li class="cta__item">A roadmap for how we can support you</li>
+                    <p class="cta__aside-title" data-reveal="fade">In 30 minutes, you'll get a clear picture of:</p>
+                    <ul class="cta__list" role="list" data-reveal-group>
+                        <li class="cta__item" data-reveal="right">The gaps in your current process</li>
+                        <li class="cta__item" data-reveal="right">Your highest-priority risks</li>
+                        <li class="cta__item" data-reveal="right">A roadmap for how we can support you</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Next: the footer. -->
-
     </main>
+
+    <!-- ============ FOOTER (shared by every page) ============
+         White, so her logo shows (we only have the dark version). Her tagline sits under the logo.
+         Contact details are the same ones as in the phone menu: copied from her current site, to confirm.
+         The year is kept current by global.js (the "2026" here is only what shows if JavaScript is off). -->
+    <footer class="site-footer">
+        <div class="site-footer__inner container" data-reveal-group>
+            <div class="site-footer__brand" data-reveal="fade">
+                <a class="site-footer__logo" href="./">
+                    <span class="visually-hidden">Home:</span>
+                    <picture>
+                        <source srcset="images/brand/by-the-book-logo-sm.webp" type="image/webp">
+                        <img src="images/brand/by-the-book-logo-sm.png" alt="By-the-Book Workplace Investigations"
+                             width="280" height="212" loading="lazy" decoding="async">
+                    </picture>
+                </a>
+                <p class="site-footer__tagline">Precision in Process. Integrity in Practice.</p>
+            </div>
+
+            <nav class="site-footer__col" aria-label="Footer" data-reveal="fade">
+                <h2 class="site-footer__heading">Explore</h2>
+                <ul class="site-footer__list" role="list">
+                    <li><a class="site-footer__link" href="services/">Services</a></li>
+                    <li><a class="site-footer__link" href="#process">CLEAR Investigation Framework™</a></li>
+                    <li><a class="site-footer__link" href="about/">About</a></li>
+                    <li><a class="site-footer__link" href="investigation-capacity/">Investigation Capacity</a></li>
+                    <li><a class="site-footer__link" href="contact/">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="site-footer__col" data-reveal="fade">
+                <h2 class="site-footer__heading">Contact</h2>
+                <address class="site-footer__list">
+                    <a class="site-footer__link" href="tel:+18883976352">(888) 397-6352</a>
+                    <a class="site-footer__link" href="mailto:hello@bythebookinvestigations.com">hello@bythebookinvestigations.com</a>
+                    <span class="site-footer__text">2591 Dallas Parkway, Suite 300<br>Frisco, TX 75034</span>
+                </address>
+            </div>
+
+            <div class="site-footer__col" data-reveal="fade">
+                <h2 class="site-footer__heading">INVEXTRA</h2>
+                <p class="site-footer__text">Investigation expertise, amplified.</p>
+                <a class="site-footer__link site-footer__link--arrow" href="https://invextra.ai/" target="_blank" rel="noopener">
+                    Join the waitlist<span class="visually-hidden"> (opens in a new tab)</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="site-footer__bar">
+            <div class="site-footer__bar-inner container">
+                <p class="site-footer__copy">&copy; <span class="js-year">2026</span> By-the-Book Workplace Investigations</p>
+                <a class="site-footer__link" href="privacy-policy/">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
 
     <!-- Back-to-top button (required on every page) -->
     <a class="back-to-top" href="#top">

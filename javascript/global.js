@@ -1,6 +1,6 @@
 /* ==========================================================================
    global.js: behavior shared by every page
-   1. Phone menu   2. Back-to-top button   3. Tabs
+   1. Phone menu   2. Back-to-top button   3. Tabs   4. Reveal on scroll   5. Footer year   6. Counting numbers
    Loaded with "defer", so the HTML is ready by the time this runs.
    ========================================================================== */
 
@@ -111,4 +111,129 @@
     list.hidden = false;                 // show the tab buttons
     group.classList.add('is-ready');     // switch the CSS from "show everything" to "one at a time"
   });
+})();
+
+
+/* ---------- 4. Reveal on scroll ----------
+   Three jobs:
+   a) split headings marked data-split into words or letters, so they can arrive one by one;
+   b) number the children of each data-reveal-group, so they arrive one after another;
+   c) watch every marked element and add "is-in" when it scrolls into view.
+   The class "js" on <html> is what lets the CSS hide things first. It is only added once we
+   know the browser can do the watching, so content can never be left hidden. */
+(function () {
+  if (!('IntersectionObserver' in window)) return;     // very old browser: leave everything visible
+  var root = document.documentElement;
+
+  // a) Split headings. The full text goes in aria-label and the pieces are hidden from
+  //    screen readers, so the heading is still read as one normal sentence.
+  function splitNode(node, mode, counter) {
+    Array.prototype.slice.call(node.childNodes).forEach(function (child) {
+      if (child.nodeType === 1) { splitNode(child, mode, counter); return; }   // an element such as <span class="nowrap">
+      if (child.nodeType !== 3) return;
+      var frag = document.createDocumentFragment();
+      child.textContent.split(/(\s+)/).forEach(function (piece) {
+        if (!piece) return;
+        if (/^\s+$/.test(piece)) { frag.appendChild(document.createTextNode(' ')); return; }
+        var word = document.createElement('span');
+        word.setAttribute('aria-hidden', 'true');
+        if (mode === 'letters') {
+          word.className = 'split__word';
+          piece.split('').forEach(function (letter) {
+            var span = document.createElement('span');
+            span.className = 'split__part';
+            span.style.setProperty('--i', counter.n++);
+            span.textContent = letter;
+            word.appendChild(span);
+          });
+        } else {
+          word.className = 'split__part';
+          word.style.setProperty('--i', counter.n++);
+          word.textContent = piece;
+        }
+        frag.appendChild(word);
+      });
+      node.replaceChild(frag, child);
+    });
+  }
+  var splits = document.querySelectorAll('[data-split]');
+  Array.prototype.forEach.call(splits, function (el) {
+    el.setAttribute('aria-label', el.textContent.replace(/\s+/g, ' ').trim());
+    splitNode(el, el.getAttribute('data-split'), { n: 0 });
+  });
+
+  // b) Children of a group arrive in order: the first has no delay, the second one step, and so on.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-reveal-group]'), function (group) {
+    var n = 0;
+    Array.prototype.forEach.call(group.children, function (child) {
+      if (child.hasAttribute('data-reveal')) child.style.setProperty('--d', n++);
+    });
+  });
+
+  // c) Watch for elements entering the screen.
+  var watcher = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      var el = entry.target;
+      el.classList.add('is-in');
+      watcher.unobserve(el);                            // each element animates once
+      // When it has settled, remove the reveal attributes so they can't interfere with
+      // the element's own hover effects (the step cards lift on hover, for example).
+      if (el.hasAttribute('data-reveal')) {
+        var delay = parseFloat(getComputedStyle(el).getPropertyValue('--d')) || 0;
+        window.setTimeout(function () {
+          el.removeAttribute('data-reveal');
+          el.classList.remove('is-in');
+        }, 700 + delay * 110);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+
+  root.classList.add('js');
+  Array.prototype.forEach.call(document.querySelectorAll('[data-reveal], [data-split]'), function (el) {
+    watcher.observe(el);
+  });
+})();
+
+/* ---------- 5. Footer year ----------
+   Keeps the copyright year current without anyone editing the page each January. */
+(function () {
+  var year = String(new Date().getFullYear());
+  Array.prototype.forEach.call(document.querySelectorAll('.js-year'), function (el) { el.textContent = year; });
+})();
+
+/* ---------- 6. Counting numbers ----------
+   A span marked data-count="2000" counts up from 0 to that number once, when it scrolls into
+   view. The page already contains the finished figure, so with JavaScript off (or "reduce
+   motion" on) the visitor simply sees the final number. */
+(function () {
+  var counters = document.querySelectorAll('[data-count]');
+  if (!counters.length || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  function run(el) {
+    var target = parseInt(el.getAttribute('data-count'), 10);
+    var suffix = el.getAttribute('data-suffix') || '';
+    var length = 1200;                       // milliseconds the count takes
+    var start = null;
+
+    function frame(now) {
+      if (start === null) start = now;
+      var progress = Math.min((now - start) / length, 1);          // 0 to 1, at a steady (linear) pace
+      el.textContent = Math.round(target * progress).toLocaleString('en-US') + suffix;
+      if (progress < 1) window.requestAnimationFrame(frame);
+    }
+    el.textContent = '0' + suffix;
+    window.requestAnimationFrame(frame);
+  }
+
+  var watcher = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      watcher.unobserve(entry.target);
+      run(entry.target);
+    });
+  }, { threshold: 0.6 });
+
+  Array.prototype.forEach.call(counters, function (el) { watcher.observe(el); });
 })();

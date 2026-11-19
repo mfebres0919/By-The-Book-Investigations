@@ -245,9 +245,9 @@ Project-specific exceptions to the handbook: none.
 **State at the end of 2026-11-17 (where to pick up):** the homepage has its header and navigation, hero, and services section (three grouped cards). Nothing else is built. The folder is not a Git repository yet and nothing is deployed. The change log in Section 10 has the detail of each change; where it differs from the summary below, the change log is newer.
 
 **Pick up here next session**
-1. Miguelle is asking Marquita for her real list of services. When it arrives, update the service cards (they are a stand-in from her current site).
+1. **Her final copy is in** (`documentation/client-brief/`: `Services Page (Final).docx`, `Homepage and About Us.docx`). The homepage services cards use it; **the rest of the homepage does not yet** (see the 2026-11-18 change log entry for the full comparison). Decide with Miguelle whether to realign the homepage to her 14 sections before building the inner pages.
 2. The **"Our process" (CLEAR framework) section is built** (2026-11-17, see the change log). Miguelle to review it.
-3. The **About, proof and closing call-to-action sections are built** (2026-11-18). Next: the footer (her tagline belongs there). Miguelle was to write the footer themselves in the Next.js practice project only; on this client site Claude builds it unless told otherwise.
+3. **Every homepage section and the footer are built** (2026-11-18), with entrance and scroll animations. Next: Miguelle's review of the whole page, then the inner pages (Services and its detail pages, About, Investigation Capacity, Contact, Privacy Policy).
 4. Still to do before launch: full audit of the current site and the URL map, the inner pages, the launch files (favicons, manifest, `og:image`, schema, `robots.txt`, `sitemap.xml`, `404.html`), `git init`, and a Netlify preview.
 
 **How the site is being built:** section by section. Miguelle reviews each section before the next one starts, and sometimes edits the CSS directly, so read the current files before changing them.
@@ -266,7 +266,7 @@ Project-specific exceptions to the handbook: none.
 **Known gaps on the page (deliberate, to finish later)**
 - The nav links and buttons point at pages that don't exist yet (`about/`, `services/`, `investigation-capacity/`, `contact/`), so they give "not found" for now.
 - No `og:image`, schema, `robots.txt`, `sitemap.xml` or `404.html` yet (the favicon set and `site.webmanifest` were added on 2026-11-18).
-- No footer yet, and her tagline ("Precision in Process. Integrity in Practice.") is not on the page yet. It was left out of the hero on purpose to keep it quiet; it belongs in the next section or the footer.
+- The footer was added on 2026-11-18 with her tagline. (Older note follows.) It was left out of the hero on purpose to keep it quiet; it belongs in the next section or the footer.
 - Title and meta description are drafts.
 
 **To preview the page:** open the project folder in VS Code, right-click `index.html` and choose "Open with Live Server".
@@ -331,6 +331,156 @@ Project-specific exceptions to the handbook: none.
 
 Newest first. One entry per working session or per significant change: what changed, which files, and anything left unverified.
 
+
+
+
+
+
+
+
+
+
+
+### 2026-11-18: homepage realignment, step 9: "An outside investigator protects the finding"
+- New `section.independence` after Meet INVEXTRA™ (`index.html`; styles in `css/styles.css`). **Plain navy, no photo and no divider** (the CLEAR section is navy over a photo; this one is flat so the two differ, and it breaks the run of light sections 7 and 8). Her copy word for word.
+- Layout: phones, heading, paragraph, then her line "Independent in process. Clear in findings." under a thin rule. From 992px, heading and paragraph on the left (7 of 12 columns) and the line set large on the right like a pull quote, one sentence per block, with a thin vertical rule between the two sides. The second sentence is a shade quieter (mist) so the two read as a pair.
+- Animation: heading word by word, paragraph fades, the two sentences arrive from the right one after the other.
+- **Dividers (Miguelle, 2026-11-18): agreed to keep them occasional**, "with some sections every so often", not at every boundary.
+- Checked: screenshots at 390 and 1440 wide. Not checked: tablet width, the motion, real devices.
+
+### 2026-11-18: second divider shape (triangle) added
+- Miguelle supplied a second divider, `triangle-divider.svg` (path `M0 0v4l500 96 500-96V0H0z`, a wide triangle pointing down to the centre), and asked for both dividers to be on the site.
+- **Where each one is used now:** the angled (asymmetrical) divider stays where it was: top of section 4, and top and foot of the CLEAR section. The **triangle** is at the top of the burgundy closing section (`svg.cta__divider` in `index.html`; `.cta__divider` and `--divider-h` in `css/styles.css`), where the pale grey above comes to a point in the middle, towards the final call to action. One placement only, so dividers stay occasional (her brief: minimal).
+- Its fill is pale grey to match the section above (currently the old proof section). **When sections 11 to 14 are rebuilt, set the fill to whatever section ends up directly above the closing section.**
+- Checked: screenshots at 390 and 1440 wide.
+
+### 2026-11-18: homepage realignment, step 8: Meet INVEXTRA™
+- New `section.invextra#invextra` after the Investigation Readiness Intensive (`index.html`; styles in `css/styles.css` under "Meet INVEXTRA™"). Her copy word for word: heading "Meet INVEXTRA™", her bold line "Bringing CLEAR into the investigation as it happens." in the heading font, her two paragraphs, "Planned launch: January 2027", and the button "Join the INVEXTRA waitlist" (opens `https://invextra.ai/` in a new tab; address still to confirm, Section 9).
+- **How it is kept separate from the services (her note: "proof of depth, not a competing offer"):** it is the only single framed panel on the page (pale grey section, one white box with a thin rule and a 2px copper line on top); it shows INVEXTRA's own logo (`images/brand/invextra-logo`, used as supplied); the launch date has the small copper square; and its button is the **outline** style (`btn--outline`), while every "Schedule a Conversation" button is filled. Copper appears only as the top line and the square, as her brand guide asks.
+- Layout: phones, logo and launch date on top, text below; from 992px, logo and date on the left (4 of 12 columns), text and button on the right, a thin rule between.
+- Animation: logo fades in, heading word by word, then the bold line, paragraphs and button fade in turn.
+- Miguelle's instruction for the remaining sections: keep to all of her design considerations while making each section look different.
+- Checked: screenshots at 390 and 1440 wide. Not checked: tablet width, hover on the button, the motion, real devices. On phones the heading wraps onto two lines ("Meet" / "INVEXTRA™").
+
+### 2026-11-18: menu label changed to her term; homepage realignment, step 7: Investigation Readiness Intensive
+- **Menu and footer label:** "Our Process" is now **"CLEAR Investigation Framework™"**, her exact term (Miguelle: "just so we can say we've done exactly what she's asked for"). Because the label is long, the desktop menu between 992px and 1200px uses slightly smaller text, tighter gaps and no wrapping (`css/global.css`, just above the back-to-top block). Checked on one line at 1000, 1100 and 1440 wide.
+- **Section 7** (`section.intensive#readiness`, after the CLEAR section; styles in `css/styles.css`). White background. Left: the name, her bold opening line ("Not Investigations 101...") with a burgundy bar, and a navy "Schedule a Conversation" button; on desktop this column stays in view while the right side scrolls. Right: her three paragraphs, word for word; the four gaps named in her first paragraph are each a sentence, so they are shown as four short lines with small burgundy squares.
+- Miguelle on section 6 (CLEAR rows): "I think this section looks great."
+- **Screenshot method from now on:** `scratchpad/shot.py` makes a temporary copy of the page with only one section showing and captures it at 1440 and 390 wide (the temporary files are deleted straight after). Cropping sections out of full-page screenshots kept failing.
+- **Question from Miguelle: do her documents rule out SVG or vector backgrounds?** No. Her questionnaire's avoid list (recorded in Section 3) is: stock imagery, clip-art icons, heavy gradients, drop shadows, sliders, clutter, a generic law-firm look. It also says that where there is no real photo, "abstract, textural or brand-driven graphics" should be used. The two Word documents add only the hero image direction (a calm conference room or an approved spokesperson video, not a stock business person). This answer is from the notes taken when the PDFs were first read, not a fresh re-read.
+- Checked: section 7 at 390 and 1440 wide. Not checked: the sticky left column while scrolling, tablet width, real devices.
+
+### 2026-11-18: homepage realignment, step 6: CLEAR
+- The process section (`section.process#process`) now uses her section 6 word for word: heading "Every case follows the CLEAR By-the-Book™ Investigation Framework", her three-sentence intro, the five steps with **her** one-line description each, and her closing line "CLEAR is also the foundation for how we help internal teams strengthen their own work." The earlier step text (condensed from her old site), the numbers 1 to 5 and the "Schedule a Conversation" button are gone; her copy has no button in this section.
+- **No cards** (the section above has cards). The steps are full-width rows separated by thin rules, each led by a large letter, so the letters spell C, L, E, A, R down the page. Desktop: letter, name and description on one line per step. Phones: letter beside the name, description under it. Styles: `.clear…` in `css/styles.css`; the `.step-card…` rules were removed.
+- Kept: the staircase photo under navy, the pale grey divider on top, the white divider at the foot. Heading and intro are left-aligned again (they were centred when the section held a card grid).
+- Her design note asks for the label "CLEAR Investigation Framework™" in the nav, footer and links; her heading here says "CLEAR By-the-Book™ Investigation Framework". The menu still says "Our Process". **Decide the menu and footer labels when the nav is revised at the end of the realignment** (and ask her which short form she wants).
+- Checked: screenshots at 390 and 1440 wide. Not checked: tablet width, the motion, real devices.
+
+### 2026-11-18: homepage realignment, step 5: "Two ways to get the work moving"
+- **Replaces the old services section** (`section.ways`, still `id="services"` so the hero link "How the work is structured" lands on it; styles in `css/styles.css`). The `.services…` and `.service-card…` rules are gone.
+- Pale grey background, two white cards side by side from 992px (stacked below), each with a navy rule on top: her "01" and "02", the service name, her tagline in italic, her text, and a navy "Schedule a Conversation" button pinned to the bottom so the two buttons line up. The retainer card also has "A retainer can include:" with her four items under thin rules. All wording is hers.
+- **Changed the same day (Miguelle: "should we maybe have the cards sitting over one of our bg images?"):** the heading now sits on a dark band (the `silver-navy-diagonal` image under a 62% navy layer, with a new phone crop `silver-navy-diagonal-m`), and the two cards start on the band and hang down over its lower edge onto the pale grey (`.ways__band`, `--overlap`). The whole section is not on an image, because the CLEAR section that follows already is; **section 6 (CLEAR) should therefore be rebuilt without cards over a photo**, so the two neighbours differ. Checked at 390 and 1440 wide.
+- Both buttons read "Schedule a Conversation"; each carries hidden text naming its service, so screen-reader users can tell them apart.
+- The Investigation Readiness Intensive is no longer in this section; it gets its own section 7, as in her copy.
+- **The angled divider above the CLEAR section is now pale grey** (it takes the colour of the section above it); the one at the foot of that section stays white.
+- Miguelle on section 4's widened layout: "I love the layout you have! I think it just needed to spread out a bit."
+- Checked: screenshots at 390 and 1440 wide. Not checked: tablet width, hover, the motion, real devices.
+
+### 2026-11-18: homepage realignment, step 4: "An outside investigation shouldn't become another problem to manage"
+- New `section.standard` after "When would you bring us in?" (`index.html`; styles in `css/styles.css`). White background.
+- ~~Layout from a reference Miguelle shared: text left, a brand texture on the right, a burgundy card over its corner.~~ **Replaced the same day:** Miguelle found the picture "not adding anything meaningful". Lesson: do not add an image only to fill a column; without real photography from the client, sections must carry themselves with type and structure.
+- **Layout now: one reading column in the middle of the page** (about 46rem), like a short letter, so it differs from the grids around it. Her four paragraphs word for word and in order: (1) the opening paragraph slightly larger; (2) her second paragraph's two failure cases side by side under thin rules, with its third sentence, "Neither gives an organization what it needs.", in italic under a burgundy rule spanning both; (3) the third paragraph as ordinary text; (4) her closing line as the largest text in the section.
+- **Desktop widened the same day:** Miguelle found the single column "condensed" with too much white space either side. From 992px the section now uses the full page width: heading across the top, then a two-by-two grid in reading order (opening paragraph | the two cases and "Neither..."; third paragraph | her closing line). Phones and tablets keep the single column. Lesson: on wide screens a narrow centred column reads as unfinished here; "white space" in her brief means room around things, not unused halves of the screen. Checked at 820 and 1440 wide.
+- **Divider added at Miguelle's request:** the same SVG shape at the top of this section, filled with the grey of section 3 (`.standard__divider`).
+- Animation: heading word by word, opening paragraph fades, the two cases come in from the left and the right, "Neither..." rises, then the rest.
+- **How sections are kept from looking alike within her rules (agreed approach, 2026-11-18):** vary the *structure*, not the decoration. Tools in use: background rhythm (navy, white, pale grey, one burgundy); column structure (centred hero, four-across strip, cell grid, single reading column, cards, split); one emphasised element per section in the heading font (a panel, a large closing line); the angled divider at a few boundaries only; shaping the layout from the content itself (five situations became five cells, two failure cases became a pair). Avoid repeating the same structure in neighbouring sections.
+- Checked: screenshots at 390 and 1440 wide. Not checked: tablet width, the motion, real devices.
+
+### 2026-11-18: homepage realignment, step 3: "When would you bring us in?"
+- New `section.when` after the stat strip (`index.html`; styles in `css/styles.css`). Pale grey background. Her three paragraphs, word for word:
+  - the five situations in her first paragraph are shown one per line, each sentence unchanged, under thin rules;
+  - "Sometimes you need more capacity. Sometimes you need distance from the people involved. Sometimes you need both." is set larger in the heading font, one sentence per line, with a burgundy bar beside it;
+  - "And yes, you may need another full-time hire..." follows as ordinary text.
+- ~~Desktop: the heading sits on the left and stays in view while the right-hand column scrolls.~~ **Replaced the same day: Miguelle said the desktop layout "looks pretty bad"** (a near-empty left column beside a plain list). Lesson: avoid a lone heading in its own column with a long list beside it.
+- **Layout now:** full-width heading; the five situations as a grid of cells under thin navy rules (three in the first row and two wider ones in the second on desktop; two columns with the long fifth across the full width on tablets; a simple list on phones); then the "Sometimes..." statement on a **navy panel**, its three sentences side by side from 768px up (stacked on phones), each under a short pale rule; then the closing paragraph. The cells and the panel rise in turn as they scroll into view.
+- Animation: heading word by word, the five lines arrive from the right one after another, the statement rises, the last paragraph fades.
+- Checked: screenshots at 390 and 1440 wide (taken mid-animation; layout is right). Not checked: the sticky heading while scrolling, the motion, tablet width, real devices.
+
+### 2026-11-18: homepage realignment, step 2: stat strip
+- New `section.stats` between the hero and the services section (`index.html`; styles in `css/styles.css` under "Stat strip"). Her four items, word for word: "2,000+ Protected-class investigations conducted, led, or reviewed by our founder", "15+ Years in investigation practice", "250+ Investigators trained", and the statement "Independent, attorney-led fact-finding". Two by two on phones, four across from 992px, each under a thin navy rule; figures in burgundy.
+- **Decision (Miguelle, 2026-11-18): keep the attribution line**, and tell her it is there because of her own note about crediting the figures to her career.
+- **Attribution line under the strip:** "Experience of our founder, Dr. Marquita M. Booker, Esq., across her career." It is her wording from the Services page; her homepage copy does not include it, but her design note says the figures must be credited to her career. Confirm she wants it on the homepage.
+- **The three numbers count up once** when they scroll into view (`javascript/global.js` part 6, any `data-count` span; 1.2s, linear). The finished figure is in the HTML, so it shows without JavaScript and with "reduce motion" on; screen readers read the finished figure.
+- Checked: screenshots at 390 and 1440 wide, taken while the numbers were still counting (so the counting works; the layout is right). Not checked: the final figures on screen after the count, the motion itself, real devices.
+
+### 2026-11-18: homepage realignment to her 14 sections, step 1: hero
+Miguelle approved realigning the whole homepage to `documentation/client-brief/Homepage and About Us.docx`, **one section at a time, reviewed as we go**. Progress: **sections 1 to 9 done** (Hero, Stat strip, When would you bring us in?, An outside investigation..., Two ways to get the work moving, CLEAR, Investigation Readiness Intensive, Meet INVEXTRA™, An outside investigator protects the finding). Next: 10 Founder, 11 Proof, 12 How it starts, 13 Questions, 14 Closing. The old About (pillar tabs), proof and closing sections are still on the page below section 7 until their replacements are built.
+- **Hero now uses her final copy word for word:** small line "Third-party protected-class investigations" (with the copper marker), H1 "Some investigations can't stay in-house. Others can't wait." (one sentence per line), her subhead, one button ("Schedule a Conversation"), a text link "How the work is structured" that jumps to `#services` (it should point at the "Two ways" section once that is rebuilt), and her trust line in the strip at the foot of the hero.
+- **INVEXTRA is no longer in the hero** (the strip is gone; her copy gives INVEXTRA its own section 8). It now has its own section 8 (built 2026-11-18) plus the footer column.
+- **Centred from 768px up** (Miguelle's call, since nothing sits beside the text); phones stay left-aligned like the rest of the page. A soft navy patch that fades to nothing sits behind the centred text so the burgundy line in the background never runs through the words (`.hero__inner::before`). Checked at 820 and 1440 wide before the patch was widened; not re-checked after.
+- Entrance animation updated: small line fades, the headline's words rise in turn with a pause between the two sentences, then subhead, button row and trust line fade in. The last piece now arrives about 2.6s after load.
+- Meta description and `og:description` rewritten from her hero wording (still drafts until the SEO pass).
+- **Her hero image note is not met yet:** she suggests a calm, modern conference room photo or an approved spokesperson video. The current background is the navy texture Miguelle supplied. Ask her for the conference room photo she mentions ("the capacity page's" shot).
+- Checked: screenshots at 320, 390, 820 and 1440 wide. Not checked: the animation in motion, real devices, other browsers.
+
+### 2026-11-18: her final copy arrived; services updated; hero INVEXTRA button became a text link
+**Two new documents from Marquita are in `documentation/client-brief/`** (dated 2026-11-17). They are her final copy and include notes addressed to the designer:
+- `Services Page (Final).docx`: the whole Services page (hero with three figures, Third-Party Protected-Class Investigations with the Investigation Capacity Retainer and the Single-Case Investigation, the Investigation Readiness Intensive, how CLEAR fits, INVEXTRA, a closing step) plus build notes.
+- `Homepage and About Us.docx`: the whole homepage in 14 numbered sections, the whole About page, and design notes.
+
+**Done today**
+- **Services section on the homepage now uses her final list.** Two cards (her notes: "Two consulting services only"): *Third-Party Protected-Class Investigations*, with links to *Investigation Capacity Retainer* and *Single-Case Investigation* (retainer first, as her notes ask), and *Investigation Readiness Intensive*. Heading and sentences are from her Services page. **INVEXTRA is no longer a service card** (her notes: "a separate AI-enhanced support tool, not a third consulting engagement"). The links point at sections of the Services page (`services/#capacity-retainer`, `#single-case`, `#readiness-intensive`), which is not built yet. Desktop layout changed from three columns to two; the unused copper-marker rule was removed.
+- **Hero INVEXTRA strip:** Miguelle chose option 1. The outline button is now a plain underlined text link ("Join the INVEXTRA waitlist", `.hero__invextra-link`), so the hero has one button.
+- Checked: screenshots at 390 and 1440 wide. Not checked: tablet width, hover, real devices.
+
+**Not done: the rest of the homepage does not match her final copy yet.** What was built before these documents were read uses draft wording from her old site. Her homepage document differs in wording, in order, and in which sections exist. Miguelle to decide whether to realign the whole homepage (Claude recommends doing so, keeping the design system and components already built). The differences:
+
+| Her section | What we have now |
+|---|---|
+| 1. Hero: eyebrow "Third-party protected-class investigations", H1 "Some investigations can't stay in-house. Others can't wait.", a subhead, one button, a text link "How the work is structured", and a trust line. No INVEXTRA in the hero. | Different headline and sentence; INVEXTRA strip in the hero |
+| 2. Stat strip: 2,000+, 15+, 250+, "Independent, attorney-led fact-finding" | Not built |
+| 3. "When would you bring us in?" | Not built |
+| 4. "An outside investigation shouldn't become another problem to manage" | Not built |
+| 5. "Two ways to get the work moving": retainer and single case, each with its own text and button | Partly: the services cards (updated today from the Services page) |
+| 6. CLEAR, with her own one-line text per step and letters C, L, E, A, R | Built with different step text and numbers 1 to 5 |
+| 7. Investigation Readiness Intensive | A card only |
+| 8. "Meet INVEXTRA™" as its own section with a waitlist button, planned launch January 2027 | Hero strip and footer column only |
+| 9. "An outside investigator protects the finding" | Not built |
+| 10. "Built by someone who has carried the caseload" (founder), button "Read why we started" | About section with different wording and the three-pillar tabs, which are not in her new copy |
+| 11. Proof: H2 "Trusted by teams who could not afford to get it wrong.", three reworded testimonials plus a fourth (Dr. Leonard Moore), logo row | Different heading; old wording; three testimonials; sectors row that is not in her copy |
+| 12. "How it starts" (three steps) | Not built |
+| 13. "Questions we get asked" (five) | Not built |
+| 14. Closing: "Tell us what's on your desk." | Different heading and a "30 minutes" list that is not in her copy |
+
+**Her design notes that affect what is already built**
+- Use these exact terms in the nav, footer and links: "Investigation Capacity Retainer", "Single-Case Investigation", "CLEAR Investigation Framework™", "Investigation Readiness Intensive", "INVEXTRA™". Her body copy also writes "CLEAR By-the-Book™ Investigation Framework"; ask which is the short label.
+- One primary button in the hero; internal links need not look like buttons. Only two button actions on the site: "Schedule a Conversation" and "Join the INVEXTRA waitlist".
+- Her name and title are written "Dr. Marquita M. Booker, Esq." (the About caption currently says "Marquita M. Booker, Founder and Chief Legal Officer").
+- The figures (2,000+, 15+, 250+) must be credited to her career, not to the firm.
+- No operational promises (guaranteed start dates, fixed completion times, absolute costs).
+- Hero image direction: a calm, modern conference room, or an approved spokesperson video; not a stock business person.
+- Before publishing: approval of the reworded testimonials, titles and client logos; confirmation that the founder story may be published; INVEXTRA launch date re-confirmed. The assessment link is a placeholder ("[ASSESSMENT URL TO BE ADDED]") and stays off until the assessment is tested.
+- Services page: do not repeat the founder story, testimonials or the full CLEAR explanation there.
+
+### 2026-11-18 (end of session): INVEXTRA placement to decide
+- Miguelle re-read her questionnaire: **"Keep the Invextra call to action visually separate so it reads as proof of depth, not a competing offer."**
+- Where INVEXTRA is now: a strip at the foot of the hero with an outline button ("Join the INVEXTRA Waitlist"); the AI Solutions service card; a footer column with a text link. The card and the footer fit her instruction. The hero strip is separate and quieter than the main button, but it is still a second button on the first screen.
+- **Open decision for Miguelle (nothing changed yet):** (1) keep the hero strip but make the button a plain text link (Claude's recommendation), or (2) move the strip out of the hero, for example to below the proof section.
+- Miguelle is checking the rest of the questionnaire against the build; expect more alignment notes next session.
+
+### 2026-11-18: footer built; entrance and scroll animations added across the page
+**Footer** (`footer.site-footer` in `index.html`, styles in `css/global.css` part 9 because every page shares it)
+- White with a navy rule on top, so her logo shows (we only have the dark logo). Under the logo: her tagline, "Precision in Process. Integrity in Practice." Columns: Explore (the five menu links), Contact (phone, email, address, same as the phone menu), INVEXTRA ("Investigation expertise, amplified." and a waitlist link). Bottom bar: copyright line and a Privacy Policy link (`privacy-policy/`, not built yet).
+- The year is kept current by `global.js` (part 5). One column on phones, two from 576px, four from 992px.
+
+**Animations** (Miguelle asked for fade-ins on every section, with variety: some from the top, some from the side, some words or letters one at a time)
+- **Hero, on page load (CSS only, in `css/styles.css`):** the headline's words rise in one after another, then the sentence, the button and the INVEXTRA band fade in. The words are wrapped in `span.hero__word` in the HTML.
+- **Everything below, as it scrolls into view** (`css/global.css` part 10, `javascript/global.js` part 4): elements carry `data-reveal="up|down|left|right|fade"`; `data-delay` or a parent `data-reveal-group` makes them arrive in turn. Headings carry `data-split="words"` (services, process, about, closing) or `data-split="letters"` (only "The By-the-Book Effect").
+  - Services: heading by word, cards rise one after another. Process: same, five cards in turn. About: photo from the left, text and tabs fade in turn. Proof: heading by letter, sentence from the right, quotes rise in turn, sectors appear one by one. Closing: heading by word, the three list lines from the right. Footer: columns fade in turn.
+- **Kept inside her brief ("subtle, linear transitions only"):** linear timing, short distances (24 to 32px), 0.5 to 0.6s, each thing animates once. Raise with her at the review; if she finds it too much, the letter-by-letter heading and the sideways moves are the first to remove.
+- **Safeguards:** nothing is hidden unless JavaScript is running and the browser can watch scrolling (every hiding rule starts with `html.js`); split headings keep their full text in `aria-label`; visitors with "reduce motion" turned on get everything immediately; after an element has appeared its reveal attribute is removed so hover effects (the step cards) are unaffected.
+- Checked: full-page screenshots at 390 and 1440 wide after the animations finish (everything visible, footer correct); a screenshot 0.45s after load shows the hero text still hidden, as intended; `global.js` passes a syntax check. **Not checked: the animations in motion** (a screenshot cannot show them), scroll behaviour on a real phone, other browsers, the no-JavaScript view, and the effect on PageSpeed (the hero text now appears about a second after load; measure LCP once the site is on a preview URL).
 
 ### 2026-11-18: favicon set and web manifest
 - Made from the cube mark at the top of her logo (cropped from `documentation/source-images/by-the-book-logo-from-pdf-3335px.png`), without the "Workplace Investigations" wording, which is unreadable at icon size.

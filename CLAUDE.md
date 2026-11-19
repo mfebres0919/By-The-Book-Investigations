@@ -342,6 +342,11 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-18: notes and questions removed from the PDF cover
+- Miguelle: the questions for Marquita go in the email, not the PDF. The cover's bullet list was removed entirely (the "homepage only" note, the testimonials note and the three questions). The cover now has only: title, one-line introduction, the hero picture at full width, the live link with one sentence about what the link shows that a PDF cannot, and the "Prepared for" line. Still 17 pages. `documentation/pdf-build/build.py` updated to match.
+- **For future client PDFs: keep questions and caveats out of the PDF; they belong in the covering email.**
+- The email draft (in the chat, not saved to a file) carries the three questions: founder photo and title, the nine logos, and where "Schedule a Conversation" leads.
+
 ### 2026-11-18: INVEXTRA questions dropped from the list for Marquita
 - Miguelle asked why the draft message asked her about the INVEXTRA launch date and where the waitlist button should go. Neither needs asking:
   - **Where the button goes:** her questionnaire already says "routes to invextra.ai". The question was a leftover from an early note about a `/invextra-waitlist` page on her old site. Section 9 now marks it settled.

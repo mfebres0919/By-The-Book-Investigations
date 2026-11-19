@@ -37,7 +37,6 @@ h1,h2{font-family:"LB",Georgia,serif;font-weight:400;margin:0}
 .cover h1 em{color:#4C0013}
 .cover .lead{font-size:11.5pt;max-width:6.2in;margin:10pt 0 14pt}
 .shot{display:block;width:100%%;border:1px solid #D9DCE0}
-.cover .shot{width:84%%}
 .cover .label{font-size:8pt;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin:14pt 0 2pt}
 .cover a{font-size:13pt;font-weight:600;color:#4C0013;text-decoration:none}
 .cover .note{max-width:6.6in;margin:6pt 0 0}
@@ -63,11 +62,6 @@ h+='''<section class="cover">
 <p class="label">See it live</p>
 <a href="https://mfebres0919.github.io/By-The-Book-Investigations/">https://mfebres0919.github.io/By-The-Book-Investigations/</a>
 <p class="note">Open the link to see what a PDF cannot show: the headline arriving word by word, sections fading in as you scroll, the numbers counting up and the questions sliding open. The pages that follow show every section of the finished homepage, first on a computer, then on a phone.</p>
-<ul>
-<li>This preview is the homepage only. Links to other pages (Contact, Services, About) are not built yet.</li>
-<li>The four testimonials, names and titles appear exactly as written in your homepage document. Your document's final publication check (approval of testimonial wording, titles and client logos, and the INVEXTRA launch timing) is yours to complete before go-live.</li>
-<li>Three things I need from you: whether the photo and title in the founder section are right, whether the nine organization logos (taken from your current site) are the set you want, and where “Schedule a Conversation” should lead.</li>
-</ul>
 <p class="prepared">Prepared for Dr. Marquita M. Booker, Esq. · November 18, 2026 · MigsFlow</p>
 </section>'''%S
 h+='<section class="part"><p class="eyebrow">Part one</p><h2>On a computer</h2><p class="sub">Each section of the homepage as it appears on a laptop or desktop screen, in order from top to bottom.</p>'

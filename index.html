@@ -328,12 +328,6 @@
              paragraphs. In the first paragraph, the four gaps she lists are each a sentence, so they
              are shown as four short lines; nothing is reworded. -->
         <section class="intensive" id="readiness" aria-labelledby="intensive-title">
-            <!-- Background drawing: a line drawing of a building, stretched over the whole section and
-                 made very faint in the CSS, so it is barely there behind the text. Decorative, so alt
-                 is empty. This is the navy copy of the drawing (the original file is black). -->
-            <img class="intensive__bg" src="images/illustrations/modern-civic-building-navy.svg" alt="" aria-hidden="true"
-                 width="1536" height="1024" loading="lazy" decoding="async">
-
             <div class="intensive__inner container">
                 <div class="intensive__head">
                     <h2 class="intensive__title" id="intensive-title" data-split="words">Investigation Readiness Intensive</h2>
@@ -454,18 +448,26 @@
             </div>
         </section>
 
-        <!-- ============ PROOF: testimonials and who she works with ============
-             Three testimonials side by side (stacked on phones). No slider: her brief rules carousels out.
-             The words are copied from her current homepage (2026-11-18), unedited. Her site has two more
-             testimonials, left out because they name her earlier business, Course Correction Consulting.
-             TO CONFIRM with her: which testimonials to keep, and that each person is happy to be quoted.
-             STILL TO ADD: client logos ("Who we've worked with"). We have no logo files or confirmed names yet. -->
+        <!-- ============ PROOF (her section 11) ============
+             Navy section over a paper-fold texture. Her four testimonials, in her order and in her
+             approved rewording. No slider (her brief rules carousels out) and no cards: three sit side
+             by side under thin rules, and the fourth, the shortest and most direct, is set large
+             across the full width.
+             Names and titles are exactly as her copy gives them (it lists no organisations).
+             STILL TO ADD: her "Organizations we've served" logo row. We have no logo files yet.
+             Her note: she must approve the wording, titles and logos before the site is published. -->
         <section class="proof" id="testimonials" aria-labelledby="proof-title">
+            <!-- Background texture. Decorative, so alt is empty. -->
+            <picture class="proof__bg">
+                <source media="(min-width: 48rem)" srcset="images/backgrounds/navy-paper-fold.webp" type="image/webp">
+                <source media="(min-width: 48rem)" srcset="images/backgrounds/navy-paper-fold.jpg">
+                <source srcset="images/backgrounds/navy-paper-fold-m.webp" type="image/webp">
+                <img src="images/backgrounds/navy-paper-fold-m.jpg" alt="" aria-hidden="true"
+                     width="720" height="1210" loading="lazy" decoding="async">
+            </picture>
+
             <div class="container">
-                <div class="proof__intro">
-                    <h2 class="proof__title" id="proof-title" data-split="letters">The <span class="nowrap">By-the-Book</span> Effect</h2>
-                    <p class="proof__lead" data-reveal="right" data-delay="3">When you work with us, you stop firefighting and start preventing fires.</p>
-                </div>
+                <h2 class="proof__title" id="proof-title" data-split="words">Trusted by teams who could not afford to get it wrong.</h2>
 
                 <!-- Each testimonial is a <figure>: the quote in a <blockquote>, the person in a <figcaption>.
                      That pairing tells browsers and screen readers who said what. -->
@@ -473,54 +475,48 @@
                     <li class="quote" data-reveal="up">
                         <figure class="quote__figure">
                             <blockquote class="quote__text">
-                                <p>Marquita applies a methodical approach to investigations, consistently achieving clear and compliant outcomes. Her unique blend of empathy, strategic insight, and technical expertise makes her an outstanding coach for investigators at all levels.</p>
+                                <p>By-the-Book takes a methodical approach to investigations, consistently delivering clear, compliant outcomes. Its unique blend of empathy, strategic insight, and technical expertise makes it an outstanding investigation service provider.</p>
                             </blockquote>
                             <figcaption class="quote__person">
                                 <span class="quote__name">Dr. Jennifer Maedgen</span>
                                 <span class="quote__role">Associate Vice President &amp; ADA Officer</span>
-                                <span class="quote__org">The University of Texas at Austin</span>
                             </figcaption>
                         </figure>
                     </li>
                     <li class="quote" data-reveal="up">
                         <figure class="quote__figure">
                             <blockquote class="quote__text">
-                                <p>Marquita is a highly skilled investigator with a keen eye for detail and a dedication to fairness. Her systematic approach to investigations ensures clear, compliant results. Her ability to build rapport with witnesses and create a safe and inclusive environment sets her apart. Marquita's investigative prowess is unparalleled. Her ability to quickly identify key issues, gather relevant evidence, and deliver impactful results is truly impressive.</p>
+                                <p>By-the-Book offers highly skilled investigation services with a keen eye for detail and a dedication to fairness. Its systematic approach to investigations ensures clear, compliant results. The investigators' ability to build rapport with witnesses and create a safe and inclusive environment sets them apart.</p>
                             </blockquote>
                             <figcaption class="quote__person">
                                 <span class="quote__name">Gilbert Chrispin, SPHR</span>
                                 <span class="quote__role">Assistant Director of Employee Relations</span>
-                                <span class="quote__org">Nova Southeastern University</span>
                             </figcaption>
                         </figure>
                     </li>
                     <li class="quote" data-reveal="up">
                         <figure class="quote__figure">
                             <blockquote class="quote__text">
-                                <p>Marquita brings a systematic approach to investigations that delivers clear findings even in the most challenging investigations. Her methodology for analyzing credibility allows her to consistently come to sound conclusions. This makes her an excellent coach for investigators at any level.</p>
+                                <p>By-the-Book brings a systematic approach to investigations, delivering clear findings even in the most challenging cases. Their credibility-analysis methodology helps them consistently reach sound conclusions.</p>
                             </blockquote>
                             <figcaption class="quote__person">
                                 <span class="quote__name">Kory Levingston</span>
                                 <span class="quote__role">District Title IX Compliance Officer</span>
-                                <span class="quote__org">Tarrant County College</span>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li class="quote quote--feature" data-reveal="fade">
+                        <figure class="quote__figure">
+                            <blockquote class="quote__text">
+                                <p>Dr. Booker handled our most volatile cases without flinching or cutting corners. If you need someone to check boxes, hire anyone. If you want to elevate your entire investigation infrastructure, call By-the-Book.</p>
+                            </blockquote>
+                            <figcaption class="quote__person">
+                                <span class="quote__name">Dr. Leonard Moore</span>
+                                <span class="quote__role">former Vice President of Diversity and Community Engagement</span>
                             </figcaption>
                         </figure>
                     </li>
                 </ul>
-
-                <!-- The sectors listed on her current homepage -->
-                <div class="proof__sectors">
-                    <h3 class="proof__sectors-title" data-reveal="fade">Who we work with</h3>
-                    <ul class="proof__sectors-list" role="list" data-reveal-group>
-                        <li class="proof__sector" data-reveal="fade">Corporate HR &amp; Legal</li>
-                        <li class="proof__sector" data-reveal="fade">DEI &amp; Title IX</li>
-                        <li class="proof__sector" data-reveal="fade">Non-Profits &amp; NGOs</li>
-                        <li class="proof__sector" data-reveal="fade">Government Agencies</li>
-                        <li class="proof__sector" data-reveal="fade">Higher Ed &amp; K-12</li>
-                        <li class="proof__sector" data-reveal="fade">Healthcare</li>
-                        <li class="proof__sector" data-reveal="fade">Compliance &amp; Ethics</li>
-                    </ul>
-                </div>
             </div>
         </section>
 

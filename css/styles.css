@@ -1273,28 +1273,28 @@
 }
 
 /* ---------- Closing call to action ----------
-   Burgundy section with the layered-paper photo faintly behind it.
-   Phones: heading, sentence, button, then the "In 30 minutes" list.
-   Desktop: heading and button on the left, the list on the right. */
+   The one burgundy section, over an embossed-grid texture.
+   Phones: left-aligned, like the rest of the page. Tablets and up: centred, like the hero. */
 .cta {
   position: relative;
-  isolation: isolate;
+  isolation: isolate;            /* keeps the z-index layers below inside this section */
   --divider-h: clamp(2rem, 5vw, 4.5rem);   /* height of the triangle divider at the top */
   padding-block: var(--space-section);
   padding-top: calc(var(--space-section) + var(--divider-h) * 0.6);   /* extra room so the heading clears the triangle */
-  background: var(--color-burgundy);
+  background: var(--color-burgundy);       /* shows while the image loads */
   color: var(--color-white);
 }
 /* The triangle divider: pinned to the top edge and filled with the colour of the section
-   above it (white). If that section's background ever changes, change the fill to match. */
+   above it. If that section's background ever changes, change the fill to match. */
 .cta__divider {
   position: absolute;
   top: -1px;                     /* overlaps the edge by 1px so no hairline of burgundy shows above it */
   left: 0;
   width: 100%;
   height: var(--divider-h);
-  fill: var(--color-wash);     /* the pale grey of the Questions section above. Change it if that section changes. */
+  fill: var(--color-wash);       /* the pale grey of the Questions section above */
 }
+/* Layer 1 (furthest back): the texture, covering the whole section */
 .cta__bg {
   position: absolute;
   inset: 0;
@@ -1305,71 +1305,42 @@
   height: 100%;
   object-fit: cover;
 }
-/* A see-through burgundy sheet over the photo. 0.9 = 90% solid; lower it to show more photo. */
+/* Layer 2: a see-through burgundy sheet over the texture, so the grid stays quiet.
+   0.5 means 50% solid. Lower the number to show more of the texture. */
 .cta::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: rgba(76, 0, 19, 0.9);
-}
-
-.cta__inner {
-  display: grid;
-  gap: 3rem;
+  background: rgba(76, 0, 19, 0.5);
 }
 
 .cta__title {
-  max-width: 16em;
-  font-size: clamp(1.875rem, 1.45rem + 2.1vw, 3rem);
-  line-height: 1.18;
+  font-size: clamp(2rem, 1.4rem + 2.8vw, 3.5rem);   /* the largest heading after the hero's */
+  line-height: 1.15;
 }
 .cta__lead {
-  max-width: 34rem;
-  margin-top: 1.25rem;
+  max-width: 46rem;
+  margin-top: 1.5rem;
   color: var(--color-mist);
-  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  line-height: 1.55;
 }
-.cta__actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem 1.75rem;
-  margin-top: 2.25rem;
-}
+.cta__btn { margin-top: 2.25rem; }
 /* On burgundy, the white button fills with navy on hover (its usual burgundy fill would vanish here) */
 .cta__btn::before { background: var(--color-navy); }
 .cta__btn:hover,
 .cta__btn:focus-visible { border-color: var(--color-navy); }
 
-.cta__phone {
-  padding-block: 0.75rem;                /* taller tap target */
-  font-weight: 600;
-  text-decoration-color: rgba(255, 255, 255, 0.45);
-  text-underline-offset: 0.3em;
-  transition: text-decoration-color var(--speed) var(--ease);
-}
-.cta__phone:hover { text-decoration-color: var(--color-white); }
-
-.cta__aside-title { font-weight: 600; }
-.cta__list { margin-top: 1rem; }
-.cta__item {
-  padding-block: 0.875rem;
-  border-top: 1px solid var(--color-rule-on-dark);
-  font-family: var(--font-heading);
-  font-size: 1.1875rem;
-  line-height: 1.3;
-}
-.cta__item:last-child { border-bottom: 1px solid var(--color-rule-on-dark); }
-
 /* The focus ring is navy elsewhere; on burgundy it needs to be white to be seen */
 .cta :focus-visible { outline-color: var(--color-white); box-shadow: none; }
 
-@media (min-width: 62rem) {
+/* Tablets and up: everything centred */
+@media (min-width: 48rem) {
   .cta__inner {
-    grid-template-columns: 7fr 5fr;
-    column-gap: clamp(3rem, 7vw, 6rem);
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;         /* centres the blocks */
+    text-align: center;          /* centres the lines of text inside them */
   }
 }
-

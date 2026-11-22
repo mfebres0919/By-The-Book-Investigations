@@ -343,6 +343,11 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-22 (night, later): sketch 1 ("When would you bring us in?") redrawn after Miguelle's review
+- Miguelle's verdict on the three sketches: likes all three on large screens, but sketch 1 looked plain and lost its character on phones (one column of dashes), and the navy "Sometimes..." box felt dropped in. **Most visitors will be on phones, so every treatment must carry over to phones.** Sketches 2 and 3 were not changed.
+- `documentation/previews/human-and-rhythm.html`, sketch 1, second version: the situations alternate, a line from the left screen edge, then one from the right (text right-aligned), on phones and large screens alike. The navy box is gone: "more capacity" comes from the left, "distance" from the right, and "Sometimes you need both." sits centred, larger and burgundy, with a line reaching it from each edge.
+- Seen in screenshots at 390 and 1440 wide. Still a sketch: the homepage section is unchanged. Committed, not pushed.
+
 ### 2026-11-22 (night): sketches for her points 3 (human element) and 4 (visual rhythm); nothing built on the site
 - **New file: `documentation/previews/human-and-rhythm.html`.** A sketch sheet (not part of the website, not linked; borrows `css/global.css`, the rest of its CSS is inside the file). Three homepage sections redrawn, her wording and order unchanged, no animation:
   1. **"When would you bring us in?"**: the five situations as large serif lines, staggered left and right, each with a thin line running in from the screen edge (plain stack on phones). In "Sometimes...", two lines join into one beside "Sometimes you need both."

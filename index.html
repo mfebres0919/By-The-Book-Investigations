@@ -197,18 +197,23 @@
             <div class="container">
                 <h2 class="when__title" id="when-title" data-split="words">When would you bring us in?</h2>
 
-                <ul class="when__list" role="list" data-reveal-group>
-                    <li class="when__item" data-reveal="up">Your strongest investigator is already carrying more than they should.</li>
-                    <li class="when__item" data-reveal="up">A vacancy may take months to fill.</li>
-                    <li class="when__item" data-reveal="up">Your new leader is still getting oriented.</li>
-                    <li class="when__item" data-reveal="up">The allegation involves someone in the team's reporting line.</li>
-                    <li class="when__item" data-reveal="up">Or the case is sensitive enough that the choice of investigator will be scrutinized just as closely as the findings.</li>
+                <!-- The five situations alternate: the first comes in from the LEFT edge of the screen, the
+                     second from the RIGHT, and so on, each with a thin line running in from its edge.
+                     data-reveal-together makes all five arrive at the same moment (global.js, section 4). -->
+                <ul class="when__list" role="list" data-reveal-together>
+                    <li class="when__item" data-reveal="left">Your strongest investigator is already carrying more than they should.</li>
+                    <li class="when__item" data-reveal="right">A vacancy may take months to fill.</li>
+                    <li class="when__item" data-reveal="left">Your new leader is still getting oriented.</li>
+                    <li class="when__item" data-reveal="right">The allegation involves someone in the team's reporting line.</li>
+                    <li class="when__item" data-reveal="left">Or the case is sensitive enough that the choice of investigator will be scrutinized just as closely as the findings.</li>
                 </ul>
 
-                <p class="when__statement" data-reveal="up">
-                    <span class="when__line">Sometimes you need more capacity.</span>
-                    <span class="when__line">Sometimes you need distance from the people involved.</span>
-                    <span class="when__line">Sometimes you need both.</span>
+                <!-- "Sometimes...": the same pattern. Capacity from one side, distance from the other, and
+                     "both" in the middle with a line reaching it from each side. The three arrive together. -->
+                <p class="when__statement" data-reveal-together>
+                    <span class="when__line when__line--left" data-reveal="left">Sometimes you need more capacity.</span>
+                    <span class="when__line when__line--right" data-reveal="right">Sometimes you need distance from the people involved.</span>
+                    <span class="when__line when__line--both" data-reveal="up"><span class="when__both-text">Sometimes you need both.</span></span>
                 </p>
 
                 <p class="when__text" data-reveal="fade">And yes, you may need another full-time hire. We understand that. But hiring and onboarding take time, and the complaint on your desk still needs to be handled now.</p>

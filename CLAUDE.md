@@ -343,6 +343,16 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-23: "When would you bring us in?" rebuilt with alternating lines (her point 3); scroll-pile idea dropped
+- **Decision (Miguelle):** the scroll-pile sketch (`documentation/previews/when-scroll.html`) is rejected: "never mind, I don't like it". Do not build it. The file is still in the folder and can be deleted.
+- **Built into the site, this section only:** the alternating-lines design from sketch 1, second version.
+  - `index.html`: wording and order unchanged. The situations have `data-reveal="left"` / `"right"` alternately; the list and the "Sometimes..." paragraph each carry the new `data-reveal-together`; the three "Sometimes" sentences got the classes `when__line--left`, `--right` and `--both`.
+  - `css/styles.css`: the section's rules were rewritten. The grid of cells and the navy "Sometimes..." panel are gone. Situations are in the heading font with a thin burgundy line running in from the left screen edge, then the right (text right-aligned), alternating, on phones and large screens. "More capacity" comes from the left and "distance" from the right (italic, navy lines); "Sometimes you need both." is centred, larger and burgundy with a line from each edge.
+  - `javascript/global.js`, section 4: new **`data-reveal-together`**. Put it on a parent and everything inside with `data-reveal` arrives at the same moment when the parent scrolls into view (Miguelle asked for "everything coming in at one time"). Documented in the comment above the reveal rules in `css/global.css`. Here there are two groups: the five situations together, then the three "Sometimes" lines together when they are reached.
+- **Checked** by automated browser at 390 and 1440 wide: every item ends up visible, no sideways scrolling, no script errors; the lines are all burgundy `#4C0013` (an earlier screenshot had made the left ones look darker; measured, they are not). **Not checked:** real phones, Safari, Firefox, tablet width.
+- **Still sketches only (not built):** the burgundy "rigor and humanity" band and the large "Not Investigations 101." line, both in `documentation/previews/human-and-rhythm.html`, which Miguelle liked. Next section to take is Miguelle's choice.
+- Committed, not pushed.
+
 ### 2026-11-22 (late night): working scroll sketch of "When would you bring us in?" (Miguelle's pile idea)
 - Miguelle's idea: the five situations fall in one by one as the visitor scrolls and pile up (the feeling of problems stacking), then straighten into one column on phones or one row on large screens, and then the "Sometimes..." lines arrive, with "both" fading up between them.
 - **New file: `documentation/previews/when-scroll.html`**, a working sketch (its CSS and JavaScript are inside the file; on the real site they would move to `styles.css` and `global.js`). How it works: the section has a tall track; the heading and cards stick to the screen while the visitor scrolls its length (ordinary scrolling, nothing is frozen), and the script places each card from how far along the track the visitor is. It runs backwards when scrolling up. Each situation is a white slip with a burgundy top edge. The "Sometimes..." lines keep the left / right / both treatment and animate in when reached.

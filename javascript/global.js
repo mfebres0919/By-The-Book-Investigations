@@ -118,7 +118,8 @@
    Three jobs:
    a) split headings marked data-split into words or letters, so they can arrive one by one;
    b) number the children of each data-reveal-group, so they arrive one after another;
-   c) watch every marked element and add "is-in" when it scrolls into view.
+   c) watch every marked element and add "is-in" when it scrolls into view
+      (or, for a data-reveal-together group, reveal everything inside it at once).
    The class "js" on <html> is what lets the CSS hide things first. It is only added once we
    know the browser can do the watching, so content can never be left hidden. */
 (function () {
@@ -171,26 +172,36 @@
   });
 
   // c) Watch for elements entering the screen.
+  //    show() reveals one element. When it has settled, the reveal attributes are removed so
+  //    they can't interfere with the element's own hover effects (the step cards lift on
+  //    hover, for example).
+  function show(el) {
+    el.classList.add('is-in');
+    if (!el.hasAttribute('data-reveal')) return;
+    var delay = parseFloat(getComputedStyle(el).getPropertyValue('--d')) || 0;
+    window.setTimeout(function () {
+      el.removeAttribute('data-reveal');
+      el.classList.remove('is-in');
+    }, 700 + delay * 110);
+  }
   var watcher = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (!entry.isIntersecting) return;
       var el = entry.target;
-      el.classList.add('is-in');
       watcher.unobserve(el);                            // each element animates once
-      // When it has settled, remove the reveal attributes so they can't interfere with
-      // the element's own hover effects (the step cards lift on hover, for example).
-      if (el.hasAttribute('data-reveal')) {
-        var delay = parseFloat(getComputedStyle(el).getPropertyValue('--d')) || 0;
-        window.setTimeout(function () {
-          el.removeAttribute('data-reveal');
-          el.classList.remove('is-in');
-        }, 700 + delay * 110);
+      if (el.hasAttribute('data-reveal-together')) {
+        // a "together" group: reveal everything inside it at the same moment
+        Array.prototype.forEach.call(el.querySelectorAll('[data-reveal]'), show);
+      } else {
+        show(el);
       }
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
 
   root.classList.add('js');
-  Array.prototype.forEach.call(document.querySelectorAll('[data-reveal], [data-split]'), function (el) {
+  Array.prototype.forEach.call(document.querySelectorAll('[data-reveal], [data-split], [data-reveal-together]'), function (el) {
+    // things inside a "together" group are not watched one by one: their group is watched instead
+    if (el.hasAttribute('data-reveal') && el.closest('[data-reveal-together]')) return;
     watcher.observe(el);
   });
 })();

@@ -573,6 +573,8 @@ main,
    data-reveal="down"   drops into place          data-reveal="right"  comes from the right
    data-reveal="fade"   only fades
    data-delay="1" to "6", or a parent with data-reveal-group, makes things arrive one after another.
+   A parent with data-reveal-together makes everything inside it arrive at the same moment,
+   as soon as the parent itself scrolls into view.
 
    Timing is linear and the distances are small, to stay inside her brief ("subtle, linear"). */
 html.js [data-reveal] {

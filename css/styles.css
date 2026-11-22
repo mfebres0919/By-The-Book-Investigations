@@ -439,6 +439,7 @@ html.js .when__line--right[data-reveal]:not(.is-in) > .when__words {
    is set in from its edge by a different amount, and pulled up slightly so it starts beside
    the end of the one before: a zigzag down the page instead of a list. */
 @media (min-width: 48rem) {
+  .when__title { text-align: center; }   /* centred on larger screens; left-aligned on phones */
   .when__list {
     row-gap: 0;
     margin-top: 3.5rem;

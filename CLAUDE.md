@@ -346,6 +346,7 @@ Newest first. One entry per working session or per significant change: what chan
 ### 2026-11-23 (later still): "rigor and humanity" section: centred heading on larger screens, angled dividers on the burgundy band
 - Miguelle's requests. `css/styles.css`: from 48rem up, `.standard__title` and `.standard__lead` are centred (phones stay left-aligned).
 - `index.html` + `css/styles.css`: the burgundy band now has the page's angled divider shape at its top and bottom (`.standard__band-divider`, white fill; the bottom one is the same shape rotated). The centre line was adjusted to meet the angled edge exactly: `--edge` on `.standard__drop` is how far down the divider the edge sits in the middle of the screen (36% of `--divider-h`), so the navy part ends and the white part starts on the edge.
+- Also at Miguelle's request: the "When would you bring us in?" heading (`.when__title`) is centred from 48rem up.
 - Checked in screenshots at 390 and 1440 wide; no sideways scrolling. Committed, not pushed.
 
 ### 2026-11-23 (later): sideways fade on the reasons; "rigor and humanity" section rebuilt, same look on phones

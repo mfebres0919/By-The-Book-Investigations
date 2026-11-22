@@ -177,12 +177,15 @@ This is a first look, not the full audit that handbook Section 18 requires.
 | `documentation/client-brief/` | Her design questionnaire, brand guide and the final proposal (git-ignored) |
 | `documentation/source-images/` | Original files exactly as she sent them (git-ignored). Never edit these; make web versions from them. |
 | `documentation/private/` | For the proposal, agreement and anything personal (git-ignored) |
-| `index.html` | Homepage. So far: header and navigation, hero. |
+| `index.html` | The homepage: all 14 of her sections, the logo strip and the footer (see the table in Section 7). The only page built so far. |
 | `css/global.css` | Fonts, design tokens, reset, buttons, header and navigation, back-to-top. Shared by every page. |
-| `css/styles.css` | Homepage only (the hero so far) |
+| `css/styles.css` | Homepage only: one block of rules per section, in page order |
 | `css/no-js.css` | Loaded only when JavaScript is off, so the phone menu still shows |
-| `javascript/global.js` | Phone menu and back-to-top button |
-| `images/backgrounds/` | Web-ready background images (originals are in `documentation/source-images/backgrounds/`) |
+| `javascript/global.js` | Nine numbered parts: phone menu, back-to-top, tabs, reveal on scroll (with `data-reveal-together` and `data-draw`), footer year, counting numbers, the questions accordion, the hero line drawing, the CLEAR marks |
+| `images/backgrounds/` | Web-ready background images (originals are in `documentation/source-images/backgrounds/`). Several are no longer used; see "Housekeeping" in Section 7. In use on 2026-11-25: `plumb-line` (CLEAR section), `silver-navy-diagonal` ("Two ways"), `navy-paper-fold` (testimonials), `burgundy-grid` (closing call to action). |
+| `images/illustrations/contours.svg` | Vector contour lines behind section 9 (generated 2026-11-24) |
+| `images/logos/` | The ten "Organizations we've served" logos; `per-scholas.svg` is a vector file |
+| `documentation/previews/` | Sketch sheets made while deciding designs. Not part of the website. |
 | `fonts/` | The four self-hosted font files (table in Section 3) |
 | `documentation/font-licenses/` | License texts for the two fonts |
 | `images/brand/` | Web-ready logos |
@@ -207,6 +210,7 @@ This is a first look, not the full audit that handbook Section 18 requires.
 - The logo can become an SVG later (the source PDF is vector, made in Illustrator). No converter is installed on this Mac; an SVG export from the client's designer would be the cleanest route.
 
 ### Background images (made 2026-11-16, supplied by Miguelle)
+*Out of date since the round-two work: the "Used" column below describes 2026-11-16. See Section 7 for what each section uses now.*
 
 | File in `images/backgrounds/` (`.webp` + `.jpg`) | Size | WebP weight | Used |
 |---|---|---|---|
@@ -244,41 +248,94 @@ Project-specific exceptions to the handbook: none.
 
 ## 7. Current state and next steps
 
-**State at the end of 2026-11-17 (where to pick up):** the homepage has its header and navigation, hero, and services section (three grouped cards). Nothing else is built. The folder is not a Git repository yet and nothing is deployed. The change log in Section 10 has the detail of each change; where it differs from the summary below, the change log is newer.
+**State at the end of 2026-11-25 (where to pick up).** This section was rewritten on that date; it replaces the older summary. The change log (Section 10) has the detail of every change; where it differs from this summary, the change log is newer.
 
-**Pick up here next session**
-1. **Her final copy is in** (`documentation/client-brief/`: `Services Page (Final).docx`, `Homepage and About Us.docx`). The homepage services cards use it; **the rest of the homepage does not yet** (see the 2026-11-18 change log entry for the full comparison). Decide with Miguelle whether to realign the homepage to her 14 sections before building the inner pages.
-2. The **"Our process" (CLEAR framework) section is built** (2026-11-17, see the change log). Miguelle to review it.
-3. **Every homepage section and the footer are built** (2026-11-18), with entrance and scroll animations. Next: Miguelle's review of the whole page, then the inner pages (Services and its detail pages, About, Investigation Capacity, Contact, Privacy Policy).
-4. Still to do before launch: full audit of the current site and the URL map, the inner pages, the launch files (favicons, manifest, `og:image`, schema, `robots.txt`, `sitemap.xml`, `404.html`), `git init`, and a Netlify preview.
+### Where the project stands
+- **The homepage is complete and has been through her round-two feedback** (`documentation/client-brief/By-the-Book Homepage Design Feedback Brief.docx`, received 2026-11-19). Every one of her five creative-direction points and all of her copy corrections has been worked on (2026-11-22 to 2026-11-25).
+- **Marquita has NOT seen the round-two version.** Miguelle is reviewing it first, especially on phones.
+- **Only the homepage exists.** The header, footer and buttons link to `services/`, `about/`, `contact/` and `investigation-capacity/`, which are not built, so those links give "not found".
+- **Git:** work is on `main`. At the end of the session 5 commits were on this Mac and not yet on GitHub. During this work Claude committed after every change but **held every push** so that unreviewed drafts did not reach the GitHub Pages preview Marquita has the link to; Miguelle pushed some of them personally. **At the start of the next session, ask Miguelle whether to push what is waiting and whether automatic pushing (Section 1) resumes.**
 
-**How the site is being built:** section by section. Miguelle reviews each section before the next one starts, and sometimes edits the CSS directly, so read the current files before changing them.
+### NEXT: build the rest of the pages (Miguelle will start this at a later date)
+From the proposal (Section 3a) and the header: **Services** (and its detail pages), **About**, **Investigation Capacity**, **Contact**, **Privacy Policy**. Her final copy for Services and About is in `documentation/client-brief/` (`Services Page (Final).docx`, `Homepage and About Us.docx`). Before starting:
+1. Read the two copy documents and Section 9 (page addresses are still undecided).
+2. Carry the homepage's design language across (see "The design language" below), so the inner pages look like the same site.
+3. Apply her round-two wording rules everywhere: "**CLEAR By-the-Book™ Investigation Framework**" for the framework's full name, "**case**" not "matter" for investigations, her new **INVEXTRA** paragraph and "**Early 2027**".
+4. The header menu is now four links: Services, CLEAR By-the-Book™ Investigation Framework, About, Contact (the separate retainer link was removed at her suggestion).
+5. Work the way this project has worked: one page or section at a time, Miguelle reviews each, and Miguelle needs to **see** an idea (a preview page or the real thing) before deciding. **Every design must work on phones, not only on large screens**; most visitors will be on phones.
 
-**What exists on the homepage**
-- **Header:** white, sticky, logo left. On phones a two-bar menu button; from 992px (62rem) a row of links plus a burgundy "Schedule a Conversation" button.
-- **Phone menu:** a white panel that fades and slides in under the header and fills the screen. The links, then the button, then the contact details fade in one after another (70ms apart). It closes with the button, Escape or a link tap, and the page behind doesn't scroll while it is open. It holds the five links, the "Schedule a Conversation" button, and her phone, email and address.
-- **Hero:** the `h1`, a supporting sentence and a white "Schedule a Conversation" button over the hero background. Below it, in its own band, "INVEXTRA: Investigation expertise, amplified." with an outline "Join the INVEXTRA Waitlist" button.
-- **Services:** three grouped cards and a navy "View all services" button (stand-in service list).
-- **Our process:** navy section over the staircase photo; heading, paragraph and button, plus five numbered step cards that open and close.
-- **Back-to-top button:** in place (it appears once there is enough page to scroll).
+### Before showing Marquita the round-two homepage
+- [ ] Miguelle finishes reviewing the whole page on a real phone.
+- [ ] Decide whether to push the waiting commits (see "Git" above).
+- [ ] **Remake the social preview image** (`images/social/og-home.jpg`). It still shows the old conference-room hero. Handbook: render the hero at 1200 x 630 with the animations finished.
+- [ ] Checks never done on the round-two work: real phones, **Safari and Firefox**, tablet widths, keyboard and screen-reader passes, reduce-motion in a real browser, PageSpeed (needs a deployed address). Everything so far was checked only with an automated Chrome at 390 and 1440 pixels wide (sometimes 320, 768, 1024).
+- [ ] Go through "Round two: to raise with Marquita" at the top of Section 8.
 
-**Checked on 2026-11-16:** screenshots at 320, 360, 390, 768, 1024 and 1440 pixels wide, plus the open menu at 320 and 390. No overflow or clipped text. `global.js` passes a syntax check.
-**Not yet checked:** the menu animation in a real browser (only its open and closed end states were screenshotted), real phones, Safari and Firefox, keyboard and screen reader passes, PageSpeed (needs a deployed URL).
+### The homepage, section by section (as of 2026-11-25)
+| # | Section (class) | What it is now |
+|---|---|---|
+| 1 | Hero (`.hero`) | Navy. Her headline, unchanged. Background is an **animated line drawing in code** (global.js section 8): scattered lines gather, are combed straight and end as one white line; the loose ends keep swaying slowly, so there is a small **pause button**. No photo. |
+| 2 | Numbers strip (`.stats`) | White. Three very large burgundy figures (they count up), then her statement in italics between two rules. |
+| 3 | When would you bring us in? (`.when`) | Plain pale grey. Reasons alternate: a burgundy line from the left screen edge, then the right, each fading in sideways from its line; all five arrive together. "Capacity" from the left, "distance" from the right, "Sometimes you need both." centred in burgundy. |
+| 4 | An outside investigation... (`.standard`) | White, then a full-width **burgundy band** with angled edges. Two "We have seen" sentences side by side (phones too); a line traces down from each, they join at "Neither...", and one line carries on into the band, where "You should not have to choose between rigor and humanity." is very large. |
+| 5 | Two ways to get the work moving (`.ways`) | Navy band with two white cards. Large "01" / "02". On desktop the retainer card is wider and its list runs two by two, so the cards are about the same height. |
+| 6 | CLEAR (`.process`) | Navy. **Five line-drawn marks**, one per phase, joined by a line; each draws itself once on scroll (global.js section 9). Plumb-line photo beside the heading on desktop only. |
+| 7 | Investigation Readiness Intensive (`.intensive`) | White. Section name as a small label; "Not Investigations **101.**" very large (101 in solid burgundy) with a level line that draws to the screen edge; text in two columns below. |
+| 8 | Meet INVEXTRA (`.invextra`) | Pale grey, one framed white box. Her round-two paragraph. "Planned launch: Early 2027". Deliberately plain and separate. |
+| 9 | An outside investigator protects the finding (`.independence`) | Navy with angled edges and a faint (16%) **vector** contour drawing. |
+| 10 | Founder (`.about`) | White. Photo left, text right. Caption: "Founder". Untouched in round two. |
+| 11 | Testimonials (`.proof`) | Navy. Dr. Moore's quote first and large; the other three in a row beneath. |
+| 11b | Organizations we've served (`.orgs`) | Compact pale grey strip. Ten logos (Per Scholas added): two across on phones, five across from tablets up. |
+| 12 | How it starts (`.start`) | White with angled pale grey edges. Three large burgundy numerals on a timeline line that draws in. |
+| 13 | Questions we get asked (`.faq`) | Pale grey, **one column**. Each question a white card; the open one turns navy. |
+| 14 | Closing call to action (`.cta`) | Burgundy. Untouched in round two. |
+| | Footer | Untouched except the framework name. |
 
-**Known gaps on the page (deliberate, to finish later)**
-- The nav links and buttons point at pages that don't exist yet (`about/`, `services/`, `investigation-capacity/`, `contact/`), so they give "not found" for now.
-- No `og:image`, schema, `robots.txt`, `sitemap.xml` or `404.html` yet (the favicon set and `site.webmanifest` were added on 2026-11-18).
-- The footer was added on 2026-11-18 with her tagline. (Older note follows.) It was left out of the hero on purpose to keep it quiet; it belongs in the next section or the footer.
-- Title and meta description are drafts.
+### The design language (reuse it on the inner pages)
+- **Lines are the brand device.** Thin lines that start loose and end straight: the hero drawing, the CLEAR marks, lines running in from the screen edges, lines that join, timeline lines. No stock photos, no icons.
+- **Hierarchy over decoration** (Miguelle's reading of her feedback, 2026-11-23): one thing per section is clearly the biggest, and no two neighbouring sections share a layout.
+- **Emphasised word:** `<em class="accent">word</em>` in a heading makes it burgundy italic (white or pale grey backgrounds only). Used on "When", "problem" and "Questions". Not yet added to the other headings.
+- **Large solid burgundy numerals** for numbered things ("101.", "01 02 03"). Not hollow.
+- **Angled dividers** between sections (the same SVG shape everywhere; fill = the neighbouring section's colour).
+- **Backgrounds:** navy, white, pale grey (`--color-wash`), and burgundy for the two strongest moments (the rigor band and the closing call to action).
+- **Animation tools already in `javascript/global.js`, section 4** (documented in the comment above the reveal rules in `css/global.css`):
+  - `data-reveal="up|down|left|right|fade"` on an element: it fades or slides in when scrolled to.
+  - `data-reveal-group` on a parent: its children arrive one after another. `data-reveal-together`: they all arrive at once.
+  - `data-draw` (or `data-draw=".some-ancestor"`): adds the class `is-drawn` when scrolled to, for lines that draw themselves.
+  - Everything is off with "reduce motion", and nothing is hidden if JavaScript is off.
+- Copper is for INVEXTRA only; burgundy never goes on navy (it disappears).
+
+### Tried and dropped (do not propose these again)
+- Hero: the conference-room photo (her feedback: "elegant but generic").
+- "When would you bring us in?": a **scroll-driven pile** of cards ("I don't like it"); a navy box for the "Sometimes" lines; and four background treatments (angled white planes, a grey band, a vertical grey/white split, a slanted split). It stays plain pale grey.
+- Readiness Intensive: a **navy two-half panel** (it sat right under the navy CLEAR section) and a copper "101.".
+- **Hollow (outline-only) numerals** anywhere.
+- Questions: heading in a left-hand column (it is one column now).
+- CLEAR: the staircase photo as a full background. Section 9: the contour photo (now a faint vector drawing).
+- Shortening her copy to fit a layout. Her wording is never cut or reworded without her sign-off.
+
+### Housekeeping left behind
+- **No longer used, still in the folder** (delete or keep as fallbacks, Miguelle's call), confirmed by a search of `index.html` and the CSS on 2026-11-25: in `images/backgrounds/`, `hero*` (the conference room), `navy-silver-staircase*`, `navy-contours*` and `layered-paper-edges*`; in `images/illustrations/`, the four building drawings (`glass-office-tower.svg`, `interior-staircase.svg`, `modern-building-facade.svg`, `modern-civic-building.svg`).
+- `documentation/previews/` holds two sketch sheets from this work (`clear-marks.html`, `human-and-rhythm.html`). They are not part of the site. `clear-marks.html` is worth keeping: it shows the five CLEAR marks at small sizes and the simpler small "C".
+- **The five CLEAR marks exist only inside `index.html`.** Her feedback wants them reusable in training materials and INVEXTRA, so export them as separate SVG files once she approves the direction.
+- `documentation/project-checklist.md` has not been updated for this round of work.
 
 **To preview the page:** open the project folder in VS Code, right-click `index.html` and choose "Open with Live Server".
 
-**Next steps**
-1. Miguelle reviews the header and hero.
-2. Next homepage section (Miguelle to say which).
-3. Full audit of the current site and the URL map (handbook Section 18, checklist Sections 3 and 4).
-
 ## 8. To raise with Marquita
+
+**Round two: to raise with Marquita when she is shown the reworked homepage (added 2026-11-25)**
+1. **The framework's name.** Her feedback document types it with stray spaces ("CLEAR By- the- Book™", "CLEAR By -the- Book™"). The site uses "CLEAR By-the-Book™ Investigation Framework". Confirm the spelling and where the ™ sits.
+2. **Short mentions of "CLEAR".** Sentences that say only "CLEAR" ("CLEAR gives our work a consistent structure...") were left as they are; only the full name was changed. Is that what she wants?
+3. **INVEXTRA section.** Her new paragraph replaced two older ones. The heading "Meet INVEXTRA™" and the line "Bringing CLEAR into the investigation as it happens." were kept. Keep or cut?
+4. **Per Scholas.** Confirm the logo version (lime wordmark on a dark background, as she sent it) and that Per Scholas may be shown. Same question still stands for the other nine organisations.
+5. **Copper in the CLEAR section.** The plumb-line photo beside the CLEAR heading is a copper weight; her brand guide keeps copper for INVEXTRA. Is she happy with it there?
+6. **The hero moves.** The line drawing keeps swaying gently and has a small pause button (an accessibility requirement for anything that moves for more than 5 seconds). She asked for subtle motion and restraint; check it feels right to her.
+7. **The CLEAR marks** as a visual system: does she want them exported for training materials and INVEXTRA, and is the simpler small "C" acceptable?
+8. **The retainer link** is gone from the header menu (her suggestion). The footer still lists the retainer among the services.
+9. **Emphasised words** in headings ("When", "problem", "Questions"): Miguelle's and Claude's choices, not hers.
+
+*The numbered points below were written between 2026-11-16 and 2026-11-18, before her final copy arrived. Several are settled (the hero and CLEAR wording are now hers; the title is "Founder"). Check each against the current site before raising it.*
 
 **When showing her the homepage**
 1. **Body text is navy, not silver.** Her brand guide assigns silver `#8A8D8F` to body text, but on white it measures 3.34:1 and the AA standard she asked for needs 4.5:1. Navy passes easily. Silver is still used for dividers, borders and text on dark backgrounds.
@@ -342,6 +399,11 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+
+### 2026-11-25 (end of session): project guide brought up to date; work paused
+- Miguelle paused the project here: "next would be to develop the rest of the pages but I'm going to do that at a later date."
+- **Section 7 rewritten** as the pick-up point: where things stand, what is next (the inner pages), what must happen before Marquita sees the round-two homepage, the homepage section by section, the design language to reuse, what was tried and dropped, and housekeeping. **Section 8** has a new "Round two: to raise with Marquita" list at the top. **Section 5** file descriptions updated.
+- No site files changed in this entry.
 
 ### 2026-11-25 (end of the background experiments): "When would you bring us in?" is plain pale grey again
 - **Decision (Miguelle):** "let's just bring back the grey". After trying angled planes, a grey band, a vertical half-and-half and a slanted half-and-half (the three entries below), the section is back to a plain pale grey background (`.when`, no pseudo-element, no image).

@@ -343,6 +343,11 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-25 (later): grey band moved to the foot of "When would you bring us in?"; divider below it removed
+- Miguelle's requests. `images/illustrations/planes.svg`: the darker band no longer sits in the middle; it is now at the foot of the section, below "Sometimes you need both.", behind the closing paragraph, and runs to the bottom edge. It is also lighter (navy at 4.5% instead of 7%).
+- **The angled divider at the top of the "rigor and humanity" section is removed** (`index.html`: the `standard__divider` SVG; `css/styles.css`: its rule and the extra top padding). The grey section now ends in its band and meets the white section on a straight edge.
+- Checked in screenshots at 390 and 1440 wide. Committed, not pushed.
+
 ### 2026-11-25: vector background for "When would you bring us in?"
 - Miguelle found the plain grey background flat and asked for a vector background. **New file: `images/illustrations/planes.svg`** (under 1 KB): two broad white planes lying at an angle across the pale grey, a slightly darker band between them, and hairlines along the edges, all on the same slant as the page's dividers. Set by `.when::before` in `css/styles.css`, stretched to fill the section. It stops short of the bottom edge so the grey there still matches the divider into the next section.
 - Chosen over contour lines (already used in section 9) and ruled lines (they would fight the burgundy lines that run in from the screen edges).

@@ -326,10 +326,10 @@
   background: var(--color-wash);
   overflow-x: clip;              /* the lines are drawn wider than the screen; this trims them at the edges */
 }
-/* Background: two broad white planes lying at an angle across the grey, cut on the same
-   slant as the page's dividers (a vector drawing, images/illustrations/planes.svg). It is
-   stretched to fill the section whatever its shape, and stops short of the bottom edge, so
-   the grey there still matches the divider that leads into the next section. */
+/* Background: two broad white planes lying at an angle across the grey, and one slightly
+   darker grey band at the foot of the section, below "Sometimes you need both." (a vector
+   drawing, images/illustrations/planes.svg). It is stretched to fill the section whatever
+   its shape. The band runs down to the bottom edge, where the white section below begins. */
 .when::before {
   content: "";
   position: absolute;
@@ -511,18 +511,11 @@ html.js .when__line--right[data-reveal]:not(.is-in) > .when__words {
    "Neither..." down, because the join happens in the middle. */
 .standard {
   position: relative;
-  --divider-h: clamp(2.5rem, 7vw, 6.5rem);
-  padding-top: calc(var(--space-section) + var(--divider-h) * 0.75);   /* room for the divider */
+  --divider-h: clamp(2.5rem, 7vw, 6.5rem);   /* height of the angled edges of the burgundy band */
+  padding-top: var(--space-section);
 }
-/* Angled divider: the grey of the section above, cutting down into this white one */
-.standard__divider {
-  position: absolute;
-  top: -1px;
-  left: 0;
-  width: 100%;
-  height: var(--divider-h);
-  fill: var(--color-wash);
-}
+/* (No angled divider at the top of this section: the section above ends in its own grey
+   band, so the two meet on a straight edge.) */
 
 .standard__title {
   max-width: 18em;

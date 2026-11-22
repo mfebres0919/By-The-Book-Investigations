@@ -119,7 +119,8 @@
    a) split headings marked data-split into words or letters, so they can arrive one by one;
    b) number the children of each data-reveal-group, so they arrive one after another;
    c) watch every marked element and add "is-in" when it scrolls into view
-      (or, for a data-reveal-together group, reveal everything inside it at once).
+      (or, for a data-reveal-together group, reveal everything inside it at once);
+   d) add "is-drawn" where a data-draw element scrolls into view, for lines that draw themselves.
    The class "js" on <html> is what lets the CSS hide things first. It is only added once we
    know the browser can do the watching, so content can never be left hidden. */
 (function () {
@@ -197,6 +198,22 @@
       }
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+
+  // d) Lines that draw themselves. An element marked data-draw is a tripwire: when it scrolls
+  //    into view, the class "is-drawn" is added (and kept), and the CSS draws the lines.
+  //    data-draw=".standard" puts the class on the nearest ancestor matching that selector;
+  //    plain data-draw puts it on the element itself.
+  var drawWatcher = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      var el = entry.target;
+      var selector = el.getAttribute('data-draw');
+      var target = selector ? el.closest(selector) : el;
+      if (target) target.classList.add('is-drawn');
+      drawWatcher.unobserve(el);
+    });
+  }, { threshold: 0.35 });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-draw]'), function (el) { drawWatcher.observe(el); });
 
   root.classList.add('js');
   Array.prototype.forEach.call(document.querySelectorAll('[data-reveal], [data-split], [data-reveal-together]'), function (el) {

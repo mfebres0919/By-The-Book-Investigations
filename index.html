@@ -244,9 +244,15 @@
                     <p class="standard__side" data-reveal="left">We have seen reports with strong legal analysis that read more like a defense brief than neutral fact-finding.</p>
                     <p class="standard__side" data-reveal="right">We have also seen people-centered approaches that did not fully address the policy, evidence, or legal standards at issue.</p>
                     <!-- The two lines: one down from the middle of each sentence, joining in the centre.
-                         preserveAspectRatio="none" lets the drawing stretch to any width. Decorative. -->
-                    <svg class="standard__join" data-reveal="fade" data-delay="2" aria-hidden="true" focusable="false" viewBox="0 0 100 40" preserveAspectRatio="none"><path d="M24 0v8c0 22 26 10 26 32M76 0v8c0 22-26 10-26 32"/></svg>
-                    <p class="standard__neither" data-reveal="up" data-delay="3">Neither gives an organization what it needs.</p>
+                         Each is its own drawing so they can be traced in one after the other (styles.css).
+                         preserveAspectRatio="none" lets them stretch to any width. Decorative. -->
+                    <div class="standard__join" aria-hidden="true">
+                        <svg class="standard__join-line" focusable="false" viewBox="0 0 100 40" preserveAspectRatio="none"><path d="M24 0v8c0 22 26 10 26 32"/></svg>
+                        <svg class="standard__join-line standard__join-line--right" focusable="false" viewBox="0 0 100 40" preserveAspectRatio="none"><path d="M76 0v8c0 22-26 10-26 32"/></svg>
+                    </div>
+                    <!-- data-draw=".standard": when this sentence scrolls into view, global.js adds "is-drawn"
+                         to the section, which starts the lines tracing: left, right, then the one going down. -->
+                    <p class="standard__neither" data-reveal="up" data-delay="3" data-draw=".standard">Neither gives an organization what it needs.</p>
                 </div>
                 <!-- The single line that carries on down into the burgundy band -->
                 <div class="standard__drop" aria-hidden="true"></div>
@@ -404,24 +410,23 @@
         </section>
 
         <!-- ============ INVESTIGATION READINESS INTENSIVE (her section 7) ============
-             One panel in two halves (her round-two note: give "Not Investigations 101" more presence).
-             Navy half: the section name as a small label, then her opening line with its first
-             sentence, "Not Investigations 101.", set very large, then the button.
-             Pale half: her three paragraphs. In the first, the four gaps she lists are each a
-             sentence, so they are shown as four short lines. Nothing is reworded or shortened. -->
+             White section (the CLEAR section above is navy, so this one stays light).
+             Her round-two note: give "Not Investigations 101" more presence. So the section name is
+             a small label, and the first sentence of her opening line is the largest type in the
+             section: "Not Investigations" solid, "101." as hollow outlined numerals, with a level
+             line running from it to the edge of the screen (it draws in: data-draw).
+             Under that: her second sentence and the button on the left, her three paragraphs on
+             the right. In the first paragraph the four gaps she lists are each a sentence, so they
+             are shown as four short lines. Nothing is reworded or shortened. -->
         <section class="intensive" id="readiness" aria-labelledby="intensive-title">
             <div class="intensive__inner container">
+                <!-- Still the section's heading (h2) for screen readers and search engines; only styled small -->
+                <h2 class="intensive__title" id="intensive-title">Investigation Readiness Intensive</h2>
+                <p class="intensive__big" data-reveal="up" data-draw>Not Investigations <span class="intensive__num">101.</span></p>
+
                 <div class="intensive__head">
-                    <!-- Still the section's heading (h2) for screen readers and search engines; it is only
-                         styled as a small label. -->
-                    <h2 class="intensive__title" id="intensive-title">Investigation Readiness Intensive</h2>
-                    <!-- Her opening line is one paragraph. Its two sentences are in separate spans so the
-                         first can be very large; "101." gets the accent colour. -->
-                    <p class="intensive__tagline">
-                        <span class="intensive__big" data-reveal="up">Not Investigations <span class="intensive__num">101.</span></span>
-                        <span class="intensive__sub" data-reveal="fade" data-delay="2">A working look at whether your investigation process is ready for the cases it has to carry.</span>
-                    </p>
-                    <a class="btn btn--light intensive__btn" data-reveal="fade" data-delay="3" href="contact/">Schedule a Conversation<span class="visually-hidden"> about the Investigation Readiness Intensive</span></a>
+                    <p class="intensive__sub" data-reveal="fade" data-delay="2">A working look at whether your investigation process is ready for the cases it has to carry.</p>
+                    <a class="btn btn--navy intensive__btn" data-reveal="fade" data-delay="3" href="contact/">Schedule a Conversation<span class="visually-hidden"> about the Investigation Readiness Intensive</span></a>
                 </div>
 
                 <div class="intensive__body">
@@ -471,19 +476,17 @@
         </section>
 
         <!-- ============ AN OUTSIDE INVESTIGATOR PROTECTS THE FINDING (her section 9) ============
-             Plain navy section (no photo, unlike the CLEAR section). Left: her heading and paragraph.
-             Right: her closing line, "Independent in process. Clear in findings.", set large like a
-             pull quote, one sentence per block. All wording is hers. -->
+             Navy section. Left: her heading and paragraph. Right: her closing line, "Independent in
+             process. Clear in findings.", set large like a pull quote, one sentence per block.
+             All wording is hers. -->
         <section class="independence" aria-labelledby="independence-title">
-            <!-- Background graphic: thin contour lines on navy (one of the brand textures Miguelle made).
-                 Decorative, so alt is empty. Phones get a tall crop, larger screens the wide one. -->
-            <picture class="independence__bg">
-                <source media="(min-width: 48rem)" srcset="images/backgrounds/navy-contours.webp" type="image/webp">
-                <source media="(min-width: 48rem)" srcset="images/backgrounds/navy-contours.jpg">
-                <source srcset="images/backgrounds/navy-contours-m.webp" type="image/webp">
-                <img src="images/backgrounds/navy-contours-m.jpg" alt="" aria-hidden="true"
-                     width="720" height="1210" loading="lazy" decoding="async">
-            </picture>
+            <!-- Angled dividers, the same shape as elsewhere: the top one is the pale grey of the section
+                 above, the bottom one (the same shape upside down) the white of the section below. -->
+            <svg class="independence__divider" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0 0v36L250 4l750 96V0H0z"/></svg>
+            <svg class="independence__divider independence__divider--bottom" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0 0v36L250 4l750 96V0H0z"/></svg>
+            <!-- Background: thin contour lines, like the height lines on a map. It is a vector drawing
+                 (images/illustrations/contours.svg), set and faded right down in styles.css. Decorative. -->
+            <div class="independence__bg" aria-hidden="true"></div>
 
             <div class="independence__inner container">
                 <div class="independence__main">
@@ -614,7 +617,8 @@
 
         <!-- ============ ORGANIZATIONS WE'VE SERVED (the logo part of her section 11) ============
              Her copy: "Organizations we've served: [logo row, unchanged from current site]".
-             Its own white section, because the logo files have white backgrounds. Ten logos in a
+             A compact pale grey strip: heading on the left, logos on the right (stacked on phones).
+             The logo files have white backgrounds, so each sits in a white cell. Ten logos in a
              table of equal cells (two across on phones, five across on larger screens); the CSS
              fits each logo into the same box. They are grey until
              you point at one, when it shows its own colours. Each alt text is the organisation's name.
@@ -688,16 +692,21 @@
         </section>
 
         <!-- ============ HOW IT STARTS (her section 12) ============
-             White section. Her three steps as a timeline: one continuous line with a small burgundy
-             square where each step begins. The line runs across the page on desktop and down the
-             left side on phones. An ordered list, because the steps happen in this order; the big
-             "01" is for the eye only (aria-hidden), since the list already numbers them.
+             White section with angled pale grey edges (the logo strip above and the questions below
+             are both pale grey). Her three steps as a timeline: one continuous line with a small
+             burgundy square where each step begins, and a large hollow numeral for each. The line
+             runs across on desktop and down the left side on phones, and draws itself in when the
+             steps scroll into view (data-draw). An ordered list, because the steps happen in this
+             order; the big "01" is for the eye only (aria-hidden), since the list already numbers them.
              All wording is hers. -->
         <section class="start" aria-labelledby="start-title">
+            <!-- Angled dividers, top and foot: both the pale grey of the sections either side -->
+            <svg class="start__divider" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0 0v36L250 4l750 96V0H0z"/></svg>
+            <svg class="start__divider start__divider--bottom" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0 0v36L250 4l750 96V0H0z"/></svg>
             <div class="container">
                 <h2 class="start__title" id="start-title" data-split="words">How it starts</h2>
 
-                <ol class="steps" role="list" data-reveal-group>
+                <ol class="steps" role="list" data-reveal-group data-draw=".start">
                     <li class="step" data-reveal="up">
                         <span class="step__num" aria-hidden="true">01</span>
                         <h3 class="step__title">Tell us what's on your desk.</h3>

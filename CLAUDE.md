@@ -343,6 +343,11 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-23 (later still): "rigor and humanity" section: centred heading on larger screens, angled dividers on the burgundy band
+- Miguelle's requests. `css/styles.css`: from 48rem up, `.standard__title` and `.standard__lead` are centred (phones stay left-aligned).
+- `index.html` + `css/styles.css`: the burgundy band now has the page's angled divider shape at its top and bottom (`.standard__band-divider`, white fill; the bottom one is the same shape rotated). The centre line was adjusted to meet the angled edge exactly: `--edge` on `.standard__drop` is how far down the divider the edge sits in the middle of the screen (36% of `--divider-h`), so the navy part ends and the white part starts on the edge.
+- Checked in screenshots at 390 and 1440 wide; no sideways scrolling. Committed, not pushed.
+
 ### 2026-11-23 (later): sideways fade on the reasons; "rigor and humanity" section rebuilt, same look on phones
 - **"When would you bring us in?"**: Miguelle asked for the reasons to fade in from the side their line starts on. Each situation's words (and the two italic "Sometimes" lines) now sit in a `<span class="when__words">`, which fades in sideways: left to right for the ones on the left, right to left for the ones on the right. Done with a sliding CSS mask (`css/styles.css`, "The words fade in sideways"), so the text itself is never set to see-through. This is on top of the small slide they already had.
 - **"An outside investigation shouldn't become another problem to manage"** rebuilt from sketch 2 (`index.html`, `css/styles.css`), wording unchanged:

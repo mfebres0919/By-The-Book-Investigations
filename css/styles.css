@@ -1058,7 +1058,7 @@ html.js .when__line--right[data-reveal]:not(.is-in) > .when__words {
   .intensive__inner { grid-template-columns: 6fr 7fr; }
   .intensive__head { padding: 3.5rem 3rem; }
   /* side by side, the navy half is under half the page, so the big line is sized to that */
-  .intensive__big { font-size: clamp(2.75rem, 0.25rem + 4.2vw, 4.25rem); }
+  .intensive__big { font-size: clamp(2.75rem, 0.25rem + 4.2vw, 4rem); }
   .intensive__body {
     padding: 3.5rem 3rem;
     border-top: 1px solid var(--color-rule);

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>When would you bring us in: scroll sketch</title>
+<!-- PREVIEW ONLY. A working sketch of Miguelle's idea for "When would you bring us in?":
+     the five situations fall in one by one as you scroll and pile up, then straighten into
+     a tidy column (phones) or row (large screens), and then the "Sometimes..." lines arrive.
+     It is not part of the website and nothing links to it. It borrows the site's colours and
+     fonts from global.css; its own CSS and JavaScript are kept inside this one file on purpose
+     (on the real site they would go in styles.css and global.js). All wording is Marquita's. -->
+<link rel="stylesheet" href="../../css/global.css">
+<style>
+body { overflow-x: clip; }
+.filler { padding: 5rem 0; }
+.filler h1 { font-size: clamp(1.75rem, 1.3rem + 2vw, 2.75rem); }
+.filler p { max-width: 44rem; margin-top: 1rem; }
+.filler--end { min-height: 70vh; border-top: 1px solid var(--color-rule); color: var(--color-silver); }
+
+.when { background: var(--color-wash); padding-bottom: var(--space-section); }
+
+/* ---------- The stage: heading + the five situations ----------
+   Without the animation (JavaScript off, "reduce motion" on, or a very short screen) this is
+   just a heading and a tidy set of cards. */
+.when__stage { padding-top: var(--space-section); }
+.when__title { font-size: clamp(1.875rem, 1.5rem + 2.2vw, 3rem); }
+.when__cards {
+  position: relative;            /* the cards measure their places against this */
+  display: grid;
+  gap: 0.625rem;
+  margin-top: 1.5rem;
+}
+/* One situation: a white slip of paper with a burgundy top edge. No shadows (her brief). */
+.when__card {
+  padding: 0.8rem 1rem 0.9rem;
+  background: var(--color-white);
+  border: 1px solid rgba(10, 26, 51, 0.22);
+  border-top: 2px solid var(--color-burgundy);
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
+  line-height: 1.32;
+  will-change: transform;
+}
+@media (min-width: 62rem) {
+  /* Large screens: the tidy arrangement is one row of five */
+  .when__cards { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1rem; margin-top: 3rem; align-items: start; }
+  .when__card { padding: 1.25rem 1.25rem 1.5rem; font-size: 1.1875rem; min-height: 11.5rem; }
+}
+
+/* ---------- When the animation is on (the script adds "is-pinned") ----------
+   .when__pin is a tall, empty track. The stage inside it "sticks" to the screen while you
+   scroll the length of the track, and the script uses how far along the track you are
+   to place the cards. The page is never frozen or taken over: it is ordinary scrolling. */
+.when.is-pinned .when__pin { height: calc(100svh + 190vh); }   /* 190vh = how much scrolling the animation lasts */
+.when.is-pinned .when__stage {
+  position: sticky;
+  top: 0;                          /* on the real site: the height of the header */
+  height: 100svh;
+  padding-top: 0;
+  display: flex;
+  align-items: center;
+  overflow: clip;
+}
+.when.is-pinned .when__stage-inner { width: 100%; }
+
+/* ---------- "Sometimes..." (arrives after the cards have straightened) ---------- */
+.when__statement { display: grid; row-gap: 1.75rem; margin-top: 3.5rem; overflow-x: clip; margin-inline: calc(50% - 50vw); padding-inline: calc(50vw - 50%); }
+.when__line {
+  position: relative;
+  max-width: 16rem;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(1.25rem, 1.05rem + 1vw, 1.875rem);
+  line-height: 1.3;
+  text-wrap: balance;
+}
+.when__line::before { content: ""; position: absolute; top: 0.65em; width: 100vw; height: 1px; background: var(--color-navy); }
+.when__line--left { margin-left: 2.25rem; }
+.when__line--left::before { right: calc(100% + 0.75rem); }
+.when__line--right { margin-left: auto; margin-right: 2.25rem; text-align: right; }
+.when__line--right::before { left: calc(100% + 0.75rem); }
+.when__line--both {
+  display: flex; align-items: center; gap: 1rem;
+  max-width: none; margin: 1rem calc(50% - 50vw) 0;
+  font-style: normal; font-size: clamp(1.75rem, 1.2rem + 2.6vw, 3.25rem); line-height: 1.15;
+  color: var(--color-burgundy); text-align: center;
+}
+.when__line--both::before, .when__line--both::after { content: ""; position: static; flex: 1; width: auto; height: 2px; background: var(--color-burgundy); }
+.when__both-text { max-width: 12rem; }
+.when__text { max-width: 40rem; margin: 3.5rem auto 0; font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem); }
+@media (min-width: 48rem) {
+  .when__statement { row-gap: 0.5rem; margin-top: 4.5rem; }
+  .when__line { max-width: 26rem; }
+  .when__line--left { margin-left: 16%; }
+  .when__line--right { margin-right: 16%; }
+  .when__line--both { gap: 2rem; margin-top: 2.5rem; }
+  .when__both-text { max-width: none; }
+  .when__text { text-align: center; }
+}
+/* How the "Sometimes..." lines arrive (only when the script is running: "is-live").
+   Capacity slides in from the left, distance from the right, then "both" rises and its two
+   lines grow in from the edges to meet it. */
+.when.is-live .when__line, .when.is-live .when__text { opacity: 0; transition: opacity 0.6s linear, transform 0.6s cubic-bezier(0.2, 0.6, 0.2, 1); }
+.when.is-live .when__line--left { transform: translateX(-2.5rem); }
+.when.is-live .when__line--right { transform: translateX(2.5rem); transition-delay: 0.35s; }
+.when.is-live .when__line--both { transform: translateY(1.25rem); transition-delay: 0.9s; }
+.when.is-live .when__line--both::before, .when.is-live .when__line--both::after { transform: scaleX(0); transition: transform 0.7s linear 1.2s; }
+.when.is-live .when__line--both::before { transform-origin: left; }
+.when.is-live .when__line--both::after { transform-origin: right; }
+.when.is-live .when__text { transition-delay: 0.3s; }
+.when.is-live .is-in, .when.is-live .is-in.when__line--both::before, .when.is-live .is-in.when__line--both::after { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<div class="filler container">
+  <h1>Scroll sketch: "When would you bring us in?"</h1>
+  <p>Scroll down slowly. The five situations fall in one at a time and pile up; keep scrolling and they straighten out; then the "Sometimes..." lines arrive. Scroll back up and it all runs in reverse. This grey note stands in for the sections above it on the real page.</p>
+</div>
+
+<section class="when" aria-labelledby="when-title">
+  <div class="when__pin">
+    <div class="when__stage">
+      <div class="when__stage-inner container">
+        <h2 class="when__title" id="when-title">When would you bring us in?</h2>
+        <ul class="when__cards" role="list">
+          <li class="when__card">Your strongest investigator is already carrying more than they should.</li>
+          <li class="when__card">A vacancy may take months to fill.</li>
+          <li class="when__card">Your new leader is still getting oriented.</li>
+          <li class="when__card">The allegation involves someone in the team's reporting line.</li>
+          <li class="when__card">Or the case is sensitive enough that the choice of investigator will be scrutinized just as closely as the findings.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <p class="when__statement">
+      <span class="when__line when__line--left">Sometimes you need more capacity.</span>
+      <span class="when__line when__line--right">Sometimes you need distance from the people involved.</span>
+      <span class="when__line when__line--both"><span class="when__both-text">Sometimes you need both.</span></span>
+    </p>
+    <p class="when__text">And yes, you may need another full-time hire. We understand that. But hiring and onboarding take time, and the complaint on your desk still needs to be handled now.</p>
+  </div>
+</section>
+
+<div class="filler filler--end container"><p>(The next section of the page would start here.)</p></div>
+
+<script>
+/* The pile. How it works:
+   1. The cards sit in the page in their TIDY places (a column on phones, a row on large screens).
+   2. We measure those places, and work out a PILE place for each card: the middle of the
+      group, nudged and tilted a little differently for each one.
+   3. As you scroll along the track, "progress" goes from 0 to 1. For each card we work out
+      where it should be at that moment (above the screen, falling, in the pile, or on its
+      way to its tidy place) and move it there with a CSS transform.
+   The cards never leave the page's structure, so screen readers simply read a normal list. */
+(function () {
+  var section = document.querySelector('.when');
+  if (!section) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;                               // no movement: the tidy version is shown
+
+  var pin = section.querySelector('.when__pin');
+  var inner = section.querySelector('.when__stage-inner');
+  var list = section.querySelector('.when__cards');
+  var cards = Array.prototype.slice.call(section.querySelectorAll('.when__card'));
+
+  // ----- Settings you can safely change -----
+  var TILT = [-4, 3, -2, 4.5, -3];                  // degrees each card leans in the pile
+  var NUDGE_X = [-18, 22, -8, 14, -4];              // pixels each card sits left (-) or right (+) of the middle
+  var NUDGE_Y = [-66, -32, 0, 32, 64];              // pixels up (-) or down (+): later cards land lower, so earlier ones peek out above
+  var FALL_START = 0.04, FALL_GAP = 0.125, FALL_LENGTH = 0.17;   // when each card falls (as a share of the track)
+  var TIDY_START = 0.76, TIDY_LENGTH = 0.2;         // when the pile straightens out
+  var SMOOTH = 0.12;                                // 1 = follows the scroll exactly; smaller = glides after it
+
+  function clamp(n) { return n < 0 ? 0 : n > 1 ? 1 : n; }
+  function easeOut(n) { n = clamp(n); return 1 - Math.pow(1 - n, 3); }          // quick at first, soft landing
+  function easeInOut(n) { n = clamp(n); return n * n * (3 - 2 * n); }           // gentle start and stop
+
+  var pile = [];          // for each card: how far its pile place is from its tidy place
+  var drop = 0;           // how far above the pile a card starts its fall
+  var pinned = false;
+
+  function measure() {
+    cards.forEach(function (card) { card.style.transform = ''; card.style.opacity = ''; });
+    section.classList.add('is-pinned');
+    // If the heading and cards don't fit on the screen, don't pin at all: show the tidy version
+    pinned = inner.offsetHeight <= window.innerHeight - 24;
+    section.classList.toggle('is-pinned', pinned);
+    if (!pinned) return;
+    var wide = window.innerWidth >= 992;
+    var midX = list.offsetWidth / 2, midY = list.offsetHeight / 2;
+    pile = cards.map(function (card, i) {
+      return {
+        x: midX - (card.offsetLeft + card.offsetWidth / 2) + NUDGE_X[i] * (wide ? 6 : 1),
+        y: midY - (card.offsetTop + card.offsetHeight / 2) + NUDGE_Y[i] * (wide ? 0.8 : 1),
+        tilt: TILT[i]
+      };
+    });
+    drop = window.innerHeight * 0.95;
+  }
+
+  function place(progress) {
+    if (!pinned) return;
+    var tidy = easeInOut((progress - TIDY_START) / TIDY_LENGTH);    // 0 = in the pile, 1 = in its tidy place
+    cards.forEach(function (card, i) {
+      var fallen = easeOut((progress - FALL_START - i * FALL_GAP) / FALL_LENGTH);   // 0 = above the screen, 1 = landed
+      var x = pile[i].x * (1 - tidy);
+      var y = (pile[i].y - (1 - fallen) * drop) * (1 - tidy);
+      var tilt = pile[i].tilt * (1 + (1 - fallen) * 1.5) * (1 - tidy);
+      card.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) rotate(' + tilt.toFixed(2) + 'deg)';
+      card.style.opacity = clamp(fallen * 3).toFixed(2);
+    });
+  }
+
+  // How far along the track are we? 0 when the stage first sticks, 1 when it lets go.
+  function trackProgress() {
+    var box = pin.getBoundingClientRect();
+    return clamp(-box.top / (box.height - window.innerHeight));
+  }
+
+  var shown = 0, target = 0, running = false;
+  function frame() {
+    shown += (target - shown) * SMOOTH;
+    if (Math.abs(target - shown) < 0.0004) shown = target;
+    place(shown);
+    if (shown !== target) window.requestAnimationFrame(frame); else running = false;
+  }
+  function update() {
+    target = trackProgress();
+    if (!running) { running = true; window.requestAnimationFrame(frame); }
+  }
+
+  measure();
+  shown = target = trackProgress();
+  place(shown);
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', function () { measure(); shown = target = trackProgress(); place(shown); });
+
+  // The "Sometimes..." lines and the closing paragraph arrive when they scroll into view
+  if ('IntersectionObserver' in window) {
+    section.classList.add('is-live');
+    var watcher = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-in');
+        watcher.unobserve(entry.target);
+      });
+    }, { threshold: 0.4 });
+    Array.prototype.forEach.call(section.querySelectorAll('.when__line, .when__text'), function (el) { watcher.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>

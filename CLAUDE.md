@@ -343,6 +343,15 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-22 (late night): working scroll sketch of "When would you bring us in?" (Miguelle's pile idea)
+- Miguelle's idea: the five situations fall in one by one as the visitor scrolls and pile up (the feeling of problems stacking), then straighten into one column on phones or one row on large screens, and then the "Sometimes..." lines arrive, with "both" fading up between them.
+- **New file: `documentation/previews/when-scroll.html`**, a working sketch (its CSS and JavaScript are inside the file; on the real site they would move to `styles.css` and `global.js`). How it works: the section has a tall track; the heading and cards stick to the screen while the visitor scrolls its length (ordinary scrolling, nothing is frozen), and the script places each card from how far along the track the visitor is. It runs backwards when scrolling up. Each situation is a white slip with a burgundy top edge. The "Sometimes..." lines keep the left / right / both treatment and animate in when reached.
+- Safety nets: with "reduce motion" on, with JavaScript off, or if the heading and cards do not fit the screen, there is no pile: the tidy cards are simply shown.
+- Settings at the top of the script: tilt and offsets of each card, when each falls, when the pile straightens, how smoothly it follows the scroll; the scroll length is the `190vh` in the CSS.
+- **Checked** by automated browser at 390 x 844, 375 x 667 and 1440 x 900, at several scroll positions; no script errors. **Not checked:** a real phone (touch scrolling and the browser's moving address bar are where this kind of effect most often misbehaves), Safari, Firefox.
+- To adapt for the real site: the stage must stick below the site header (`top: var(--header-h)`), not at the top of the screen.
+- **Waiting on:** Miguelle's verdict after trying it on a phone. The homepage section is unchanged. Committed, not pushed.
+
 ### 2026-11-22 (night, later): sketch 1 ("When would you bring us in?") redrawn after Miguelle's review
 - Miguelle's verdict on the three sketches: likes all three on large screens, but sketch 1 looked plain and lost its character on phones (one column of dashes), and the navy "Sometimes..." box felt dropped in. **Most visitors will be on phones, so every treatment must carry over to phones.** Sketches 2 and 3 were not changed.
 - `documentation/previews/human-and-rhythm.html`, sketch 1, second version: the situations alternate, a line from the left screen edge, then one from the right (text right-aligned), on phones and large screens alike. The navy box is gone: "more capacity" comes from the left, "distance" from the right, and "Sometimes you need both." sits centred, larger and burgundy, with a line reaching it from each edge.

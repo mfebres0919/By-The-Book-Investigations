@@ -343,6 +343,13 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-22 (later): hero lines keep swaying at rest; pause button added
+- Miguelle asked for the resting tangle to keep moving slowly so the hero does not feel static. `javascript/global.js` section 8: after the opening animation the loose ends at the left sway continuously (each wave slides sideways very slowly; the `SWAY` setting controls the speed, 0 turns it off). The straight line does not move.
+- Because the movement no longer ends, a **pause button** was added (handbook: auto-playing motion longer than 5 seconds has a pause button; WCAG 2.2.2). `index.html`: `<button class="hero__pause">` inside `.hero__stage`, hidden until the script shows it. `css/styles.css`: `.hero__pause` rules (40px outlined square, bottom right of the stage, above the level line). Its label switches between "Pause background animation" and "Play background animation".
+- The drawing also stops by itself while the hero is scrolled off the screen, and with "reduce motion" on nothing moves and the button stays hidden.
+- **Checked** with an automated browser at 1440 wide: lines move at rest, hold still when paused, resume, and reduce-motion shows the resting picture with the button hidden. Screenshots at 390 and 1440. Not checked: Safari, Firefox, real phones.
+- Committed, **still not pushed** (waiting for Miguelle's go-ahead, see the entry below).
+
 ### 2026-11-22: round-two feedback arrived; hero photo replaced by an animated line drawing (first draft, for Miguelle's review)
 - **Her feedback** is in `documentation/client-brief/By-the-Book Homepage Design Feedback Brief.docx` (round two: five creative-direction points and a list of copy corrections). Miguelle is going through it one point at a time. **Only point 1 (hero) has been worked on.** Points 2 to 5 and all the copy corrections (title "Founder" only, "CLEAR By-the-Book™ Investigation Framework" everywhere, "case" instead of "matter", new INVEXTRA wording and "Early 2027", whether the retainer nav link is needed) are **not done yet**. Her point 5 ("Clients: Add") is cut off in the document: ask her what it was meant to say.
 - **Hero (her point 1: "keep the headline... a more ownable visual treatment... connected to impartial investigative work").** Miguelle's idea: scattered lines that animate into one straight line (gathering, reviewing and analysing the facts until there is a clear finding). Built as a drawing made in code (SVG), not a picture:

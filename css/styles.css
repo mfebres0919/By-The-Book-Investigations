@@ -55,6 +55,32 @@
 .hero__fade-from { stop-color: var(--color-white); stop-opacity: 0; }
 .hero__fade-to   { stop-color: var(--color-white); stop-opacity: 1; }
 
+/* Pause button for the drawing: a small, quiet square in the bottom right corner of the
+   stage, just above the level line. It shows the pause bars while the lines move and the
+   play triangle once paused (global.js adds the class "is-paused"). */
+.hero__pause {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 3.75rem;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;                 /* 40px: comfortably above the 24px minimum tap size */
+  height: 2.5rem;
+  border: 1px solid var(--color-rule-on-dark);
+  background: none;
+  color: var(--color-mist);
+  cursor: pointer;
+  transition: border-color var(--speed) var(--ease), color var(--speed) var(--ease);
+}
+.hero__pause[hidden] { display: none; }
+.hero__pause:hover {
+  border-color: var(--color-white);
+  color: var(--color-white);
+}
+.hero__pause-icon--play,
+.hero__pause.is-paused .hero__pause-icon--pause { display: none; }
+.hero__pause.is-paused .hero__pause-icon--play { display: block; }
+
 .hero__inner {
   flex: 1;
   display: flex;
@@ -175,6 +201,7 @@
     text-align: center;          /* centres the lines of text inside them */
     padding-block: 4.5rem 8.5rem;
   }
+  .hero__pause { bottom: 4.75rem; }
   .hero__actions { justify-content: center; }
   .hero__trust-inner { text-align: center; }
   .hero__trust-text { margin-inline: auto; }

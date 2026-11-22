@@ -124,6 +124,13 @@
                     </svg>
                 </div>
 
+                <!-- Pause button for the drawing. It starts hidden; global.js shows it only when the
+                     lines are actually moving. The two icons swap when it is pressed (styles.css). -->
+                <button class="hero__pause" type="button" aria-label="Pause background animation" hidden>
+                    <svg class="hero__pause-icon hero__pause-icon--pause" aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 14 14"><path d="M4 2v10M10 2v10" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                    <svg class="hero__pause-icon hero__pause-icon--play" aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 14 14"><path d="M3.5 1.5v11l9-5.5z" fill="currentColor"/></svg>
+                </button>
+
                 <div class="hero__inner container">
                     <!-- All hero wording is from her final copy ("Homepage and About Us.docx", section 1). -->
                     <p class="hero__eyebrow">Third-party protected-class investigations</p>

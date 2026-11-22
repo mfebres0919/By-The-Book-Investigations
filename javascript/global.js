@@ -290,13 +290,18 @@
      3. REVIEW     the bundle is combed straight, from the right-hand side towards the left;
      4. FINDING    one bright, level line is drawn along it.
    It plays once and then rests: a small tangle at the left edge feeding one straight line.
+   At rest the tangle keeps swaying, very slowly, so the hero never looks frozen. Because that
+   movement never ends, there is a small pause button in the corner of the hero (an
+   accessibility rule: anything that moves for more than 5 seconds must be pausable), and the
+   movement also stops by itself while the hero is scrolled out of view.
 
    How it works: every line is a row of points. Many times a second we work out where each
    point should be at that moment and hand the browser the new shape (the "d" of a <path>).
    Nothing here is truly random: the "random" numbers come from a fixed seed, so the drawing
    is the same picture on every visit.
 
-   With "reduce motion" on, nothing moves: the resting picture is shown straight away. */
+   With "reduce motion" on, nothing moves: the resting picture is shown straight away and
+   the pause button stays hidden. */
 (function () {
   var svg = document.querySelector('.hero__lines');
   if (!svg) return;
@@ -304,6 +309,7 @@
   var finding = svg.querySelector('.hero__finding');
   var fade = svg.querySelector('#hero-finding-fade');
   if (!group || !finding || !fade) return;
+  var pauseButton = document.querySelector('.hero__pause');
 
   // ----- Settings you can safely change -----
   var COUNT = 18;          // how many lines
@@ -318,6 +324,7 @@
     findingEnd: 4500       // ...and ends (keep the total under 5 seconds)
   };
   var START_DELAY = 200;   // a short wait after the page loads
+  var SWAY = 0.22;         // how fast the resting tangle sways (0 = still; 0.22 is one slow rise and fall in roughly 20 to 30 seconds)
 
   // A small "random" number maker with a fixed starting point (gives 0 to 1)
   var seed = SEED;
@@ -377,8 +384,10 @@
   function clamp(n) { return n < 0 ? 0 : n > 1 ? 1 : n; }
   function ease(n) { n = clamp(n); return n * n * (3 - 2 * n); }   // starts and stops gently, no bounce
 
-  // Draw every line as it should look "time" milliseconds into the animation
-  function draw(time) {
+  // Draw every line as it should look "time" milliseconds into the animation.
+  // "sway" is the number of seconds the lines have been moving; it slides each wave sideways
+  // a little, which is what makes the loose ends rise and fall. The straight part never moves.
+  function draw(time, sway) {
     // "front" is how far the tangle still reaches: past the right edge at first, then back to its resting place
     var combed = ease((time - TIMES.combStart) / (TIMES.combEnd - TIMES.combStart));
     var front = (1 + reach) - combed;
@@ -394,7 +403,9 @@
         var loose = Math.pow(clamp((front - across) / reach), 2.2);
         var wave = 0;
         for (var k = 0; k < thread.waves.length; k++) {
-          wave += Math.sin(x / thread.waves[k].length * 6.283 + thread.waves[k].shift) * thread.waves[k].height;
+          // each line sways at its own speed, and its two waves slide in opposite directions
+          var slide = sway * SWAY * (0.6 + thread.delay * 0.8) * (k ? -1.4 : 1);
+          wave += Math.sin(x / thread.waves[k].length * 6.283 + thread.waves[k].shift + slide) * thread.waves[k].height;
         }
         var scattered = (thread.startAt + thread.tilt * (across - 0.5)) * height;
         var bundled = base + fanTo * loose;
@@ -408,31 +419,65 @@
   }
 
   var END = TIMES.findingEnd;
-  var clock = 0;          // how far into the animation we are
+  var clock = 0;          // how far into the opening animation we are (milliseconds)
+  var swayClock = 0;      // how long the lines have been swaying (seconds)
   var last = null;        // the time of the previous frame
+  var paused = false;     // true after the visitor presses the pause button
+  var inView = true;      // false while the hero is scrolled off the screen
+  var running = false;    // true while frames are being drawn
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function frame(now) {
+    if (paused || !inView) { running = false; last = null; return; }
     // Count only real, visible time: if the tab was in the background, carry on from where it was
-    if (last !== null) clock += Math.min(now - last, 50);
+    if (last !== null) {
+      var step = Math.min(now - last, 50);
+      clock = Math.min(clock + step, END);
+      swayClock += step / 1000;
+    }
     last = now;
-    draw(clock);
-    if (clock < END) window.requestAnimationFrame(frame);
+    draw(clock, swayClock);
+    window.requestAnimationFrame(frame);
+  }
+  function start() {
+    if (running || paused || !inView || still) return;
+    running = true;
+    window.requestAnimationFrame(frame);
   }
 
   measure();
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (still) {
     clock = END;
-    draw(END);            // no movement: go straight to the resting picture
+    draw(END, 0);         // no movement: go straight to the resting picture
   } else {
-    draw(0);
-    window.setTimeout(function () { window.requestAnimationFrame(frame); }, START_DELAY);
+    draw(0, 0);
+    window.setTimeout(start, START_DELAY);
+  }
+
+  // The pause button: stops and restarts the movement, and changes its own label and icon
+  if (pauseButton && !still) {
+    pauseButton.hidden = false;
+    pauseButton.addEventListener('click', function () {
+      paused = !paused;
+      pauseButton.classList.toggle('is-paused', paused);
+      pauseButton.setAttribute('aria-label', paused ? 'Play background animation' : 'Pause background animation');
+      start();
+    });
+  }
+
+  // Stop drawing while the hero is off the screen (saves battery), and carry on when it returns
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      inView = entries[0].isIntersecting;
+      start();
+    }).observe(svg);
   }
 
   // If the hero changes size (window resized, phone turned, fonts finish loading), redraw to fit
   if ('ResizeObserver' in window) {
     new ResizeObserver(function () {
       measure();
-      draw(clock);
+      draw(clock, swayClock);
     }).observe(svg);
   }
 })();

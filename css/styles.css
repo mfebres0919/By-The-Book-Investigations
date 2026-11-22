@@ -596,7 +596,7 @@
 }
 
 /* ---------- Our process (the CLEAR framework) ----------
-   A navy section with the staircase photo behind it. Heading and intro on top, then the
+   A navy section. On desktop the plumb-line photo hangs beside the heading. Heading and intro on top, then the
    five phases, each led by its own line-drawn mark (C, L, E, A, R). No cards. */
 .process {
   position: relative;
@@ -630,26 +630,9 @@
   fill: var(--color-bg);         /* the section below this one is white */
 }
 
-/* Layer 1 (furthest back): the photo, covering the whole section */
-.process__bg {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-}
-.process__bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-/* Layer 2: a see-through navy sheet over the photo, so white text is always readable.
-   0.86 means 86% solid. Lower the number to show more of the photo. */
-.process::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: rgba(10, 26, 51, 0.86);
-}
+/* The plumb-line photo. Phones and tablets: not shown (and not downloaded), because the
+   heading needs the full width there. Desktop: see the media query at the end of this block. */
+.process__bg { display: none; }
 
 .process__title {
   max-width: 20em;
@@ -788,6 +771,31 @@
     height: 1px;
   }
   .process__closing { margin-top: 3.5rem; }
+
+  /* The plumb-line photo sits in the top right corner, in the empty space beside the heading.
+     The string appears to hang from the angled divider above, and the photo's burgundy band
+     runs down the right-hand edge of the screen.
+     The "mask" makes the photo fade away to nothing towards the left and the bottom, so it
+     melts into the navy section with no visible edge. The two masks are multiplied together.
+     The second background-image line offers browsers the smaller WebP file; browsers that
+     don't understand it keep the JPEG from the first line. */
+  .process__bg {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    width: min(34rem, 40vw);
+    aspect-ratio: 936 / 1024;      /* the shape of the picture file */
+    background-image: url("../images/backgrounds/plumb-line.jpg");
+    background-image: image-set(url("../images/backgrounds/plumb-line.webp") type("image/webp"), url("../images/backgrounds/plumb-line.jpg") type("image/jpeg"));
+    background-size: cover;
+    background-position: right top;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 45%), linear-gradient(to bottom, #000 62%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 45%), linear-gradient(to bottom, #000 62%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
 }
 
 /* ---------- Investigation Readiness Intensive ----------

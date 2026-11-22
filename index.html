@@ -297,7 +297,7 @@
         </section>
 
         <!-- ============ CLEAR (her section 6) ============
-             Navy section over the staircase photo. No cards here (the section above has cards): the five
+             Navy section, with the plumb-line photo beside the heading on desktop. No cards here (the section above has cards): the five
              steps are full-width rows, each led by its letter, so the letters spell CLEAR down the page.
              All wording is hers. id="process" is what the "CLEAR Investigation Framework™" menu link jumps to. -->
         <section class="process" id="process" aria-labelledby="process-title">
@@ -306,14 +306,10 @@
                  preserveAspectRatio="none" lets it stretch to any screen width. Decorative, so aria-hidden. -->
             <svg class="process__divider" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0 0v36L250 4l750 96V0H0z"/></svg>
 
-            <!-- Background image. Decorative, so alt is empty. Lazy-loaded because it is below the first screen. -->
-            <picture class="process__bg">
-                <source media="(min-width: 48rem)" srcset="images/backgrounds/navy-silver-staircase.webp" type="image/webp">
-                <source media="(min-width: 48rem)" srcset="images/backgrounds/navy-silver-staircase.jpg">
-                <source srcset="images/backgrounds/navy-silver-staircase-m.webp" type="image/webp">
-                <img src="images/backgrounds/navy-silver-staircase-m.jpg" alt="" aria-hidden="true"
-                     width="720" height="1210" loading="lazy" decoding="async">
-            </picture>
+            <!-- The plumb line (a weight on a string, the tool that shows what is truly upright): it hangs
+                 in the empty space beside the heading, on desktop only. Decorative, so it is hidden from
+                 screen readers. The picture itself is set in styles.css, so phones never download it. -->
+            <div class="process__bg" aria-hidden="true"></div>
 
             <div class="process__inner container">
                 <div class="process__intro">

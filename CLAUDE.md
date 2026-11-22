@@ -343,6 +343,15 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-22 (evening, later): CLEAR section: staircase photo replaced by the plumb-line photo
+- Miguelle asked to remove the staircase photo and use one of the new pictures from `documentation/source-images/`. Chosen: "Copper Plumb Bob on Navy Wall" (the two linework pictures would have put more lines behind the line-drawn marks).
+- It is **not a full background**. At full size the weight landed behind the fourth and fifth columns of text, so it is placed in the empty top right corner beside the heading, fading out to the left and bottom, with the picture's burgundy band down the right edge. **Desktop only (62rem and up)**; phones and tablets get plain navy and do not download it.
+- New files: `images/backgrounds/plumb-line.webp` (28 KB) and `.jpg` (75 KB), cropped from the source (right-hand 936 x 1024 pixels). `index.html`: the `<picture>` became an empty `<div class="process__bg">`. `css/styles.css`: the picture and its fade ("mask") are set in the desktop media query; the navy sheet over the old photo (`.process::before`) is gone.
+- No longer used, still in the folder: `images/backgrounds/navy-silver-staircase*`.
+- Note: the weight is copper, which the brand guide keeps for INVEXTRA touches. Raise with Marquita when she reviews.
+- Checked in screenshots at 1024 and 1440 wide. Committed, not pushed.
+- **Next:** her points 3 (human element) and 4 (visual rhythm). Ideas given to Miguelle; nothing built yet.
+
 ### 2026-11-22 (evening): CLEAR section rebuilt around the five marks, with animation (her point 2)
 - Miguelle approved direction 1 ("five states of the line") and asked for it to be built with animation.
 - `index.html`: the five rows (`.clear__row`) became five phases (`.clear__step`), each with an inline SVG mark (`.clear__mark`: five thin `.clear__line` paths plus a heavier `.clear__accent` or `.clear__point`), the big letter, the name and her description. Wording unchanged. The marks are complete drawings in the HTML, so they show with JavaScript off.

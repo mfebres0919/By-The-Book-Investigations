@@ -614,8 +614,9 @@
 
         <!-- ============ ORGANIZATIONS WE'VE SERVED (the logo part of her section 11) ============
              Her copy: "Organizations we've served: [logo row, unchanged from current site]".
-             Its own white section, because the logo files have white backgrounds. Nine logos in a
-             3 x 3 table of equal cells; the CSS fits each logo into the same box. They are grey until
+             Its own white section, because the logo files have white backgrounds. Ten logos in a
+             table of equal cells (two across on phones, five across on larger screens); the CSS
+             fits each logo into the same box. They are grey until
              you point at one, when it shows its own colours. Each alt text is the organisation's name.
              TO CONFIRM with her before launch: that every organisation here may still be shown. -->
         <section class="orgs" aria-labelledby="orgs-title">
@@ -675,6 +676,12 @@
                             <source srcset="images/logos/south-carolina-combat-veterans-group.webp" type="image/webp">
                             <img class="orgs__logo" src="images/logos/south-carolina-combat-veterans-group.jpg" alt="South Carolina Combat Veterans Group" width="83" height="84" loading="lazy" decoding="async">
                         </picture>
+                    </li>
+                    <!-- Per Scholas (added at her request, round-two feedback). The file is a vector drawing
+                         (SVG), sharp at any size, so it needs no <picture> or WebP version. Its dark
+                         background is part of the logo as she supplied it. -->
+                    <li class="orgs__item">
+                        <img class="orgs__logo orgs__logo--boxed" src="images/logos/per-scholas.svg" alt="Per Scholas" width="191" height="55" loading="lazy" decoding="async">
                     </li>
                 </ul>
             </div>

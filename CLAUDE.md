@@ -343,6 +343,14 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-23 (night): Per Scholas added to "Organizations we've served" (her point 5)
+- Her point 5 was cut off in the feedback document ("Clients: Add"). **Resolved:** Miguelle says she asked for Per Scholas to be added, and pasted the logo she wants (lime green wordmark on a dark background).
+- **New file: `images/logos/per-scholas.svg`** (7 KB). The picture Miguelle pasted was only 140 pixels wide, too small to use, so the file was built from the wordmark drawing in the header of perscholas.org (their own vector artwork, lime `#E5FE77`), set on the dark background colour sampled from her picture (`#232428`). It is an SVG, so it needs no WebP version and no `<picture>`.
+- `index.html`: a tenth `<li>` in the logo list, alt text "Per Scholas". `css/styles.css`: ten logos no longer fit a 3 x 3 table, so the table is now **two across on phones (five rows) and five across from 48rem up (two rows)**; `.orgs__logo--boxed` fits a logo that has no `<picture>` around it.
+- Like the others it is grey until pointed at, then shows its own colours. Its dark box is heavier than the white-background logos beside it (Skyers Law Group is the only other dark one).
+- Checked in screenshots at 390, 768 and 1440 wide, at rest and on hover. Committed, not pushed.
+- **To confirm with her** (already on the list in Section 9 for the other nine): that Per Scholas may be shown, and that this is the version of their logo she wants.
+
 ### 2026-11-23 (evening): emphasised words in two headings; Readiness Intensive rebuilt as a two-half panel (her point 4)
 - **Miguelle's reading of her point 4:** she is not asking for more decoration; she wants visual hierarchy and deliberate variation in layout from section to section. One tool for that: emphasise a key word in a heading.
 - **New global class `.accent`** (`css/global.css`): `<em class="accent">word</em>` makes one word of a heading burgundy and italic. For headings on white or pale grey only. Used so far: "**When** would you bring us in?" and "An outside investigation shouldn't become another **problem** to manage" ("problem" was Miguelle's choice; "When" was Claude's, change freely). Candidates for the other headings as each section is reworked.

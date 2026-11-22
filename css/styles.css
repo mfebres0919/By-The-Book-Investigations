@@ -1666,7 +1666,7 @@ html.js .start:not(.is-drawn) .steps::before { transform: scale(0); }
 /* ---------- Questions we get asked ----------
    An accordion on a pale grey background. Each question is its own white card with a navy
    edge; the one that is open turns navy, so it is obvious which answer you are reading.
-   Phones: heading, then the questions. Desktop: heading on the left, questions on the right. */
+   One column at every size: heading, then the questions (centred from tablets up). */
 .faq {
   padding-block: var(--space-section);
   background: var(--color-wash);
@@ -1787,17 +1787,15 @@ html.js .faq__panel-inner {
   .faq__question { padding: 1.5rem 2rem; }
   .faq__answer { padding: 0 2rem 1.75rem; }
 }
-/* Desktop: heading left (it stays in view while the list scrolls), questions right */
-@media (min-width: 62rem) {
+/* Tablets and up: still one column. The heading is centred above the questions, and the
+   questions sit in a centred column that is narrower than the page, so the lines of the
+   answers stay a comfortable length to read. */
+@media (min-width: 48rem) {
   .faq__inner {
-    grid-template-columns: 4fr 8fr;
-    column-gap: clamp(3rem, 6vw, 5.5rem);
-    align-items: start;
+    max-width: calc(56rem + var(--gutter) * 2);   /* the container still supplies the side gutters */
+    gap: 3rem;
   }
-  .faq__title {
-    position: sticky;
-    top: calc(var(--header-h) + 2.5rem);
-  }
+  .faq__title { text-align: center; }
 }
 
 /* ---------- Closing call to action ----------

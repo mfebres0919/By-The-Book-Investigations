@@ -343,6 +343,14 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-24 (night): numbers strip, "Two ways" cards and testimonials reworked
+Miguelle asked whether other sections needed rearranging; Claude named these three and Miguelle said to take all three. Wording unchanged throughout. Committed, not pushed. **Miguelle is reviewing how the whole page comes together on phones.**
+- **Numbers strip** (`css/styles.css`, "Stat strip"): the three figures are much larger (up to 92px on desktop). Phones: each figure on its own row with its label beside it. Tablets up: three across with labels under them. Her statement "Independent, attorney-led fact-finding" is now an italic line in a row of its own between two rules (centred from tablets up), with the founder note under it. The counting animation is unchanged.
+- **"Two ways to get the work moving"**: the "01" / "02" numerals are large; titles, taglines and body text are a step larger. On desktop the cards are no longer equal widths: the retainer card takes 7 parts to the single-case card's 5 and its four-item list runs two by two, which brings the two cards to about the same height (before, the second card ended early and left empty white space).
+- **Testimonials** (`index.html`, `css/styles.css`): Dr. Leonard Moore's quote was moved to be the **first** item in the list and is set large across the full width (name to the right on desktop); the other three follow in a row beneath it, in slightly larger type.
+- **Not done (offered, not asked for):** emphasised words in the remaining headings ("Two ways...", "Built by someone...", "How it starts"; white italic would be needed on the navy sections).
+- Checked in screenshots at 390 and 1440 wide; no sideways scrolling. Not checked: real phones, Safari, Firefox, tablet widths.
+
 ### 2026-11-24 (evening): her round-two copy corrections applied (`index.html`)
 - **Framework name.** "CLEAR Investigation Framework™" is now "**CLEAR By-the-Book™ Investigation Framework**" in the header menu, the hero trust line and the footer (the CLEAR section heading already used it). "By-the-Book™" is wrapped in `nowrap` so it never breaks across lines. Her document spells it with stray spaces ("By- the- Book", "By -the- Book"); these were treated as typing slips and the normal spelling used. **Confirm with her.** Places that say only "CLEAR" (for example "CLEAR gives our work a consistent structure") were left: the instruction is about the full name.
 - **"Matter" to "case"**, five places: the meta description, the hero paragraph, the Single-Case Investigation card ("Maybe the case involves a senior executive..."), and two answers in the questions section. "The gaps that matter most" is a verb and was left.

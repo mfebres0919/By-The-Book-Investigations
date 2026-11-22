@@ -312,7 +312,7 @@
 }
 
 /* ---------- When would you bring us in? ----------
-   Half pale grey (left), half white (right). One idea runs through all of it, on
+   Half pale grey (left), half white (right), divided by a slanted edge. One idea runs through all of it, on
    phones and large screens alike:
    a thin line comes in from the LEFT edge of the screen, the next from the RIGHT, and so on.
    1. the heading and the five situations, alternating left and right;
@@ -320,13 +320,34 @@
       middle with a line reaching it from each side;
    3. the closing paragraph. */
 .when {
+  position: relative;
+  isolation: isolate;            /* keeps the white layer's z-index inside this section */
   padding-block: var(--space-section);
-  /* Left half pale grey, right half white, with a clean edge down the middle of the screen.
-     A "gradient" that changes colour at exactly 50% draws two flat halves, not a fade.
-     The reasons on the left sit on the grey, the ones on the right on the white, and
-     "Sometimes you need both." sits across the two. */
-  background: linear-gradient(to right, var(--color-wash) 50%, var(--color-white) 50%);
+  background: var(--color-wash);
   overflow-x: clip;              /* the lines are drawn wider than the screen; this trims them at the edges */
+}
+/* The white half. A white layer covers the whole section, and "clip-path" cuts it down to a
+   four-cornered shape: from a point on the top edge, along to the top right corner, down to
+   the bottom right corner, and back to a point on the bottom edge. The two points are not
+   above one another, which is what makes the edge between grey and white slanted.
+   --slant-top and --slant-bottom say how far across those points are (50% and 50% would be
+   a straight vertical split; the further apart the two numbers, the more it leans). */
+.when::before {
+  --slant-top: 72%;
+  --slant-bottom: 28%;
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-white);
+  clip-path: polygon(var(--slant-top) 0, 100% 0, 100% 100%, var(--slant-bottom) 100%);
+}
+@media (min-width: 48rem) {
+  /* wider screens are less tall, so the same lean needs less of a shift */
+  .when::before {
+    --slant-top: 62%;
+    --slant-bottom: 38%;
+  }
 }
 .when__title {
   font-size: clamp(2rem, 1.5rem + 2.4vw, 3.25rem);

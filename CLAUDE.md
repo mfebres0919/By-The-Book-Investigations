@@ -346,6 +346,7 @@ Newest first. One entry per working session or per significant change: what chan
 ### 2026-11-25 (later still): "When would you bring us in?" background: planes dropped, now half grey and half white
 - **Decision (Miguelle):** "just get rid of it all": the angled planes and the grey band are gone and `images/illustrations/planes.svg` is deleted. The two entries below describe work that no longer exists.
 - The section's background is now **pale grey on the left half and white on the right half**, split down the middle of the screen (`css/styles.css`, one `linear-gradient` on `.when`; no image). The left-hand reasons sit on grey, the right-hand ones on white, and "Sometimes you need both." sits across the two.
+- **Corrected straight after:** Miguelle meant a *slanted* split, not a vertical one. The grey is now the section's background and the white half is a layer (`.when::before`) cut to a slanted shape with `clip-path`; `--slant-top` and `--slant-bottom` set the lean (72% / 28% on phones, 62% / 38% from 48rem up).
 - **The angled divider at the top of the next section was NOT put back** (Claude's call: a full-width grey divider would show as a grey wedge under the white half). The grey half ends on a straight edge. Restore it if Miguelle wants it.
 - Checked in screenshots at 390 and 1440 wide. Committed, not pushed.
 

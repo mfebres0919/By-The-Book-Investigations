@@ -343,6 +343,12 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-25 (later still): "When would you bring us in?" background: planes dropped, now half grey and half white
+- **Decision (Miguelle):** "just get rid of it all": the angled planes and the grey band are gone and `images/illustrations/planes.svg` is deleted. The two entries below describe work that no longer exists.
+- The section's background is now **pale grey on the left half and white on the right half**, split down the middle of the screen (`css/styles.css`, one `linear-gradient` on `.when`; no image). The left-hand reasons sit on grey, the right-hand ones on white, and "Sometimes you need both." sits across the two.
+- **The angled divider at the top of the next section was NOT put back** (Claude's call: a full-width grey divider would show as a grey wedge under the white half). The grey half ends on a straight edge. Restore it if Miguelle wants it.
+- Checked in screenshots at 390 and 1440 wide. Committed, not pushed.
+
 ### 2026-11-25 (later): grey band moved to the foot of "When would you bring us in?"; divider below it removed
 - Miguelle's requests. `images/illustrations/planes.svg`: the darker band no longer sits in the middle; it is now at the foot of the section, below "Sometimes you need both.", behind the closing paragraph, and runs to the bottom edge. It is also lighter (navy at 4.5% instead of 7%).
 - **The angled divider at the top of the "rigor and humanity" section is removed** (`index.html`: the `standard__divider` SVG; `css/styles.css`: its rule and the extra top padding). The grey section now ends in its band and meets the white section on a straight edge.

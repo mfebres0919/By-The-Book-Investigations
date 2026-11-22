@@ -312,7 +312,7 @@
 }
 
 /* ---------- When would you bring us in? ----------
-   Pale grey section with angled white planes behind it. One idea runs through all of it, on
+   Half pale grey (left), half white (right). One idea runs through all of it, on
    phones and large screens alike:
    a thin line comes in from the LEFT edge of the screen, the next from the RIGHT, and so on.
    1. the heading and the five situations, alternating left and right;
@@ -320,22 +320,13 @@
       middle with a line reaching it from each side;
    3. the closing paragraph. */
 .when {
-  position: relative;
-  isolation: isolate;            /* keeps the background layer's z-index inside this section */
   padding-block: var(--space-section);
-  background: var(--color-wash);
+  /* Left half pale grey, right half white, with a clean edge down the middle of the screen.
+     A "gradient" that changes colour at exactly 50% draws two flat halves, not a fade.
+     The reasons on the left sit on the grey, the ones on the right on the white, and
+     "Sometimes you need both." sits across the two. */
+  background: linear-gradient(to right, var(--color-wash) 50%, var(--color-white) 50%);
   overflow-x: clip;              /* the lines are drawn wider than the screen; this trims them at the edges */
-}
-/* Background: two broad white planes lying at an angle across the grey, and one slightly
-   darker grey band at the foot of the section, below "Sometimes you need both." (a vector
-   drawing, images/illustrations/planes.svg). It is stretched to fill the section whatever
-   its shape. The band runs down to the bottom edge, where the white section below begins. */
-.when::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: url("../images/illustrations/planes.svg") center / 100% 100% no-repeat;
 }
 .when__title {
   font-size: clamp(2rem, 1.5rem + 2.4vw, 3.25rem);

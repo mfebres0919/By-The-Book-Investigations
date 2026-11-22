@@ -422,8 +422,8 @@ main,
   }
 }
 
-/* Small desktops (992px to about 1200px): the menu has a long label ("CLEAR Investigation
-   Framework™"), so the links get a little smaller and closer together and are not allowed to
+/* Small desktops (992px to about 1200px): the menu has a long label ("CLEAR By-the-Book™
+   Investigation Framework"), so the links get a little smaller and closer together and are not allowed to
    wrap onto two lines. From 75rem (1200px) up they return to full size. */
 @media (min-width: 62rem) and (max-width: 74.99rem) {
   .site-nav { gap: 1.25rem; }

@@ -413,7 +413,7 @@
              White section (the CLEAR section above is navy, so this one stays light).
              Her round-two note: give "Not Investigations 101" more presence. So the section name is
              a small label, and the first sentence of her opening line is the largest type in the
-             section: "Not Investigations" solid, "101." as hollow outlined numerals, with a level
+             section: "Not Investigations" in navy, "101." in burgundy, with a level
              line running from it to the edge of the screen (it draws in: data-draw).
              Under that: her second sentence and the button on the left, her three paragraphs on
              the right. In the first paragraph the four gaps she lists are each a sentence, so they
@@ -694,7 +694,7 @@
         <!-- ============ HOW IT STARTS (her section 12) ============
              White section with angled pale grey edges (the logo strip above and the questions below
              are both pale grey). Her three steps as a timeline: one continuous line with a small
-             burgundy square where each step begins, and a large hollow numeral for each. The line
+             burgundy square where each step begins, and a large burgundy numeral for each. The line
              runs across on desktop and down the left side on phones, and draws itself in when the
              steps scroll into view (data-draw). An ordered list, because the steps happen in this
              order; the big "01" is for the eye only (aria-hidden), since the list already numbers them.
@@ -733,10 +733,11 @@
              so it works with a keyboard and screen readers, and even with JavaScript off.
              On its own the browser snaps answers open and shut. global.js (part 7) makes that
              smooth: it adds or removes the class "is-open", and the CSS slides the answer.
-             Plain pale grey background (a grid texture was tried and removed: too busy). All wording is hers. -->
+             Pale grey background (a grid texture was tried and removed: too busy). Each question is a
+             white card; the open one turns navy. All wording is hers. -->
         <section class="faq" aria-labelledby="faq-title">
             <div class="faq__inner container">
-                <h2 class="faq__title" id="faq-title" data-split="words">Questions we get asked</h2>
+                <h2 class="faq__title" id="faq-title" data-split="words"><em class="accent">Questions</em> we get asked</h2>
 
                 <div class="faq__list" data-reveal="fade" data-delay="2">
                     <details class="faq__item is-open" open>

@@ -343,6 +343,13 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-24 (later): numerals filled in; questions section restyled
+- **Miguelle did not like the hollow (outline-only) numerals.** "101." in section 7 and "01 / 02 / 03" in "How it starts" are now **solid burgundy**, same size and position as before. The `-webkit-text-stroke` / `paint-order` rules are removed from `css/styles.css`. (The entry below describes them as hollow; this replaces that.)
+- **"Questions we get asked"** (`css/styles.css`, heading in `index.html`): each question is now its own white card with a navy left edge and a small gap between cards; the **open card turns navy** with white text, so it is clear which answer is being read; a closed card's edge turns burgundy on hover; the questions are set larger; the heading is larger with "Questions" as the emphasised word (`.accent`). The accordion script (global.js, section 7) is unchanged. Without JavaScript the browser's own `open` attribute gives the navy state.
+- **Checked** by automated browser at 390 and 1440 wide: clicking a question opens it and turns it navy; screenshots of the three sections. Not checked: real phones, Safari, Firefox, keyboard focus on the navy card.
+- **Noticed, not changed:** two answers in this section still say "matter" ("your specific matter", "a sensitive matter"). Her copy corrections ask for "case"; that pass has not been done yet.
+- Committed, not pushed.
+
 ### 2026-11-24: lines that trace in (section 4); sections 7, 9, 11 and 12 reworked
 All at Miguelle's request. Miguelle will review; nothing has been shown to Marquita. Committed, not pushed.
 - **New in `javascript/global.js` (section 4, part d): `data-draw`.** A tripwire for lines that draw themselves. When an element with `data-draw` scrolls into view it gets the class `is-drawn` for good; `data-draw=".standard"` puts the class on the nearest ancestor matching that selector instead. The CSS does the drawing. Pattern used everywhere: the "hidden" rule starts with `html.js` and `:not(.is-drawn)`, and the `transition` is attached to `.is-drawn`, so hiding at page load is instant and only the drawing animates.

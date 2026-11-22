@@ -997,24 +997,13 @@ html.js .standard:not(.is-drawn) .standard__drop { transform: scaleY(0); }
   line-height: 1.04;
   letter-spacing: -0.015em;
 }
-/* "101." as hollow numerals: an outline with nothing inside.
-   How: the digits are filled white (the same as the page) and given a thick burgundy outline;
-   "paint-order" paints the outline first and the white on top, which covers the inner half of
-   the outline, leaving a clean line around the outside of each digit. Browsers that can't
-   outline text get solid burgundy digits instead. */
+/* "101." in solid burgundy, against the navy of the words before it */
 .intensive__num {
   position: relative;            /* the level line is placed against it */
   display: inline-block;         /* lets it be a different size, and gives the line a place to start */
   font-size: 1.75em;             /* phones: "101." drops to a line of its own, much larger */
   line-height: 0.95;
   color: var(--color-burgundy);
-}
-@supports (-webkit-text-stroke: 1px black) and (paint-order: stroke fill) {
-  .intensive__num {
-    color: var(--color-bg);
-    -webkit-text-stroke: 0.045em var(--color-burgundy);
-    paint-order: stroke fill;
-  }
 }
 /* The level line: from just after "101." to the edge of the screen. It draws in from the
    left once the words scroll into view (global.js adds "is-drawn"). */
@@ -1570,7 +1559,7 @@ html.js .intensive__big:not(.is-drawn) .intensive__num::after { transform: scale
 
 /* ---------- How it starts ----------
    White section with angled pale grey edges top and bottom. The three steps hang off one
-   continuous line, like a timeline, each with a large hollow numeral.
+   continuous line, like a timeline, each with a large burgundy numeral.
    Phones: the line runs down the left side. Desktop: it runs across the top. */
 .start {
   position: relative;
@@ -1631,8 +1620,7 @@ html.js .start:not(.is-drawn) .steps::before { transform: scale(0); }
   height: 0.5625rem;
   background: var(--color-burgundy);
 }
-/* The numeral: large and hollow (an outline only), made the same way as "101." in the
-   Readiness Intensive section. Solid burgundy in browsers that can't outline text. */
+/* The numeral: large, in solid burgundy */
 .step__num {
   display: block;
   color: var(--color-burgundy);
@@ -1640,13 +1628,6 @@ html.js .start:not(.is-drawn) .steps::before { transform: scale(0); }
   font-size: clamp(4rem, 3rem + 5vw, 7.5rem);
   line-height: 0.85;             /* trims the space above the digits so they line up with the square */
   letter-spacing: -0.02em;
-}
-@supports (-webkit-text-stroke: 1px black) and (paint-order: stroke fill) {
-  .step__num {
-    color: var(--color-bg);
-    -webkit-text-stroke: 0.04em var(--color-burgundy);
-    paint-order: stroke fill;
-  }
 }
 .step__title {
   margin-top: 1.25rem;
@@ -1683,11 +1664,12 @@ html.js .start:not(.is-drawn) .steps::before { transform: scale(0); }
 }
 
 /* ---------- Questions we get asked ----------
-   An accordion on a plain pale grey background.
+   An accordion on a pale grey background. Each question is its own white card with a navy
+   edge; the one that is open turns navy, so it is obvious which answer you are reading.
    Phones: heading, then the questions. Desktop: heading on the left, questions on the right. */
 .faq {
   padding-block: var(--space-section);
-  background: var(--color-wash); /* pale grey, so the white list stands out without a border */
+  background: var(--color-wash);
 }
 
 .faq__inner {
@@ -1695,17 +1677,38 @@ html.js .start:not(.is-drawn) .steps::before { transform: scale(0); }
   gap: 2.5rem;
 }
 .faq__title {
-  font-size: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);   /* same size as the other section headings */
+  font-size: clamp(2rem, 1.5rem + 2.4vw, 3.25rem);
 }
 
-/* The questions sit on a white block against the pale grey */
+/* The cards, with a small gap between them */
 .faq__list {
-  background: var(--color-white);
-  border-top: 2px solid var(--color-navy);
+  display: grid;
+  gap: 0.625rem;
 }
 .faq__item {
-  border-bottom: 1px solid var(--color-rule);
+  background: var(--color-white);
+  border: 1px solid var(--color-rule);
+  border-left: 3px solid var(--color-navy);
+  transition: background-color var(--speed) var(--ease), border-color var(--speed) var(--ease), color var(--speed) var(--ease);
 }
+/* A closed card's edge turns burgundy when you point at it */
+.faq__item:hover { border-left-color: var(--color-burgundy); }
+
+/* The open card: navy, with white text.
+   With JavaScript the class "is-open" marks it (it changes the instant you click). Without
+   JavaScript there is no such class, so the browser's own "open" attribute is used instead. */
+.faq__item.is-open,
+html:not(.js) .faq__item[open] {
+  background: var(--color-navy);
+  border-color: var(--color-navy);
+  color: var(--color-white);
+}
+.faq__item.is-open .faq__icon,
+html:not(.js) .faq__item[open] .faq__icon { color: var(--color-white); }
+.faq__item.is-open .faq__question:hover,
+html:not(.js) .faq__item[open] .faq__question:hover { color: var(--color-white); }
+.faq__item.is-open .faq__answer,
+html:not(.js) .faq__item[open] .faq__answer { color: var(--color-mist); }
 
 /* The clickable row: the question on the left, a plus sign on the right */
 .faq__question {
@@ -1722,7 +1725,7 @@ html.js .start:not(.is-drawn) .steps::before { transform: scale(0); }
 .faq__question::-webkit-details-marker { display: none; }   /* the same, for Safari */
 .faq__question:hover { color: var(--color-burgundy); }
 .faq__question-text {
-  font-size: clamp(1.1875rem, 1.1rem + 0.5vw, 1.4375rem);
+  font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.625rem);
   line-height: 1.3;
 }
 
@@ -1734,6 +1737,7 @@ html.js .start:not(.is-drawn) .steps::before { transform: scale(0); }
   width: 1rem;
   height: 1rem;
   color: var(--color-burgundy);
+  transition: color var(--speed) var(--ease);
 }
 .faq__icon::before,
 .faq__icon::after {

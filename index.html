@@ -199,20 +199,22 @@
 
                 <!-- The five situations alternate: the first comes in from the LEFT edge of the screen, the
                      second from the RIGHT, and so on, each with a thin line running in from its edge.
-                     data-reveal-together makes all five arrive at the same moment (global.js, section 4). -->
+                     data-reveal-together makes all five arrive at the same moment (global.js, section 4).
+                     The words sit in their own span ("when__words") so they can fade in sideways,
+                     starting from the end where the line is (styles.css). -->
                 <ul class="when__list" role="list" data-reveal-together>
-                    <li class="when__item" data-reveal="left">Your strongest investigator is already carrying more than they should.</li>
-                    <li class="when__item" data-reveal="right">A vacancy may take months to fill.</li>
-                    <li class="when__item" data-reveal="left">Your new leader is still getting oriented.</li>
-                    <li class="when__item" data-reveal="right">The allegation involves someone in the team's reporting line.</li>
-                    <li class="when__item" data-reveal="left">Or the case is sensitive enough that the choice of investigator will be scrutinized just as closely as the findings.</li>
+                    <li class="when__item" data-reveal="left"><span class="when__words">Your strongest investigator is already carrying more than they should.</span></li>
+                    <li class="when__item" data-reveal="right"><span class="when__words">A vacancy may take months to fill.</span></li>
+                    <li class="when__item" data-reveal="left"><span class="when__words">Your new leader is still getting oriented.</span></li>
+                    <li class="when__item" data-reveal="right"><span class="when__words">The allegation involves someone in the team's reporting line.</span></li>
+                    <li class="when__item" data-reveal="left"><span class="when__words">Or the case is sensitive enough that the choice of investigator will be scrutinized just as closely as the findings.</span></li>
                 </ul>
 
                 <!-- "Sometimes...": the same pattern. Capacity from one side, distance from the other, and
                      "both" in the middle with a line reaching it from each side. The three arrive together. -->
                 <p class="when__statement" data-reveal-together>
-                    <span class="when__line when__line--left" data-reveal="left">Sometimes you need more capacity.</span>
-                    <span class="when__line when__line--right" data-reveal="right">Sometimes you need distance from the people involved.</span>
+                    <span class="when__line when__line--left" data-reveal="left"><span class="when__words">Sometimes you need more capacity.</span></span>
+                    <span class="when__line when__line--right" data-reveal="right"><span class="when__words">Sometimes you need distance from the people involved.</span></span>
                     <span class="when__line when__line--both" data-reveal="up"><span class="when__both-text">Sometimes you need both.</span></span>
                 </p>
 
@@ -221,14 +223,15 @@
         </section>
 
         <!-- ============ AN OUTSIDE INVESTIGATION SHOULDN'T BECOME ANOTHER PROBLEM (her section 4) ============
-             A single reading column in the middle of the page: this section is an argument, so it is
-             set like a short letter rather than a grid. Her four paragraphs, word for word, in order:
-             1. the opening paragraph, set a little larger;
-             2. her second paragraph describes two ways an outside report goes wrong, so its first two
-                sentences sit side by side and its third ("Neither...") sits under both;
-             3. the third paragraph as ordinary text;
-             4. her closing line, set large.
-             No picture: an earlier version had one beside the text and it added nothing. -->
+             Her four paragraphs, word for word, in order. The layout makes her argument:
+             1. the heading and opening paragraph, on white;
+             2. the two ways an outside report goes wrong, side by side (on phones too). A line drops
+                from each, and the two join at "Neither gives an organization what it needs.";
+             3. one line carries on down into a full-width burgundy band, where the first sentence of
+                her third paragraph, "You should not have to choose between rigor and humanity.", is
+                the largest type on the page after the hero (her round-two note asked for it to be
+                emphasised). The rest of that paragraph follows it, inside the band;
+             4. her closing line, back on white. -->
         <section class="standard" aria-labelledby="standard-title">
             <!-- Angled divider from the grey section above: the same shape as the others, filled with that grey -->
             <svg class="standard__divider" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0 0v36L250 4l750 96V0H0z"/></svg>
@@ -240,11 +243,30 @@
                 <div class="standard__pair">
                     <p class="standard__side" data-reveal="left">We have seen reports with strong legal analysis that read more like a defense brief than neutral fact-finding.</p>
                     <p class="standard__side" data-reveal="right">We have also seen people-centered approaches that did not fully address the policy, evidence, or legal standards at issue.</p>
-                    <p class="standard__neither" data-reveal="up" data-delay="2">Neither gives an organization what it needs.</p>
+                    <!-- The two lines: one down from the middle of each sentence, joining in the centre.
+                         preserveAspectRatio="none" lets the drawing stretch to any width. Decorative. -->
+                    <svg class="standard__join" data-reveal="fade" data-delay="2" aria-hidden="true" focusable="false" viewBox="0 0 100 40" preserveAspectRatio="none"><path d="M24 0v8c0 22 26 10 26 32M76 0v8c0 22-26 10-26 32"/></svg>
+                    <p class="standard__neither" data-reveal="up" data-delay="3">Neither gives an organization what it needs.</p>
                 </div>
+                <!-- The single line that carries on down into the burgundy band -->
+                <div class="standard__drop" aria-hidden="true"></div>
+            </div>
 
-                <p class="standard__text" data-reveal="fade">You should not have to choose between rigor and humanity. A sound investigation needs both. It should be fair to the person who made the complaint and the person responding to it, disciplined about the facts, and clear enough for the organization to decide what happens next.</p>
+            <div class="standard__band">
+                <div class="container">
+                    <div class="standard__drop standard__drop--band" aria-hidden="true"></div>
+                    <!-- Her third paragraph, still one paragraph. Each sentence is in its own span so the
+                         first can be set very large; nothing is reworded. <em> marks the two words the
+                         sentence turns on. -->
+                    <p class="standard__text">
+                        <span class="standard__statement" data-reveal="up">You should not have to choose between <em>rigor</em> and <em>humanity</em>.</span>
+                        <span class="standard__both" data-reveal="fade" data-delay="2">A sound investigation needs both.</span>
+                        <span class="standard__rest" data-reveal="fade" data-delay="3">It should be fair to the person who made the complaint and the person responding to it, disciplined about the facts, and clear enough for the organization to decide what happens next.</span>
+                    </p>
+                </div>
+            </div>
 
+            <div class="container">
                 <p class="standard__closing" data-reveal="up">That is the standard we built <span class="nowrap">By-the-Book</span> around.</p>
             </div>
         </section>

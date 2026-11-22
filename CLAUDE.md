@@ -343,6 +343,17 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-23 (later): sideways fade on the reasons; "rigor and humanity" section rebuilt, same look on phones
+- **"When would you bring us in?"**: Miguelle asked for the reasons to fade in from the side their line starts on. Each situation's words (and the two italic "Sometimes" lines) now sit in a `<span class="when__words">`, which fades in sideways: left to right for the ones on the left, right to left for the ones on the right. Done with a sliding CSS mask (`css/styles.css`, "The words fade in sideways"), so the text itself is never set to see-through. This is on top of the small slide they already had.
+- **"An outside investigation shouldn't become another problem to manage"** rebuilt from sketch 2 (`index.html`, `css/styles.css`), wording unchanged:
+  - The two "We have seen..." sentences are **side by side at every size, phones included** (Miguelle wanted the same look on phones), each with a rule under it. An SVG line drops from the middle of each and the two join above "Neither gives an organization what it needs.", centred.
+  - One line carries on into a **full-width burgundy band**. Her third paragraph is still one `<p>`, with each sentence in its own span: "You should not have to choose between rigor and humanity." very large (`.standard__statement`, "rigor" and "humanity" in `<em>` italics), then "A sound investigation needs both.", then the rest.
+  - Her closing line sits centred on white below the band. The old desktop two-column grid for this section is gone.
+- **Deleted:** `documentation/previews/when-scroll.html` (the rejected scroll-pile sketch).
+- **Checked** by automated browser at 320, 390 and 1440 wide: everything ends up visible, no sideways scrolling, no script errors; the sideways fade was caught mid-way in a screenshot. **Not checked:** real phones, Safari, Firefox.
+- **Still a sketch only:** the large "Not Investigations 101." line (`documentation/previews/human-and-rhythm.html`, sketch 3).
+- Committed, not pushed.
+
 ### 2026-11-23: "When would you bring us in?" rebuilt with alternating lines (her point 3); scroll-pile idea dropped
 - **Decision (Miguelle):** the scroll-pile sketch (`documentation/previews/when-scroll.html`) is rejected: "never mind, I don't like it". Do not build it. The file is still in the folder and can be deleted.
 - **Built into the site, this section only:** the alternating-lines design from sketch 1, second version.

@@ -393,6 +393,42 @@
 }
 .when__both-text { max-width: 12rem; }   /* on phones the words wrap, leaving room for a line each side */
 
+/* The words fade in sideways, starting from the end where the line is: left to right for
+   the ones on the left, right to left for the ones on the right.
+   How: a "mask" decides which parts of the words can be seen. The mask is three times as wide
+   as the words: one third solid, one third fading out, one third empty. Before the reveal
+   the empty third sits over the words; the reveal slides the solid third across. The words
+   are never set to see-through, so they still count as visible text for accessibility checks,
+   and with JavaScript off the mask is simply left in its finished place. */
+.when__words {
+  display: block;
+  -webkit-mask-image: linear-gradient(to right, #000 33.4%, transparent 66.6%);
+  mask-image: linear-gradient(to right, #000 33.4%, transparent 66.6%);
+  -webkit-mask-size: 300% 100%;
+  mask-size: 300% 100%;
+  -webkit-mask-position: 0 0;                /* finished: the solid third is over the words */
+  mask-position: 0 0;
+  transition: -webkit-mask-position 0.9s linear 0.15s, mask-position 0.9s linear 0.15s;
+}
+/* the ones on the right: the same mask, mirrored */
+.when__item:nth-child(even) .when__words,
+.when__line--right .when__words {
+  -webkit-mask-image: linear-gradient(to left, #000 33.4%, transparent 66.6%);
+  mask-image: linear-gradient(to left, #000 33.4%, transparent 66.6%);
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+}
+/* waiting to be revealed: the empty third is over the words */
+html.js [data-reveal]:not(.is-in) > .when__words {
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+}
+html.js .when__item:nth-child(even)[data-reveal]:not(.is-in) > .when__words,
+html.js .when__line--right[data-reveal]:not(.is-in) > .when__words {
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+}
+
 .when__text {
   max-width: 40rem;
   margin: 3.5rem auto 0;
@@ -432,12 +468,14 @@
 }
 
 /* ---------- An outside investigation shouldn't become another problem ----------
-   White section. Phones and tablets: one reading column. Desktop: the full page width in
-   two columns (see the media query at the end of this block). */
+   White, then a full-width burgundy band, then white again. The same arrangement on phones
+   and large screens: the two "We have seen..." sentences side by side, a line down from
+   each joining at "Neither...", and one line on into the band, where "You should not have
+   to choose between rigor and humanity." is set very large. Everything is centred from
+   "Neither..." down, because the join happens in the middle. */
 .standard {
   position: relative;
   --divider-h: clamp(2.5rem, 7vw, 6.5rem);
-  padding-block: var(--space-section);
   padding-top: calc(var(--space-section) + var(--divider-h) * 0.75);   /* room for the divider */
 }
 /* Angled divider: the grey of the section above, cutting down into this white one */
@@ -450,87 +488,122 @@
   fill: var(--color-wash);
 }
 
-/* The reading column. The container still supplies the side gutters; max-width narrows it. */
-.standard__inner {
-  max-width: calc(46rem + var(--gutter) * 2);
-}
-
 .standard__title {
+  max-width: 18em;
   font-size: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);
 }
 .standard__lead {
-  margin-top: 1.75rem;
-  font-size: clamp(1.125rem, 1.05rem + 0.5vw, 1.375rem);
+  max-width: 46rem;
+  margin-top: 1.5rem;
+  font-size: clamp(1.125rem, 1.05rem + 0.4vw, 1.3125rem);
   line-height: 1.5;
 }
 
-/* The two ways it goes wrong, side by side, with "Neither..." across the bottom.
-   Phones: stacked. */
+/* The two ways it goes wrong: two columns at every size, each with a rule under it.
+   On phones the columns are narrow, so the text is a little smaller there. */
 .standard__pair {
   display: grid;
-  gap: 1.25rem;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1.25rem;
   margin-top: 2.75rem;
 }
 .standard__side {
-  padding-top: 1rem;
-  border-top: 1px solid var(--color-silver);
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-navy);
+  font-size: 1rem;
+  line-height: 1.45;
+}
+/* The joining lines sit under both columns. In the drawing, the lines start a quarter and
+   three quarters of the way across, which is the middle of each column. */
+.standard__join {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: 4rem;
+}
+.standard__join path {
+  fill: none;
+  stroke: var(--color-navy);
+  stroke-width: 1.25;
+  vector-effect: non-scaling-stroke;   /* the line keeps its thickness however far the drawing is stretched */
 }
 .standard__neither {
-  padding-top: 1.25rem;
-  border-top: 2px solid var(--color-burgundy);
+  grid-column: 1 / -1;
+  margin-top: 0.75rem;
   font-family: var(--font-heading);
   font-style: italic;
-  font-size: clamp(1.1875rem, 1.1rem + 0.5vw, 1.375rem);
+  font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.625rem);
   line-height: 1.3;
+  text-align: center;
+  text-wrap: balance;
+}
+/* The single line: the end of it on white, and the start of it inside the band */
+.standard__drop {
+  width: 1px;
+  height: 3.5rem;
+  margin: 1.25rem auto 0;
+  background: var(--color-navy);
+}
+.standard__drop--band {
+  margin-top: 0;
+  background: var(--color-white);
 }
 
-.standard__text {
-  margin-top: 2.75rem;
+/* The burgundy band, edge to edge */
+.standard__band {
+  padding-bottom: clamp(3.5rem, 8vw, 6.5rem);
+  background: var(--color-burgundy);
+  color: var(--color-white);
+  text-align: center;
+}
+/* Her paragraph is one <p>; each sentence is a block of its own */
+.standard__statement,
+.standard__both,
+.standard__rest { display: block; }
+.standard__statement {
+  max-width: 15em;
+  margin: 2rem auto 0;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 1.2rem + 4.2vw, 4.25rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.standard__statement em { font-style: italic; }
+.standard__both {
+  margin-top: 1.75rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.75rem);
+  line-height: 1.3;
+}
+.standard__rest {
+  max-width: 40rem;
+  margin: 1.25rem auto 0;
+  color: var(--color-mist);
   font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
 }
 
-/* Her closing line: the largest text in the section */
+/* Her closing line, back on white */
 .standard__closing {
-  margin-top: 2.75rem;
+  padding-block: clamp(3rem, 7vw, 5.5rem);
   font-family: var(--font-heading);
-  font-size: clamp(1.625rem, 1.3rem + 1.6vw, 2.5rem);
-  line-height: 1.2;
+  font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2.375rem);
+  line-height: 1.25;
+  text-align: center;
   text-wrap: balance;
 }
 
-@media (min-width: 40rem) {
+@media (min-width: 48rem) {
   .standard__pair {
-    grid-template-columns: 1fr 1fr;
-    gap: 1.75rem 2.5rem;
+    column-gap: 4rem;
+    margin-top: 3.5rem;
   }
-  .standard__neither { grid-column: 1 / -1; }   /* spans both columns */
-}
-
-/* Desktop: the section opens out to the full page width in two columns, so it no longer
-   sits as a narrow strip with empty space either side. The heading runs across the top;
-   under it the four pieces fill a two-by-two grid in reading order:
-       opening paragraph | the two cases and "Neither..."
-       third paragraph   | her closing line
-   (The pieces are in that order in the HTML, so the grid places them without extra rules.) */
-@media (min-width: 62rem) {
-  .standard__inner {
-    max-width: calc(var(--container) + var(--gutter) * 2);   /* back to the normal page width */
-    display: grid;
-    grid-template-columns: 5fr 7fr;
-    column-gap: clamp(3rem, 6vw, 5.5rem);
-    row-gap: 3.5rem;
-    align-items: start;
+  .standard__side {
+    padding-bottom: 1.25rem;
+    font-size: 1.125rem;
+    line-height: 1.6;
   }
-  .standard__title {
-    grid-column: 1 / -1;
-    max-width: 20em;
-  }
-  .standard__lead,
-  .standard__pair,
-  .standard__text,
-  .standard__closing { margin-top: 0; }
-  .standard__text { padding-top: 1.25rem; border-top: 1px solid var(--color-silver); }
-  .standard__closing { padding-top: 1.25rem; border-top: 1px solid var(--color-navy); }
+  .standard__join { height: 5.5rem; }
+  .standard__drop { height: 4.5rem; }
 }
 
 /* ---------- Two ways to get the work moving ----------

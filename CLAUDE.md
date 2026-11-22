@@ -343,6 +343,12 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-25 (end of the background experiments): "When would you bring us in?" is plain pale grey again
+- **Decision (Miguelle):** "let's just bring back the grey". After trying angled planes, a grey band, a vertical half-and-half and a slanted half-and-half (the three entries below), the section is back to a plain pale grey background (`.when`, no pseudo-element, no image).
+- The **angled divider into the "rigor and humanity" section is restored** (`index.html` SVG and `.standard__divider` in `css/styles.css`), as it was before the experiments.
+- Net result of the day for this section: no change to its background. Do not re-propose these four treatments.
+- Checked in screenshots at 390 and 1440 wide. Committed, not pushed.
+
 ### 2026-11-25 (later still): "When would you bring us in?" background: planes dropped, now half grey and half white
 - **Decision (Miguelle):** "just get rid of it all": the angled planes and the grey band are gone and `images/illustrations/planes.svg` is deleted. The two entries below describe work that no longer exists.
 - The section's background is now **pale grey on the left half and white on the right half**, split down the middle of the screen (`css/styles.css`, one `linear-gradient` on `.when`; no image). The left-hand reasons sit on grey, the right-hand ones on white, and "Sometimes you need both." sits across the two.

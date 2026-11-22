@@ -343,6 +343,12 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-22 (later still): CLEAR visual system, sketch only (her point 2)
+- Her point 2 asks for "a recognizable visual system" for the five CLEAR phases, reusable in training materials and INVEXTRA. Four directions were discussed; Miguelle asked to see direction 1, "five states of the line": one small mark per phase, drawn from the same thin lines as the new hero (C: crossing lines held in brackets; L: five lines setting off from one point; E: lines side by side with one crossing circled; A: lines balanced around a level line; R: one line and a full stop).
+- **New file: `documentation/previews/clear-marks.html`.** A sketch sheet, not part of the website and not linked from it (its CSS is inside the file on purpose). It shows the marks in a mock of the section on navy, on white, at 64/40/24 pixels in one colour, and on a mock training slide. **The CLEAR section on the homepage is unchanged.**
+- Seen in screenshots at 390 and 1440 wide. Finding: at 24 pixels the C mark fills in and is hard to read; the other four hold.
+- **Waiting on:** Miguelle's verdict on the marks before anything is built into `index.html`. Committed, not pushed.
+
 ### 2026-11-22 (later): hero lines keep swaying at rest; pause button added
 - Miguelle asked for the resting tangle to keep moving slowly so the hero does not feel static. `javascript/global.js` section 8: after the opening animation the loose ends at the left sway continuously (each wave slides sideways very slowly; the `SWAY` setting controls the speed, 0 turns it off). The straight line does not move.
 - Because the movement no longer ends, a **pause button** was added (handbook: auto-playing motion longer than 5 seconds has a pause button; WCAG 2.2.2). `index.html`: `<button class="hero__pause">` inside `.hero__stage`, hidden until the script shows it. `css/styles.css`: `.hero__pause` rules (40px outlined square, bottom right of the stage, above the level line). Its label switches between "Pause background animation" and "Play background animation".

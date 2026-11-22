@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>CLEAR marks: preview</title>
+<!-- PREVIEW ONLY. This page is a sketch sheet for Miguelle to review. It is not part of the
+     website and nothing on the site links to it. Its CSS is kept inside this one file on
+     purpose, so the whole sketch can be deleted in one go. -->
+<style>
+@font-face { font-family: "Libre Baskerville"; src: url("../../fonts/libre-baskerville-v24-latin-variable.woff2") format("woff2"); font-weight: 400 700; }
+@font-face { font-family: "Source Sans 3"; src: url("../../fonts/source-sans-3-v20-latin-variable.woff2") format("woff2"); font-weight: 200 900; }
+:root {
+  --navy: #0A1A33; --burgundy: #4C0013; --silver: #8A8D8F; --mist: #D9DCE0; --wash: #F3F4F6; --white: #fff;
+  --serif: "Libre Baskerville", Georgia, serif; --sans: "Source Sans 3", Arial, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; }
+body { font-family: var(--sans); font-size: 1.0625rem; line-height: 1.55; color: var(--navy); background: var(--white); }
+.wrap { max-width: 78rem; margin-inline: auto; padding-inline: 1.25rem; }
+.band { padding-block: 4rem; }
+.band--navy { background: var(--navy); color: var(--white); }
+.band--wash { background: var(--wash); }
+.note { font-size: 0.875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 0.75rem; }
+.band--navy .note { color: var(--mist); }
+h1, h2 { font-family: var(--serif); font-weight: 400; line-height: 1.2; }
+h1 { font-size: clamp(1.75rem, 1.3rem + 2vw, 2.75rem); max-width: 22em; }
+h2 { font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem); max-width: 24em; }
+.intro { max-width: 44rem; margin-top: 1rem; }
+.band--navy .intro { color: var(--mist); }
+
+/* ---- The marks. Two colours each: the thin lines, and one heavier "accent". ---- */
+.mark { display: block; width: var(--m, 6rem); height: var(--m, 6rem); overflow: visible; }
+.m-line, .m-accent { fill: none; vector-effect: non-scaling-stroke; stroke-linecap: butt; }
+.m-line   { stroke: var(--mark-line);   stroke-width: 1.25; }
+.m-accent { stroke: var(--mark-accent); stroke-width: 2.25; }
+.m-fill   { fill: var(--mark-accent); }
+.on-navy  { --mark-line: var(--silver); --mark-accent: var(--white); }
+.on-white { --mark-line: var(--navy);   --mark-accent: var(--burgundy); }
+.one-navy { --mark-line: var(--navy);   --mark-accent: var(--navy); }
+.one-white { --mark-line: var(--white); --mark-accent: var(--white); }
+
+/* ---- 1 and 2: the five phases in a row (a column on phones) ---- */
+.phases { list-style: none; padding: 0; margin-top: 3rem; display: grid; gap: 2.5rem; --gap: 2rem; --m: 6rem; }
+.phase { position: relative; display: grid; grid-template-columns: var(--m) 1fr; column-gap: 1.25rem; align-items: start; }
+.phase__body { padding-top: 0.25rem; }
+.phase__step { font-size: 0.875rem; font-weight: 600; letter-spacing: 0.08em; color: var(--silver); }
+.on-white .phase__step { color: var(--burgundy); }
+.phase__name { font-family: var(--serif); font-size: 1.3125rem; font-weight: 400; line-height: 1.25; margin-top: 0.35rem; }
+.phase__name b { font-weight: 700; }
+.phase__text { margin-top: 0.6rem; font-size: 1rem; line-height: 1.5; }
+.on-navy .phase__text { color: var(--mist); }
+/* phones: one line runs down the page, joining each mark to the next */
+.phase:not(:last-child)::after { content: ""; position: absolute; left: calc(var(--m) / 2); top: calc(var(--m) + 0.5rem); bottom: -2rem; width: 1px; background: var(--mark-line); opacity: 0.5; }
+@media (min-width: 62rem) {
+  .phases { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--gap); }
+  .phase { display: block; }
+  .phase__body { padding-top: 1.5rem; }
+  /* desktop: the line runs across, from each mark to the next, level with the middle of the marks */
+  .phase:not(:last-child)::after { left: calc(var(--m) + 0.75rem); right: calc(-1 * var(--gap) + 0.75rem); top: calc(var(--m) / 2); bottom: auto; width: auto; height: 1px; }
+}
+
+/* ---- 3: reuse tests ---- */
+.tests { display: grid; gap: 1.5rem; margin-top: 2.5rem; }
+@media (min-width: 48rem) { .tests { grid-template-columns: repeat(2, 1fr); } }
+.test { padding: 1.75rem; border: 1px solid rgba(138,141,143,.4); }
+.test--navy { background: var(--navy); color: var(--white); border-color: var(--navy); }
+.test__label { font-size: 0.875rem; font-weight: 600; margin-bottom: 1.25rem; }
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; }
+.row + .row { margin-top: 1.25rem; }
+.slide { aspect-ratio: 16 / 9; display: grid; grid-template-rows: auto 1fr auto; padding: 1.5rem; background: var(--white); border: 1px solid rgba(138,141,143,.4); }
+.slide__head { display: flex; align-items: center; gap: 0.75rem; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--burgundy); }
+.slide__title { align-self: center; font-family: var(--serif); font-size: clamp(1.25rem, 1rem + 1.5vw, 2rem); line-height: 1.2; }
+.slide__foot { display: flex; gap: 0.5rem; align-items: center; }
+.slide__foot .mark { opacity: 0.3; }
+.slide__foot .mark.is-current { opacity: 1; }
+.rules { margin-top: 1.5rem; padding-left: 1.25rem; max-width: 46rem; }
+.rules li + li { margin-top: 0.5rem; }
+</style>
+</head>
+<body>
+
+<!-- The five marks are drawn ONCE here, then reused everywhere below with <use href="#mark-c">.
+     Each is drawn on a 96 x 96 grid, and the middle of the grid (y = 48) is the "level line". -->
+<svg width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- C: five loose, crossing lines, held between two brackets -->
+    <symbol id="mark-c" viewBox="0 0 96 96">
+      <path class="m-line" d="M19 30C38 18 54 62 77 40M19 44C34 64 58 20 77 54M19 57C40 40 56 78 77 64M19 67C36 80 60 42 77 28M19 37C44 52 50 28 77 72"/>
+      <path class="m-accent" d="M22 14h-9v68h9M74 14h9v68h-9"/>
+    </symbol>
+    <!-- L: from one starting point, five lines set off, each to its own place, in order -->
+    <symbol id="mark-l" viewBox="0 0 96 96">
+      <path class="m-line" d="M12 48L40 16h46M12 48L40 32h46M12 48h74M12 48L40 64h46M12 48L40 80h46"/>
+      <circle class="m-fill" cx="12" cy="48" r="4.5"/>
+    </symbol>
+    <!-- E: the lines laid side by side; two of them cross, and the crossing is examined -->
+    <symbol id="mark-e" viewBox="0 0 96 96">
+      <path class="m-line" d="M10 16h76M10 32h76M10 80h76M10 48C40 48 56 64 86 64M10 64C40 64 56 48 86 48"/>
+      <circle class="m-accent" cx="48" cy="56" r="9"/>
+    </symbol>
+    <!-- A: the same weight above and below one level line -->
+    <symbol id="mark-a" viewBox="0 0 96 96">
+      <path class="m-line" d="M22 32h52M22 64h52M34 16h28M34 80h28"/>
+      <path class="m-accent" d="M8 48h80"/>
+    </symbol>
+    <!-- R: one line, and a full stop -->
+    <symbol id="mark-r" viewBox="0 0 96 96">
+      <path class="m-accent" d="M10 48h64"/>
+      <rect class="m-fill" x="78" y="43.5" width="9" height="9"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="band">
+  <div class="wrap">
+    <p class="note">Preview only · not on the website</p>
+    <h1>CLEAR: five marks, one line</h1>
+    <p class="intro">A sketch of direction 1. Each phase gets a mark drawn from the same thin lines as the new hero. Read in order, the five marks show the lines going from scattered to one clear finding. Nothing on the site has been changed.</p>
+  </div>
+</header>
+
+<section class="band band--navy on-navy">
+  <div class="wrap">
+    <p class="note">1 · In the section, on navy (her wording, unchanged)</p>
+    <h2>Every case follows the CLEAR By-the-Book™ Investigation Framework</h2>
+    <ol class="phases">
+      <li class="phase"><svg class="mark" aria-hidden="true"><use href="#mark-c"/></svg><div class="phase__body"><p class="phase__step">01</p><h3 class="phase__name"><b>C</b>apture the Complaint</h3><p class="phase__text">Identify the actual allegations, the issues requiring a finding, and what still needs clarification.</p></div></li>
+      <li class="phase"><svg class="mark" aria-hidden="true"><use href="#mark-l"/></svg><div class="phase__body"><p class="phase__step">02</p><h3 class="phase__name"><b>L</b>aunch the Strategy</h3><p class="phase__text">Build an allegation-specific plan for interviews, records, witnesses, and the limits of the inquiry.</p></div></li>
+      <li class="phase"><svg class="mark" aria-hidden="true"><use href="#mark-e"/></svg><div class="phase__body"><p class="phase__step">03</p><h3 class="phase__name"><b>E</b>valuate the Evidence</h3><p class="phase__text">Examine what the evidence supports, where accounts conflict, and what remains unresolved.</p></div></li>
+      <li class="phase"><svg class="mark" aria-hidden="true"><use href="#mark-a"/></svg><div class="phase__body"><p class="phase__step">04</p><h3 class="phase__name"><b>A</b>nalyze Impartially</h3><p class="phase__text">Assess credibility and apply the relevant policy and legal standards without starting from a preferred outcome.</p></div></li>
+      <li class="phase"><svg class="mark" aria-hidden="true"><use href="#mark-r"/></svg><div class="phase__body"><p class="phase__step">05</p><h3 class="phase__name"><b>R</b>eport with Clarity</h3><p class="phase__text">Explain the evidence, reasoning, and findings in language the organization can use, while keeping its decisions separate from ours.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="band on-white">
+  <div class="wrap">
+    <p class="note">2 · The same thing on white (navy lines, burgundy accent)</p>
+    <ol class="phases">
+      <li class="phase"><svg class="mark" aria-hidden="true"><use href="#mark-c"/></svg><div class="phase__body"><p class="phase__step">01</p><h3 class="phase__name"><b>C</b>apture the Complaint</h3></div></li>
+      <li class="phase"><svg class="mark" aria-hidden="true"><use href="#mark-l"/></svg><div class="phase__body"><p class="phase__step">02</p><h3 class="phase__name"><b>L</b>aunch the Strategy</h3></div></li>
+      <li class="phase"><svg class="mark" aria-hidden="true"><use href="#mark-e"/></svg><div class="phase__body"><p class="phase__step">03</p><h3 class="phase__name"><b>E</b>valuate the Evidence</h3></div></li>
+      <li class="phase"><svg class="mark" aria-hidden="true"><use href="#mark-a"/></svg><div class="phase__body"><p class="phase__step">04</p><h3 class="phase__name"><b>A</b>nalyze Impartially</h3></div></li>
+      <li class="phase"><svg class="mark" aria-hidden="true"><use href="#mark-r"/></svg><div class="phase__body"><p class="phase__step">05</p><h3 class="phase__name"><b>R</b>eport with Clarity</h3></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="band band--wash">
+  <div class="wrap">
+    <p class="note">3 · Reuse tests (training materials, INVEXTRA)</p>
+    <h2>Do they hold up small, in one color, and away from the website?</h2>
+    <div class="tests">
+      <div class="test one-navy" style="background:#fff">
+        <p class="test__label">One color, navy on white: 64, 40 and 24 pixels</p>
+        <div class="row" style="--m:4rem"><svg class="mark"><use href="#mark-c"/></svg><svg class="mark"><use href="#mark-l"/></svg><svg class="mark"><use href="#mark-e"/></svg><svg class="mark"><use href="#mark-a"/></svg><svg class="mark"><use href="#mark-r"/></svg></div>
+        <div class="row" style="--m:2.5rem"><svg class="mark"><use href="#mark-c"/></svg><svg class="mark"><use href="#mark-l"/></svg><svg class="mark"><use href="#mark-e"/></svg><svg class="mark"><use href="#mark-a"/></svg><svg class="mark"><use href="#mark-r"/></svg></div>
+        <div class="row" style="--m:1.5rem"><svg class="mark"><use href="#mark-c"/></svg><svg class="mark"><use href="#mark-l"/></svg><svg class="mark"><use href="#mark-e"/></svg><svg class="mark"><use href="#mark-a"/></svg><svg class="mark"><use href="#mark-r"/></svg></div>
+      </div>
+      <div class="test test--navy one-white">
+        <p class="test__label">One color, white on navy: 64, 40 and 24 pixels</p>
+        <div class="row" style="--m:4rem"><svg class="mark"><use href="#mark-c"/></svg><svg class="mark"><use href="#mark-l"/></svg><svg class="mark"><use href="#mark-e"/></svg><svg class="mark"><use href="#mark-a"/></svg><svg class="mark"><use href="#mark-r"/></svg></div>
+        <div class="row" style="--m:2.5rem"><svg class="mark"><use href="#mark-c"/></svg><svg class="mark"><use href="#mark-l"/></svg><svg class="mark"><use href="#mark-e"/></svg><svg class="mark"><use href="#mark-a"/></svg><svg class="mark"><use href="#mark-r"/></svg></div>
+        <div class="row" style="--m:1.5rem"><svg class="mark"><use href="#mark-c"/></svg><svg class="mark"><use href="#mark-l"/></svg><svg class="mark"><use href="#mark-e"/></svg><svg class="mark"><use href="#mark-a"/></svg><svg class="mark"><use href="#mark-r"/></svg></div>
+      </div>
+      <div class="slide on-white">
+        <p class="slide__head" style="--m:2rem"><svg class="mark"><use href="#mark-e"/></svg>Phase 03 · Evaluate the Evidence</p>
+        <p class="slide__title">A mock training slide: the mark labels the phase, and the row below shows where you are.</p>
+        <div class="slide__foot one-navy" style="--m:1.5rem"><svg class="mark"><use href="#mark-c"/></svg><svg class="mark"><use href="#mark-l"/></svg><svg class="mark is-current"><use href="#mark-e"/></svg><svg class="mark"><use href="#mark-a"/></svg><svg class="mark"><use href="#mark-r"/></svg></div>
+      </div>
+      <div class="test" style="background:#fff">
+        <p class="test__label">The rules that make it a system</p>
+        <ul class="rules">
+          <li>Every mark sits on the same square grid, with the level line through the middle.</li>
+          <li>Only thin straight or gently curved lines, plus one heavier accent per mark.</li>
+          <li>Five lines in C, L and E; in A they balance around one; in R they have become one.</li>
+          <li>Two colors at most, and each mark still works in a single color.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

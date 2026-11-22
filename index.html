@@ -321,30 +321,46 @@
                     <p class="process__lead" data-reveal="fade" data-delay="3">The circumstances change from case to case. The discipline of the investigation should not. CLEAR gives our work a consistent structure from intake through report writing.</p>
                 </div>
 
-                <!-- An ordered list, because the steps happen in this order. The big letter is for the eye
-                     only (aria-hidden): each step's name already starts with it. -->
+                <!-- The five phases, each with its own mark. An ordered list, because they happen in this
+                     order. The marks are a family: every one is drawn on the same square grid from five thin
+                     lines (class "clear__line") plus one heavier accent ("clear__accent" or "clear__point"),
+                     in the same line style as the hero. Read in order they go from scattered lines to one
+                     clear line. They are finished drawings here in the HTML; global.js (section 9) only adds
+                     the movement, so they still show with JavaScript off.
+                     The marks and the big letters are for the eye only (aria-hidden): each phase's name
+                     already says everything a screen reader needs. -->
                 <ol class="clear" role="list" data-reveal-group>
-                    <li class="clear__row" data-reveal="up">
+                    <li class="clear__step" data-reveal="up">
+                        <!-- C: five loose, crossing lines, held between two brackets -->
+                        <svg class="clear__mark" aria-hidden="true" focusable="false" viewBox="0 0 96 96"><path class="clear__line" d="M19 30C38 18 54 62 77 40"/><path class="clear__line" d="M19 44C34 64 58 20 77 54"/><path class="clear__line" d="M19 57C40 40 56 78 77 64"/><path class="clear__line" d="M19 67C36 80 60 42 77 28"/><path class="clear__line" d="M19 37C44 52 50 28 77 72"/><path class="clear__accent" d="M22 14h-9v68h9M74 14h9v68h-9"/></svg>
                         <span class="clear__letter" aria-hidden="true">C</span>
                         <h3 class="clear__name">Capture the Complaint</h3>
                         <p class="clear__text">Identify the actual allegations, the issues requiring a finding, and what still needs clarification.</p>
                     </li>
-                    <li class="clear__row" data-reveal="up">
+                    <li class="clear__step" data-reveal="up">
+                        <!-- L: from one starting point, five lines set off, each to its own place -->
+                        <svg class="clear__mark" aria-hidden="true" focusable="false" viewBox="0 0 96 96"><path class="clear__line" d="M12 48L40 16h46"/><path class="clear__line" d="M12 48L40 32h46"/><path class="clear__line" d="M12 48h74"/><path class="clear__line" d="M12 48L40 64h46"/><path class="clear__line" d="M12 48L40 80h46"/><circle class="clear__point" cx="12" cy="48" r="4.5"/></svg>
                         <span class="clear__letter" aria-hidden="true">L</span>
                         <h3 class="clear__name">Launch the Strategy</h3>
                         <p class="clear__text">Build an allegation-specific plan for interviews, records, witnesses, and the limits of the inquiry.</p>
                     </li>
-                    <li class="clear__row" data-reveal="up">
+                    <li class="clear__step" data-reveal="up">
+                        <!-- E: the lines laid side by side; two of them cross, and the crossing is examined -->
+                        <svg class="clear__mark" aria-hidden="true" focusable="false" viewBox="0 0 96 96"><path class="clear__line" d="M10 16h76"/><path class="clear__line" d="M10 32h76"/><path class="clear__line" d="M10 48C40 48 56 64 86 64"/><path class="clear__line" d="M10 64C40 64 56 48 86 48"/><path class="clear__line" d="M10 80h76"/><circle class="clear__accent" cx="48" cy="56" r="9"/></svg>
                         <span class="clear__letter" aria-hidden="true">E</span>
                         <h3 class="clear__name">Evaluate the Evidence</h3>
                         <p class="clear__text">Examine what the evidence supports, where accounts conflict, and what remains unresolved.</p>
                     </li>
-                    <li class="clear__row" data-reveal="up">
+                    <li class="clear__step" data-reveal="up">
+                        <!-- A: the same weight above and below one level line -->
+                        <svg class="clear__mark" aria-hidden="true" focusable="false" viewBox="0 0 96 96"><path class="clear__line" d="M34 16h28"/><path class="clear__line" d="M22 32h52"/><path class="clear__line" d="M8 48h80"/><path class="clear__line" d="M22 64h52"/><path class="clear__line" d="M34 80h28"/><path class="clear__accent" d="M8 48h80"/></svg>
                         <span class="clear__letter" aria-hidden="true">A</span>
                         <h3 class="clear__name">Analyze Impartially</h3>
                         <p class="clear__text">Assess credibility and apply the relevant policy and legal standards without starting from a preferred outcome.</p>
                     </li>
-                    <li class="clear__row" data-reveal="up">
+                    <li class="clear__step" data-reveal="up">
+                        <!-- R: the five lines have become one, ending in a full stop -->
+                        <svg class="clear__mark" aria-hidden="true" focusable="false" viewBox="0 0 96 96"><path class="clear__line" d="M10 48h64"/><path class="clear__line" d="M10 48h64"/><path class="clear__line" d="M10 48h64"/><path class="clear__line" d="M10 48h64"/><path class="clear__line" d="M10 48h64"/><path class="clear__accent" d="M10 48h64"/><rect class="clear__point" x="78" y="43.5" width="9" height="9"/></svg>
                         <span class="clear__letter" aria-hidden="true">R</span>
                         <h3 class="clear__name">Report with Clarity</h3>
                         <p class="clear__text">Explain the evidence, reasoning, and findings in language the organization can use, while keeping its decisions separate from ours.</p>

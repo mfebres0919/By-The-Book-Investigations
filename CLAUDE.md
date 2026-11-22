@@ -343,6 +343,17 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-22 (evening): CLEAR section rebuilt around the five marks, with animation (her point 2)
+- Miguelle approved direction 1 ("five states of the line") and asked for it to be built with animation.
+- `index.html`: the five rows (`.clear__row`) became five phases (`.clear__step`), each with an inline SVG mark (`.clear__mark`: five thin `.clear__line` paths plus a heavier `.clear__accent` or `.clear__point`), the big letter, the name and her description. Wording unchanged. The marks are complete drawings in the HTML, so they show with JavaScript off.
+- `css/styles.css`: the CLEAR rules were rewritten. Phones and tablets: a column, mark on the left, a thin line running down from each mark to the next. Desktop (62rem and up): five columns, the line running across from mark to mark. The row borders are gone.
+- `javascript/global.js`, new section 9 "CLEAR marks": each mark draws itself once when it scrolls into view (its lines start loose and settle into shape in about a second, then the accent fades in); marks on screen together go one after another; the joining line grows when a mark finishes. No continuous movement, so no pause button is needed here. With "reduce motion" on the script does nothing and the finished marks show. Settings at the top of the section: `LENGTH`, `GAP`, `LOOSE`.
+- Compared with the sketch: every mark now has exactly five thin lines (A gained a thin centre line under its accent; in R the five lines lie on top of each other as one).
+- `documentation/previews/clear-marks.html`: added a simpler three-line Capture (`mark-c-small`) for sizes under about 32 pixels, because the five-line one filled in at 24. The website does not use the small version. **The marks do not exist yet as separate files** for her training materials or INVEXTRA; export them when she approves the direction.
+- The staircase photo is still behind the section. Its diagonal streaks sit close to the marks; consider removing it or fading it further (Miguelle to decide).
+- **Checked:** screenshots at 390 and 1440 wide, mid-animation and finished; all five marks finish and no script errors. **Not checked:** Safari, Firefox, real phones, tablet width, reduce-motion in a real browser.
+- Committed, **not pushed** (same reason as the hero: Miguelle reviews first).
+
 ### 2026-11-22 (later still): CLEAR visual system, sketch only (her point 2)
 - Her point 2 asks for "a recognizable visual system" for the five CLEAR phases, reusable in training materials and INVEXTRA. Four directions were discussed; Miguelle asked to see direction 1, "five states of the line": one small mark per phase, drawn from the same thin lines as the new hero (C: crossing lines held in brackets; L: five lines setting off from one point; E: lines side by side with one crossing circled; A: lines balanced around a level line; R: one line and a full stop).
 - **New file: `documentation/previews/clear-marks.html`.** A sketch sheet, not part of the website and not linked from it (its CSS is inside the file on purpose). It shows the marks in a mock of the section on navy, on white, at 64/40/24 pixels in one colour, and on a mock training slide. **The CLEAR section on the homepage is unchanged.**

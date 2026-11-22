@@ -597,7 +597,7 @@
 
 /* ---------- Our process (the CLEAR framework) ----------
    A navy section with the staircase photo behind it. Heading and intro on top, then the
-   five steps as full-width rows led by their letters (C, L, E, A, R). No cards. */
+   five phases, each led by its own line-drawn mark (C, L, E, A, R). No cards. */
 .process {
   position: relative;
   isolation: isolate;            /* keeps the z-index layers below inside this section */
@@ -662,43 +662,90 @@
   font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
 }
 
-/* The five steps as rows. Each row is a small grid:
-   phones:   letter | name            desktop:  letter | name | description
-                    | description
-   so on desktop every row runs the full width of the page and the letters line up
-   in a column that spells CLEAR. */
+/* The five phases, each led by its mark.
+   Phones and tablets: a column. The mark sits on the left, the letter, name and description
+   on the right, and a thin line runs down from each mark to the next.
+   Desktop: five columns side by side, and the line runs across from mark to mark.
+   --mark is the size of a mark; the joining lines are measured from it. */
 .clear {
-  margin-top: 2.75rem;
-  border-bottom: 1px solid var(--color-rule-on-dark);
-}
-.clear__row {
+  --mark: 4.5rem;
+  --gap: 2.25rem;
   display: grid;
-  grid-template-columns: 3.25rem 1fr;
-  column-gap: 1rem;
-  align-items: baseline;
-  padding-block: 1.5rem;
-  border-top: 1px solid var(--color-rule-on-dark);
+  gap: var(--gap);
+  margin-top: 2.75rem;
 }
+.clear__step {
+  position: relative;            /* the joining line is placed against this */
+  display: grid;
+  grid-template-columns: var(--mark) 1fr;
+  column-gap: 1.25rem;
+  align-content: start;
+}
+.clear__mark {
+  grid-row: 1 / span 3;          /* the mark stays beside the letter, name and description */
+  width: var(--mark);
+  height: var(--mark);
+  overflow: visible;             /* lets the loose lines swing a little outside the square while they settle */
+}
+/* The thin lines and the heavier accent. "non-scaling-stroke" keeps every line the same
+   thickness however large or small the mark is shown. */
+.clear__line,
+.clear__accent {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+.clear__line {
+  stroke: var(--color-silver);
+  stroke-width: 1.25;
+}
+.clear__accent {
+  stroke: var(--color-white);
+  stroke-width: 2.25;
+}
+.clear__point { fill: var(--color-white); }
+/* While a mark waits to be drawn (global.js adds "is-waiting"), its accent is hidden.
+   When the lines have nearly settled the class is removed and the accent fades in. */
+.clear__accent,
+.clear__point { transition: opacity 0.4s linear; }
+.clear__mark.is-waiting .clear__accent,
+.clear__mark.is-waiting .clear__point { opacity: 0; }
+
 .clear__letter {
-  grid-row: 1 / span 2;
   font-family: var(--font-heading);
-  font-size: clamp(2.75rem, 2rem + 3.6vw, 4.5rem);
-  line-height: 0.9;
+  font-size: 2.25rem;
+  line-height: 1;
   color: var(--color-white);
 }
 .clear__name {
-  font-size: clamp(1.3125rem, 1.2rem + 0.6vw, 1.625rem);
+  margin-top: 0.5rem;
+  font-size: clamp(1.25rem, 1.15rem + 0.5vw, 1.4375rem);
   line-height: 1.25;
 }
 .clear__text {
-  grid-column: 2;
   margin-top: 0.5rem;
   color: var(--color-mist);
 }
 
+/* The joining line: from the foot of one mark down to the top of the next */
+.clear__step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--mark) / 2);
+  top: calc(var(--mark) + 0.5rem);
+  bottom: calc(0.5rem - var(--gap));
+  width: 1px;
+  background: var(--color-silver);
+  opacity: 0.55;
+  transform-origin: top left;    /* it grows from the mark it starts at */
+  transition: transform 0.5s linear;
+}
+/* When the marks are animated, each joining line stays shrunk to nothing until the mark
+   before it has finished (global.js adds "is-drawn" to that phase). */
+.clear--animated .clear__step:not(.is-drawn)::after { transform: scale(0); }
+
 .process__closing {
   max-width: 40rem;
-  margin-top: 2.25rem;
+  margin-top: 2.75rem;
   font-family: var(--font-heading);
   font-style: italic;
   font-size: clamp(1.125rem, 1.05rem + 0.5vw, 1.375rem);
@@ -706,27 +753,41 @@
 }
 
 @media (min-width: 48rem) {
-  .clear { margin-top: 3.5rem; }
-  .clear__row {
-    grid-template-columns: 5rem 1fr;
-    column-gap: 1.5rem;
-    padding-block: 1.75rem;
+  .clear {
+    --mark: 6rem;
+    --gap: 2.75rem;
+    margin-top: 3.5rem;
   }
+  .clear__step { column-gap: 2rem; }
+  .clear__text { max-width: 36rem; }
 }
-/* Desktop: letter, name and description side by side on one line per step */
+/* Desktop: five columns. Each phase is the mark, then the letter, name and description under it. */
 @media (min-width: 62rem) {
-  .clear__row {
-    grid-template-columns: 7rem 5fr 7fr;
-    column-gap: 2.5rem;
-    padding-block: 2rem;
+  .clear {
+    --mark: 7rem;
+    --gap: 2rem;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    margin-top: 4rem;
   }
-  .clear__letter { grid-row: auto; }
-  .clear__text {
-    grid-column: 3;
-    margin-top: 0;
-    font-size: 1.125rem;
+  .clear__step { display: block; }
+  .clear__letter {
+    display: block;
+    margin-top: 1.75rem;
+    font-size: 2.75rem;
   }
-  .process__closing { margin-top: 2.75rem; }
+  .clear__name { margin-top: 0.75rem; }
+  .clear__text { margin-top: 0.75rem; }
+  /* The joining line now runs across: from the right of one mark to the left of the next,
+     level with the middle of the marks */
+  .clear__step:not(:last-child)::after {
+    left: calc(var(--mark) + 0.75rem);
+    right: calc(0.75rem - var(--gap));
+    top: calc(var(--mark) / 2);
+    bottom: auto;
+    width: auto;
+    height: 1px;
+  }
+  .process__closing { margin-top: 3.5rem; }
 }
 
 /* ---------- Investigation Readiness Intensive ----------

@@ -1,6 +1,6 @@
 /* ==========================================================================
    global.js: behavior shared by every page
-   1. Phone menu   2. Back-to-top button   3. Tabs   4. Reveal on scroll   5. Footer year   6. Counting numbers   7. Smooth questions   8. Hero lines
+   1. Phone menu   2. Back-to-top button   3. Tabs   4. Reveal on scroll   5. Footer year   6. Counting numbers   7. Smooth questions   8. Hero lines   9. CLEAR marks
    Loaded with "defer", so the HTML is ready by the time this runs.
    ========================================================================== */
 
@@ -480,4 +480,115 @@
       draw(clock, swayClock);
     }).observe(svg);
   }
+})();
+
+/* ---------- 9. CLEAR marks (homepage) ----------
+   Each of the five CLEAR marks draws itself the first time it scrolls into view: its five
+   thin lines start loose and out of place, then settle into the mark's shape, and its accent
+   (the brackets, the dot, the ring...) fades in at the end. When several marks are on screen
+   together they go one after another, and the thin line joining one phase to the next grows
+   once that phase's mark has finished. Each mark plays once and then stays still.
+
+   The marks are complete drawings in the HTML, so this script only ADDS movement:
+     1. it measures each finished line as a row of points;
+     2. it invents a loose version of that line (the same points, pushed up and down);
+     3. over about a second it slides every point from the loose place to the true place;
+     4. at the end it puts the original, exact drawing back.
+   With "reduce motion" on, or in a very old browser, it does nothing and the marks simply show. */
+(function () {
+  var list = document.querySelector('.clear');
+  var marks = document.querySelectorAll('.clear__mark');
+  if (!list || !marks.length || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // ----- Settings you can safely change -----
+  var LENGTH = 1100;   // milliseconds one mark takes to settle
+  var GAP = 350;       // wait between one mark starting and the next
+  var POINTS = 40;     // points measured along each line
+  var LOOSE = 1;       // how far out of place the lines start (0.5 = half as far, 2 = twice as far)
+
+  // The same fixed "random" number maker as the hero, so the loose shapes are the same every visit
+  var seed = 23;
+  function random() {
+    seed = (seed * 16807) % 2147483647;
+    return (seed - 1) / 2147483646;
+  }
+  function clamp(n) { return n < 0 ? 0 : n > 1 ? 1 : n; }
+  function ease(n) { n = clamp(n); return n * n * (3 - 2 * n); }   // starts and stops gently, no bounce
+
+  // Steps 1 and 2: measure every line and give it a loose starting shape
+  var prepared = Array.prototype.map.call(marks, function (mark) {
+    var lines = Array.prototype.map.call(mark.querySelectorAll('.clear__line'), function (path) {
+      var total = path.getTotalLength();
+      var points = [];
+      for (var p = 0; p <= POINTS; p++) points.push(path.getPointAtLength(total * p / POINTS));
+      return {
+        path: path,
+        exact: path.getAttribute('d'),            // the true drawing, put back at the end
+        points: points,
+        shift: (random() - 0.5) * 34,             // moved up or down as a whole
+        tilt: (random() - 0.5) * 40,              // and tipped
+        waves: [                                  // and made wavy (two waves added together)
+          { turns: 0.8 + random() * 1.2, height: 5 + random() * 8, start: random() * 6.283 },
+          { turns: 2 + random() * 1.5, height: 2 + random() * 3, start: random() * 6.283 }
+        ]
+      };
+    });
+    return { mark: mark, step: mark.closest('.clear__step'), lines: lines };
+  });
+
+  // Step 3: draw one line "settled" of the way home (0 = fully loose, 1 = exactly in place)
+  function shape(line, settled) {
+    var loose = (1 - settled) * LOOSE;
+    var d = '';
+    for (var p = 0; p < line.points.length; p++) {
+      var along = p / POINTS;
+      var push = line.shift + line.tilt * (along - 0.5);
+      for (var k = 0; k < line.waves.length; k++) {
+        push += Math.sin(along * line.waves[k].turns * 6.283 + line.waves[k].start) * line.waves[k].height;
+      }
+      d += (p ? 'L' : 'M') + line.points[p].x.toFixed(2) + ' ' + (line.points[p].y + push * loose).toFixed(2);
+    }
+    line.path.setAttribute('d', d);
+  }
+
+  // Start every mark in its loose state, with its accent hidden, and hold back the joining lines
+  list.classList.add('clear--animated');
+  prepared.forEach(function (item) {
+    item.mark.classList.add('is-waiting');
+    item.lines.forEach(function (line) { shape(line, 0); });
+  });
+
+  function play(item) {
+    var began = null;
+    function frame(now) {
+      if (began === null) began = now;
+      var time = now - began;
+      // the five lines set off a moment apart, so they don't move as one block
+      item.lines.forEach(function (line, n) {
+        shape(line, ease((time - n * 60) / (LENGTH - 240)));
+      });
+      if (time > LENGTH * 0.7) item.mark.classList.remove('is-waiting');   // the accent fades in
+      if (time < LENGTH) { window.requestAnimationFrame(frame); return; }
+      // Step 4: finished. Put the exact drawing back and let the joining line grow.
+      item.lines.forEach(function (line) { line.path.setAttribute('d', line.exact); });
+      if (item.step) item.step.classList.add('is-drawn');
+    }
+    window.requestAnimationFrame(frame);
+  }
+
+  // Watch for each mark coming into view. "nextFree" makes marks that arrive together take turns.
+  var nextFree = 0;
+  var watcher = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      watcher.unobserve(entry.target);
+      var item = prepared[Array.prototype.indexOf.call(marks, entry.target)];
+      var now = performance.now();
+      var startAt = Math.max(now, nextFree);
+      nextFree = startAt + GAP;
+      window.setTimeout(function () { play(item); }, startAt - now);
+    });
+  }, { threshold: 0.6 });
+  Array.prototype.forEach.call(marks, function (mark) { watcher.observe(mark); });
 })();

@@ -112,6 +112,14 @@ h1, h2, h3 {
   text-wrap: balance;
 }
 
+/* One emphasised word inside a heading: <em class="accent">word</em>. Burgundy and italic,
+   the same italic used for "rigor" and "humanity". For headings on white or pale grey only
+   (burgundy disappears against navy). */
+.accent {
+  font-style: italic;
+  color: var(--color-burgundy);
+}
+
 /* A safety net against sideways scrolling: anything inside the page content or the footer that
    sticks out past the left or right edge is cut off instead of widening the page.
    "clip" (not "hidden") is used on purpose: "hidden" would stop the sticky headings from sticking. */

@@ -950,37 +950,87 @@ html.js .when__line--right[data-reveal]:not(.is-in) > .when__words {
 }
 
 /* ---------- Investigation Readiness Intensive ----------
-   White section. Phones: name, opening line and button, then the text.
-   Desktop: those three on the left (they stay in view while you read), the text on the right. */
+   White section holding one panel in two halves.
+   Phones: the navy half on top, the pale half under it.
+   Desktop: side by side, navy on the left. */
 .intensive {
   padding-block: var(--space-section);
 }
 .intensive__inner {
   display: grid;
-  gap: 2.5rem;
 }
+/* The navy half */
+.intensive__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2rem 1.25rem 2.25rem;
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+/* The section name, as a small label in capitals */
 .intensive__title {
-  font-size: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--color-mist);
 }
-/* Her bold opening line, in the heading font with a burgundy bar beside it */
-.intensive__tagline {
+.intensive__big,
+.intensive__sub { display: block; }
+/* "Not Investigations 101." : the largest type in the section */
+.intensive__big {
   margin-top: 1.5rem;
-  padding-left: 1.25rem;
-  border-left: 2px solid var(--color-burgundy);
   font-family: var(--font-heading);
-  font-size: clamp(1.1875rem, 1.1rem + 0.6vw, 1.5rem);
-  line-height: 1.35;
+  /* Sized from the screen width so the longest word, "Investigations", always fits the
+     panel: about 34px on the narrowest phones, growing to 84px. */
+  font-size: clamp(2rem, 13.5vw - 0.6rem, 5.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
 }
-.intensive__btn { margin-top: 2rem; }
+/* "101." on a line of its own, in a light copper. The brand copper (#8C5A2B) is too dark to
+   read on navy, so this is a lighter tint of it (5.7:1 against the navy). */
+.intensive__num {
+  display: block;
+  color: #B98A5E;
+}
+.intensive__sub {
+  max-width: 26rem;
+  margin-top: 1.75rem;
+  color: var(--color-mist);
+  font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem);
+  line-height: 1.5;
+}
+.intensive__btn {
+  align-self: stretch;           /* the button runs the full width of the panel */
+  margin-top: 2rem;
+  text-align: center;
+}
+
+/* The pale half */
+.intensive__body {
+  padding: 2rem 1.25rem 2.25rem;
+  background: var(--color-wash);
+  border: 1px solid var(--color-rule);
+  border-top: 0;
+}
 .intensive__text {
   font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+}
+/* Her first sentence opens the pale half, a little larger and heavier */
+.intensive__text--lead {
+  font-size: clamp(1.1875rem, 1.1rem + 0.5vw, 1.375rem);
+  font-weight: 600;
+  line-height: 1.4;
 }
 .intensive__text + .intensive__text,
 .intensive__gaps + .intensive__text { margin-top: 1.5rem; }
 
 /* The four gaps: one per line, each with a small burgundy square */
 .intensive__gaps {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   border-top: 1px solid var(--color-rule);
 }
 .intensive__gap {
@@ -988,9 +1038,8 @@ html.js .when__line--right[data-reveal]:not(.is-in) > .when__words {
   grid-template-columns: auto 1fr;
   column-gap: 0.875rem;
   align-items: baseline;
-  padding-block: 0.875rem;
+  padding-block: 1rem;
   border-bottom: 1px solid var(--color-rule);
-  font-weight: 600;
   line-height: 1.4;
 }
 .intensive__gap::before {
@@ -1001,16 +1050,22 @@ html.js .when__line--right[data-reveal]:not(.is-in) > .when__words {
   transform: translateY(-0.1em);
 }
 
+@media (min-width: 48rem) {
+  .intensive__head,
+  .intensive__body { padding: 3rem 2.75rem; }
+}
 @media (min-width: 62rem) {
-  .intensive__inner {
-    grid-template-columns: 5fr 7fr;
-    column-gap: clamp(3rem, 6vw, 5.5rem);
-    align-items: start;
+  .intensive__inner { grid-template-columns: 6fr 7fr; }
+  .intensive__head { padding: 3.5rem 3rem; }
+  /* side by side, the navy half is under half the page, so the big line is sized to that */
+  .intensive__big { font-size: clamp(2.75rem, 0.25rem + 4.2vw, 4.25rem); }
+  .intensive__body {
+    padding: 3.5rem 3rem;
+    border-top: 1px solid var(--color-rule);
+    border-left: 0;
   }
-  .intensive__head {
-    position: sticky;
-    top: calc(var(--header-h) + 2.5rem);
-  }
+  .intensive__btn { margin-top: auto; }      /* the button sits at the foot of the navy half */
+  .intensive__sub { margin-bottom: 2.5rem; }
 }
 
 /* ---------- Meet INVEXTRA™ ----------

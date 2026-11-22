@@ -343,6 +343,18 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-23 (evening): emphasised words in two headings; Readiness Intensive rebuilt as a two-half panel (her point 4)
+- **Miguelle's reading of her point 4:** she is not asking for more decoration; she wants visual hierarchy and deliberate variation in layout from section to section. One tool for that: emphasise a key word in a heading.
+- **New global class `.accent`** (`css/global.css`): `<em class="accent">word</em>` makes one word of a heading burgundy and italic. For headings on white or pale grey only. Used so far: "**When** would you bring us in?" and "An outside investigation shouldn't become another **problem** to manage" ("problem" was Miguelle's choice; "When" was Claude's, change freely). Candidates for the other headings as each section is reworked.
+- **Investigation Readiness Intensive** rebuilt after Miguelle's mock-up ("Option 2, dark statement panel"). `index.html`, `css/styles.css`: one panel in two halves. Navy half: the section name as a small capitals label (still the `h2`), "Not Investigations 101." very large with "101." on its own line in light copper, the second sentence of her tagline, and the button. Pale grey half: her first sentence slightly larger and bold, the four gaps, and her two remaining paragraphs. Phones: navy half on top. Desktop (62rem up): side by side. The old sticky left column is gone, and the heading no longer uses the word-by-word reveal.
+- **Differences from the mock-up, on purpose:**
+  - **Her wording is kept in full.** The mock-up shortened the four gaps and cut the last paragraphs; the content-integrity rule (Section 1) says not to reword her copy. Shortening would need her sign-off.
+  - "101." is `#B98A5E`, a lighter tint of the brand copper, because `#8C5A2B` is too dark to read on navy (2.99:1; the tint is 5.7:1). Copper is reserved for INVEXTRA touches in her brand guide, so **raise this with Marquita**.
+  - The button is the filled white one (`btn--light`), not an outline: the page's rule is that every "Schedule a Conversation" button is filled and only the INVEXTRA button is an outline.
+- **Checked:** screenshots at 390 and 1440; the word "Investigations" measured against its panel at ten widths from 320 to 1920 and fits at all of them; no sideways scrolling. **Not checked:** real phones, Safari, Firefox.
+- The "Not Investigations 101." sketch in `documentation/previews/human-and-rhythm.html` is superseded by this.
+- Committed, not pushed.
+
 ### 2026-11-23 (later still): "rigor and humanity" section: centred heading on larger screens, angled dividers on the burgundy band
 - Miguelle's requests. `css/styles.css`: from 48rem up, `.standard__title` and `.standard__lead` are centred (phones stay left-aligned).
 - `index.html` + `css/styles.css`: the burgundy band now has the page's angled divider shape at its top and bottom (`.standard__band-divider`, white fill; the bottom one is the same shape rotated). The centre line was adjusted to meet the angled edge exactly: `--edge` on `.standard__drop` is how far down the divider the edge sits in the middle of the screen (36% of `--divider-h`), so the navy part ends and the white part starts on the edge.

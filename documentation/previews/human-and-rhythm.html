@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Human element and rhythm: preview</title>
+<!-- PREVIEW ONLY. A sketch sheet for Miguelle to review: three sections of the homepage, redrawn.
+     It is not part of the website and nothing links to it. It borrows the site's colours, fonts
+     and buttons from global.css; everything else is kept inside this one file on purpose, so the
+     whole sketch can be deleted in one go. All wording is Marquita's, unchanged. -->
+<link rel="stylesheet" href="../../css/global.css">
+<style>
+body { overflow-x: clip; }
+.sheet-note { padding: 1.5rem 0; background: var(--color-white); border-block: 1px solid var(--color-rule); }
+.sheet-note p { font-size: 0.9375rem; }
+.sheet-note b { color: var(--color-burgundy); letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.8125rem; }
+.sheet-head { padding: 3rem 0 2.5rem; }
+.sheet-head h1 { font-size: clamp(1.75rem, 1.3rem + 2vw, 2.75rem); }
+.sheet-head p { max-width: 44rem; margin-top: 1rem; }
+
+/* ================= SKETCH 1: When would you bring us in? ================= */
+.s-when { padding-block: var(--space-section); background: var(--color-wash); overflow-x: clip; }
+.s-when__title { font-size: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem); }
+/* The five situations: large serif lines, each set in from the left by a different amount.
+   A thin line runs in from the edge of the screen to the start of each one. */
+.s-when__list { margin-top: 3rem; display: grid; gap: 2rem; }
+.s-when__item {
+  position: relative;
+  max-width: 34rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 1.05rem + 1vw, 1.75rem);
+  line-height: 1.35;
+  text-wrap: balance;
+}
+.s-when__item::before {
+  content: "";
+  position: absolute;
+  top: 0.68em;
+  right: calc(100% + 1.25rem);
+  width: 100vw;
+  height: 1px;
+  background: var(--color-navy);
+  opacity: 0.45;
+}
+@media (max-width: 47.99rem) {
+  .s-when__item { padding-left: 2.25rem; }
+  .s-when__item::before { right: auto; left: -1.25rem; width: 2.75rem; }
+}
+@media (min-width: 48rem) {
+  .s-when__list { gap: 2.5rem; }
+  .s-when__item:nth-child(1) { margin-left: 8%; }
+  .s-when__item:nth-child(2) { margin-left: 46%; }
+  .s-when__item:nth-child(3) { margin-left: 22%; }
+  .s-when__item:nth-child(4) { margin-left: 54%; }
+  .s-when__item:nth-child(5) { margin-left: 14%; max-width: 40rem; }
+}
+/* "Sometimes..." : two lines (capacity, distance) run down and join into one beside "both" */
+.s-when__statement {
+  display: grid;
+  grid-template-columns: clamp(2.5rem, 8vw, 6rem) 1fr;
+  grid-auto-rows: 1fr;
+  column-gap: 1.25rem;
+  margin-top: 4rem;
+  padding: clamp(2rem, 5vw, 3.5rem);
+  background: var(--color-navy);
+  color: var(--color-mist);
+}
+.s-when__join { grid-row: 1 / span 3; width: 100%; height: 100%; }
+.s-when__join path { fill: none; stroke: var(--color-silver); stroke-width: 1.25; vector-effect: non-scaling-stroke; }
+.s-when__join .is-one { stroke: var(--color-white); stroke-width: 2.25; }
+.s-when__line {
+  grid-column: 2;
+  align-self: center;
+  padding-block: 0.6rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.1875rem, 1rem + 0.9vw, 1.625rem);
+  line-height: 1.3;
+}
+.s-when__line--both { color: var(--color-white); font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2.375rem); }
+.s-when__text { max-width: 44rem; margin-top: 2.5rem; font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem); }
+
+/* ================= SKETCH 2: rigor and humanity ================= */
+.s-std { padding-top: var(--space-section); }
+.s-std__title { max-width: 18em; font-size: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem); }
+.s-std__lead { max-width: 46rem; margin-top: 1.5rem; font-size: clamp(1.125rem, 1.05rem + 0.4vw, 1.3125rem); }
+.s-std__pair { display: grid; gap: 1.5rem; margin-top: 3.5rem; }
+.s-std__side { padding-top: 1.25rem; border-top: 1px solid var(--color-navy); font-size: 1.125rem; }
+.s-std__join { display: none; }
+.s-std__neither {
+  margin-top: 2rem;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.625rem);
+}
+/* the single line that carries on down into the burgundy band */
+.s-std__drop { width: 1px; height: 3.5rem; margin: 1.5rem 0 0 1.5rem; background: var(--color-navy); }
+@media (min-width: 48rem) {
+  .s-std__pair { grid-template-columns: 1fr 1fr; column-gap: 4rem; }
+  .s-std__side { padding: 0 0 1.25rem; border-top: 0; border-bottom: 1px solid var(--color-navy); max-width: none; }
+  /* the two lines: one down from each sentence, joining in the middle */
+  .s-std__join { display: block; width: 100%; height: 5.5rem; }
+  .s-std__join path { fill: none; stroke: var(--color-navy); stroke-width: 1.25; vector-effect: non-scaling-stroke; }
+  .s-std__neither { margin-top: 1rem; text-align: center; }
+  .s-std__drop { margin: 1.25rem auto 0; height: 4.5rem; }
+}
+.s-std__band { background: var(--color-burgundy); color: var(--color-white); padding-bottom: clamp(3.5rem, 8vw, 6.5rem); }
+.s-std__band-drop { width: 1px; height: 3.5rem; margin-left: 1.5rem; background: var(--color-white); }
+.s-std__statement {
+  margin-top: 2rem;
+  max-width: 15em;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 1.2rem + 4.2vw, 4.25rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.s-std__statement em { font-style: italic; }
+.s-std__both { margin-top: 1.75rem; font-family: var(--font-heading); font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.75rem); }
+.s-std__rest { max-width: 40rem; margin-top: 1.25rem; color: var(--color-mist); font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem); }
+@media (min-width: 48rem) {
+  .s-std__band { text-align: center; }
+  .s-std__band-drop { margin-inline: auto; height: 4.5rem; }
+  .s-std__statement, .s-std__rest { margin-inline: auto; }
+}
+.s-std__closing {
+  padding-block: clamp(3rem, 7vw, 5.5rem);
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2.375rem);
+  line-height: 1.25;
+}
+@media (min-width: 48rem) { .s-std__closing { text-align: center; } }
+
+/* ================= SKETCH 3: Not Investigations 101 ================= */
+.s-int { padding-block: var(--space-section); overflow-x: clip; }
+.s-int__title { font-family: var(--font-body); font-size: 1rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-navy); }
+/* "Not Investigations 101." is the biggest type in the section. A level line runs from the
+   end of it to the edge of the screen. */
+.s-int__big {
+  position: relative;
+  display: inline-block;
+  margin-top: 1.25rem;
+  font-family: var(--font-heading);
+  font-size: clamp(2.375rem, 1rem + 6.6vw, 6.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  color: var(--color-burgundy);
+}
+.s-int__big::after {
+  content: "";
+  position: absolute;
+  left: calc(100% + 0.3em);
+  bottom: 0.2em;
+  width: 100vw;
+  height: 1px;
+  background: var(--color-burgundy);
+}
+.s-int__grid { display: grid; gap: 2.5rem; margin-top: 2rem; }
+.s-int__tag { font-family: var(--font-heading); font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.75rem); line-height: 1.35; text-wrap: balance; }
+.s-int__btn { margin-top: 2rem; }
+.s-int__text { font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem); }
+.s-int__text + .s-int__text, .s-int__gaps + .s-int__text { margin-top: 1.5rem; }
+.s-int__gaps { margin-top: 1rem; border-top: 1px solid var(--color-rule); }
+.s-int__gap { display: grid; grid-template-columns: auto 1fr; column-gap: 0.875rem; align-items: baseline; padding-block: 0.875rem; border-bottom: 1px solid var(--color-rule); font-weight: 600; line-height: 1.4; }
+.s-int__gap::before { content: ""; width: 0.5rem; height: 0.5rem; background: var(--color-burgundy); transform: translateY(-0.1em); }
+@media (min-width: 62rem) {
+  .s-int__grid { grid-template-columns: 5fr 7fr; column-gap: clamp(3rem, 6vw, 5.5rem); margin-top: 3rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="sheet-head container">
+  <h1>Human element and rhythm: three sketches</h1>
+  <p>Three sections of the homepage, redrawn for her points 3 and 4. Every word is hers and in her order; only the layout and emphasis change. Nothing on the site has been changed. No animation here: these are still sketches.</p>
+</header>
+
+<!-- ===================== 1 ===================== -->
+<div class="sheet-note"><div class="container"><p><b>Sketch 1 · When would you bring us in?</b> &nbsp; Now: five equal cells in a grid. Here: five large lines, staggered, each with a line running in from the edge. "Sometimes..." shows two lines joining into one beside "both".</p></div></div>
+<section class="s-when">
+  <div class="container">
+    <h2 class="s-when__title">When would you bring us in?</h2>
+    <ul class="s-when__list" role="list">
+      <li class="s-when__item">Your strongest investigator is already carrying more than they should.</li>
+      <li class="s-when__item">A vacancy may take months to fill.</li>
+      <li class="s-when__item">Your new leader is still getting oriented.</li>
+      <li class="s-when__item">The allegation involves someone in the team's reporting line.</li>
+      <li class="s-when__item">Or the case is sensitive enough that the choice of investigator will be scrutinized just as closely as the findings.</li>
+    </ul>
+    <p class="s-when__statement">
+      <svg class="s-when__join" aria-hidden="true" focusable="false" viewBox="0 0 60 120" preserveAspectRatio="none"><path d="M0 20h20c16 0 12 80 30 80M0 60h20c14 0 14 40 30 40"/><path class="is-one" d="M50 100h10"/></svg>
+      <span class="s-when__line">Sometimes you need more capacity.</span>
+      <span class="s-when__line">Sometimes you need distance from the people involved.</span>
+      <span class="s-when__line s-when__line--both">Sometimes you need both.</span>
+    </p>
+    <p class="s-when__text">And yes, you may need another full-time hire. We understand that. But hiring and onboarding take time, and the complaint on your desk still needs to be handled now.</p>
+  </div>
+</section>
+
+<!-- ===================== 2 ===================== -->
+<div class="sheet-note"><div class="container"><p><b>Sketch 2 · Rigor and humanity</b> &nbsp; Now: the sentence opens an ordinary paragraph. Here: a line drops from each of the two "we have seen" sentences, they join at "Neither...", and one line carries on into a burgundy band where the sentence is the largest type on the page after the hero.</p></div></div>
+<section class="s-std">
+  <div class="container">
+    <h2 class="s-std__title">An outside investigation shouldn't become another problem to manage</h2>
+    <p class="s-std__lead">You brought in help because the situation was already difficult. The last thing you needed was a report that arrived months late, cost far more than expected, or left leadership unsure what the findings actually meant.</p>
+    <div class="s-std__pair">
+      <p class="s-std__side">We have seen reports with strong legal analysis that read more like a defense brief than neutral fact-finding.</p>
+      <p class="s-std__side">We have also seen people-centered approaches that did not fully address the policy, evidence, or legal standards at issue.</p>
+    </div>
+    <svg class="s-std__join" aria-hidden="true" focusable="false" viewBox="0 0 100 40" preserveAspectRatio="none"><path d="M24 0v8c0 22 26 10 26 32M76 0v8c0 22-26 10-26 32"/></svg>
+    <p class="s-std__neither">Neither gives an organization what it needs.</p>
+    <div class="s-std__drop" aria-hidden="true"></div>
+  </div>
+  <div class="s-std__band">
+    <div class="container">
+      <div class="s-std__band-drop" aria-hidden="true"></div>
+      <p class="s-std__statement">You should not have to choose between <em>rigor</em> and <em>humanity</em>.</p>
+      <p class="s-std__both">A sound investigation needs both.</p>
+      <p class="s-std__rest">It should be fair to the person who made the complaint and the person responding to it, disciplined about the facts, and clear enough for the organization to decide what happens next.</p>
+    </div>
+  </div>
+  <div class="container">
+    <p class="s-std__closing">That is the standard we built <span class="nowrap">By-the-Book</span> around.</p>
+  </div>
+</section>
+
+<!-- ===================== 3 ===================== -->
+<div class="sheet-note"><div class="container"><p><b>Sketch 3 · Not Investigations 101</b> &nbsp; Now: a tagline beside a small burgundy bar, under the section name. Here: it is the largest type in the section, with a level line running off to the edge; the section name becomes the small label above it.</p></div></div>
+<section class="s-int">
+  <div class="container">
+    <h2 class="s-int__title">Investigation Readiness Intensive</h2>
+    <p class="s-int__big">Not Investigations 101.</p>
+    <div class="s-int__grid">
+      <div>
+        <p class="s-int__tag">A working look at whether your investigation process is ready for the cases it has to carry.</p>
+        <a class="btn btn--navy s-int__btn" href="#">Schedule a Conversation</a>
+      </div>
+      <div>
+        <p class="s-int__text">You may have experienced investigators and still have gaps in the system around them.</p>
+        <ul class="s-int__gaps" role="list">
+          <li class="s-int__gap">Intake misses important details.</li>
+          <li class="s-int__gap">Investigations are scoped differently depending on who receives the complaint.</li>
+          <li class="s-int__gap">Review and documentation vary from one case to the next.</li>
+          <li class="s-int__gap">Policies and day-to-day practice are not always aligned.</li>
+        </ul>
+        <p class="s-int__text">We examine your investigative infrastructure: policies, protocols, intake and triage, role clarity, evidence practices, timelines, analysis, quality review, and reporting. Then we work with your team on the gaps that matter most, using your actual cases and organizational constraints where appropriate.</p>
+        <p class="s-int__text">The goal is not another binder of training materials. It is a clearer process, practical priorities, and a method your investigators can apply consistently. Each intensive is scoped to your team's readiness needs, from a single working day to a multi-day build.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

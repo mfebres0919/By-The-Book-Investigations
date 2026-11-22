@@ -343,6 +343,14 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-22 (night): sketches for her points 3 (human element) and 4 (visual rhythm); nothing built on the site
+- **New file: `documentation/previews/human-and-rhythm.html`.** A sketch sheet (not part of the website, not linked; borrows `css/global.css`, the rest of its CSS is inside the file). Three homepage sections redrawn, her wording and order unchanged, no animation:
+  1. **"When would you bring us in?"**: the five situations as large serif lines, staggered left and right, each with a thin line running in from the screen edge (plain stack on phones). In "Sometimes...", two lines join into one beside "Sometimes you need both."
+  2. **"Rigor and humanity"**: a line drops from each "We have seen..." sentence, the two join at "Neither gives an organization what it needs.", and one line continues into a full-width **burgundy band** where "You should not have to choose between rigor and humanity." is set very large ("rigor" and "humanity" in italics), followed by the rest of her paragraph. Her closing line sits below on white.
+  3. **"Not Investigations 101."**: the largest type in the Readiness Intensive section, in burgundy, with a level line running off to the right edge; the section name becomes a small label above it (still the `h2`).
+- Seen in screenshots at 390 and 1440 wide. Weakest part: the small joining lines beside "Sometimes..." look cramped.
+- **Waiting on:** Miguelle's decision on each of the three before anything is built into `index.html`. Committed, not pushed.
+
 ### 2026-11-22 (evening, later): CLEAR section: staircase photo replaced by the plumb-line photo
 - Miguelle asked to remove the staircase photo and use one of the new pictures from `documentation/source-images/`. Chosen: "Copper Plumb Bob on Navy Wall" (the two linework pictures would have put more lines behind the line-drawn marks).
 - It is **not a full background**. At full size the weight landed behind the fourth and fifth columns of text, so it is placed in the empty top right corner beside the heading, fading out to the left and bottom, with the picture's burgundy band down the right edge. **Desktop only (62rem and up)**; phones and tablets get plain navy and do not download it.

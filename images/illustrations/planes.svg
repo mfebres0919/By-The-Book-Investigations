@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" preserveAspectRatio="none">
+<!-- Two angled white planes on the pale grey, with a slightly darker band between them, cut at the same slant as the page's dividers,
+     each with a hairline along its upper edge. Decorative background for "When would you bring us in?". -->
+<path fill="#fff" fill-opacity=".8" d="M0 170 1600-40v470L0 770z"/>
+<path fill="#fff" fill-opacity=".55" d="M0 890 1600 650v210L0 1060z"/>
+<path fill="#0A1A33" fill-opacity=".07" d="M0 770 1600 430v220L0 890z"/>
+<path fill="none" stroke="#0A1A33" stroke-opacity=".16" vector-effect="non-scaling-stroke" d="M0 170 1600-40M0 890 1600 650"/>
+<path fill="none" stroke="#4C0013" stroke-opacity=".3" vector-effect="non-scaling-stroke" d="M0 770 1600 430"/>
+</svg>

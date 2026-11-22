@@ -343,6 +343,11 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+### 2026-11-25: vector background for "When would you bring us in?"
+- Miguelle found the plain grey background flat and asked for a vector background. **New file: `images/illustrations/planes.svg`** (under 1 KB): two broad white planes lying at an angle across the pale grey, a slightly darker band between them, and hairlines along the edges, all on the same slant as the page's dividers. Set by `.when::before` in `css/styles.css`, stretched to fill the section. It stops short of the bottom edge so the grey there still matches the divider into the next section.
+- Chosen over contour lines (already used in section 9) and ruled lines (they would fight the burgundy lines that run in from the screen edges).
+- Checked in screenshots at 390 and 1440 wide. Committed, not pushed.
+
 ### 2026-11-24 (night): numbers strip, "Two ways" cards and testimonials reworked
 Miguelle asked whether other sections needed rearranging; Claude named these three and Miguelle said to take all three. Wording unchanged throughout. Committed, not pushed. **Miguelle is reviewing how the whole page comes together on phones.**
 - **Numbers strip** (`css/styles.css`, "Stat strip"): the three figures are much larger (up to 92px on desktop). Phones: each figure on its own row with its label beside it. Tablets up: three across with labels under them. Her statement "Independent, attorney-led fact-finding" is now an italic line in a row of its own between two rules (centred from tablets up), with the founder note under it. The counting animation is unchanged.

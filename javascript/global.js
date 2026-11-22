@@ -1,6 +1,6 @@
 /* ==========================================================================
    global.js: behavior shared by every page
-   1. Phone menu   2. Back-to-top button   3. Tabs   4. Reveal on scroll   5. Footer year   6. Counting numbers   7. Smooth questions
+   1. Phone menu   2. Back-to-top button   3. Tabs   4. Reveal on scroll   5. Footer year   6. Counting numbers   7. Smooth questions   8. Hero lines
    Loaded with "defer", so the HTML is ready by the time this runs.
    ========================================================================== */
 
@@ -281,4 +281,158 @@
       }
     });
   });
+})();
+
+/* ---------- 8. Hero lines (homepage) ----------
+   The drawing behind the hero text. It tells the firm's story in about four and a half seconds:
+     1. SCATTERED  thin lines lie across the hero at different heights and angles (the accounts);
+     2. GATHER     they are drawn together into one bundle;
+     3. REVIEW     the bundle is combed straight, from the right-hand side towards the left;
+     4. FINDING    one bright, level line is drawn along it.
+   It plays once and then rests: a small tangle at the left edge feeding one straight line.
+
+   How it works: every line is a row of points. Many times a second we work out where each
+   point should be at that moment and hand the browser the new shape (the "d" of a <path>).
+   Nothing here is truly random: the "random" numbers come from a fixed seed, so the drawing
+   is the same picture on every visit.
+
+   With "reduce motion" on, nothing moves: the resting picture is shown straight away. */
+(function () {
+  var svg = document.querySelector('.hero__lines');
+  if (!svg) return;
+  var group = svg.querySelector('.hero__threads');
+  var finding = svg.querySelector('.hero__finding');
+  var fade = svg.querySelector('#hero-finding-fade');
+  if (!group || !finding || !fade) return;
+
+  // ----- Settings you can safely change -----
+  var COUNT = 18;          // how many lines
+  var POINTS = 150;        // points per line (more = smoother curves, a little more work)
+  var SEED = 11;           // a different whole number gives a different arrangement
+  var TIMES = {            // milliseconds from the start of the animation
+    gatherLength: 1500,    // how long one line takes to join the bundle
+    gatherSpread: 500,     // lines set off at different moments within this window
+    combStart: 1200,       // the straightening starts...
+    combEnd: 3800,         // ...and ends
+    findingStart: 3500,    // the bright line starts...
+    findingEnd: 4500       // ...and ends (keep the total under 5 seconds)
+  };
+  var START_DELAY = 200;   // a short wait after the page loads
+
+  // A small "random" number maker with a fixed starting point (gives 0 to 1)
+  var seed = SEED;
+  function random() {
+    seed = (seed * 16807) % 2147483647;
+    return (seed - 1) / 2147483646;
+  }
+
+  // Describe each line once. The numbers are proportions, turned into pixels when drawing.
+  var threads = [];
+  var order = [];
+  var i;
+  for (i = 0; i < COUNT; i++) order.push(i);
+  // Shuffle, so a line's starting height has nothing to do with its place in the bundle
+  for (i = COUNT - 1; i > 0; i--) {
+    var j = Math.floor(random() * (i + 1));
+    var swap = order[i]; order[i] = order[j]; order[j] = swap;
+  }
+  for (i = 0; i < COUNT; i++) {
+    var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('class', 'hero__thread');
+    path.setAttribute('stroke-opacity', (0.2 + random() * 0.4).toFixed(2));
+    group.appendChild(path);
+    threads.push({
+      path: path,
+      startAt: 0.05 + 0.9 * (order[i] + random() * 0.8) / COUNT,  // scattered: how far down the hero (0 top, 1 bottom)
+      tilt: (random() - 0.5) * 0.5,                               // scattered: how much it slopes
+      fan: Math.pow(random(), 1.4) * 1.2 - 0.2,                   // resting tangle: how far above (+) or below (-) the level line it starts
+      waves: [                                                    // two waves added together make an irregular curve
+        { length: 260 + random() * 420, height: 0.08 + random() * 0.14, shift: random() * 6.283 },
+        { length: 120 + random() * 160, height: 0.015 + random() * 0.04, shift: random() * 6.283 }
+      ],
+      delay: random()                                             // when it sets off (0 first, 1 last)
+    });
+  }
+
+  var width = 0, height = 0, base = 0, up = 0, reach = 0;
+
+  // Read the size of the hero and work out the measurements that depend on it
+  function measure() {
+    var box = svg.getBoundingClientRect();
+    width = box.width;
+    height = box.height;
+    var phone = width < 768;
+    base = height - (phone ? 44 : 60);                              // the level line: this far above the bottom
+    up = phone ? Math.min(height * 0.2, 110) : Math.min(height * 0.5, 360);   // how tall the resting tangle is
+    reach = phone ? 0.55 : 0.4;                                     // how far across the tangle reaches (0.4 = 40% of the width)
+    svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
+
+    // The bright line starts where the tangle has all but closed, and fades in over its first stretch
+    var from = width * reach * 0.86;
+    finding.setAttribute('d', 'M' + from.toFixed(1) + ' ' + base.toFixed(1) + 'H' + width.toFixed(1));
+    fade.setAttribute('x1', from.toFixed(1));
+    fade.setAttribute('x2', (from + Math.min(260, width * 0.3)).toFixed(1));
+  }
+
+  function clamp(n) { return n < 0 ? 0 : n > 1 ? 1 : n; }
+  function ease(n) { n = clamp(n); return n * n * (3 - 2 * n); }   // starts and stops gently, no bounce
+
+  // Draw every line as it should look "time" milliseconds into the animation
+  function draw(time) {
+    // "front" is how far the tangle still reaches: past the right edge at first, then back to its resting place
+    var combed = ease((time - TIMES.combStart) / (TIMES.combEnd - TIMES.combStart));
+    var front = (1 + reach) - combed;
+    for (var t = 0; t < threads.length; t++) {
+      var thread = threads[t];
+      var gathered = ease((time - thread.delay * TIMES.gatherSpread) / TIMES.gatherLength);
+      var fanTo = thread.fan > 0 ? -thread.fan * up : -thread.fan * 26;   // above the line it may climb; below, only a little
+      var d = '';
+      for (var p = 0; p <= POINTS; p++) {
+        var across = p / POINTS;                 // 0 = left edge, 1 = right edge
+        var x = across * width;
+        // "loose" is 1 where the line is still free to wander and 0 where it has been combed straight
+        var loose = Math.pow(clamp((front - across) / reach), 2.2);
+        var wave = 0;
+        for (var k = 0; k < thread.waves.length; k++) {
+          wave += Math.sin(x / thread.waves[k].length * 6.283 + thread.waves[k].shift) * thread.waves[k].height;
+        }
+        var scattered = (thread.startAt + thread.tilt * (across - 0.5)) * height;
+        var bundled = base + fanTo * loose;
+        var y = scattered + (bundled - scattered) * gathered + wave * up * loose * (0.45 + 0.55 * Math.abs(thread.fan));
+        d += (p ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1);
+      }
+      thread.path.setAttribute('d', d);
+    }
+    var drawn = clamp((time - TIMES.findingStart) / (TIMES.findingEnd - TIMES.findingStart));
+    finding.style.setProperty('--drawn', drawn.toFixed(3));
+  }
+
+  var END = TIMES.findingEnd;
+  var clock = 0;          // how far into the animation we are
+  var last = null;        // the time of the previous frame
+
+  function frame(now) {
+    // Count only real, visible time: if the tab was in the background, carry on from where it was
+    if (last !== null) clock += Math.min(now - last, 50);
+    last = now;
+    draw(clock);
+    if (clock < END) window.requestAnimationFrame(frame);
+  }
+
+  measure();
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    clock = END;
+    draw(END);            // no movement: go straight to the resting picture
+  } else {
+    draw(0);
+    window.setTimeout(function () { window.requestAnimationFrame(frame); }, START_DELAY);
+  }
+
+  // If the hero changes size (window resized, phone turned, fonts finish loading), redraw to fit
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(function () {
+      measure();
+      draw(clock);
+    }).observe(svg);
+  }
 })();

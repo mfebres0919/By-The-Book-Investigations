@@ -235,6 +235,7 @@ The signed agreement (`By-the-Book-Website-Development-Agreement.docx` in `~/Dow
 | 2026-11-16 | Fonts: Libre Baskerville for headings, Source Sans 3 for body text. |
 | 2026-11-16 | The header and navigation stay **white** so the dark logo shows. Navy starts at the hero. |
 | 2026-11-16 | Hero uses `images/backgrounds/hero` (navy texture with a burgundy diagonal line). |
+| 2026-11-22 | **Hero background is an animated line drawing made in code** (scattered lines settle into one level line), replacing the conference-room photo, after her round-two feedback asked for a more ownable hero. First draft, awaiting Miguelle's and then her review. |
 | 2026-11-16 | Buttons: burgundy on white backgrounds, white on navy backgrounds (burgundy disappears against navy). All buttons fill from the bottom on hover. |
 | 2026-11-16 | Motion is linear and short (0.25s), per her brief. The only staged animation so far is the phone menu. |
 | 2026-11-16 | Logos live in `images/brand/` (the handbook's name for that folder) and team photos in `images/headshots/`. |
@@ -341,6 +342,19 @@ Newest first. One entry per working session or per significant change: what chan
 
 
 
+
+### 2026-11-22: round-two feedback arrived; hero photo replaced by an animated line drawing (first draft, for Miguelle's review)
+- **Her feedback** is in `documentation/client-brief/By-the-Book Homepage Design Feedback Brief.docx` (round two: five creative-direction points and a list of copy corrections). Miguelle is going through it one point at a time. **Only point 1 (hero) has been worked on.** Points 2 to 5 and all the copy corrections (title "Founder" only, "CLEAR By-the-Book™ Investigation Framework" everywhere, "case" instead of "matter", new INVEXTRA wording and "Early 2027", whether the retainer nav link is needed) are **not done yet**. Her point 5 ("Clients: Add") is cut off in the document: ask her what it was meant to say.
+- **Hero (her point 1: "keep the headline... a more ownable visual treatment... connected to impartial investigative work").** Miguelle's idea: scattered lines that animate into one straight line (gathering, reviewing and analysing the facts until there is a clear finding). Built as a drawing made in code (SVG), not a picture:
+  - `index.html`: the `<picture>` background is gone. A new `.hero__stage` wraps the drawing (`.hero__bg` with an `<svg class="hero__lines">`) and the text. The two hero image preloads were removed. Headline and all wording unchanged.
+  - `javascript/global.js`, new section 8 "Hero lines": 18 thin silver lines start scattered across the hero, gather into a bundle, are combed straight from right to left, then one bright white line is drawn along them. About 4.5 seconds, plays once, then rests as a small tangle at the left edge feeding one level line. The arrangement is the same on every visit (fixed seed). The settings at the top of the section (count, seed, timings) are safe to change. With "reduce motion" on it shows the resting picture with no movement. Without JavaScript the hero is plain navy.
+  - `css/styles.css`: photo rules and the navy sheet removed; rules for `.hero__stage`, `.hero__lines`, `.hero__thread`, `.hero__finding` added; deeper bottom padding on `.hero__inner` so the lines have a clear band under the button.
+  - The movement starts and stops gently (no bounce) instead of at one constant speed, because a constant-speed stop looked abrupt. Her brief says "linear" transitions; this is the one place that bends it. Change `ease()` in section 8 to `return clamp(n);` for strictly constant speed.
+  - No copper in the drawing (copper is reserved for INVEXTRA touches); the finding line is white.
+- **Kept as a fallback:** `images/backgrounds/hero*.jpg/.webp` (conference room) are still in the folder but no longer used. Miguelle's generated alternatives are in `documentation/source-images/` (plumb bob, copper linework).
+- **Checked:** screenshots at 390, 768 and 1440 wide, at the start, middle and end of the animation; no script errors. **Not checked:** Safari and Firefox, real phones, reduce-motion mode in a real browser.
+- **Committed but NOT pushed**, on purpose: pushing updates the GitHub Pages preview Marquita has seen, and Miguelle has not reviewed this draft yet. Push when Miguelle says so.
+- **To do if this hero is kept:** remake the social preview image (`og:image`), which still shows the conference-room hero.
 
 ### 2026-11-18: notes and questions removed from the PDF cover
 - Miguelle: the questions for Marquita go in the email, not the PDF. The cover's bullet list was removed entirely (the "homepage only" note, the testimonials note and the three questions). The cover now has only: title, one-line introduction, the hero picture at full width, the live link with one sentence about what the link shows that a PDF cannot, and the "Prepared for" line. Still 17 pages. `documentation/pdf-build/build.py` updated to match.

@@ -40,11 +40,10 @@
     <link rel="manifest" href="site.webmanifest">
     <!-- Still to add before launch: LocalBusiness schema -->
 
-    <!-- Preload what the first screen needs: the two upright fonts and the hero background -->
+    <!-- Preload what the first screen needs: the two upright fonts. (The hero background is now
+         drawn lines, not a picture, so there is no image to preload.) -->
     <link rel="preload" href="fonts/source-sans-3-v20-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/libre-baskerville-v24-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" as="image" href="images/backgrounds/hero-m.webp" type="image/webp" media="(max-width: 47.99rem)">
-    <link rel="preload" as="image" href="images/backgrounds/hero.webp" type="image/webp" media="(min-width: 48rem)">
 
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/styles.css">
@@ -105,32 +104,44 @@
 
         <!-- ============ HERO ============ -->
         <section class="hero" aria-labelledby="hero-title">
-            <!-- Background image. It is decorative, so alt is empty and it is hidden from screen readers. -->
-            <picture class="hero__bg">
-                <source media="(min-width: 48rem)" srcset="images/backgrounds/hero.webp" type="image/webp">
-                <source media="(min-width: 48rem)" srcset="images/backgrounds/hero.jpg">
-                <source srcset="images/backgrounds/hero-m.webp" type="image/webp">
-                <img src="images/backgrounds/hero-m.jpg" alt="" aria-hidden="true"
-                     width="720" height="1210" fetchpriority="high" decoding="async">
-            </picture>
+            <!-- The "stage" is everything above the trust line: the drawn background and the text. -->
+            <div class="hero__stage">
+                <!-- Background drawing: scattered lines that gather and settle into one straight line
+                     (many accounts, one clear finding). It is decorative, so it is hidden from screen
+                     readers. The lines themselves are drawn by global.js (section 8, "Hero lines"),
+                     which is why this <svg> is nearly empty here. Without JavaScript the hero is plain navy. -->
+                <div class="hero__bg" aria-hidden="true">
+                    <svg class="hero__lines" focusable="false">
+                        <defs>
+                            <!-- Lets the bright line fade in at its left end instead of starting abruptly -->
+                            <linearGradient id="hero-finding-fade" gradientUnits="userSpaceOnUse">
+                                <stop class="hero__fade-from" offset="0"/>
+                                <stop class="hero__fade-to" offset="1"/>
+                            </linearGradient>
+                        </defs>
+                        <g class="hero__threads"></g>
+                        <path class="hero__finding" stroke="url(#hero-finding-fade)" pathLength="1"/>
+                    </svg>
+                </div>
 
-            <div class="hero__inner container">
-                <!-- All hero wording is from her final copy ("Homepage and About Us.docx", section 1). -->
-                <p class="hero__eyebrow">Third-party protected-class investigations</p>
+                <div class="hero__inner container">
+                    <!-- All hero wording is from her final copy ("Homepage and About Us.docx", section 1). -->
+                    <p class="hero__eyebrow">Third-party protected-class investigations</p>
 
-                <!-- Two sentences on two lines. Each word is in its own span so the CSS can bring the
-                     words in one after another on page load; the second sentence starts a beat later. -->
-                <h1 class="hero__title" id="hero-title">
-                    <span class="hero__line"><span class="hero__word">Some</span> <span class="hero__word">investigations</span> <span class="hero__word">can't</span> <span class="hero__word">stay</span> <span class="hero__word">in-house.</span></span>
-                    <span class="hero__line"><span class="hero__word">Others</span> <span class="hero__word">can't</span> <span class="hero__word">wait.</span></span>
-                </h1>
-                <p class="hero__lead">When your team is at capacity, in transition, or too close to the matter, By-the-Book Workplace Investigations steps in. Independent, attorney-led protected-class investigations with the legal and policy rigor, practical judgment, and care for people these cases demand.</p>
+                    <!-- Two sentences on two lines. Each word is in its own span so the CSS can bring the
+                         words in one after another on page load; the second sentence starts a beat later. -->
+                    <h1 class="hero__title" id="hero-title">
+                        <span class="hero__line"><span class="hero__word">Some</span> <span class="hero__word">investigations</span> <span class="hero__word">can't</span> <span class="hero__word">stay</span> <span class="hero__word">in-house.</span></span>
+                        <span class="hero__line"><span class="hero__word">Others</span> <span class="hero__word">can't</span> <span class="hero__word">wait.</span></span>
+                    </h1>
+                    <p class="hero__lead">When your team is at capacity, in transition, or too close to the matter, By-the-Book Workplace Investigations steps in. Independent, attorney-led protected-class investigations with the legal and policy rigor, practical judgment, and care for people these cases demand.</p>
 
-                <!-- One button only (her design note). The second action is a plain text link that jumps
-                     down to the two ways of working together. -->
-                <div class="hero__actions">
-                    <a class="btn btn--light hero__btn" href="contact/">Schedule a Conversation</a>
-                    <a class="hero__link" href="#services">How the work is structured</a>
+                    <!-- One button only (her design note). The second action is a plain text link that jumps
+                         down to the two ways of working together. -->
+                    <div class="hero__actions">
+                        <a class="btn btn--light hero__btn" href="contact/">Schedule a Conversation</a>
+                        <a class="hero__link" href="#services">How the work is structured</a>
+                    </div>
                 </div>
             </div>
 

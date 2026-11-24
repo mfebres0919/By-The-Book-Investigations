@@ -363,7 +363,53 @@
             </div>
         </section>
 
-        <!-- Still to build, one section at a time: 04 How CLEAR fits, 05 INVEXTRA ("Planned launch: Early 2027", Miguelle's
+        <!-- ============ HOW CLEAR FITS (her section 04) ============
+             All wording from her Services document, section 04, word for word. Her build note: do not
+             repeat the full explanation of the five phases here (the homepage has it), so this section
+             is short: her two paragraphs, and her one-line list of the phases.
+             Unlike the sections around it, it is centred and white, and it shows the five CLEAR marks
+             from the homepage, this time on white (navy lines, burgundy accents). That shows the marks
+             working on a light background too, which is what her feedback asked for ("reused in
+             training materials and INVEXTRA"). The marks are copied exactly from index.html, and the
+             same script animates them (global.js, part 9): each one settles from loose lines into its
+             shape, one after another, and a thin line then joins it to the next.
+             Her line "Capture the Complaint. Launch the Strategy..." is split at its full stops, one
+             phase under each mark; the first letters (C, L, E, A, R) are set in burgundy. -->
+        <section class="fit" id="clear" aria-labelledby="fit-title">
+            <div class="container">
+                <div class="fit__head" data-reveal="up">
+                    <h2 class="fit__title" id="fit-title">How CLEAR fits into both services</h2>
+                    <p class="fit__lead">We use the CLEAR <span class="nowrap">By-the-Book™</span> Investigation Framework for the cases we handle. It is also the starting point when we help internal teams decide how their own investigations should be structured.</p>
+                </div>
+
+                <ol class="clear fit__phases" role="list">
+                    <li class="clear__step fit__phase">
+                        <svg class="clear__mark" aria-hidden="true" focusable="false" viewBox="0 0 96 96"><path class="clear__line" d="M19 30C38 18 54 62 77 40"/><path class="clear__line" d="M19 44C34 64 58 20 77 54"/><path class="clear__line" d="M19 57C40 40 56 78 77 64"/><path class="clear__line" d="M19 67C36 80 60 42 77 28"/><path class="clear__line" d="M19 37C44 52 50 28 77 72"/><path class="clear__accent" d="M22 14h-9v68h9M74 14h9v68h-9"/></svg>
+                        <p class="fit__name"><span class="fit__initial">C</span>apture the Complaint.</p>
+                    </li>
+                    <li class="clear__step fit__phase">
+                        <svg class="clear__mark" aria-hidden="true" focusable="false" viewBox="0 0 96 96"><path class="clear__line" d="M12 48L40 16h46"/><path class="clear__line" d="M12 48L40 32h46"/><path class="clear__line" d="M12 48h74"/><path class="clear__line" d="M12 48L40 64h46"/><path class="clear__line" d="M12 48L40 80h46"/><circle class="clear__point" cx="12" cy="48" r="4.5"/></svg>
+                        <p class="fit__name"><span class="fit__initial">L</span>aunch the Strategy.</p>
+                    </li>
+                    <li class="clear__step fit__phase">
+                        <svg class="clear__mark" aria-hidden="true" focusable="false" viewBox="0 0 96 96"><path class="clear__line" d="M10 16h76"/><path class="clear__line" d="M10 32h76"/><path class="clear__line" d="M10 48C40 48 56 64 86 64"/><path class="clear__line" d="M10 64C40 64 56 48 86 48"/><path class="clear__line" d="M10 80h76"/><circle class="clear__accent" cx="48" cy="56" r="9"/></svg>
+                        <p class="fit__name"><span class="fit__initial">E</span>valuate the Evidence.</p>
+                    </li>
+                    <li class="clear__step fit__phase">
+                        <svg class="clear__mark" aria-hidden="true" focusable="false" viewBox="0 0 96 96"><path class="clear__line" d="M34 16h28"/><path class="clear__line" d="M22 32h52"/><path class="clear__line" d="M8 48h80"/><path class="clear__line" d="M22 64h52"/><path class="clear__line" d="M34 80h28"/><path class="clear__accent" d="M8 48h80"/></svg>
+                        <p class="fit__name"><span class="fit__initial">A</span>nalyze Impartially.</p>
+                    </li>
+                    <li class="clear__step fit__phase">
+                        <svg class="clear__mark" aria-hidden="true" focusable="false" viewBox="0 0 96 96"><path class="clear__line" d="M10 48h64"/><path class="clear__line" d="M10 48h64"/><path class="clear__line" d="M10 48h64"/><path class="clear__line" d="M10 48h64"/><path class="clear__line" d="M10 48h64"/><path class="clear__accent" d="M10 48h64"/><rect class="clear__point" x="78" y="43.5" width="9" height="9"/></svg>
+                        <p class="fit__name"><span class="fit__initial">R</span>eport with Clarity.</p>
+                    </li>
+                </ol>
+
+                <p class="fit__closing" data-reveal="up">CLEAR does not replace judgment. It gives investigators a consistent way to work through each stage of a case while leaving room for the facts, policies, and people involved.</p>
+            </div>
+        </section>
+
+        <!-- Still to build, one section at a time: 05 INVEXTRA ("Planned launch: Early 2027", Miguelle's
              decision, not the "January 2027" in her Services document), 06 Next step. -->
 
     </main>

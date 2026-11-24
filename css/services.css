@@ -673,3 +673,133 @@ html.js .shift__rails:not(.is-drawn) .shift__rail { transform: scaleX(0); }
   }
   .assessment__body { margin-top: 0; }
 }
+
+/* ---------- How CLEAR fits into both services ----------
+   White and centred, after the left-aligned grey band above. Her two paragraphs frame the five
+   CLEAR marks (the same drawings as the homepage, here in navy and burgundy on white).
+   Phones and tablets: the marks run down the page, each with its phase beside it, joined by a
+   thin vertical line. Desktop: five across, joined by thin horizontal lines.
+   global.js (part 9) animates the marks: it adds "clear--animated" to the list, "is-waiting"
+   to each mark until its accent should appear, and "is-drawn" to each step when its mark is
+   finished, which grows the joining line to the next one. */
+.fit { padding-block: var(--space-section); }
+
+.fit__head { max-width: 46rem; }
+.fit__title { font-size: clamp(2rem, 1.5rem + 2.4vw, 3.25rem); }
+.fit__lead { margin-top: 1.25rem; }
+
+.fit__phases {
+  --mark: 3.5rem;
+  margin-top: clamp(2.5rem, 2rem + 3vw, 4.5rem);
+}
+.fit__phase {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--mark) minmax(0, 1fr);
+  column-gap: 1.25rem;
+  align-items: center;
+  padding-bottom: 2rem;
+}
+.fit__phase:last-child { padding-bottom: 0; }
+/* The joining line: down from this mark to the next one */
+.fit__phase::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--mark) + 0.5rem);
+  bottom: 0.5rem;
+  left: calc(var(--mark) / 2);
+  width: 1px;
+  background: var(--color-silver);
+  transform-origin: top left;
+  transition: transform 0.4s linear;
+}
+.fit__phase:last-child::after { content: none; }
+.clear--animated .fit__phase:not(.is-drawn)::after { transform: scale(0); }
+
+/* The marks: thin navy lines, a heavier burgundy accent */
+.fit .clear__mark {
+  width: var(--mark);
+  height: var(--mark);
+  overflow: visible;             /* lets the loose lines swing a little outside the square while they settle */
+}
+.fit .clear__line,
+.fit .clear__accent {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+.fit .clear__line {
+  stroke: var(--color-navy);
+  stroke-opacity: 0.5;
+  stroke-width: 1.25;
+}
+.fit .clear__accent {
+  stroke: var(--color-burgundy);
+  stroke-width: 2.25;
+}
+.fit .clear__point { fill: var(--color-burgundy); }
+.fit .clear__accent,
+.fit .clear__point { transition: opacity 0.4s linear; }
+.fit .clear__mark.is-waiting .clear__accent,
+.fit .clear__mark.is-waiting .clear__point { opacity: 0; }
+
+.fit__name {
+  font-family: var(--font-heading);
+  font-size: clamp(1.1875rem, 1.05rem + 0.5vw, 1.375rem);
+  line-height: 1.3;
+}
+/* C, L, E, A, R: the first letters, which spell the framework's name down (or across) the list */
+.fit__initial { color: var(--color-burgundy); }
+
+.fit__closing {
+  max-width: 44rem;
+  margin-top: clamp(2.5rem, 2rem + 3vw, 4.5rem);
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--color-rule);
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  line-height: 1.45;
+}
+
+@media (min-width: 48rem) {
+  .fit__head,
+  .fit__closing {
+    margin-inline: auto;
+    text-align: center;
+  }
+  .fit__phases {
+    --mark: 4.25rem;
+    max-width: 30rem;
+    margin-inline: auto;
+  }
+}
+
+/* Desktop: five across, each phase under its mark, a line from each mark to the next */
+@media (min-width: 62rem) {
+  .fit__phases {
+    --mark: 6rem;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    column-gap: 1.5rem;
+    max-width: none;
+  }
+  .fit__phase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 0;
+    text-align: center;
+  }
+  .fit__name {
+    margin-top: 1.5rem;
+    font-size: 1.25rem;
+    text-wrap: balance;
+  }
+  .fit__phase::after {
+    top: calc(var(--mark) / 2);
+    bottom: auto;
+    left: calc(50% + var(--mark) / 2 + 1rem);
+    width: calc(100% - var(--mark) - 2rem + 1.5rem);   /* + the gap between columns */
+    height: 1px;
+  }
+}

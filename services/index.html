@@ -238,8 +238,132 @@
             </div>
         </section>
 
-        <!-- Still to build, one section at a time: 03 Investigation Readiness Intensive
-             (id="readiness"), 04 How CLEAR fits, 05 INVEXTRA ("Planned launch: Early 2027", Miguelle's
+        <!-- ============ INVESTIGATION READINESS INTENSIVE (her section 03) ============
+             All wording from her Services document, section 03, word for word. It is the longest part
+             of the page, so it is told in three bands, each with its own background and layout, so it
+             never looks like the section before it (the white timeline):
+               A. NAVY: the problem. Centred. Her "One investigator... Another..." sentences are set as
+                  pairs, each with a line after it: a long line for the thorough version, a short one for
+                  the thin version. Uneven lines = uneven practice.
+               B. WHITE: the shift. "This is infrastructure building." very large, over a row of even,
+                  parallel lines (the same lines, now consistent). Then the six questions in a 2 x 3 grid
+                  (her build note: "the six audit themes in a two-column grid").
+               C. PALE GREY: how it works. First / Then / Finally across a line, then the possible
+                  deliverables as a short list under her "Depending on the agreed scope" (her note: do not
+                  look as if every engagement includes every item), then her button.
+             Then her "Not ready to schedule a conversation?" box with the assessment text link.
+             id="readiness" is where the footer link lands. -->
+        <section class="readiness" id="readiness" aria-labelledby="readiness-title">
+
+            <!-- A. The problem (navy) -->
+            <div class="readiness__problem">
+                <div class="container readiness__narrow">
+                    <h2 class="readiness__label" id="readiness-title" data-reveal="fade">Investigation Readiness Intensive</h2>
+                    <p class="readiness__big" data-reveal="up">Your best investigator should not be your entire investigation strategy.</p>
+                    <p class="readiness__text" data-reveal="up">Great investigators matter. Their judgment, experience, and ability to navigate difficult cases are invaluable. But even exceptional investigators get overwhelmed, take leave, or move on. And the next person assigned to a case may not have the same experience.</p>
+                    <p class="readiness__pull" data-reveal="up">If the consistency of your investigations depends on who happens to be assigned, you may have more than a staffing problem. You may have a process problem.</p>
+                </div>
+
+                <!-- Her four sentences, in her order, as two pairs. The lines are decoration (hidden from
+                     screen readers); they draw out once the pairs scroll into view (data-draw). -->
+                <div class="container">
+                    <div class="contrast" data-draw>
+                        <p class="contrast__pair">
+                            <span class="contrast__row contrast__row--full"><span class="contrast__words">One investigator sends a detailed notice.</span><span class="contrast__line" aria-hidden="true"></span></span>
+                            <span class="contrast__row contrast__row--thin"><span class="contrast__words">Another sends almost nothing.</span><span class="contrast__line" aria-hidden="true"></span></span>
+                        </p>
+                        <p class="contrast__pair">
+                            <span class="contrast__row contrast__row--full"><span class="contrast__words">One report explains the evidence and policy analysis before reaching a finding.</span><span class="contrast__line" aria-hidden="true"></span></span>
+                            <span class="contrast__row contrast__row--thin"><span class="contrast__words">Another goes straight to the conclusion.</span><span class="contrast__line" aria-hidden="true"></span></span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="container readiness__narrow">
+                    <p class="readiness__text" data-reveal="up">That does not necessarily mean either investigator lacks skill. It may mean your team does not have a clear, shared way of doing the work.</p>
+                </div>
+            </div>
+
+            <!-- B. The shift (white) -->
+            <div class="readiness__shift">
+                <div class="container">
+                    <p class="shift__statement" data-reveal="up">
+                        <span class="shift__not">This is not Investigations 101.</span>
+                        <span class="shift__is">This is <em class="accent">infrastructure</em> building.</span>
+                    </p>
+                </div>
+                <!-- Even, parallel lines across the screen: the "uneven lines" from above, now consistent -->
+                <div class="shift__rails" aria-hidden="true" data-draw>
+                    <span class="shift__rail"></span>
+                    <span class="shift__rail"></span>
+                    <span class="shift__rail"></span>
+                    <span class="shift__rail"></span>
+                </div>
+                <div class="container">
+                    <div class="shift__text" data-reveal-group>
+                        <p data-reveal="up">Whether you are developing a new investigation function or strengthening one that is already doing good work, we look closely at the policies, protocols, decisions, and handoffs behind your investigations. This is not a lecture on protected categories. It is a working engagement focused on how your team actually operates and what needs to be clearer, more consistent, or more defensible.</p>
+                        <p data-reveal="up">We do not arrive with a rigid template and tell you to use it. We bring legal and practical investigative experience, and you bring knowledge of your organization, its culture, resources, and responsibilities. Within the requirements that apply to your organization, we work through the options together and make decisions you can implement.</p>
+                    </div>
+
+                    <h3 class="questions__title" data-reveal="up">The questions we work through</h3>
+                    <ul class="questions" role="list" data-reveal-group>
+                        <li class="question" data-reveal="up"><h4 class="question__theme">Intake and triage</h4><p>Who receives complaints, determines what needs investigation, assigns cases, and tracks the process?</p></li>
+                        <li class="question" data-reveal="up"><h4 class="question__theme">Party notice and procedural fairness</h4><p>When and how are parties notified? What information and opportunities to respond should your process provide?</p></li>
+                        <li class="question" data-reveal="up"><h4 class="question__theme">Investigation protocols</h4><p>How are allegations framed, cases scoped, evidence documented, and credibility questions addressed?</p></li>
+                        <li class="question" data-reveal="up"><h4 class="question__theme">Roles and handoffs</h4><p>Where do the investigator, HR, Legal, Compliance, reviewers, and decision-makers enter and leave the process?</p></li>
+                        <li class="question" data-reveal="up"><h4 class="question__theme">Reporting and quality review</h4><p>What belongs in the final report? How should evidence, policy analysis, and findings be organized and reviewed?</p></li>
+                        <li class="question" data-reveal="up"><h4 class="question__theme">Continuity</h4><p>What templates, checkpoints, timelines, and documentation standards help the process hold up through turnover and changing caseloads?</p></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- C. How it works (pale grey) -->
+            <div class="readiness__process">
+                <div class="container">
+                    <h3 class="process-steps__title" data-reveal="up">What the Intensive looks like</h3>
+                    <!-- Her three paragraphs. Each one's opening word (First, Then, Finally) is set large
+                         as the step's marker; the words themselves are unchanged. -->
+                    <ol class="process-steps" role="list" data-draw data-reveal-group>
+                        <li class="process-step" data-reveal="up"><p><span class="process-step__word">First,</span> we map the current state. We review the relevant policies and materials, talk through actual workflows, and identify where practice and written expectations may not align.</p></li>
+                        <li class="process-step" data-reveal="up"><p><span class="process-step__word">Then</span> we make the important decisions together. We consider the legal and practical tradeoffs, decide which gaps matter most, and determine what a workable approach looks like for your organization.</p></li>
+                        <li class="process-step" data-reveal="up"><p><span class="process-step__word">Finally,</span> we turn those decisions into something your team can use.</p></li>
+                    </ol>
+
+                    <!-- The rest of her "Finally" paragraph: what the work may produce. -->
+                    <div class="deliverables" data-reveal="up">
+                        <p class="deliverables__lead">Depending on the agreed scope, that may include:</p>
+                        <ul class="deliverables__list" role="list">
+                            <li class="deliverables__item">A readiness assessment with prioritized recommendations.</li>
+                            <li class="deliverables__item">Clearer intake, triage, assignment, review, and handoff workflows.</li>
+                            <li class="deliverables__item">Draft investigation protocols or proposed policy and procedure revisions.</li>
+                            <li class="deliverables__item">Standards or templates for party notices, report content, and quality review.</li>
+                            <li class="deliverables__item">An implementation roadmap identifying what to change first and who owns the next steps.</li>
+                        </ul>
+                    </div>
+
+                    <div class="readiness__close">
+                        <p class="readiness__text" data-reveal="up">Some organizations need a focused working session. Others need a deeper, multi-day engagement. The scope depends on what you are building, what already works, and how much change you want to make.</p>
+                        <p class="readiness__goal" data-reveal="up">The goal is not to make every investigator work identically. It is to make sound investigative practices easier to apply, teach, review, and sustain, even when your team changes.</p>
+                        <a class="btn btn--primary readiness__btn" href="../contact/" data-reveal="up">Schedule a Conversation</a>
+                    </div>
+
+                    <!-- The free assessment: a text link only (her build note). [PLACEHOLDER: the assessment
+                         address.] Her note: activate the link only once the assessment and its results are
+                         tested. Until then it points at this box itself, so it cannot send anyone to the
+                         wrong place. Replace href="#assessment" here and in section 06 with the real address. -->
+                    <aside class="assessment" id="assessment" aria-labelledby="assessment-title" data-reveal="up">
+                        <h3 class="assessment__title" id="assessment-title">Not ready to schedule a conversation?</h3>
+                        <div class="assessment__body">
+                            <p>Start with our free Investigation Readiness Assessment. In just a few minutes, you will get a snapshot of your investigation practices across the five phases of the CLEAR <span class="nowrap">By-the-Book™</span> Investigation Framework, including what is working well and where your process may need attention.</p>
+                            <p>You will receive a readiness score, a breakdown by CLEAR phase, and suggested priorities for strengthening your investigative process.</p>
+                            <a class="assessment__link" href="#assessment">Take the Investigation Readiness Assessment</a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- Still to build, one section at a time: 04 How CLEAR fits, 05 INVEXTRA ("Planned launch: Early 2027", Miguelle's
              decision, not the "January 2027" in her Services document), 06 Next step. -->
 
     </main>

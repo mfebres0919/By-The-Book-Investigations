@@ -180,6 +180,8 @@ This is a first look, not the full audit that handbook Section 18 requires.
 | `index.html` | The homepage: all 14 of her sections, the logo strip and the footer (see the table in Section 7). The only page built so far. |
 | `css/global.css` | Fonts, design tokens, reset, buttons, header and navigation, back-to-top. Shared by every page. |
 | `css/styles.css` | Homepage only: one block of rules per section, in page order |
+| `services/index.html` | The Services page (in progress: hero built, her sections 02 to 06 still to come). Copy from `Services Page (Final).docx`. |
+| `css/services.css` | Services page only, one block per section. The page loads `global.css` + `services.css`, not `styles.css`. |
 | `css/no-js.css` | Loaded only when JavaScript is off, so the phone menu still shows |
 | `javascript/global.js` | Nine numbered parts: phone menu, back-to-top, tabs, reveal on scroll (with `data-reveal-together` and `data-draw`), footer year, counting numbers, the questions accordion, the hero line drawing, the CLEAR marks |
 | `images/backgrounds/` | Web-ready background images (originals are in `documentation/source-images/backgrounds/`). Several are no longer used; see "Housekeeping" in Section 7. In use on 2026-11-25: `plumb-line` (CLEAR section), `silver-navy-diagonal` ("Two ways"), `navy-paper-fold` (testimonials), `burgundy-grid` (closing call to action). |
@@ -256,7 +258,11 @@ Project-specific exceptions to the handbook: none.
 - **Only the homepage exists.** The header, footer and buttons link to `services/`, `about/`, `contact/` and `investigation-capacity/`, which are not built, so those links give "not found".
 - **Git:** work is on `main`. At the end of the session 5 commits were on this Mac and not yet on GitHub. During this work Claude committed after every change but **held every push** so that unreviewed drafts did not reach the GitHub Pages preview Marquita has the link to; Miguelle pushed some of them personally. **At the start of the next session, ask Miguelle whether to push what is waiting and whether automatic pushing (Section 1) resumes.**
 
-### NEXT: build the rest of the pages (Miguelle will start this at a later date)
+### IN PROGRESS: the Services page (`services/index.html`, `css/services.css`)
+- **Hero: built, awaiting Miguelle's review.** Her sections 02 to 06 come next, one at a time: 02 Third-Party Protected-Class Investigations (`id="investigations"`, retainer first, single case second), 03 Investigation Readiness Intensive (`id="readiness"`; her note: six themes in a two-column grid, deliverables as a short list, assessment text link under it), 04 How CLEAR fits, 05 INVEXTRA (her copy says "January 2027"; the round-two rule is "Early 2027": ask her), 06 Next step (second assessment link).
+- **Her build notes for this page** (end of the Services document, "Designer handoff"): intentionally different from the homepage; go straight to the offerings; no founder story, no testimonials, no full five-phase CLEAR explanation; the assessment link only twice and only as a text link; both assessment links use one URL, `[ASSESSMENT URL TO BE ADDED]`, not live until the assessment is tested; no promises of instant availability or fixed times.
+
+### NEXT: build the rest of the pages
 From the proposal (Section 3a) and the header: **Services** (and its detail pages), **About**, **Investigation Capacity**, **Contact**, **Privacy Policy**. Her final copy for Services and About is in `documentation/client-brief/` (`Services Page (Final).docx`, `Homepage and About Us.docx`). Before starting:
 1. Read the two copy documents and Section 9 (page addresses are still undecided).
 2. Carry the homepage's design language across (see "The design language" below), so the inner pages look like the same site.
@@ -389,6 +395,12 @@ From the proposal (Section 3a) and the header: **Services** (and its detail page
 ## 10. Change log
 
 Newest first. One entry per working session or per significant change: what changed, which files, and anything left unverified.
+
+### 2026-11-24 (new session; the computer's date, although the entries below say 2026-11-25): Services page started, hero built
+- New `services/index.html` (header and footer copied from the homepage with `../` paths; "Services" marked as the current page; footer service links point at this page's sections, which are not built yet) and new `css/services.css`.
+- **Hero** (her section 01, word for word): navy, left-aligned (the homepage hero is centred), shorter than the homepage's. Her heading on two lines, "*and*" in italics as the hinge. **"The fork"** drawing: four faint lines settle into one, which divides into two (her two services); it draws once from left to right on load (CSS only, no pause button needed) and runs off the right screen edge. Phones: a full-width band under the heading. Desktop: beside the heading. Her two paragraphs side by side from tablets up. Button + "Explore our services" (jumps to `#investigations`). Her three figures along the foot of the hero on navy, in her order (15+, 2,000+, 250+), counting up, with her credit line.
+- Layout choice: the button sits under the paragraphs and the figures below it (her document lists the figures before the button), so the button is reached sooner on phones.
+- Checked in automated Chrome at 320, 390, 768, 1024 and 1440 wide: no sideways scroll. Not checked: real phones, Safari, Firefox.
 
 
 

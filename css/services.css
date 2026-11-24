@@ -1,0 +1,202 @@
+/* ==========================================================================
+   services.css: the Services page only (services/index.html)
+   Mobile-first: base rules are the phone layout. min-width queries add to it.
+   Shared things (fonts, colours, buttons, header, footer, reveal on scroll) are in global.css.
+   ========================================================================== */
+
+/* ---------- Hero ----------
+   Navy, like the homepage hero, but shorter and left-aligned, with a different drawing
+   (the "fork": several lines become one, and that line divides into two).
+   Phones: heading, then the fork as a full-width band, then the text, button and figures.
+   Desktop: the heading on the left with the fork beside it running off the right edge of
+   the screen; the two paragraphs side by side underneath; the figures along the foot. */
+.services-hero {
+  overflow-x: clip;              /* the fork is drawn past the screen edge; this trims it */
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+
+.services-hero__inner {
+  display: grid;
+  padding-block: 3rem 3.5rem;
+}
+
+/* Small label above the heading: the same copper square as the homepage hero */
+.services-hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  color: var(--color-mist);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+.services-hero__eyebrow::before {
+  content: "";
+  flex-shrink: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--color-copper);
+}
+
+.services-hero__title {
+  font-size: clamp(2.125rem, 1.35rem + 3.4vw, 4rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+/* Each half of the heading starts on its own line */
+.services-hero__line { display: block; }
+/* "and": italic and a shade softer, the hinge between the two services */
+.services-hero__and {
+  color: var(--color-mist);
+  font-style: italic;
+}
+
+/* The fork. Phones: a band across the full width of the screen (the negative side margins
+   pull it out past the page's side padding, to the screen edges). */
+.services-hero__fork {
+  height: 4.5rem;
+  margin: 2rem calc(var(--gutter) * -1);
+}
+.services-hero__fork-svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke-width: 1;
+  /* Draws in once, left to right: the picture is uncovered from its left edge, so the
+     faint lines meet first, then the single line runs on, then it divides.
+     clip-path "inset" hides part of the picture: "0 100% 0 0" hides all of it from the
+     right, "0" hides nothing. */
+  animation: services-draw 1.6s linear 0.7s both;
+}
+.services-hero__threads { stroke: var(--color-silver); opacity: 0.6; }
+.services-hero__trunk { stroke: var(--color-mist); }
+.services-hero__branch { stroke: var(--color-white); }
+
+@keyframes services-draw {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0); }
+}
+
+.services-hero__intro {
+  display: grid;
+  gap: 1.25rem;
+}
+.services-hero__text {
+  max-width: 38rem;
+  color: var(--color-mist);
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  line-height: 1.6;
+}
+
+/* The button and the text link beside it (they wrap onto two lines on narrow phones) */
+.services-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 2rem;
+  margin-top: 2.25rem;
+}
+.services-hero__link {
+  padding-block: 0.75rem;        /* taller tap target */
+  color: var(--color-white);
+  font-weight: 600;
+  text-decoration-color: rgba(255, 255, 255, 0.45);
+  text-underline-offset: 0.3em;
+  transition: text-decoration-color var(--speed) var(--ease);
+}
+.services-hero__link:hover { text-decoration-color: var(--color-white); }
+
+/* Entrance when the page opens (CSS only, so it works without JavaScript): the heading, then
+   the text and button, then the figures. The fork draws in alongside (its own rule above).
+   With "reduce motion" on, global.css makes all of this instant. */
+@keyframes services-fade {
+  from { opacity: 0; transform: translateY(0.5rem); }
+  to   { opacity: 1; transform: none; }
+}
+.services-hero__head { animation: services-fade 0.6s linear 0.1s both; }
+.services-hero__intro { animation: services-fade 0.6s linear 0.9s both; }
+.services-hero__actions { animation: services-fade 0.6s linear 1.2s both; }
+.services-hero__stats { animation: services-fade 0.6s linear 1.5s both; }
+
+/* Her three figures, along the foot of the hero, under a hairline.
+   Phones: one figure per row, its label underneath (side by side, "2,000+" squeezed its label).
+   Tablets and up: three columns divided by thin vertical lines. */
+.services-hero__stats {
+  border-top: 1px solid var(--color-rule-on-dark);
+  padding-block: 0.5rem 2rem;
+}
+.services-stats { display: grid; }
+.services-stats__item { padding-block: 1.25rem; }
+.services-stats__item + .services-stats__item { border-top: 1px solid var(--color-rule-on-dark); }
+.services-stats__figure {
+  font-family: var(--font-heading);
+  font-size: 2.75rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: lining-nums tabular-nums;   /* every digit the same width, so the number doesn't wobble while it counts */
+}
+.services-stats__label {
+  margin-top: 0.5rem;
+  color: var(--color-mist);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.services-stats__note {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-rule-on-dark);
+  color: var(--color-mist);
+  font-size: 0.9375rem;
+}
+
+@media (min-width: 48rem) {
+  .services-hero__inner { padding-block: 4.5rem 4.5rem; }
+  .services-hero__fork { height: 6rem; }
+  .services-stats__figure { font-size: clamp(2.5rem, 1rem + 3.6vw, 4.25rem); }
+  .services-hero__intro {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2.5rem;
+  }
+  .services-hero__stats { padding-block: 0 2.25rem; }
+  .services-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .services-stats__item { padding: 2rem 1.5rem 2rem 0; }
+  /* a thin vertical line between the columns, instead of the line above each row */
+  .services-stats__item + .services-stats__item {
+    border-top: 0;
+    border-left: 1px solid var(--color-rule-on-dark);
+    padding-left: 1.75rem;
+  }
+  .services-stats__label {
+    max-width: 17rem;
+    margin-top: 0.75rem;
+  }
+}
+
+/* Desktop: heading and fork side by side; the paragraphs and button run across below.
+   The fork's right margin is "minus the space between the page's edge and the screen's
+   edge", so its lines carry on to the edge of the screen. */
+@media (min-width: 62rem) {
+  .services-hero__inner {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    grid-template-areas:
+      "head    fork"
+      "intro   intro"
+      "actions actions";
+    padding-block: 5.5rem 5rem;
+  }
+  .services-hero__head { grid-area: head; }
+  .services-hero__fork {
+    grid-area: fork;
+    align-self: center;
+    height: 17rem;
+    margin: 0 calc(-1 * max(var(--gutter), (100vw - var(--container)) / 2)) 0 2.5rem;
+  }
+  .services-hero__intro {
+    grid-area: intro;
+    margin-top: 3.5rem;
+    column-gap: 4rem;
+  }
+  .services-hero__actions { grid-area: actions; margin-top: 2.75rem; }
+}

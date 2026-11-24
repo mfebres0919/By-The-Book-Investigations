@@ -200,3 +200,165 @@
   }
   .services-hero__actions { grid-area: actions; margin-top: 2.75rem; }
 }
+
+/* ---------- Third-Party Protected-Class Investigations ----------
+   White section. Her heading and short line, then her three opening paragraphs (side by side
+   with the heading on desktop). Then the two engagements hang off one vertical line, like a
+   timeline, each starting with a large burgundy numeral on a small burgundy square. The line
+   draws itself downwards once the list scrolls into view (global.js adds "is-drawn"), and the
+   grey "What to expect" panel sits where it ends.
+   Desktop: in each engagement the numeral, name and short line stay on the left (and stay in
+   view while you read the longer text on the right: "position: sticky"). */
+.investigations { padding-block: var(--space-section); }
+
+.investigations__intro {
+  display: grid;
+  gap: 1.75rem;
+}
+.investigations__title { font-size: clamp(2rem, 1.5rem + 2.4vw, 3.25rem); }
+.investigations__sub {
+  margin-top: 1rem;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  line-height: 1.4;
+}
+.investigations__text { max-width: 40rem; }
+.investigations__text p + p { margin-top: 1rem; }
+
+/* The list of two engagements, with the timeline line down its left side */
+.engagements {
+  position: relative;
+  margin-top: clamp(3rem, 2rem + 4vw, 5.5rem);
+  padding-left: 1.75rem;
+}
+.engagements::before {
+  content: "";
+  position: absolute;
+  top: calc(clamp(3.5rem, 2rem + 6vw, 6.5rem) * 0.4);   /* starts at the first square */
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: var(--color-navy);
+  transform-origin: top;
+}
+.engagements.is-drawn::before { transition: transform 1.4s linear 0.2s; }
+html.js .engagements:not(.is-drawn)::before { transform: scaleY(0); }
+
+.engagement {
+  --num-size: clamp(3.5rem, 2rem + 6vw, 6.5rem);   /* the numeral's size; the square is placed from it */
+  position: relative;            /* the square marker is placed against it */
+  padding-bottom: 3.5rem;
+}
+.engagement + .engagement {
+  padding-top: 3rem;
+  border-top: 1px solid var(--color-rule);
+}
+/* The burgundy square on the line, level with the top of the numeral */
+.engagement::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--num-size) * 0.4 - 0.375rem);
+  left: calc(-1.75rem - 0.375rem);   /* back across the list's padding, then half the square's width */
+  width: 0.75rem;
+  height: 0.75rem;
+  background: var(--color-burgundy);
+}
+.engagement + .engagement::before { top: calc(3rem + var(--num-size) * 0.4 - 0.375rem); }
+
+.engagement__num {
+  font-family: var(--font-heading);
+  font-size: var(--num-size);
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  font-variant-numeric: lining-nums;
+  color: var(--color-burgundy);
+}
+.engagement__title {
+  margin-top: 1.25rem;
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.125rem);
+}
+.engagement__tagline {
+  margin-top: 0.75rem;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.125rem;
+  line-height: 1.45;
+}
+.engagement__body {
+  max-width: 42rem;
+  margin-top: 1.75rem;
+}
+.engagement__body > * + * { margin-top: 1rem; }
+.engagement__lead-in { font-weight: 600; }
+
+/* "Depending on the arrangement...": four short items, each under a hairline with a short
+   burgundy dash. Two by two from tablets up. */
+.engagement__body > .engagement__list { margin-top: 0.5rem; }
+.engagement__list { display: grid; }
+.engagement__item {
+  position: relative;
+  padding: 0.875rem 0 0.875rem 1.5rem;
+  border-top: 1px solid var(--color-rule);
+  line-height: 1.45;
+}
+.engagement__item::before {
+  content: "";
+  position: absolute;
+  top: 1.6rem;
+  left: 0;
+  width: 0.75rem;
+  height: 1px;
+  background: var(--color-burgundy);
+}
+.engagement__body > .engagement__list + p { margin-top: 1.25rem; }
+
+/* The pale grey panel where the line ends */
+.investigations__expect {
+  padding: 2rem 1.5rem;
+  background: var(--color-wash);
+}
+.investigations__expect-title { font-size: clamp(1.375rem, 1.15rem + 1vw, 1.875rem); }
+.investigations__expect p {
+  max-width: 44rem;
+  margin-top: 0.875rem;
+}
+.investigations__btn { margin-top: 1.75rem; }
+
+@media (min-width: 48rem) {
+  .engagements { padding-left: 2.5rem; }
+  .engagement::before { left: calc(-2.5rem - 0.375rem); }
+  .engagement__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2rem;
+  }
+  .investigations__expect { padding: 2.75rem 2.5rem; }
+}
+
+@media (min-width: 62rem) {
+  .investigations__intro {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: 4rem;
+    align-items: start;
+  }
+  .engagement {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: 4rem;
+    align-items: start;
+  }
+  .engagement__head {
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+  }
+  .engagement__body { margin-top: 0; }
+  .investigations__expect {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: 4rem;
+    padding: 3.25rem 3rem;
+  }
+  .investigations__expect-title { grid-row: span 2; }
+  .investigations__expect p { margin-top: 0; }
+  .investigations__btn { justify-self: start; }
+}

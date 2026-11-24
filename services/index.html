@@ -172,9 +172,75 @@
             </div>
         </section>
 
-        <!-- The rest of the page (her sections 02 to 06) is built next, one section at a time:
-             02 Third-Party Investigations (id="investigations"), 03 Investigation Readiness Intensive
-             (id="readiness"), 04 How CLEAR fits, 05 INVEXTRA, 06 Next step. -->
+        <!-- ============ THIRD-PARTY INVESTIGATIONS (her section 02) ============
+             All wording from her Services document, section 02, word for word. Her build note:
+             present the retainer first and the single case second.
+             Layout: her heading and short line on the left, her three opening paragraphs on the right
+             (stacked on phones). Then the two engagements hang off one vertical line, each starting
+             with a large burgundy numeral. The line draws itself down the page when the list scrolls
+             into view (data-draw, global.js part 4) and ends at the grey "What to expect" panel.
+             id="investigations" is where the hero's "Explore our services" link lands. -->
+        <section class="investigations" id="investigations" aria-labelledby="investigations-title">
+            <div class="container">
+                <div class="investigations__intro">
+                    <div class="investigations__head" data-reveal="up">
+                        <h2 class="investigations__title" id="investigations-title"><em class="accent">Third-Party</em> <span class="nowrap">Protected-Class</span> Investigations</h2>
+                        <p class="investigations__sub">For cases your team cannot take on, or should not handle internally.</p>
+                    </div>
+                    <div class="investigations__text" data-reveal="up" data-delay="1">
+                        <p>You may be between hires, dealing with more cases than your team can reasonably absorb, or facing an allegation that involves someone in your own reporting structure. We can handle a defined investigation or help with a continuing caseload.</p>
+                        <p>Our practice focuses on protected-class discrimination, harassment, including sexual harassment, retaliation involving legally protected activity, and related disability accommodation concerns. We do not offer general employee-relations investigations unrelated to protected-class issues.</p>
+                        <p>Whether we handle one case or several, our role is impartial fact-finding. We clarify the allegations, review the evidence, apply the relevant policies and legal standards, and explain what the record supports. Your organization makes the decisions that follow.</p>
+                    </div>
+                </div>
+
+                <!-- The two engagements. Each has its own id so the footer links can jump straight to it. -->
+                <ol class="engagements" role="list" data-draw>
+                    <li class="engagement" id="retainer">
+                        <div class="engagement__head" data-reveal="up">
+                            <p class="engagement__num" aria-hidden="true">01</p>
+                            <h3 class="engagement__title">Investigation Capacity Retainer</h3>
+                            <p class="engagement__tagline">For the cases that keep coming while your team is stretched.</p>
+                        </div>
+                        <div class="engagement__body" data-reveal="up" data-delay="1">
+                            <p>A vacancy could take months to fill. A leadership transition has slowed assignments. Or your team is working through a backlog while new complaints continue to arrive. You may absolutely need to hire. The cases on your desk still need attention in the meantime.</p>
+                            <p>The Investigation Capacity Retainer gives you an agreed bank of hours for recurring protected-class investigations. Rather than starting a new outside search each time, we establish a way to refer and scope the work, confirm capacity, and communicate throughout an engagement.</p>
+                            <p class="engagement__lead-in">Depending on the arrangement, that can include:</p>
+                            <ul class="engagement__list" role="list">
+                                <li class="engagement__item">A defined bank of hours and a clear case-referral process.</li>
+                                <li class="engagement__item">Agreed assignment, response, and communication expectations.</li>
+                                <li class="engagement__item">A designated lead, defined scope, milestones, and updates on hours used.</li>
+                                <li class="engagement__item">A way to reassess needs and available capacity as the caseload changes.</li>
+                            </ul>
+                            <p>Your team remains responsible for its investigation function. We take on the cases covered by the engagement and keep you informed as the work moves forward.</p>
+                        </div>
+                    </li>
+                    <li class="engagement" id="single-case">
+                        <div class="engagement__head" data-reveal="up">
+                            <p class="engagement__num" aria-hidden="true">02</p>
+                            <h3 class="engagement__title">Single-Case Investigation</h3>
+                            <p class="engagement__tagline">For a case that needs to be handled outside your team.</p>
+                        </div>
+                        <div class="engagement__body" data-reveal="up" data-delay="1">
+                            <p>Sometimes the issue is not the overall caseload. It is one case. Maybe it involves a senior executive, someone in your investigation team's reporting line, a potential conflict of interest, or likely public scrutiny. Or maybe it is simply a case your team cannot absorb right now.</p>
+                            <p>We take on a defined protected-class investigation without an ongoing commitment. Before work begins, we discuss possible conflicts, clarify the allegations and scope, agree on reasonable milestones, and establish the fee and communication arrangements.</p>
+                            <p>Our report sets out the evidence, applicable standards, analysis, and findings so your decision-makers have a clear basis for their next steps.</p>
+                        </div>
+                    </li>
+                </ol>
+
+                <!-- Where the line ends: what applies to both arrangements, then her button -->
+                <div class="investigations__expect" data-reveal="up">
+                    <h3 class="investigations__expect-title">What to expect with either arrangement</h3>
+                    <p>We agree on scope and communication expectations before the work begins. If something materially changes the timeline or cost, we talk with you about it. Our findings stay grounded in the evidence and the standards that apply; the decisions that follow remain yours.</p>
+                    <a class="btn btn--primary investigations__btn" href="../contact/">Schedule a Conversation</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Still to build, one section at a time: 03 Investigation Readiness Intensive
+             (id="readiness"), 04 How CLEAR fits, 05 INVEXTRA ("Planned launch: Early 2027", Miguelle's
+             decision, not the "January 2027" in her Services document), 06 Next step. -->
 
     </main>
 
@@ -198,8 +264,8 @@
             <nav class="site-footer__col site-footer__col--wide" aria-label="Services" data-reveal="fade">
                 <h2 class="site-footer__heading">Services</h2>
                 <ul class="site-footer__list" role="list">
-                    <li><a class="site-footer__link" href="#investigations">Investigation Capacity Retainer</a></li>
-                    <li><a class="site-footer__link" href="#investigations">Single-Case Investigation</a></li>
+                    <li><a class="site-footer__link" href="#retainer">Investigation Capacity Retainer</a></li>
+                    <li><a class="site-footer__link" href="#single-case">Single-Case Investigation</a></li>
                     <li><a class="site-footer__link" href="#readiness">Investigation Readiness Intensive</a></li>
                     <li><a class="site-footer__link" href="../#process">CLEAR <span class="nowrap">By-the-Book™</span> Investigation Framework</a></li>
                 </ul>

@@ -210,6 +210,7 @@ This is a first look, not the full audit that handbook Section 18 requires.
 | `images/headshots/headshot-name-needed-m` (.jpg) | 600×800 | 23 KB / 48 KB | Mobile size |
 | `images/headshots/giovanni-pasquale-headshot` (.jpg) | 1000×916 | 103 KB / 153 KB | Source "Gio Headshot (2).jpg"; full name taken from the live About page |
 | `images/headshots/giovanni-pasquale-headshot-m` (.jpg) | 600×550 | 46 KB / 62 KB | Mobile size |
+| `images/headshots/*-headshot-sq` (.jpg + .webp) | 480×480 (Haya 200×200) | small | Square team crops for the About page (2026-11-25): Giovanni Pasquale, Yeo Ju Choi (source "YJC headshot.jpg", moved to `documentation/source-images/`), Haya Abusway |
 | `images/headshots/haya-abusway-headshot` (.jpg) | 200×200 | 3 KB / 5 KB | Source is only 200×200 and slightly tilted. Usable only as a small thumbnail. |
 
 - Logos stay PNG with a WebP copy, not JPG, because JPG has no transparency and would put a white box behind them.
@@ -335,6 +336,11 @@ From the proposal (Section 3a) and the header: **Services** (and its detail page
 
 ## 8. To raise with Marquita
 
+**About page: to raise with Marquita (added 2026-11-25)**
+1. **The team on the site.** Miguelle added Haya Abusway, Yeo Ju Choi and Giovanni Pasquale (photos she sent) under "Who is behind the work". It is not in her copy: **does she want the team shown at all?** If yes: confirm the names and spellings (taken from her current About page), whether she wants roles shown (none are shown; she never gave them), and send a larger photo of Haya (hers is only 200 x 200 pixels).
+2. **"The team"** heading over those photos is ours.
+3. **The founder story** (About section 02): her own checklist asks her to confirm the anonymized story is fine to publish.
+
 **Round two: to raise with Marquita when she is shown the reworked homepage (added 2026-11-25)**
 1. **The framework's name.** Her feedback document types it with stray spaces ("CLEAR By- the- Book™", "CLEAR By -the- Book™"). The site uses "CLEAR By-the-Book™ Investigation Framework". Confirm the spelling and where the ™ sits.
 2. **Short mentions of "CLEAR".** Sentences that say only "CLEAR" ("CLEAR gives our work a consistent structure...") were left as they are; only the full name was changed. Is that what she wants?
@@ -403,6 +409,12 @@ From the proposal (Section 3a) and the header: **Services** (and its detail page
 ## 10. Change log
 
 Newest first. One entry per working session or per significant change: what changed, which files, and anything left unverified.
+
+### 2026-11-25 (night, last): team photos added to About section 07
+- Miguelle: Marquita sent team photos; add them to "Who is behind the work", **names only (no roles: she never gave them)**, and note for Marquita to confirm she wants them at all (Section 8, new "About page" list). Miguelle also confirmed **the founder photo is Marquita**.
+- New file "YJC headshot.jpg" = **Yeo Ju Choi** (name from her current About page). The original was moved to `documentation/source-images/` (handbook: no originals in `images/`). Square crops made for all three (`*-headshot-sq`, JPG + WebP): Giovanni and Yeo Ju at 480×480; Haya only 200×200 (her source is that small, not upscaled).
+- Under the founder block: a thin rule, a small "THE TEAM" label (ours), and three small square photos in a thin silver outline (echoing the founder's frame) with names, three across at every width, alphabetical by surname. HTML comment repeats the "ask her" note.
+- Checked at 390, 768, 1440.
 
 ### 2026-11-25 (night, latest): About section 07, Who is behind the work
 - Her two paragraphs, word for word, except "investigation framework" capitalized. Navy after the white section. New divider: **one long diagonal** (white, top), echoing the fold in her silver-and-navy paper background.
@@ -1046,7 +1058,7 @@ Miguelle approved realigning the whole homepage to `documentation/client-brief/H
 - **Section:** `section.about#about` in `index.html`, styles at the end of `css/styles.css` (`.about…`). The button "About the firm" goes to `about/` (not built yet).
 - **Divider:** the same SVG shape now also sits at the foot of the process section (`.process__divider--bottom`), turned 180 degrees, so the white of the About section cuts up into the navy at an angle. The process section's bottom padding was increased to make room.
 - **Copy is a draft made only of her own sentences** (read from her live site on 2026-11-18): the heading "By-the-Book investigates like we have to live with the outcome." is from her homepage; the paragraphs join phrases from her About page ("a team of dedicated professionals with a deep commitment to fairness, integrity, and the well-being of your organization"; "We stand apart by combining deep legal expertise with a compassionate, trauma-informed approach"; "we not only uncover the facts but also help your organization heal and grow"). Her title on the live site is "Founder/Chief Legal Officer", shown here as "Founder and Chief Legal Officer". Her live site has no bio or credentials for her, so none are stated.
-- **Photo not confirmed:** the section uses `images/headshots/headshot-name-needed` (sent as "Headshot.png") and labels it Marquita M. Booker. **Confirm with her that this is her photo before anyone else sees the page** (Section 8). It is shown cropped to 4:5 by CSS; the file itself is unchanged.
+- **Photo confirmed 2026-11-25** (Miguelle: "that photo is her"). Earlier note, now settled: **Photo not confirmed:** the section uses `images/headshots/headshot-name-needed` (sent as "Headshot.png") and labels it Marquita M. Booker. **Confirm with her that this is her photo before anyone else sees the page** (Section 8). It is shown cropped to 4:5 by CSS; the file itself is unchanged.
 - Checked: screenshots at 390, 800 and 1440 wide. Not checked: real devices, other browsers, hover on the button.
 
 ### 2026-11-17 (afternoon): hover effect on the process cards

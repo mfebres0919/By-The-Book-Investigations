@@ -798,3 +798,47 @@ html.js .letters:not(.is-drawn) .letters__cell {
   .founder__figure { grid-column: 1; grid-row: 1; width: 100%; max-width: 26rem; }
   .founder__words { grid-column: 2; grid-row: 1; }
 }
+
+/* The team, under the founder: three small square photos with names, under a thin rule.
+   Kept small because one photo is only 200 x 200 pixels. Three across at every width. */
+.team {
+  margin-top: 3.5rem;
+}
+.team__title {
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-rule-on-dark);
+  font-size: 0.875rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-mist);
+}
+.team__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem 0.875rem;
+  margin-top: 1.5rem;
+}
+.team__photo {
+  display: block;
+  width: 100%;
+  max-width: 10rem;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid var(--color-silver);
+  padding: 0.25rem;              /* a thin gap between photo and outline, like the founder's frame */
+}
+.team__name {
+  margin-top: 0.75rem;
+  font-family: var(--font-heading);
+  font-size: clamp(0.9375rem, 0.9rem + 0.3vw, 1.0625rem);
+  line-height: 1.3;
+}
+@media (min-width: 48rem) {
+  .team__list { grid-template-columns: repeat(3, minmax(0, 10rem)); column-gap: 2.5rem; }
+}
+@media (min-width: 62rem) {
+  .team { margin-top: 5rem; }
+}

@@ -180,7 +180,9 @@
              with a large burgundy numeral. The line draws itself down the page when the list scrolls
              into view (data-draw, global.js part 4) and ends at the grey "What to expect" panel.
              id="investigations" is where the hero's "Explore our services" link lands. -->
-        <section class="investigations" id="investigations" aria-labelledby="investigations-title">
+        <section class="investigations svc-divided svc-divided--top" id="investigations" aria-labelledby="investigations-title">
+            <!-- Divider: the homepage's angled shape, in the hero's navy -->
+            <svg class="svc-divider svc-divider--navy" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0 0v36L250 4l750 96V0H0z"/></svg>
             <div class="container">
                 <div class="investigations__intro">
                     <div class="investigations__head" data-reveal="up">
@@ -256,7 +258,12 @@
         <section class="readiness" id="readiness" aria-labelledby="readiness-title">
 
             <!-- A. The problem (navy) -->
-            <div class="readiness__problem">
+            <div class="readiness__problem svc-divided svc-divided--top svc-divided--bottom">
+                <!-- Dividers drawn for this page. Top: five steps, one per CLEAR phase, rising to the right
+                     (the white of section 02 above). Foot: two layers of paper sliding in, the back one
+                     see-through (the white of the part below). -->
+                <svg class="svc-divider svc-divider--white" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0 0V100H200V80H400V60H600V40H800V20H1000V0Z"/></svg>
+                <svg class="svc-divider svc-divider--white svc-divider--bottom" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path class="svc-divider__back" d="M0 100V20L1000 100Z"/><path d="M0 100V62L1000 100Z"/></svg>
                 <div class="container readiness__narrow">
                     <h2 class="readiness__label" id="readiness-title" data-reveal="fade">Investigation Readiness Intensive</h2>
                     <p class="readiness__big" data-reveal="up">Your best investigator should not be your entire investigation strategy.</p>
@@ -375,7 +382,9 @@
              shape, one after another, and a thin line then joins it to the next.
              Her line "Capture the Complaint. Launch the Strategy..." is split at its full stops, one
              phase under each mark; the first letters (C, L, E, A, R) are set in burgundy. -->
-        <section class="fit" id="clear" aria-labelledby="fit-title">
+        <section class="fit svc-divided svc-divided--top" id="clear" aria-labelledby="fit-title">
+            <!-- Divider drawn for this page: a shallow wedge of the grey above, with a thin ruled line under it -->
+            <svg class="svc-divider svc-divider--wash" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0 0V64L1000 0Z"/><path class="svc-divider__rule" d="M0 90L1000 26"/></svg>
             <div class="container">
                 <div class="fit__head" data-reveal="up">
                     <h2 class="fit__title" id="fit-title">How CLEAR fits into both services</h2>
@@ -418,7 +427,9 @@
              light background. All wording is hers. "Planned launch: Early 2027" is Miguelle's
              decision (her Services document says January 2027). The button opens invextra.ai in a
              new tab, and is an outline button so it never looks like the service button. -->
-        <section class="ix" id="invextra" aria-labelledby="invextra-title">
+        <section class="ix svc-divided svc-divided--top" id="invextra" aria-labelledby="invextra-title">
+            <!-- Divider: the homepage's angled shape, mirrored, in the white of section 04 -->
+            <svg class="svc-divider svc-divider--white svc-divider--flip" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0 0v36L250 4l750 96V0H0z"/></svg>
             <div class="container">
                 <header class="ix__head">
                     <h2 class="ix__title" id="invextra-title" data-reveal="fade">INVEXTRA™: CLEAR beyond the engagement</h2>
@@ -456,7 +467,37 @@
             </div>
         </section>
 
-        <!-- Still to build: 06 Next step. -->
+        <!-- ============ 06 Next step ============
+             Pale grey, after the navy INVEXTRA section (and before the white footer, so the page
+             ends on a clear change). The drawing: one line runs in from the left edge of the
+             screen and stops at a small burgundy square, the same "point" that ends the R mark of
+             CLEAR: every line on the page arrives here. Phones: stacked. Desktop: the heading on
+             the left, her paragraphs, the button and the assessment link on the right.
+             All wording is hers. The assessment link is a placeholder: it points at the
+             assessment box in section 03 until her assessment address arrives
+             ([ASSESSMENT URL TO BE ADDED]; both links use the same address). -->
+        <section class="next svc-divided svc-divided--top" id="next-step" aria-labelledby="next-title">
+            <!-- Divider: the V from the homepage's closing section, in the navy of INVEXTRA, pointing down to the last step -->
+            <svg class="svc-divider svc-divider--navy" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0 0v4l500 96 500-96V0H0z"/></svg>
+            <div class="container">
+                <div class="next__mark" data-draw aria-hidden="true"></div>
+
+                <div class="next__grid">
+                    <h2 class="next__title" id="next-title" data-reveal="up">Let us know what you are working through.</h2>
+
+                    <div class="next__body">
+                        <p class="next__text" data-reveal="up" data-delay="1">You may need an outside investigator for a single case, additional help with a continuing caseload, or someone to work through your team's policies and practices with you. You do not need to choose a service before we talk.</p>
+                        <p class="next__text" data-reveal="up" data-delay="2">We will discuss what is happening, what you need, and whether our services fit. If they do, we will agree on the scope, responsibilities, timing, and fees before work begins.</p>
+                        <a class="btn btn--primary next__btn" data-reveal="up" data-delay="3" href="../contact/">Schedule a Conversation</a>
+
+                        <div class="next__self" data-reveal="fade" data-delay="3">
+                            <p class="next__self-text">Prefer to start on your own? Take our free Investigation Readiness Assessment to see where your investigative process is strong and what may deserve a closer look.</p>
+                            <a class="assessment__link" href="#assessment">Take the Investigation Readiness Assessment</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </main>
 

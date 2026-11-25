@@ -135,7 +135,7 @@ Source: `documentation/client-brief/website-proposal-final-2026-10-20.pdf` (read
 | About | The firm, its expertise, what builds trust | `about/` |
 | Services | Service cards covering everything offered. **Each service links to its own detail page** (included at no extra charge). | `services/` and `services/<service-name>/` |
 | The Investigation Capacity | Dedicated landing page for this service, with **Calendly booking built in** (Calendly's own follow-up emails included) | `investigation-capacity/` |
-| Contact | **Two forms switched with tabs:** a general contact form and a consultation request form. She gets an email for every submission. | `contact/` |
+| Contact | **Changed 2026-11-24 (Miguelle): a hero and ONE contact form** for general questions or questions about her services, sent through Netlify Forms (connected on Netlify's side). The proposal's two tabbed forms are dropped. She gets an email for every submission. | `contact/` |
 
 - **Not included:** an automatic reply to the person who submits the contact form (optional extra, $80). A client portal (on hold; a separate phase and quote).
 - **No blog or articles are in scope.** The current site has about 48 posts, so every one needs a redirect or retire decision (Section 4 and Section 9).
@@ -180,7 +180,9 @@ This is a first look, not the full audit that handbook Section 18 requires.
 | `index.html` | The homepage: all 14 of her sections, the logo strip and the footer (see the table in Section 7). The only page built so far. |
 | `css/global.css` | Fonts, design tokens, reset, buttons, header and navigation, back-to-top. Shared by every page. |
 | `css/styles.css` | Homepage only: one block of rules per section, in page order |
-| `services/index.html` | The Services page (in progress: hero built, her sections 02 to 06 still to come). Copy from `Services Page (Final).docx`. |
+| `services/index.html` | The Services page (all six sections built, awaiting review). Copy from `Services Page (Final).docx`. |
+| `contact/index.html` | The Contact page (in progress: hero built; the form is next). |
+| `css/contact.css` | Contact page only. The page loads `global.css` + `contact.css`. |
 | `css/services.css` | Services page only, one block per section. The page loads `global.css` + `services.css`, not `styles.css`. |
 | `css/no-js.css` | Loaded only when JavaScript is off, so the phone menu still shows |
 | `javascript/global.js` | Nine numbered parts: phone menu, back-to-top, tabs, reveal on scroll (with `data-reveal-together` and `data-draw`), footer year, counting numbers, the questions accordion, the hero line drawing, the CLEAR marks |
@@ -390,12 +392,21 @@ From the proposal (Section 3a) and the header: **Services** (and its detail page
 - ~~The INVEXTRA waitlist address.~~ **Settled 2026-11-18: the button goes to `https://invextra.ai/`.** Her questionnaire says so in her own words ("Join the INVEXTRA Waitlist" (routes to invextra.ai)). Do not ask her again.
 - **Contact details in the phone menu:** (888) 397-6352, hello@bythebookinvestigations.com, and 2591 Dallas Parkway, Suite 300, Frisco, TX 75034. Copied from her current site; confirm they are current and that she wants the street address shown.
 - **INVEXTRA launch timing.** Her build note says to confirm it before publishing. The site says "Early 2027" everywhere (Miguelle's decision); her Services copy says "January 2027".
+- **Contact page copy.** None in her documents. The Contact hero uses her own Services section 06 wording (heading + two paragraphs). Her live Contact page copy ("let's work together!") is older and in a different voice, so it was not reused. Ask whether she wants her own Contact copy.
 - Whether `IMG_1708.MOV` (in `documentation/source-images/`) belongs in this project.
 - Whether the GitHub repo will be private. The client brief and original images are git-ignored either way, so they exist only on this Mac unless backed up elsewhere.
 
 ## 10. Change log
 
 Newest first. One entry per working session or per significant change: what changed, which files, and anything left unverified.
+
+### 2026-11-24 (night, latest): Contact page started, hero built
+- Miguelle: the Contact page is just **a hero and one contact form** (general questions or questions about her services), connected through Netlify. This replaces the proposal's two tabbed forms (Section 3a updated).
+- New `contact/index.html` (head, header and footer copied from the Services page; "Contact" marked as the current page in the menu and footer; footer service links point at `../services/#…`) and new `css/contact.css`.
+- **Hero:** pale grey (the Services hero is navy). Her heading and two paragraphs from Services section 06 (no Contact copy exists; see Section 9). Beside it on desktop, under it on phones: a navy panel over her `navy-contours` background (navy gradient on top for legibility) with phone, email and office, each with a line-drawn SVG icon. The email is in the body font and breaks only after the "@". At the foot, a new divider: **the tab of a file folder**, in the white of the form section to come.
+- On the menu question: her notes only say to use the full name "CLEAR By-the-Book™ Investigation Framework" in the navigation; they don't say where it links. Linking it to the homepage section (`#process`) was our choice. Her brunswickgroup.com reference ("a model for the CLEAR framework") hints she might want a CLEAR page later: ask her.
+- Checked in automated Chrome at 320, 390, 768, 1440: no sideways scroll. Not checked: real phones, Safari, Firefox.
+- **Next:** section 02, the contact form (Netlify Forms, honeypot, thank-you state, note not to include confidential details).
 
 ### 2026-11-24 (night, later): navy paper background darkened for legibility
 - Miguelle's request: a linear gradient over the navy paper background (Services section 03's navy band) so the text shows more clearly. Navy gradient, 90% solid at the top (heading and paragraph) easing to 55% at the foot so the fold still shows. Set in `--paper-shade` in `css/services.css`; raise the numbers for more contrast. Checked at 390, 768, 1440.

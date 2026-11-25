@@ -183,7 +183,7 @@ This is a first look, not the full audit that handbook Section 18 requires.
 | `services/index.html` | The Services page (all six sections built, awaiting review). Copy from `Services Page (Final).docx`. |
 | `contact/index.html` | The Contact page: hero + one contact form (Netlify Forms). Built, awaiting review. |
 | `css/contact.css` | Contact page only. The page loads `global.css` + `contact.css`. |
-| `about/index.html` | The About page (in progress: hero, 02 founder story and 03 from the inside built; her sections 04 to 08 to come). Copy from `Homepage and About Us.docx`, second half. |
+| `about/index.html` | The About page (in progress: hero and sections 02 to 04 built; her sections 05 to 08 to come). Copy from `Homepage and About Us.docx`, second half. |
 | `css/about.css` | About page only. The page loads `global.css` + `about.css`. |
 | `documentation/integrations.md` | Every outside service the site sends data to (the contact form → Netlify Forms), with the before-launch steps. |
 | `css/services.css` | Services page only, one block per section. The page loads `global.css` + `services.css`, not `styles.css`. |
@@ -403,6 +403,11 @@ From the proposal (Section 3a) and the header: **Services** (and its detail page
 ## 10. Change log
 
 Newest first. One entry per working session or per significant change: what changed, which files, and anything left unverified.
+
+### 2026-11-25 (evening, later): About section 04, What a fair investigation owes everyone
+- Her wording, word for word. White after the navy section. New divider at the top: **"the fulcrum"**, a white point rising into the navy, like the pivot of a balance.
+- **A ledger:** her four "To the …" sentences are four entries under navy rules (two by two from tablets up); each opens with her own "To the complainant," set large on its own line with a small burgundy square. "That is the gap By-the-Book was built to close." in bold. Then a **double rule** (the line under a column before the total) draws across from the centre on scroll, and her "And to everyone involved…" sentence is the total, large and centred. Her closing two sentences below, the first in burgundy italics.
+- Checked at 390, 768, 1440: no sideways scroll. **Next:** 05 How we put that into practice.
 
 ### 2026-11-25 (evening): About section 03, What we know from the inside
 - Her three paragraphs, word for word. Navy after the pale grey story, with the homepage's angled divider (in grey) at the top.

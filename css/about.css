@@ -347,3 +347,116 @@ html.js .drift:not(.is-drawn) .drift__line {
   .inside__details { grid-column: 1 / -1; }
   .drift { --step: 2.75rem; align-self: center; }
 }
+
+/* ---------- 04 What a fair investigation owes everyone ----------
+   White. A ledger: four entries (each opening with her "To the …," set large), a double rule
+   that draws itself across (global.js adds "is-drawn"), then her "And to everyone involved…"
+   as the total, large and centred, and her closing two sentences.
+   At the top, "the fulcrum" divider: a white point rising into the navy above. */
+.owed {
+  position: relative;
+  --divider-h: clamp(2.5rem, 7vw, 6.5rem);
+  padding-block: calc(var(--space-section) + var(--divider-h) * 0.75) var(--space-section);
+}
+.owed__divider {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: var(--divider-h);
+  fill: var(--color-navy);
+}
+.owed__title {
+  max-width: 34rem;
+  margin-inline: auto;
+  font-size: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* The four entries: a navy rule on top of each, like the lines of a ledger */
+.owed__list {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+.owed__entry {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-navy);
+}
+.owed__text {
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+}
+/* Her "To the complainant," on its own line, large, with a small burgundy square */
+.owed__to {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.625rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.375rem, 1.2rem + 0.9vw, 1.875rem);
+  line-height: 1.2;
+}
+.owed__to::before {
+  content: "";
+  flex-shrink: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--color-burgundy);
+}
+.owed__gap { font-weight: 600; }
+
+/* The total: a double rule drawn across from the centre, then her sentence */
+.owed__total {
+  position: relative;
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+}
+.owed__total::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  border-block: 1px solid var(--color-navy);   /* two thin lines = the double rule */
+}
+.owed__total.is-drawn::before { transition: transform 1.2s linear 0.2s; }
+html.js .owed__total:not(.is-drawn)::before { transform: scaleX(0); }
+.owed__all {
+  max-width: 46rem;
+  margin-inline: auto;
+  font-family: var(--font-heading);
+  font-size: clamp(1.625rem, 1.15rem + 2.2vw, 2.75rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* Her closing two sentences, the first in italics */
+.owed__close {
+  max-width: 38rem;
+  margin: 2rem auto 0;
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  text-align: center;
+}
+.owed__close-first {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-family: var(--font-heading);
+  color: var(--color-burgundy);
+}
+
+@media (min-width: 48rem) {
+  .owed__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 3rem;
+    row-gap: 3rem;
+    margin-top: 3.5rem;
+  }
+  .owed__total { margin-top: 4rem; padding-top: 3rem; }
+}
+@media (min-width: 62rem) {
+  .owed__list { column-gap: clamp(4rem, 8vw, 7rem); }
+}

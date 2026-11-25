@@ -98,7 +98,8 @@
              under a navy gradient that is solid behind the words on the left and lets the stair rail
              show on the right ("we built the practice", one step at a time).
              No button here: her About copy has its one "Schedule a Conversation" at the end.
-             At the foot, a new divider: the top edge of an open book, two pages dipping to the spine. -->
+             At the foot, a new divider: the top edge of an open book, two pages dipping to the spine,
+             in the pale grey of the founder story below. -->
         <section class="about-hero" aria-labelledby="about-title">
             <div class="about-hero__inner container">
                 <p class="about-hero__eyebrow"><span>About <span class="nowrap">By-the-Book</span> Workplace Investigations</span></p>
@@ -109,14 +110,45 @@
                 </div>
             </div>
 
-            <!-- Divider drawn for this page: the top edge of an open book, in the white of the next section -->
+            <!-- Divider drawn for this page: the top edge of an open book, in the pale grey of the next section -->
             <svg class="about-hero__divider" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0 100V30C220 26 420 40 500 88C580 40 780 26 1000 30V100Z"/></svg>
         </section>
 
-        <!-- Still to build, one section at a time (her About copy, in order): 02 The experience that
-             changed how we work, 03 What we know from the inside, 04 What a fair investigation owes
-             everyone, 05 How we put that into practice, 06 How we support your team (INVEXTRA:
-             "Early 2027", not her "January 2027"), 07 Who is behind the work, 08 Let's talk. -->
+        <!-- ============ 02 THE EXPERIENCE THAT CHANGED HOW WE WORK ============
+             Her founder story, word for word. HER OWN CHECKLIST: confirm this anonymized story is
+             appropriate to publish before launch.
+             Pale grey. The story is set on a white "sheet", like a page from a case file: a folded
+             corner at the top right, and a burgundy margin line (the line on a legal pad) that
+             draws itself down the page as it scrolls into view. Her first paragraph is larger,
+             like the opening of a report.
+             Then the turn, outside the sheet: "That experience became the reason for By-the-Book."
+             large, and her belief sentence with its three "without" pairs, each pair on its own
+             line from tablets up. It stays one sentence in the HTML, so screen readers read it
+             exactly as she wrote it.
+             Desktop: the heading on the left (it stays in view while the story scrolls), the sheet
+             on the right. Phones: stacked. -->
+        <section class="story" aria-labelledby="story-title">
+            <div class="story__inner container">
+                <h2 class="story__title" id="story-title" data-reveal="up">The experience that changed how we work</h2>
+
+                <div class="story__sheet" data-draw data-reveal="up" data-delay="1">
+                    <p class="story__text story__text--open">Before founding <span class="nowrap">By-the-Book</span>, our founder led an internal investigations unit. A high-profile sexual harassment matter needed outside neutrality, so the organization retained a third-party investigation firm. The expectation was straightforward: an objective process, a timely report, and findings everyone involved could trust had been reached fairly.</p>
+                    <p class="story__text">The final report came about eight weeks later than expected and over budget. More troubling, from the internal team's perspective, it read more like a legal defense of the organization than an impartial examination of the facts. It did not adequately account for the lived experiences of either the complainant or the respondent.</p>
+                    <p class="story__text">Leadership was dissatisfied. So were the parties. The organization had to revisit work it believed would be finished, adding expense, delay, and strain to a workplace already feeling the effects of the complaint.</p>
+                    <p class="story__text">The outside investigator was supposed to relieve a difficult situation. Instead, the internal team was left managing the consequences of an investigation that had not delivered what the organization needed.</p>
+                </div>
+
+                <div class="story__turn">
+                    <p class="story__reason" data-reveal="up">That experience became the reason for <span class="nowrap">By-the-Book.</span></p>
+                    <p class="story__belief" data-reveal="up" data-delay="1"><span class="story__belief-lead">We believed an outside investigation should be</span> <span class="story__pair">independent <em class="story__without">without being disconnected,</em></span> <span class="story__pair">legally and analytically rigorous <em class="story__without">without becoming advocacy,</em></span> <span class="story__pair">and attentive to people <em class="story__without">without prejudging the facts.</em></span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Still to build, one section at a time (her About copy, in order): 03 What we know from
+             the inside, 04 What a fair investigation owes everyone, 05 How we put that into practice,
+             06 How we support your team (INVEXTRA: "Early 2027", not her "January 2027"), 07 Who is
+             behind the work, 08 Let's talk. -->
 
     </main>
 

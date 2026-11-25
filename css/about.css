@@ -9,7 +9,7 @@
    behind the words, lighter on the right so the stair rail shows. On phones the photo is the
    tall crop and the gradient runs top to bottom instead (the words fill the whole width).
    The numbers after each colour are how solid it is (0.94 = 94%): raise them for more contrast.
-   At the foot, the open-book divider in white. */
+   At the foot, the open-book divider in the pale grey of the next section. */
 .about-hero {
   position: relative;
   --divider-h: clamp(2.5rem, 7vw, 6.5rem);
@@ -69,14 +69,14 @@
   color: var(--color-white);
 }
 
-/* The open-book divider, pinned to the foot of the hero */
+/* The open-book divider, pinned to the foot of the hero, in the pale grey of the story below */
 .about-hero__divider {
   position: absolute;
   bottom: -1px;
   left: 0;
   width: 100%;
   height: var(--divider-h);
-  fill: var(--color-white);
+  fill: var(--color-wash);
 }
 
 @media (min-width: 48rem) {
@@ -102,4 +102,127 @@
     margin-top: 2.5rem;
   }
   .about-hero__lead + .about-hero__lead { margin-top: 0; }
+}
+
+/* ---------- 02 The experience that changed how we work ----------
+   Pale grey. Her story on a white sheet with a folded corner and a burgundy margin line that
+   draws itself downwards (global.js adds "is-drawn" when the sheet scrolls into view).
+   Then the turn: her "reason" line large, and her belief sentence with each "without" pair on
+   its own line from tablets up. Desktop: heading left (stays in view), sheet right. */
+.story {
+  padding-block: 1.5rem var(--space-section);   /* the divider above already adds space */
+  background: var(--color-wash);
+}
+.story__inner {
+  display: grid;
+  gap: 2rem;
+}
+.story__title {
+  max-width: 22rem;
+  font-size: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);
+  text-wrap: balance;
+}
+
+/* The sheet. "--corner" is the size of the folded corner. */
+.story__sheet {
+  --corner: 2.25rem;
+  position: relative;
+  padding: 2.25rem 1.5rem 2.5rem 2.25rem;
+  background: var(--color-white);
+  /* cuts the top-right corner off the sheet... */
+  clip-path: polygon(0 0, calc(100% - var(--corner)) 0, 100% var(--corner), 100% 100%, 0 100%);
+  box-shadow: 0 1px 0 var(--color-rule);
+}
+/* ...and this triangle is the folded-over flap, a shade darker */
+.story__sheet::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--corner);
+  height: var(--corner);
+  background: linear-gradient(225deg, transparent 50%, var(--color-mist) 50%);
+}
+/* The margin line, like the red line on a legal pad, drawn from top to bottom */
+.story__sheet::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 1rem;
+  width: 1px;
+  background: var(--color-burgundy);
+  transform-origin: top;
+}
+.story__sheet.is-drawn::after { transition: transform 1.6s linear 0.3s; }
+html.js .story__sheet:not(.is-drawn)::after { transform: scaleY(0); }
+
+.story__text {
+  max-width: 40rem;
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+}
+.story__text + .story__text { margin-top: 1.25rem; }
+/* Her opening paragraph, set larger in the heading font, like the start of a report */
+.story__text--open {
+  font-family: var(--font-heading);
+  font-size: clamp(1.1875rem, 1.1rem + 0.5vw, 1.4375rem);
+  line-height: 1.5;
+}
+
+/* The turn */
+.story__turn {
+  margin-top: 1rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--color-navy);
+}
+.story__reason {
+  max-width: 44rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 1.2rem + 2.6vw, 3.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.story__belief {
+  max-width: 46rem;
+  margin-top: 1.75rem;
+  font-size: clamp(1.125rem, 1.05rem + 0.4vw, 1.375rem);
+  line-height: 1.5;
+}
+.story__without {
+  font-family: var(--font-heading);
+  color: var(--color-burgundy);
+}
+
+@media (min-width: 48rem) {
+  .story__sheet { padding: 3rem 3rem 3.25rem 3.75rem; --corner: 3rem; }
+  .story__sheet::after { left: 1.75rem; }
+  /* Each pair on its own line, under a thin rule */
+  .story__belief-lead { display: block; margin-bottom: 0.75rem; }
+  .story__pair {
+    display: block;
+    padding-block: 0.875rem;
+    border-top: 1px solid var(--color-rule);
+    font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+    font-family: var(--font-heading);
+  }
+  .story__pair:last-child { border-bottom: 1px solid var(--color-rule); }
+  .story__without { display: inline-block; }
+}
+/* Desktop: heading on the left, staying in view; the sheet on the right; the turn underneath
+   lines up with the sheet */
+@media (min-width: 62rem) {
+  .story { padding-top: 2.5rem; }
+  .story__inner {
+    grid-template-columns: 4fr 8fr;
+    column-gap: clamp(3rem, 6vw, 6rem);
+    align-items: start;
+  }
+  .story__title {
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+  }
+  .story__turn { grid-column: 2; margin-top: 2rem; }
+  .story__sheet { padding: 3.5rem 4rem 4rem 4.5rem; }
+  .story__sheet::after { left: 2.25rem; }
 }

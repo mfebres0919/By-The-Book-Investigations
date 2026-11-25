@@ -183,7 +183,7 @@ This is a first look, not the full audit that handbook Section 18 requires.
 | `services/index.html` | The Services page (all six sections built, awaiting review). Copy from `Services Page (Final).docx`. |
 | `contact/index.html` | The Contact page: hero + one contact form (Netlify Forms). Built, awaiting review. |
 | `css/contact.css` | Contact page only. The page loads `global.css` + `contact.css`. |
-| `about/index.html` | The About page (in progress: hero built; her sections 02 to 08 to come). Copy from `Homepage and About Us.docx`, second half. |
+| `about/index.html` | The About page (in progress: hero and 02 founder story built; her sections 03 to 08 to come). Copy from `Homepage and About Us.docx`, second half. |
 | `css/about.css` | About page only. The page loads `global.css` + `about.css`. |
 | `documentation/integrations.md` | Every outside service the site sends data to (the contact form → Netlify Forms), with the before-launch steps. |
 | `css/services.css` | Services page only, one block per section. The page loads `global.css` + `services.css`, not `styles.css`. |
@@ -403,6 +403,14 @@ From the proposal (Section 3a) and the header: **Services** (and its detail page
 ## 10. Change log
 
 Newest first. One entry per working session or per significant change: what changed, which files, and anything left unverified.
+
+### 2026-11-25 (later still): About section 02, the founder story
+- Her "The experience that changed how we work", word for word. Pale grey (the hero's open-book divider now fills in that grey).
+- Her four story paragraphs on a white **case-file sheet**: folded top-right corner and a burgundy margin line (like a legal pad) that draws down the page on scroll (`data-draw`). Her first paragraph is larger, in the heading font.
+- Then the turn: "That experience became the reason for By-the-Book." large, and her belief sentence with its three "without" pairs in burgundy italics; from tablets up each pair sits on its own ruled line. Still one sentence in the HTML, so screen readers read it as written.
+- Desktop: heading on the left, staying in view; sheet and turn on the right. Phones: stacked.
+- **Her own checklist:** confirm she's comfortable publishing this anonymized story (added to the HTML comment).
+- Checked at 390, 768, 1440: no sideways scroll. **Next:** 03 What we know from the inside.
 
 ### 2026-11-25 (later): About page started (hero), and a transition on the contact form
 - **Contact form:** Miguelle asked for a nice transition between sending and the thank-you message. Now (global.js part 10 d, contact.css): the form fades and lifts away (0.45s), the thank-you panel rises in, its line draws left to right, the burgundy point appears, then the heading and sentence fade up in turn (about 1.6s in all). The page glides to the message if it is off screen. Visitors who ask for less motion get an instant swap. Tested in automated Chrome at 390 and 1440, with Netlify's reply faked, and with reduced motion.

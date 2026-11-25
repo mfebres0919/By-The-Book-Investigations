@@ -410,6 +410,9 @@ From the proposal (Section 3a) and the header: **Services** (and its detail page
 
 Newest first. One entry per working session or per significant change: what changed, which files, and anything left unverified.
 
+### 2026-11-25 (later still): assessment question reworded in the feedback PDF
+- Miguelle asked whether the Investigation Readiness Assessment is hers to configure. Her Services build notes say "[ASSESSMENT URL TO BE ADDED]" (suggests it lives elsewhere) but also give an "Assessment spec" under "Designer handoff" (five CLEAR phases, overall score, phase breakdown, suggested priorities, email consent). It is **not in the proposal's scope**. The PDF item now asks her: is it already built somewhere, or does she expect it as part of the website? If the latter, treat it as an add-on with its own quote.
+
 ### 2026-11-25 (later): PDF renamed "Round 1 feedback overview", no "we" wording
 - Miguelle: the site is not "ready for review" (that implies it is done); this is round one, with her feedback on what Marquita sent. The PDF is now `documentation/Client Deliverables/By_The_Book_Round_1_Feedback_Overview.pdf` (old "Review_Checklist" file deleted). Cover: "Round 1 feedback overview" / "Round one: your copy, built, and questions back to you."
 - Miguelle: no "we"/"our"/"us" in the document. Part one is now "Things that are still needed"; every item reworded impersonally (for example "The heading … were kept", "were written for the site, not taken from your copy").

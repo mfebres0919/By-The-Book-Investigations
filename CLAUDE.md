@@ -183,7 +183,7 @@ This is a first look, not the full audit that handbook Section 18 requires.
 | `services/index.html` | The Services page (all six sections built, awaiting review). Copy from `Services Page (Final).docx`. |
 | `contact/index.html` | The Contact page: hero + one contact form (Netlify Forms). Built, awaiting review. |
 | `css/contact.css` | Contact page only. The page loads `global.css` + `contact.css`. |
-| `about/index.html` | The About page (in progress: hero and sections 02 to 06 built; her sections 07 and 08 to come). Copy from `Homepage and About Us.docx`, second half. |
+| `about/index.html` | The About page (in progress: hero and sections 02 to 07 built; her closing section 08 to come). Copy from `Homepage and About Us.docx`, second half. |
 | `css/about.css` | About page only. The page loads `global.css` + `about.css`. |
 | `documentation/integrations.md` | Every outside service the site sends data to (the contact form → Netlify Forms), with the before-launch steps. |
 | `css/services.css` | Services page only, one block per section. The page loads `global.css` + `services.css`, not `styles.css`. |
@@ -403,6 +403,11 @@ From the proposal (Section 3a) and the header: **Services** (and its detail page
 ## 10. Change log
 
 Newest first. One entry per working session or per significant change: what changed, which files, and anything left unverified.
+
+### 2026-11-25 (night, latest): About section 07, Who is behind the work
+- Her two paragraphs, word for word, except "investigation framework" capitalized. Navy after the white section. New divider: **one long diagonal** (white, top), echoing the fold in her silver-and-navy paper background.
+- Her photo (same file as the homepage, `headshot-name-needed`: **still to confirm it is her**) in a thin silver outline offset down and right, with "Dr. Marquita M. Booker, Esq." and "Founder" (the homepage caption; her copy gives no title) under it. Her three career figures ("more than 15 years", "more than 2,000 protected-class investigations", "more than 250 investigators") in white bold inside her sentence. Her second paragraph larger, in italics.
+- Desktop: photo left, words right. Phones: words, then photo. Fixed: the caption touched the outline (margin collapsing). Checked at 390, 768, 1440. **Next:** 08, her closing call to action.
 
 ### 2026-11-25 (night, later): About section 06, How we support your team
 - Her two paragraphs, word for word, except INVEXTRA "planned for launch in early 2027" (her copy: "January 2027"). White after the burgundy section. New divider: **"binder tabs"**, three shallow tabs hanging from the burgundy, one per way of working.

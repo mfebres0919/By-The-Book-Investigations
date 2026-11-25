@@ -397,6 +397,9 @@ From the proposal (Section 3a) and the header: **Services** (and its detail page
 
 Newest first. One entry per working session or per significant change: what changed, which files, and anything left unverified.
 
+### 2026-11-24 (night, later): navy paper background darkened for legibility
+- Miguelle's request: a linear gradient over the navy paper background (Services section 03's navy band) so the text shows more clearly. Navy gradient, 90% solid at the top (heading and paragraph) easing to 55% at the foot so the fold still shows. Set in `--paper-shade` in `css/services.css`; raise the numbers for more contrast. Checked at 390, 768, 1440.
+
 ### 2026-11-24 (night): Services section 06 Next step, plus dividers and backgrounds for the whole page
 - **06 Next step** (`#next-step`), pale grey before the white footer, her wording. A line runs in from the left screen edge to a small burgundy square (the point that ends the R mark), drawn on scroll. Desktop: heading left, paragraphs + "Schedule a Conversation" + the second assessment text link (under a thin rule, quieter) right. The link points at `#assessment` (the box in section 03) until her URL arrives.
 - **Dividers** (Miguelle's request): shared classes in `css/services.css` (`svc-divided`, `svc-divider`, colour classes). Homepage shapes: the slanted cut at the top of 02 (navy) and mirrored at the top of 05 (white); the homepage V at the top of 06 (navy). New shapes drawn for this page: **five steps** (one per CLEAR phase) at the top of 03's navy band, **layered paper** (two sliding layers, the back one see-through) at its foot, and a **ruled wedge** (grey wedge + a thin ruled line) at the top of 04.

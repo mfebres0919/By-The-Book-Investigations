@@ -1048,16 +1048,24 @@ html.js .next__mark:not(.is-drawn)::after { opacity: 0; }
   vector-effect: non-scaling-stroke;          /* stays 1px thin however wide the screen */
 }
 
-/* Background: the navy paper with a fold, behind "Your best investigator…".
-   A tall version for phones, the wide one from tablets up. */
+/* Background: the navy paper with a fold, behind "Your best investigator…", under a navy
+   gradient so the white text reads clearly. The gradient is darkest at the top, where the
+   heading and paragraph sit, and lighter toward the foot so the fold still shows.
+   The numbers after the colour are how solid it is (0.9 = 90%): raise them for more contrast.
+   A tall photo for phones, the wide one from tablets up. */
 .readiness__problem {
-  background: var(--color-navy) url("../images/backgrounds/navy-paper-fold-m.jpg") center / cover no-repeat;
-  background-image: image-set(url("../images/backgrounds/navy-paper-fold-m.webp") type("image/webp"), url("../images/backgrounds/navy-paper-fold-m.jpg") type("image/jpeg"));
+  --paper-shade: linear-gradient(170deg, rgba(10, 26, 51, 0.9) 0%, rgba(10, 26, 51, 0.78) 55%, rgba(10, 26, 51, 0.55) 100%);
+  background-color: var(--color-navy);
+  background-image: var(--paper-shade), url("../images/backgrounds/navy-paper-fold-m.jpg");
+  background-image: var(--paper-shade), image-set(url("../images/backgrounds/navy-paper-fold-m.webp") type("image/webp"), url("../images/backgrounds/navy-paper-fold-m.jpg") type("image/jpeg"));
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 @media (min-width: 48rem) {
   .readiness__problem {
-    background-image: url("../images/backgrounds/navy-paper-fold.jpg");
-    background-image: image-set(url("../images/backgrounds/navy-paper-fold.webp") type("image/webp"), url("../images/backgrounds/navy-paper-fold.jpg") type("image/jpeg"));
+    background-image: var(--paper-shade), url("../images/backgrounds/navy-paper-fold.jpg");
+    background-image: var(--paper-shade), image-set(url("../images/backgrounds/navy-paper-fold.webp") type("image/webp"), url("../images/backgrounds/navy-paper-fold.jpg") type("image/jpeg"));
   }
 }
 

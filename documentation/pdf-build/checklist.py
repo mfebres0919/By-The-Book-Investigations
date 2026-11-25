@@ -37,6 +37,9 @@ NEED = [
     ("Light versions of both logos",
      "White (or reversed) versions of the By-the-Book and INVEXTRA logos, ideally as SVG files, so they can sit on the navy and burgundy areas.",
      None),
+    ("Legal details",
+     "Any disclaimers, license or bar numbers, or other legal notices that should appear on the site (usually in the footer).",
+     "Footer"),
 ]
 
 # Only things that genuinely need her verification: details copied from elsewhere, gaps that
@@ -50,18 +53,6 @@ CONFIRM = [
      "Your copy gives no title, so your photo is captioned \u201cFounder\u201d. Haya Abusway, Yeo Ju Choi and Giovanni Pasquale are shown with their photos and names only. Is \u201cFounder\u201d right, would you like the team shown, and are the names spelled correctly?", "About page, \u201cWho is behind the work\u201d"),
     ("Contact page wording",
      "No Contact page copy was supplied, so the top of the page uses your closing text from the Services page, and the form\u2019s labels and messages were written for the site. Keep these, or send your own wording?", "Contact page"),
-]
-
-LATER = [
-    ("Page addresses", "Whether to keep your current page addresses (for example /about-us) or use the new ones, and which of your current pages and blog posts should carry over, be redirected or retire."),
-    ("Domain and accounts", "Access to your domain, DNS and email host, and whether you already have Google Analytics, Search Console and a Google Business Profile."),
-    ("Legal details", "Any disclaimers or license numbers you would like shown on the site."),
-]
-
-FYI = [
-    "Body text is navy rather than silver, so it stays easy to read and meets the accessibility standard you asked for. Silver is still used for lines and accents.",
-    "The fonts are Libre Baskerville for headings and Source Sans 3 for text, chosen from the options in your brand guide.",
-    "The retainer link was removed from the top menu, as you suggested. It is still listed in the footer.",
 ]
 
 def e(x):
@@ -94,7 +85,7 @@ p{margin:0}
 .cover .lead{font-size:12pt;color:#D9DCE0;max-width:5.4in;margin-top:16pt}
 .cover .lbl{font-size:8pt;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#D9DCE0;margin-top:30pt}
 .cover a{color:#fff;font-size:12pt;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(217,220,224,.5)}
-.howto{margin-top:30pt;padding-top:14pt;border-top:1px solid rgba(217,220,224,.28);display:grid;grid-template-columns:repeat(3,1fr);gap:16pt;font-size:9.5pt;color:#D9DCE0}
+.howto{margin-top:30pt;padding-top:14pt;border-top:1px solid rgba(217,220,224,.28);display:grid;grid-template-columns:repeat(2,1fr);max-width:5.6in;gap:16pt;font-size:9.5pt;color:#D9DCE0}
 .howto b{display:block;color:#fff;font-family:"LB",Georgia,serif;font-weight:400;font-size:12pt;margin-bottom:3pt}
 .nw{white-space:nowrap}
 .prepared{position:absolute;left:0.75in;bottom:0.45in;font-size:8pt;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#D9DCE0}
@@ -108,7 +99,7 @@ p{margin:0}
 .part .sub{margin-top:6pt;max-width:6.2in}
 h3{font-size:13pt;margin:16pt 0 6pt;padding-bottom:4pt;border-bottom:1px solid #D9DCE0}
 ul{list-style:none;margin:0;padding:0}
-.item{display:grid;grid-template-columns:16pt 1fr;gap:9pt;padding:8pt 0;border-bottom:1px solid #EEF0F2;break-inside:avoid}
+.item{display:grid;grid-template-columns:16pt 1fr;gap:9pt;padding:6pt 0;border-bottom:1px solid #EEF0F2;break-inside:avoid}
 .tick{width:11pt;height:11pt;border:1.25pt solid #0A1A33;margin-top:3pt}
 .t{font-weight:700}
 .d{margin-top:1pt}
@@ -137,12 +128,11 @@ h += '''<section class="cover">
 <div class="howto">
 <div><b>1. Still needed</b>Items only you can provide, to finish the last pages.</div>
 <div><b>2. Things to confirm</b>A few details to check, nothing more.</div>
-<div><b>3. Later, before launch</b>Larger decisions to walk through together.</div>
 </div>
 <p class="prepared">Prepared for Dr. Marquita M. Booker, Esq. &middot; %(date)s &middot; MigsFlow</p>
 </div></section>''' % {'p': P, 'site': SITE, 'date': DATE, 'lines': lines}
 
-h += '<section class="part need"><div class="part__head"><p class="part__num">Part one</p><h2>Things that are <em>still needed</em></h2><p class="sub">These are the only things holding back the last two pages (Investigation Capacity and Privacy Policy) and a few finishing touches.</p></div><ul>'
+h += '<section class="part need"><div class="part__head"><p class="part__num">Part one</p><h2>Things that are <em>still needed</em></h2><p class="sub">These are the things holding back the last two pages (Investigation Capacity and Privacy Policy), plus a few finishing touches.</p></div><ul>'
 for i, (t, d, w) in enumerate(NEED, 1):
     h += ('<li class="item"><span class="num">%d</span><div><p class="t">%s</p><p class="d">%s</p>%s</div></li>'
           % (i, e(t), e(d), ('<p class="w">Where: %s</p>' % e(w)) if w else ''))
@@ -150,11 +140,7 @@ h += '</ul></section>'
 
 h += '<section class="part"><div class="part__head"><p class="part__num">Part two</p><h2>Things to <em>confirm</em></h2><p class="sub">Only a few details need checking: things copied from your current site or filled in where no copy was supplied.</p></div>'
 h += '<ul>' + ''.join(box(*it) for it in CONFIRM) + '</ul>'
-h += '</section>'
 
-h += '<section class="part later"><div class="part__head"><p class="part__num">Part three</p><h2>Before launch, <em>together</em></h2><p class="sub">Nothing to do yet. These are for closer to launch.</p></div><ul>'
-h += ''.join('<li class="item"><div><p class="t">%s</p><p class="d">%s</p></div></li>' % (e(t), e(d)) for t, d in LATER) + '</ul>'
-h += '<div class="fyi"><p class="h">For your information</p><ul>' + ''.join('<li>%s</li>' % e(x) for x in FYI) + '</ul></div>'
 h += '<p class="end">Thank you. Reply to the email with your answers, or mark up this PDF, whichever is easier. Your feedback shapes round two.</p></section></body></html>'
 
 open(TMP, 'w', encoding='utf-8').write(h)

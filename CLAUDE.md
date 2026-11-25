@@ -410,6 +410,10 @@ From the proposal (Section 3a) and the header: **Services** (and its detail page
 
 Newest first. One entry per working session or per significant change: what changed, which files, and anything left unverified.
 
+### 2026-11-25 (final): feedback PDF Part three removed, legal details added
+- Miguelle: removed Part three ("Before launch, together": page addresses, domain and accounts, legal) and the "For your information" box; domain/accounts are a separate later stage of hers. **Legal details** (disclaimers, license or bar numbers, legal notices; footer) moved into Part one as item 8. Cover now shows two parts. PDF is 3 pages.
+- Page addresses were never her request: it was our own launch/SEO concern (handbook Sections 12 and 18). It stays in Section 9 for us to decide with Miguelle before launch.
+
 ### 2026-11-25 (latest): feedback PDF cut down to genuine verifications
 - Miguelle: remove the testimonials and organizations questions (her decision, and asking reads as checking up on her), and stop asking "are you okay with this?" about every area. Ask only what truly needs verifying.
 - "Things to confirm" is now four items: INVEXTRA launch date (Early vs January 2027), contact details (copied from her current site), her title + the team (filled in / added without her copy), Contact page wording (no copy supplied). Removed: framework name and menu link, testimonials, organizations, INVEXTRA heading, copper plumb line, hero motion, highlighted words, CLEAR marks, founder story. The PDF is 4 pages.

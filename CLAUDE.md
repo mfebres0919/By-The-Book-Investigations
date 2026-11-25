@@ -410,6 +410,11 @@ From the proposal (Section 3a) and the header: **Services** (and its detail page
 
 Newest first. One entry per working session or per significant change: what changed, which files, and anything left unverified.
 
+### 2026-11-25 (latest): feedback PDF cut down to genuine verifications
+- Miguelle: remove the testimonials and organizations questions (her decision, and asking reads as checking up on her), and stop asking "are you okay with this?" about every area. Ask only what truly needs verifying.
+- "Things to confirm" is now four items: INVEXTRA launch date (Early vs January 2027), contact details (copied from her current site), her title + the team (filled in / added without her copy), Contact page wording (no copy supplied). Removed: framework name and menu link, testimonials, organizations, INVEXTRA heading, copper plumb line, hero motion, highlighted words, CLEAR marks, founder story. The PDF is 4 pages.
+- **Section 8 still lists those removed items for our own reference; do not raise them with her unless she brings them up.**
+
 ### 2026-11-25 (later still): assessment question reworded in the feedback PDF
 - Miguelle asked whether the Investigation Readiness Assessment is hers to configure. Her Services build notes say "[ASSESSMENT URL TO BE ADDED]" (suggests it lives elsewhere) but also give an "Assessment spec" under "Designer handoff" (five CLEAR phases, overall score, phase breakdown, suggested priorities, email consent). It is **not in the proposal's scope**. The PDF item now asks her: is it already built somewhere, or does she expect it as part of the website? If the latter, treat it as an add-on with its own quote.
 

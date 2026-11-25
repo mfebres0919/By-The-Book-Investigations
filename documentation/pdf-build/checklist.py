@@ -39,47 +39,17 @@ NEED = [
      None),
 ]
 
+# Only things that genuinely need her verification: details copied from elsewhere, gaps that
+# were filled in for her, and choices her own notes ask to confirm. Not her own content decisions.
 CONFIRM = [
-    ("Across the site", [
-        ("The framework’s name",
-         "Shown as “CLEAR By-the-Book™ Investigation Framework”. Is this the spelling you want, with the ™ after “By-the-Book”? Sentences that only say “CLEAR” were left as written.", None),
-        ("INVEXTRA launch date",
-         "Shown as “Early 2027” throughout. Your Services copy says “January 2027”. Which would you like, now that it is close?", "Homepage, Services, About"),
-        ("Your contact details",
-         "(888) 397-6352, hello@bythebookinvestigations.com, and 2591 Dallas Parkway, Suite 300, Frisco, TX 75034, taken from your current site. Are they current, and would you like the street address shown?", "Menu on phones, footer, Contact page"),
-        ("The framework link in the menu",
-         "“CLEAR By-the-Book™ Investigation Framework” in the menu takes visitors to the CLEAR section of the homepage. Is that right, or would you like the framework to have its own page in the future?", "Main menu"),
-    ]),
-    ("Homepage", [
-        ("Testimonials",
-         "Your own publication check: approval of each testimonial’s wording, and the names and titles of the people quoted.", None),
-        ("Organizations you have worked with",
-         "The ten logos (including Per Scholas, using the version you sent). Do you have each organization’s permission to show its logo, and is this the set you want?", None),
-        ("The INVEXTRA section",
-         "Your new paragraph is in place. The heading “Meet INVEXTRA™” and the line “Bringing CLEAR into the investigation as it happens.” were kept. Keep or remove?", None),
-        ("The copper plumb line",
-         "The photo beside the CLEAR heading shows a copper plumb weight. Your brand guide keeps copper for INVEXTRA. Are you happy with it there?", None),
-        ("Motion at the top of the page",
-         "The line drawing behind the headline moves gently, with a small pause button for visitors who prefer stillness (an accessibility requirement). Does it feel calm enough?", None),
-        ("Highlighted words in headings",
-         "A few words are set in burgundy italics for emphasis (for example “When” and “problem”). These were a design choice, not part of your copy. Are you happy with them?", None),
-        ("The five CLEAR marks",
-         "Would you like the five marks supplied as files for training materials or INVEXTRA?", None),
-    ]),
-    ("About page", [
-        ("The founder story",
-         "Your own publication check: is the anonymized story in “The experience that changed how we work” appropriate to publish?", None),
-        ("Your team",
-         "Haya Abusway, Yeo Ju Choi and Giovanni Pasquale are shown with photos and names only. Would you like the team on the site? If so, please confirm the spelling of each name and whether you would like roles shown. The small heading “The team” was added for the site and is not from your copy.", None),
-        ("Your title",
-         "Your photo is captioned “Dr. Marquita M. Booker, Esq.” with “Founder”. Is that the title you want?", None),
-    ]),
-    ("Contact page", [
-        ("The page wording",
-         "There was no Contact page copy, so the top of the page uses your own closing text from the Services page. Keep it, or send different wording?", None),
-        ("The form’s wording",
-         "The labels, the note asking people not to include names or confidential details, the error messages and the thank-you message were written for the site, not taken from your copy. Please read them and note anything to change.", None),
-    ]),
+    ("INVEXTRA launch date",
+     "Shown as \u201cEarly 2027\u201d throughout. Your Services copy says \u201cJanuary 2027\u201d. Which should the site use?", "Homepage, Services, About"),
+    ("Your contact details",
+     "(888) 397-6352, hello@bythebookinvestigations.com, and 2591 Dallas Parkway, Suite 300, Frisco, TX 75034 were copied from your current site. Are they still current, and should the street address be shown?", "Menu on phones, footer, Contact page"),
+    ("Your title and your team",
+     "Your copy gives no title, so your photo is captioned \u201cFounder\u201d. Haya Abusway, Yeo Ju Choi and Giovanni Pasquale are shown with their photos and names only. Is \u201cFounder\u201d right, would you like the team shown, and are the names spelled correctly?", "About page, \u201cWho is behind the work\u201d"),
+    ("Contact page wording",
+     "No Contact page copy was supplied, so the top of the page uses your closing text from the Services page, and the form\u2019s labels and messages were written for the site. Keep these, or send your own wording?", "Contact page"),
 ]
 
 LATER = [
@@ -161,12 +131,12 @@ h += '''<section class="cover">
 <svg viewBox="0 0 1000 240" preserveAspectRatio="none" fill="none" stroke="#D9DCE0" stroke-width="1" vector-effect="non-scaling-stroke">%(lines)s</svg>
 <p class="eyebrow">Round 1 feedback overview</p>
 <h1>Round one: your copy, built, <em>and questions back to you.</em></h1>
-<p class="lead">This is the first round of your new site. The Homepage, Services, About and Contact pages are built from the copy you sent, so you can see it in place. This overview gathers the things that are still needed and the points to look at before round two.</p>
+<p class="lead">This is the first round of your new site. The Homepage, Services, About and Contact pages are built from the copy you sent, so you can see it in place. This overview lists the things that are still needed and a few details to confirm before round two.</p>
 <p class="lbl">See round one</p>
 <a href="%(site)s">%(site)s</a>
 <div class="howto">
 <div><b>1. Still needed</b>Items only you can provide, to finish the last pages.</div>
-<div><b>2. Things to confirm</b>A yes, or what you would like changed. Page by page.</div>
+<div><b>2. Things to confirm</b>A few details to check, nothing more.</div>
 <div><b>3. Later, before launch</b>Larger decisions to walk through together.</div>
 </div>
 <p class="prepared">Prepared for Dr. Marquita M. Booker, Esq. &middot; %(date)s &middot; MigsFlow</p>
@@ -178,9 +148,8 @@ for i, (t, d, w) in enumerate(NEED, 1):
           % (i, e(t), e(d), ('<p class="w">Where: %s</p>' % e(w)) if w else ''))
 h += '</ul></section>'
 
-h += '<section class="part"><div class="part__head"><p class="part__num">Part two</p><h2>Things to <em>confirm</em></h2><p class="sub">Tick each one once you are happy with it, or note what you would like changed. Open the site alongside this list.</p></div>'
-for group, items in CONFIRM:
-    h += '<h3>%s</h3><ul>' % e(group) + ''.join(box(*it) for it in items) + '</ul>'
+h += '<section class="part"><div class="part__head"><p class="part__num">Part two</p><h2>Things to <em>confirm</em></h2><p class="sub">Only a few details need checking: things copied from your current site or filled in where no copy was supplied.</p></div>'
+h += '<ul>' + ''.join(box(*it) for it in CONFIRM) + '</ul>'
 h += '</section>'
 
 h += '<section class="part later"><div class="part__head"><p class="part__num">Part three</p><h2>Before launch, <em>together</em></h2><p class="sub">Nothing to do yet. These are for closer to launch.</p></div><ul>'

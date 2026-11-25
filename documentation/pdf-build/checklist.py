@@ -29,8 +29,8 @@ NEED = [
      "Which email address should receive the messages people send through the contact form?",
      "Contact page"),
     ("Your Privacy Policy",
-     "The contact form links to a Privacy Policy page, which every site that collects names and emails needs. Reuse the policy on your current site, or will you send updated text?",
-     "Footer and Contact page"),
+     "The Privacy Policy page currently shows the policy from your current site, word for word. It does not mention the contact form or give a date. Keep it as is, or send updated text?",
+     "Privacy Policy page (linked in the footer and the contact form)"),
     ("A larger photo of Haya Abusway",
      "The current copy is very small (200 by 200 pixels), so it looks soft on sharper screens.",
      "About page, “Who is behind the work”"),
@@ -132,7 +132,7 @@ h += '''<section class="cover">
 <p class="prepared">Prepared for Dr. Marquita M. Booker, Esq. &middot; %(date)s &middot; MigsFlow</p>
 </div></section>''' % {'p': P, 'site': SITE, 'date': DATE, 'lines': lines}
 
-h += '<section class="part need"><div class="part__head"><p class="part__num">Part one</p><h2>Things that are <em>still needed</em></h2><p class="sub">These are the things holding back the last two pages (Investigation Capacity and Privacy Policy), plus a few finishing touches.</p></div><ul>'
+h += '<section class="part need"><div class="part__head"><p class="part__num">Part one</p><h2>Things that are <em>still needed</em></h2><p class="sub">These are the things holding back the Investigation Capacity page, plus a few finishing touches.</p></div><ul>'
 for i, (t, d, w) in enumerate(NEED, 1):
     h += ('<li class="item"><span class="num">%d</span><div><p class="t">%s</p><p class="d">%s</p>%s</div></li>'
           % (i, e(t), e(d), ('<p class="w">Where: %s</p>' % e(w)) if w else ''))

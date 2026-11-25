@@ -1,0 +1,140 @@
+/* ==========================================================================
+   privacy.css: the Privacy Policy page only (privacy-policy/index.html)
+   A quiet page: short pale grey header, then the policy in one readable column.
+   Mobile-first: base rules are the phone layout. min-width queries add to it.
+   ========================================================================== */
+
+/* ---------- Header ----------
+   Pale grey, short. At the foot, "the lifted corner of a page" divider in white. */
+.legal-hero {
+  position: relative;
+  --divider-h: clamp(2rem, 5vw, 4.5rem);
+  padding-block: 3rem calc(2.5rem + var(--divider-h) * 0.75);
+  background: var(--color-wash);
+}
+.legal-hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.legal-hero__eyebrow::before {
+  content: "";
+  flex-shrink: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--color-copper);
+}
+.legal-hero__title {
+  font-size: clamp(2.25rem, 1.5rem + 3.4vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+.legal-hero__divider {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: var(--divider-h);
+  fill: var(--color-white);
+}
+
+/* ---------- The policy ----------
+   Phones: "On this page" list, then the sections. Desktop: the list on the left, staying in
+   view, the sections in a readable column on the right. */
+.legal {
+  display: grid;
+  gap: 2.5rem;
+  padding-block: 2rem var(--space-section);
+}
+
+.legal__toc {
+  padding: 1.25rem 1.25rem 1.25rem 1.125rem;
+  border-left: 3px solid var(--color-navy);
+  background: var(--color-wash);
+}
+.legal__toc-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.legal__toc-list {
+  display: grid;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+.legal__toc-link {
+  display: inline-block;
+  padding-block: 0.25rem;        /* taller tap target */
+  color: var(--color-navy);
+  text-decoration-color: var(--color-rule);
+  text-underline-offset: 0.25em;
+}
+.legal__toc-link:hover { color: var(--color-burgundy); text-decoration-color: var(--color-burgundy); }
+
+.legal__body { max-width: 44rem; }
+.legal__section {
+  padding-block: 2rem;
+  border-top: 1px solid var(--color-rule);
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  scroll-margin-top: calc(var(--header-h) + 1.5rem);   /* so a jump from "On this page" isn't hidden under the header */
+}
+.legal__section:first-child { border-top: 2px solid var(--color-navy); }
+.legal__heading {
+  margin-bottom: 0.875rem;
+  font-size: clamp(1.375rem, 1.2rem + 0.9vw, 1.875rem);
+}
+/* Bullets: small burgundy squares, the site's marker */
+.legal__list {
+  display: grid;
+  gap: 0.625rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.legal__list li {
+  position: relative;
+  padding-left: 1.375rem;
+}
+.legal__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 0.4375rem;
+  height: 0.4375rem;
+  background: var(--color-burgundy);
+}
+
+.legal__address {
+  display: grid;
+  gap: 0.5rem;
+  font-style: normal;
+}
+.legal__address a {
+  justify-self: start;
+  padding-block: 0.125rem;
+  color: var(--color-burgundy);
+  font-weight: 600;
+  text-underline-offset: 0.25em;
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 48rem) {
+  .legal-hero { padding-top: 4rem; }
+}
+@media (min-width: 62rem) {
+  .legal {
+    grid-template-columns: 3fr 9fr;
+    column-gap: clamp(3rem, 6vw, 6rem);
+    align-items: start;
+    padding-top: 3rem;
+  }
+  .legal__toc {
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+  }
+}

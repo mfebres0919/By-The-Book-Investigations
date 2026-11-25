@@ -185,6 +185,8 @@ This is a first look, not the full audit that handbook Section 18 requires.
 | `css/contact.css` | Contact page only. The page loads `global.css` + `contact.css`. |
 | `about/index.html` | The About page: all eight sections built (hero to 08 Let's talk), awaiting review. Copy from `Homepage and About Us.docx`, second half. |
 | `css/about.css` | About page only. The page loads `global.css` + `about.css`. |
+| `privacy-policy/index.html` | The Privacy Policy page: her current site's policy word for word (built, awaiting her answer: keep or replace). |
+| `css/privacy.css` | Privacy Policy page only. |
 | `documentation/integrations.md` | Every outside service the site sends data to (the contact form → Netlify Forms), with the before-launch steps. |
 | `css/services.css` | Services page only, one block per section. The page loads `global.css` + `services.css`, not `styles.css`. |
 | `css/no-js.css` | Loaded only when JavaScript is off, so the phone menu still shows |
@@ -409,6 +411,12 @@ From the proposal (Section 3a) and the header: **Services** (and its detail page
 ## 10. Change log
 
 Newest first. One entry per working session or per significant change: what changed, which files, and anything left unverified.
+
+### 2026-11-25 (end of day): Privacy Policy page built
+- New `privacy-policy/index.html` + `css/privacy.css`. **Wording is her current site's policy, word for word** (bythebookinvestigations.com/privacy-policy, copied 2026-11-25): "Use of Personal Data" (2 bullets), "Data Sharing" (2 bullets), "Data Retention", then her contact details under a plain "Contact" label. Nothing written by us; no date shown (her policy has none).
+- **Gap for her (an attorney) to decide, not us:** the policy doesn't mention the contact form/Netlify, cookies or analytics, or give an effective date. The feedback PDF's item 5 now says the page shows her current policy and asks: keep as is, or send updated text?
+- Layout: short pale grey header ("Legal" eyebrow, h1), new divider **"the lifted corner of a page"**; the policy in one readable column with burgundy square bullets; desktop: "On this page" list on the left, sticky. "Privacy Policy" marked current in the footer. Checked at 390 and 1440: no sideways scroll.
+- Pages now built: Home, Services, About, Contact, Privacy Policy. **Only Investigation Capacity remains (on hold for her copy and Calendly link).**
 
 ### 2026-11-25 (final): feedback PDF Part three removed, legal details added
 - Miguelle: removed Part three ("Before launch, together": page addresses, domain and accounts, legal) and the "For your information" box; domain/accounts are a separate later stage of hers. **Legal details** (disclaimers, license or bar numbers, legal notices; footer) moved into Part one as item 8. Cover now shows two parts. PDF is 3 pages.

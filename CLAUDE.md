@@ -183,7 +183,7 @@ This is a first look, not the full audit that handbook Section 18 requires.
 | `services/index.html` | The Services page (all six sections built, awaiting review). Copy from `Services Page (Final).docx`. |
 | `contact/index.html` | The Contact page: hero + one contact form (Netlify Forms). Built, awaiting review. |
 | `css/contact.css` | Contact page only. The page loads `global.css` + `contact.css`. |
-| `about/index.html` | The About page (in progress: hero and sections 02 to 04 built; her sections 05 to 08 to come). Copy from `Homepage and About Us.docx`, second half. |
+| `about/index.html` | The About page (in progress: hero and sections 02 to 05 built; her sections 06 to 08 to come). Copy from `Homepage and About Us.docx`, second half. |
 | `css/about.css` | About page only. The page loads `global.css` + `about.css`. |
 | `documentation/integrations.md` | Every outside service the site sends data to (the contact form → Netlify Forms), with the before-launch steps. |
 | `css/services.css` | Services page only, one block per section. The page loads `global.css` + `services.css`, not `styles.css`. |
@@ -403,6 +403,11 @@ From the proposal (Section 3a) and the header: **Services** (and its detail page
 ## 10. Change log
 
 Newest first. One entry per working session or per significant change: what changed, which files, and anything left unverified.
+
+### 2026-11-25 (night): About section 05, How we put that into practice
+- Her three paragraphs, word for word, except "investigation framework" → "Investigation Framework" (her round-two rule). Burgundy, over her `burgundy-grid` photo (first use on an inner page) under a burgundy gradient; the homepage's slanted divider, mirrored, in white at the top.
+- The five phases in her sentence are white with bold first letters; under it, **C L E A R** in large white letters, each in its own hairline cell, rising in one after another on scroll (`data-draw`; decorative, `aria-hidden`, no motion for reduced-motion visitors). Her last two paragraphs side by side on desktop; "The goal is…" larger, in italics, with a white rule on its left.
+- Checked at 390, 768, 1440: no sideways scroll. **Next:** 06 How we support your team (INVEXTRA: "Early 2027").
 
 ### 2026-11-25 (evening, later): About section 04, What a fair investigation owes everyone
 - Her wording, word for word. White after the navy section. New divider at the top: **"the fulcrum"**, a white point rising into the navy, like the pivot of a balance.

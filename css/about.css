@@ -460,3 +460,117 @@ html.js .owed__total:not(.is-drawn)::before { transform: scaleX(0); }
 @media (min-width: 62rem) {
   .owed__list { column-gap: clamp(4rem, 8vw, 7rem); }
 }
+
+/* ---------- 05 How we put that into practice ----------
+   Burgundy, over her burgundy grid photograph (under a burgundy gradient so the white text is
+   clear; raise 0.7 / 0.5 for more contrast). The five letters of CLEAR stand large in a row of
+   hairline cells and rise in one after another (global.js adds "is-drawn").
+   At the top, the homepage's slanted divider, mirrored, in white. */
+.practice {
+  position: relative;
+  --divider-h: clamp(2.5rem, 7vw, 6.5rem);
+  padding-block: calc(var(--space-section) + var(--divider-h) * 0.75) var(--space-section);
+  overflow: hidden;
+  background-color: var(--color-burgundy);
+  background-image:
+    linear-gradient(180deg, rgba(76, 0, 19, 0.7), rgba(76, 0, 19, 0.5)),
+    url("../images/backgrounds/burgundy-grid-m.jpg");
+  background-image:
+    linear-gradient(180deg, rgba(76, 0, 19, 0.7), rgba(76, 0, 19, 0.5)),
+    image-set(url("../images/backgrounds/burgundy-grid-m.webp") type("image/webp"), url("../images/backgrounds/burgundy-grid-m.jpg") type("image/jpeg"));
+  background-position: center;
+  background-size: cover;
+  color: var(--color-white);
+}
+.practice__divider {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: var(--divider-h);
+  fill: var(--color-white);
+  transform: scaleX(-1);
+}
+.practice__title {
+  font-size: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);
+  text-wrap: balance;
+}
+.practice__lead {
+  max-width: 44rem;
+  margin-top: 1.25rem;
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  color: var(--color-mist);
+}
+/* The phase names in white; their first letters link them to the big letters below */
+.practice__phase { font-weight: 400; color: var(--color-white); }
+.practice__initial { font-weight: 700; }
+
+/* The big letters: five equal cells with hairlines between them */
+.letters {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-block: 2.5rem;
+  border-block: 1px solid rgba(255, 255, 255, 0.3);
+}
+.letters__cell {
+  display: grid;
+  place-items: center;
+  padding-block: 0.5rem 0.75rem;
+  font-family: var(--font-heading);
+  font-size: clamp(3.25rem, 1.5rem + 9vw, 9rem);
+  line-height: 1;
+  color: var(--color-white);
+}
+.letters__cell + .letters__cell { border-left: 1px solid rgba(255, 255, 255, 0.3); }
+/* They rise in, one after another */
+.letters.is-drawn .letters__cell { transition: opacity 0.6s linear, transform 0.6s linear; }
+.letters.is-drawn .letters__cell:nth-child(2) { transition-delay: 0.15s; }
+.letters.is-drawn .letters__cell:nth-child(3) { transition-delay: 0.3s; }
+.letters.is-drawn .letters__cell:nth-child(4) { transition-delay: 0.45s; }
+.letters.is-drawn .letters__cell:nth-child(5) { transition-delay: 0.6s; }
+html.js .letters:not(.is-drawn) .letters__cell {
+  opacity: 0;
+  transform: translateY(1.25rem);
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js .letters:not(.is-drawn) .letters__cell { opacity: 1; transform: none; }
+}
+
+.practice__body {
+  display: grid;
+  gap: 1.75rem;
+}
+.practice__text {
+  max-width: 38rem;
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  color: var(--color-mist);
+}
+/* "The goal is…": larger, in italics, with a white rule on the left */
+.practice__goal {
+  max-width: 34rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--color-white);
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.75rem);
+  line-height: 1.4;
+}
+
+@media (min-width: 48rem) {
+  .practice {
+    background-image:
+      linear-gradient(180deg, rgba(76, 0, 19, 0.7), rgba(76, 0, 19, 0.5)),
+      url("../images/backgrounds/burgundy-grid.jpg");
+    background-image:
+      linear-gradient(180deg, rgba(76, 0, 19, 0.7), rgba(76, 0, 19, 0.5)),
+      image-set(url("../images/backgrounds/burgundy-grid.webp") type("image/webp"), url("../images/backgrounds/burgundy-grid.jpg") type("image/jpeg"));
+  }
+  .letters { margin-block: 3.5rem; }
+}
+@media (min-width: 62rem) {
+  .practice__body {
+    grid-template-columns: 1fr 1fr;
+    column-gap: clamp(3rem, 6vw, 6rem);
+    align-items: start;
+  }
+}

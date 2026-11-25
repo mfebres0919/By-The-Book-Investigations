@@ -181,8 +181,9 @@ This is a first look, not the full audit that handbook Section 18 requires.
 | `css/global.css` | Fonts, design tokens, reset, buttons, header and navigation, back-to-top. Shared by every page. |
 | `css/styles.css` | Homepage only: one block of rules per section, in page order |
 | `services/index.html` | The Services page (all six sections built, awaiting review). Copy from `Services Page (Final).docx`. |
-| `contact/index.html` | The Contact page (in progress: hero built; the form is next). |
+| `contact/index.html` | The Contact page: hero + one contact form (Netlify Forms). Built, awaiting review. |
 | `css/contact.css` | Contact page only. The page loads `global.css` + `contact.css`. |
+| `documentation/integrations.md` | Every outside service the site sends data to (the contact form → Netlify Forms), with the before-launch steps. |
 | `css/services.css` | Services page only, one block per section. The page loads `global.css` + `services.css`, not `styles.css`. |
 | `css/no-js.css` | Loaded only when JavaScript is off, so the phone menu still shows |
 | `javascript/global.js` | Nine numbered parts: phone menu, back-to-top, tabs, reveal on scroll (with `data-reveal-together` and `data-draw`), footer year, counting numbers, the questions accordion, the hero line drawing, the CLEAR marks |
@@ -392,6 +393,7 @@ From the proposal (Section 3a) and the header: **Services** (and its detail page
 - ~~The INVEXTRA waitlist address.~~ **Settled 2026-11-18: the button goes to `https://invextra.ai/`.** Her questionnaire says so in her own words ("Join the INVEXTRA Waitlist" (routes to invextra.ai)). Do not ask her again.
 - **Contact details in the phone menu:** (888) 397-6352, hello@bythebookinvestigations.com, and 2591 Dallas Parkway, Suite 300, Frisco, TX 75034. Copied from her current site; confirm they are current and that she wants the street address shown.
 - **INVEXTRA launch timing.** Her build note says to confirm it before publishing. The site says "Early 2027" everywhere (Miguelle's decision); her Services copy says "January 2027".
+- **Contact form wording.** The note about confidential details ("Please keep it general…"), the labels, the "For a general question…" line, the error messages and the thank-you message are ours, not hers: ask her to review. Also confirm which inbox gets the form emails and who owns the Netlify account (`documentation/integrations.md`).
 - **Contact page copy.** None in her documents. The Contact hero uses her own Services section 06 wording (heading + two paragraphs). Her live Contact page copy ("let's work together!") is older and in a different voice, so it was not reused. Ask whether she wants her own Contact copy.
 - Whether `IMG_1708.MOV` (in `documentation/source-images/`) belongs in this project.
 - Whether the GitHub repo will be private. The client brief and original images are git-ignored either way, so they exist only on this Mac unless backed up elsewhere.
@@ -399,6 +401,14 @@ From the proposal (Section 3a) and the header: **Services** (and its detail page
 ## 10. Change log
 
 Newest first. One entry per working session or per significant change: what changed, which files, and anything left unverified.
+
+### 2026-11-25: Contact page form built (section 02)
+- `#contact-form`, white, under the file-tab divider. Desktop: heading "Send us a message", a line on what the form is for, and a note not to include names, case details or confidential records (her Services build note), all on the left and staying in view; the form on the right. Phones: stacked.
+- **Fields:** full name, email, phone (optional), organization (optional), "What is this about?" (three boxed choices with her exact names: a general question, Third-Party Protected-Class Investigations, Investigation Readiness Intensive), message. Visible labels, `autocomplete`, 17px inputs (no iPhone zoom).
+- **Netlify Forms:** `name="contact"`, `data-netlify="true"`, hidden `form-name`, honeypot `bot-field`. Setup and before-launch steps in the new `documentation/integrations.md`.
+- **Script** (`global.js` part 10): errors written under each field (burgundy, with a square marker), `aria-invalid`, a status line read by screen readers ("4 fields need attention."), focus on the first problem, messages clear as the visitor fixes them; sends in the background and swaps the form for a thank-you message (focus moves to it); on failure, says so with the email address and keeps what was typed. `?topic=investigations|readiness|general` ticks a topic in advance (the Services buttons could use it later). Without JavaScript the form still posts normally.
+- Tested in automated Chrome: empty send (4 errors, focus on name), bad email, fixing clears the error, successful send with Netlify's reply faked (the posted fields were correct), failed send. Fixed one bug found: the form stayed visible above the thank-you message (`display: grid` beat `hidden`). Layout checked at 320, 390, 768, 1440: no sideways scroll.
+- **Not tested:** a real send (only possible once the site is on Netlify), real phones, Safari, Firefox, VoiceOver.
 
 ### 2026-11-24 (night, latest): Contact page started, hero built
 - Miguelle: the Contact page is just **a hero and one contact form** (general questions or questions about her services), connected through Netlify. This replaces the proposal's two tabbed forms (Section 3a updated).

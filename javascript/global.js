@@ -1,6 +1,6 @@
 /* ==========================================================================
    global.js: behavior shared by every page
-   1. Phone menu   2. Back-to-top button   3. Tabs   4. Reveal on scroll   5. Footer year   6. Counting numbers   7. Smooth questions   8. Hero lines   9. CLEAR marks
+   1. Phone menu   2. Back-to-top button   3. Tabs   4. Reveal on scroll   5. Footer year   6. Counting numbers   7. Smooth questions   8. Hero lines   9. CLEAR marks   10. Contact form
    Loaded with "defer", so the HTML is ready by the time this runs.
    ========================================================================== */
 
@@ -619,4 +619,110 @@
     });
   }, { threshold: 0.6 });
   Array.prototype.forEach.call(marks, function (mark) { watcher.observe(mark); });
+})();
+
+/* ---------- 10. Contact form (contact page) ----------
+   The form is sent to Netlify Forms (see the notes above the form in contact/index.html).
+   What this script adds:
+   a) A link can choose the topic in advance: contact/?topic=investigations or ?topic=readiness.
+   b) Checking: when "Send message" is pressed, every empty or wrongly filled field gets a
+      message in words under it (and aria-invalid="true"), the status line says how many need
+      attention, and the cursor moves to the first one. Messages clear as the visitor fixes them.
+   c) Sending without leaving the page: the form's answers are posted to Netlify in the
+      background. If it worked, the form is swapped for the thank-you message. If not, the
+      status line says so and gives the email address, and nothing typed is lost.
+   Without JavaScript none of this runs: the browser checks the "required" fields itself and
+   the form posts the normal way. */
+(function () {
+  var form = document.querySelector('.enquiry-form');
+  if (!form) return;
+  var status = form.querySelector('.enquiry-form__status');
+  var sendButton = form.querySelector('.enquiry-form__send');
+  var done = document.querySelector('.enquiry-done');
+
+  // From here on the script does the checking, so switch off the browser's own pop-ups
+  form.setAttribute('novalidate', '');
+
+  // a) Topic chosen by the link
+  var wanted = new URLSearchParams(window.location.search).get('topic');
+  if (wanted) {
+    var preset = form.querySelector('.choice__input[data-topic="' + wanted.replace(/[^a-z-]/g, '') + '"]');
+    if (preset) preset.checked = true;
+  }
+
+  // b) Checking. Each rule returns the message to show, or "" when the field is fine.
+  var rules = {
+    name: function (v) { return v ? '' : 'Please enter your name.'; },
+    email: function (v, field) {
+      if (!v) return 'Please enter your email address.';
+      return field.validity.typeMismatch ? 'Please enter an email address like name@example.com.' : '';
+    },
+    topic: function () { return form.querySelector('input[name="topic"]:checked') ? '' : 'Please choose what this is about.'; },
+    message: function (v) { return v ? '' : 'Please write a short message.'; }
+  };
+
+  // The element that gets aria-invalid: the input itself, or the whole group for the topic
+  function targetFor(name) {
+    return name === 'topic' ? form.querySelector('.choices') : form.elements[name];
+  }
+
+  function check(name) {
+    var target = targetFor(name);
+    var field = form.elements[name];
+    var value = field && field.value !== undefined ? String(field.value).trim() : '';
+    var message = rules[name](value, field);
+    var errorBox = document.getElementById(target.getAttribute('aria-describedby').split(' ').pop());
+    errorBox.textContent = message;
+    if (message) target.setAttribute('aria-invalid', 'true');
+    else target.removeAttribute('aria-invalid');
+    return message === '';
+  }
+
+  // Once a field has shown an error, re-check it as the visitor types, so the message goes away
+  form.addEventListener('input', function (event) {
+    var name = event.target.name;
+    if (rules[name] && targetFor(name).hasAttribute('aria-invalid')) check(name);
+  });
+  form.addEventListener('change', function (event) {
+    if (event.target.name === 'topic' && targetFor('topic').hasAttribute('aria-invalid')) check('topic');
+  });
+
+  // c) Sending
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    var problems = Object.keys(rules).filter(function (name) { return !check(name); });
+    if (problems.length) {
+      status.textContent = problems.length === 1
+        ? 'One field needs attention.'
+        : problems.length + ' fields need attention.';
+      var first = problems[0] === 'topic' ? form.querySelector('.choice__input') : form.elements[problems[0]];
+      first.focus();
+      return;
+    }
+
+    status.textContent = '';
+    sendButton.disabled = true;
+    sendButton.textContent = 'Sending…';
+
+    // Netlify expects the answers in the same format a normal form post uses
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString()
+    })
+      .then(function (response) {
+        if (!response.ok) throw new Error('Netlify answered ' + response.status);
+        form.hidden = true;
+        done.hidden = false;
+        done.querySelector('.enquiry-done__title').focus();
+        // When Google Analytics is added, this counts the sent message as a lead
+        if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { form_name: 'contact' });
+      })
+      .catch(function () {
+        status.textContent = 'Sorry, your message could not be sent. Please try again, or email us at hello@bythebookinvestigations.com.';
+        sendButton.disabled = false;
+        sendButton.textContent = 'Send message';
+      });
+  });
 })();

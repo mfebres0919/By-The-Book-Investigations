@@ -136,10 +136,111 @@
             <svg class="contact-hero__divider" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0 100V78H560L600 22H900L940 78H1000V100Z"/></svg>
         </section>
 
-        <!-- Still to build: 02 ONE contact form, for general questions or questions about her
-             services (Miguelle, 2026-11-24: this replaces the proposal's two tabbed forms). Sent
-             with Netlify Forms (handbook Section 13), honeypot, thank-you state, and a note not to
-             include confidential case details or names. -->
+        <!-- ============ 02 THE CONTACT FORM ============
+             One form for general questions or questions about her services (Miguelle, 2026-11-24).
+             HOW IT IS SENT: Netlify Forms. Netlify reads this HTML when the site is deployed, finds
+             the form because of data-netlify="true", and emails each submission to the address set
+             in Netlify's dashboard (Site configuration > Forms > Form notifications). No keys or
+             passwords are needed in the code.
+             - name="contact" is the form's name in the Netlify dashboard.
+             - The hidden "form-name" field must match it; Netlify needs it when the script sends the form.
+             - "bot-field" is the honeypot: hidden from people, but spam bots fill it in, and Netlify
+               then throws that submission away.
+             With JavaScript (global.js part 10): the script checks the fields, shows any errors in
+             words under each field, sends the form without leaving the page, and shows the thank-you
+             message. Without JavaScript: the browser checks the "required" fields and the form posts
+             normally; Netlify then shows its own "thank you" page.
+             The wording around the form (the note about confidential details, the labels, the
+             thank-you message) is ours, not hers: ask her to review it. -->
+        <section class="enquiry" id="contact-form" aria-labelledby="enquiry-title">
+            <div class="enquiry__inner container">
+                <div class="enquiry__intro">
+                    <h2 class="enquiry__title" id="enquiry-title">Send us a message</h2>
+                    <p class="enquiry__lead">For a general question, or a question about our services.</p>
+
+                    <!-- Her Services build note: "Do not request case names or confidential records." -->
+                    <div class="enquiry__note">
+                        <svg class="enquiry__note-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="1"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
+                        <p class="enquiry__note-text"><strong>Please keep it general.</strong> Do not include the names of the people involved, case details, or confidential records. We will talk about what we need once we are in touch.</p>
+                    </div>
+                </div>
+
+                <div class="enquiry__body">
+                    <form class="enquiry-form" name="contact" method="POST" action="/contact/" data-netlify="true" netlify-honeypot="bot-field">
+                        <input type="hidden" name="form-name" value="contact">
+                        <!-- The honeypot: hidden from people and from screen readers -->
+                        <p class="enquiry-form__trap" aria-hidden="true">
+                            <label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+                        </p>
+
+                        <!-- Read aloud by screen readers when the form has errors or a sending problem -->
+                        <p class="enquiry-form__status" role="status" aria-live="polite"></p>
+
+                        <div class="enquiry-form__grid">
+                            <div class="field">
+                                <label class="field__label" for="contact-name">Full name</label>
+                                <input class="field__input" id="contact-name" name="name" type="text" autocomplete="name" required aria-describedby="contact-name-error">
+                                <p class="field__error" id="contact-name-error"></p>
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="contact-email">Email</label>
+                                <input class="field__input" id="contact-email" name="email" type="email" autocomplete="email" required aria-describedby="contact-email-error">
+                                <p class="field__error" id="contact-email-error"></p>
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="contact-phone">Phone <span class="field__optional">(optional)</span></label>
+                                <input class="field__input" id="contact-phone" name="phone" type="tel" autocomplete="tel">
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="contact-org">Organization <span class="field__optional">(optional)</span></label>
+                                <input class="field__input" id="contact-org" name="organization" type="text" autocomplete="organization">
+                            </div>
+                        </div>
+
+                        <!-- The topic. Her exact service names. A link can choose one in advance, for
+                             example contact/?topic=readiness (global.js part 10). -->
+                        <fieldset class="field choices" aria-describedby="contact-topic-error">
+                            <legend class="field__label">What is this about?</legend>
+                            <div class="choices__list">
+                                <label class="choice">
+                                    <input class="choice__input" type="radio" name="topic" value="General question" data-topic="general" required>
+                                    <span class="choice__text">A general question</span>
+                                </label>
+                                <label class="choice">
+                                    <input class="choice__input" type="radio" name="topic" value="Third-Party Protected-Class Investigations" data-topic="investigations">
+                                    <span class="choice__text">Third-Party Protected-Class Investigations</span>
+                                </label>
+                                <label class="choice">
+                                    <input class="choice__input" type="radio" name="topic" value="Investigation Readiness Intensive" data-topic="readiness">
+                                    <span class="choice__text">Investigation Readiness Intensive</span>
+                                </label>
+                            </div>
+                            <p class="field__error" id="contact-topic-error"></p>
+                        </fieldset>
+
+                        <div class="field">
+                            <label class="field__label" for="contact-message">Message</label>
+                            <textarea class="field__input field__input--area" id="contact-message" name="message" rows="6" required aria-describedby="contact-message-hint contact-message-error"></textarea>
+                            <p class="field__hint" id="contact-message-hint">A few lines on what you are working through.</p>
+                            <p class="field__error" id="contact-message-error"></p>
+                        </div>
+
+                        <div class="enquiry-form__foot">
+                            <button class="btn btn--primary enquiry-form__send" type="submit">Send message</button>
+                            <p class="enquiry-form__privacy">See our <a href="../privacy-policy/">Privacy Policy</a> for how we handle your details.</p>
+                        </div>
+                    </form>
+
+                    <!-- Shown by the script once Netlify confirms the message arrived. Focus moves to
+                         the heading so screen readers announce it. -->
+                    <div class="enquiry-done" hidden>
+                        <svg class="enquiry-done__mark" aria-hidden="true" focusable="false" viewBox="0 0 96 96"><path d="M10 48h64"/><rect x="78" y="43.5" width="9" height="9"/></svg>
+                        <h3 class="enquiry-done__title" tabindex="-1">Thank you. Your message has been sent.</h3>
+                        <p class="enquiry-done__text">We will reply by email. If it is urgent, call us at <a href="tel:+18883976352">(888) 397-6352</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </main>
 

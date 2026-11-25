@@ -353,6 +353,44 @@ a.contact-card__value:hover { text-decoration-color: var(--color-white); }
 .enquiry-done__title:focus { outline: none; }   /* focus is moved here by the script, not by the visitor */
 .enquiry-done__text { margin-top: 0.75rem; }
 
+/* The change from form to thank-you message (global.js part 10 d):
+   1. "is-leaving": the form fades out and lifts slightly (0.45s).
+   2. "is-arriving": the thank-you panel rises in; its line draws from left to right, the
+      burgundy point appears at the end, then the heading and sentence fade up in turn.
+   Visitors who ask their device for less motion get the swap with no animation. */
+.enquiry-form.is-leaving {
+  opacity: 0;
+  transform: translateY(-0.75rem);
+  transition: opacity 0.45s linear, transform 0.45s linear;
+  pointer-events: none;
+}
+.enquiry-done.is-arriving { animation: enquiry-rise 0.6s linear both; }
+.enquiry-done.is-arriving .enquiry-done__mark path {
+  stroke-dasharray: 64;
+  animation: enquiry-draw 0.7s linear 0.35s both;
+}
+.enquiry-done.is-arriving .enquiry-done__mark rect { animation: enquiry-fade 0.25s linear 1.05s both; }
+.enquiry-done.is-arriving .enquiry-done__title { animation: enquiry-rise 0.5s linear 0.9s both; }
+.enquiry-done.is-arriving .enquiry-done__text { animation: enquiry-rise 0.5s linear 1.1s both; }
+
+@keyframes enquiry-rise {
+  from { opacity: 0; transform: translateY(1rem); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes enquiry-draw {
+  from { stroke-dashoffset: 64; }
+  to { stroke-dashoffset: 0; }
+}
+@keyframes enquiry-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .enquiry-form.is-leaving,
+  .enquiry-done.is-arriving,
+  .enquiry-done.is-arriving * { animation: none; transition: none; }
+}
+
 @media (min-width: 48rem) {
   .enquiry-form__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1.25rem; }
   .choices__list { grid-template-columns: repeat(3, minmax(0, 1fr)); }

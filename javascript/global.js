@@ -629,7 +629,7 @@
       message in words under it (and aria-invalid="true"), the status line says how many need
       attention, and the cursor moves to the first one. Messages clear as the visitor fixes them.
    c) Sending without leaving the page: the form's answers are posted to Netlify in the
-      background. If it worked, the form is swapped for the thank-you message. If not, the
+      background. If it worked, the form is swapped for the thank-you message (d). If not, the
       status line says so and gives the email address, and nothing typed is lost.
    Without JavaScript none of this runs: the browser checks the "required" fields itself and
    the form posts the normal way. */
@@ -687,6 +687,31 @@
     if (event.target.name === 'topic' && targetFor('topic').hasAttribute('aria-invalid')) check('topic');
   });
 
+  // d) The change from form to thank-you message. The form fades and lifts away, then the
+  //    thank-you panel rises in and its mark draws itself (the animation lives in contact.css,
+  //    under "is-leaving" and "is-arriving"). For visitors who ask for less motion, the swap is
+  //    instant. Focus moves to the thank-you heading so screen readers announce it.
+  function showThanks() {
+    var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var title = done.querySelector('.enquiry-done__title');
+
+    function swap() {
+      form.hidden = true;
+      done.hidden = false;
+      if (!calm) done.classList.add('is-arriving');
+      title.focus({ preventScroll: true });
+      // The form was tall, so the message may now sit above the screen: bring it into view
+      var box = done.getBoundingClientRect();
+      if (box.top < 0 || box.bottom > window.innerHeight) {
+        done.scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'center' });
+      }
+    }
+
+    if (calm) { swap(); return; }
+    form.classList.add('is-leaving');
+    window.setTimeout(swap, 450);   // matches the 0.45s fade in contact.css
+  }
+
   // c) Sending
   form.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -713,9 +738,7 @@
     })
       .then(function (response) {
         if (!response.ok) throw new Error('Netlify answered ' + response.status);
-        form.hidden = true;
-        done.hidden = false;
-        done.querySelector('.enquiry-done__title').focus();
+        showThanks();
         // When Google Analytics is added, this counts the sent message as a lead
         if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { form_name: 'contact' });
       })

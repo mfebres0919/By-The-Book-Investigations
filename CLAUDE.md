@@ -183,6 +183,8 @@ This is a first look, not the full audit that handbook Section 18 requires.
 | `services/index.html` | The Services page (all six sections built, awaiting review). Copy from `Services Page (Final).docx`. |
 | `contact/index.html` | The Contact page: hero + one contact form (Netlify Forms). Built, awaiting review. |
 | `css/contact.css` | Contact page only. The page loads `global.css` + `contact.css`. |
+| `about/index.html` | The About page (in progress: hero built; her sections 02 to 08 to come). Copy from `Homepage and About Us.docx`, second half. |
+| `css/about.css` | About page only. The page loads `global.css` + `about.css`. |
 | `documentation/integrations.md` | Every outside service the site sends data to (the contact form → Netlify Forms), with the before-launch steps. |
 | `css/services.css` | Services page only, one block per section. The page loads `global.css` + `services.css`, not `styles.css`. |
 | `css/no-js.css` | Loaded only when JavaScript is off, so the phone menu still shows |
@@ -401,6 +403,14 @@ From the proposal (Section 3a) and the header: **Services** (and its detail page
 ## 10. Change log
 
 Newest first. One entry per working session or per significant change: what changed, which files, and anything left unverified.
+
+### 2026-11-25 (later): About page started (hero), and a transition on the contact form
+- **Contact form:** Miguelle asked for a nice transition between sending and the thank-you message. Now (global.js part 10 d, contact.css): the form fades and lifts away (0.45s), the thank-you panel rises in, its line draws left to right, the burgundy point appears, then the heading and sentence fade up in turn (about 1.6s in all). The page glides to the message if it is off screen. Visitors who ask for less motion get an instant swap. Tested in automated Chrome at 390 and 1440, with Netlify's reply faked, and with reduced motion.
+- **About page:** her copy is in `Homepage and About Us.docx`, after "ABOUT US": hero, then 02 The experience that changed how we work, 03 What we know from the inside, 04 What a fair investigation owes everyone, 05 How we put that into practice, 06 How we support your team, 07 Who is behind the work, 08 Let's talk (button). Her section 06 says INVEXTRA launches "January 2027": use "Early 2027". Her final check: confirm the anonymized founder story (section 02) is fine to publish.
+- New `about/index.html` (head, header and footer from the Contact page; "About" marked current) and `css/about.css`.
+- **Hero**, her words: label "About By-the-Book Workplace Investigations", heading "We built the investigation practice we *once needed.*" ("once needed." in italics on its own line from tablets up), her two paragraphs (side by side on desktop). Background: her `navy-silver-staircase` photo under a navy gradient (solid behind the words on the left, the stair rail showing on the right; top-to-bottom on phones with the tall crop). No button (her About copy has one at the end). New divider at the foot: **the top edge of an open book**, in white.
+- Checked at 320, 390, 768, 1440: no sideways scroll. Fixed: the label's words spread apart (a flex row treated "By-the-Book" as its own item); the text is now wrapped in one span.
+- **Next:** About section 02, the founder story.
 
 ### 2026-11-25: Contact page form built (section 02)
 - `#contact-form`, white, under the file-tab divider. Desktop: heading "Send us a message", a line on what the form is for, and a note not to include names, case details or confidential records (her Services build note), all on the left and staying in view; the form on the right. Phones: stacked.

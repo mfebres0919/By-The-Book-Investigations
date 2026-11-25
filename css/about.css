@@ -1,0 +1,105 @@
+/* ==========================================================================
+   about.css: the About page only (about/index.html)
+   Mobile-first: base rules are the phone layout. min-width queries add to it.
+   Shared things (fonts, colours, buttons, header, footer, reveal on scroll) are in global.css.
+   ========================================================================== */
+
+/* ---------- Hero ----------
+   Her navy-and-silver staircase photograph, under a navy gradient: almost solid on the left
+   behind the words, lighter on the right so the stair rail shows. On phones the photo is the
+   tall crop and the gradient runs top to bottom instead (the words fill the whole width).
+   The numbers after each colour are how solid it is (0.94 = 94%): raise them for more contrast.
+   At the foot, the open-book divider in white. */
+.about-hero {
+  position: relative;
+  --divider-h: clamp(2.5rem, 7vw, 6.5rem);
+  padding-block: 3.5rem calc(var(--space-section) + var(--divider-h) * 0.75);
+  overflow: hidden;
+  background-color: var(--color-navy);
+  background-image:
+    linear-gradient(180deg, rgba(10, 26, 51, 0.93) 0%, rgba(10, 26, 51, 0.86) 70%, rgba(10, 26, 51, 0.7) 100%),
+    url("../images/backgrounds/navy-silver-staircase-m.jpg");
+  background-image:
+    linear-gradient(180deg, rgba(10, 26, 51, 0.93) 0%, rgba(10, 26, 51, 0.86) 70%, rgba(10, 26, 51, 0.7) 100%),
+    image-set(url("../images/backgrounds/navy-silver-staircase-m.webp") type("image/webp"), url("../images/backgrounds/navy-silver-staircase-m.jpg") type("image/jpeg"));
+  background-position: center;
+  background-size: cover;
+  color: var(--color-white);
+}
+
+/* Small label above the heading, with the copper square used in the other heroes */
+.about-hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  color: var(--color-mist);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+.about-hero__eyebrow::before {
+  content: "";
+  flex-shrink: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--color-copper);
+}
+.about-hero__title {
+  max-width: 44rem;
+  font-size: clamp(2.25rem, 1.3rem + 4.2vw, 4.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+/* "once needed." in italics, on its own line from tablets up: the turn in her sentence */
+.about-hero__em {
+  font-style: italic;
+  color: var(--color-mist);
+}
+.about-hero__text { margin-top: 2rem; }
+.about-hero__lead {
+  max-width: 36rem;
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  color: var(--color-mist);
+}
+.about-hero__lead + .about-hero__lead {
+  margin-top: 1rem;
+  color: var(--color-white);
+}
+
+/* The open-book divider, pinned to the foot of the hero */
+.about-hero__divider {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: var(--divider-h);
+  fill: var(--color-white);
+}
+
+@media (min-width: 48rem) {
+  .about-hero {
+    padding-top: 5rem;
+    background-image:
+      linear-gradient(90deg, rgba(10, 26, 51, 0.95) 0%, rgba(10, 26, 51, 0.88) 45%, rgba(10, 26, 51, 0.45) 100%),
+      url("../images/backgrounds/navy-silver-staircase.jpg");
+    background-image:
+      linear-gradient(90deg, rgba(10, 26, 51, 0.95) 0%, rgba(10, 26, 51, 0.88) 45%, rgba(10, 26, 51, 0.45) 100%),
+      image-set(url("../images/backgrounds/navy-silver-staircase.webp") type("image/webp"), url("../images/backgrounds/navy-silver-staircase.jpg") type("image/jpeg"));
+  }
+  .about-hero__em { display: block; }
+}
+/* Desktop: the two paragraphs side by side under the heading */
+@media (min-width: 62rem) {
+  .about-hero { padding-top: 6.5rem; }
+  .about-hero__text {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 3rem;
+    max-width: 58rem;
+    margin-top: 2.5rem;
+  }
+  .about-hero__lead + .about-hero__lead { margin-top: 0; }
+}

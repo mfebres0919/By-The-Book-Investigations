@@ -183,7 +183,7 @@ This is a first look, not the full audit that handbook Section 18 requires.
 | `services/index.html` | The Services page (all six sections built, awaiting review). Copy from `Services Page (Final).docx`. |
 | `contact/index.html` | The Contact page: hero + one contact form (Netlify Forms). Built, awaiting review. |
 | `css/contact.css` | Contact page only. The page loads `global.css` + `contact.css`. |
-| `about/index.html` | The About page (in progress: hero and sections 02 to 07 built; her closing section 08 to come). Copy from `Homepage and About Us.docx`, second half. |
+| `about/index.html` | The About page: all eight sections built (hero to 08 Let's talk), awaiting review. Copy from `Homepage and About Us.docx`, second half. |
 | `css/about.css` | About page only. The page loads `global.css` + `about.css`. |
 | `documentation/integrations.md` | Every outside service the site sends data to (the contact form → Netlify Forms), with the before-launch steps. |
 | `css/services.css` | Services page only, one block per section. The page loads `global.css` + `services.css`, not `styles.css`. |
@@ -409,6 +409,12 @@ From the proposal (Section 3a) and the header: **Services** (and its detail page
 ## 10. Change log
 
 Newest first. One entry per working session or per significant change: what changed, which files, and anything left unverified.
+
+### 2026-11-25 (night, final): About section 08, Let's talk: About page complete
+- Her closing, word for word, with her one button "Schedule a Conversation" (to `../contact/`). Pale grey, centred. **Bookend divider:** the hero's open-book shape turned over, the navy above curving down into the grey. Above the heading, a short navy line drawn on scroll that ends in a burgundy point.
+- All eight About sections are built. Whole page checked at 390 and 1440: no sideways scroll. Not checked: real phones, Safari, Firefox, Lighthouse.
+- Open items for her are in Section 8 ("About page" list): the team (wanted at all? names, roles, larger photo of Haya), "The team" heading, the founder story.
+- **Next (when asked):** remaining pages: Investigation Capacity and Privacy Policy.
 
 ### 2026-11-25 (night, last): team photos added to About section 07
 - Miguelle: Marquita sent team photos; add them to "Who is behind the work", **names only (no roles: she never gave them)**, and note for Marquita to confirm she wants them at all (Section 8, new "About page" list). Miguelle also confirmed **the founder photo is Marquita**.

@@ -842,3 +842,63 @@ html.js .letters:not(.is-drawn) .letters__cell {
 @media (min-width: 62rem) {
   .team { margin-top: 5rem; }
 }
+
+/* ---------- 08 Let's talk ----------
+   Pale grey, centred: her closing and her one button. At the top, the hero's open-book shape
+   turned over, in the navy of the section above (a bookend to the hero). Above the heading,
+   a short navy line that draws itself and ends in a burgundy point. */
+.talk {
+  position: relative;
+  --divider-h: clamp(2.5rem, 7vw, 6.5rem);
+  padding-block: calc(var(--space-section) + var(--divider-h) * 0.75) calc(var(--space-section) * 1.1);
+  background: var(--color-wash);
+}
+.talk__divider {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: var(--divider-h);
+  fill: var(--color-navy);
+}
+.talk__inner {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+/* The line and its point: 4rem of navy line, then the square */
+.talk__mark {
+  position: relative;
+  width: 4rem;
+  height: 1px;
+  margin: 0 0.75rem 2rem 0;      /* room on the right for the square */
+  background: var(--color-navy);
+  transform-origin: left;
+}
+.talk__mark::after {
+  content: "";
+  position: absolute;
+  top: -0.3125rem;
+  right: -0.75rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  background: var(--color-burgundy);
+}
+.talk__mark.is-drawn { transition: transform 0.8s linear 0.2s; }
+.talk__mark.is-drawn::after { transition: opacity 0.25s linear 1s; }
+html.js .talk__mark:not(.is-drawn) { transform: scaleX(0); }
+html.js .talk__mark:not(.is-drawn)::after { opacity: 0; }
+
+.talk__title {
+  max-width: 40rem;
+  font-size: clamp(2rem, 1.3rem + 3.2vw, 3.5rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.talk__text {
+  max-width: 38rem;
+  margin-top: 1.5rem;
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+}
+.talk__btn { margin-top: 2.25rem; }

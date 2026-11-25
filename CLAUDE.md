@@ -410,6 +410,12 @@ From the proposal (Section 3a) and the header: **Services** (and its detail page
 
 Newest first. One entry per working session or per significant change: what changed, which files, and anything left unverified.
 
+### 2026-11-25 (late): review checklist PDF for Marquita; Investigation Capacity page on hold
+- **Investigation Capacity page: on hold** (Miguelle). No copy and no Calendly link from Marquita yet; Miguelle is asking her for both (or whether she wants us to draft the copy from her Services retainer text).
+- **Review checklist PDF**, in the site's fonts and colours: `documentation/Client Deliverables/By_The_Book_Review_Checklist.pdf` (git-ignored, like the homepage preview). Built by `documentation/pdf-build/checklist.py` (edit its lists and rerun: `python3 documentation/pdf-build/checklist.py`). 5 pages: navy cover with the preview link; Part one "Things we need from you" (Capacity page copy, Calendly link, assessment link, form inbox, Privacy Policy text, larger Haya photo, light logos); Part two "Things to confirm" by page (site-wide, Homepage, About, Contact); Part three "Before launch, together" (page addresses, domain and accounts, legal) plus a "For your information" box.
+- Curated from Sections 8 and 9: settled items were left out (photo is her; hero and CLEAR wording now hers; the AI conference-room photo is no longer used on the site). **When she answers, update Sections 8 and 9.**
+- Miguelle is emailing her the preview link with the PDF attached.
+
 ### 2026-11-25 (night, final): About section 08, Let's talk: About page complete
 - Her closing, word for word, with her one button "Schedule a Conversation" (to `../contact/`). Pale grey, centred. **Bookend divider:** the hero's open-book shape turned over, the navy above curving down into the grey. Above the heading, a short navy line drawn on scroll that ends in a burgundy point.
 - All eight About sections are built. Whole page checked at 390 and 1440: no sideways scroll. Not checked: real phones, Safari, Firefox, Lighthouse.

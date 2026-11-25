@@ -1,13 +1,14 @@
-# Builds the client review checklist PDF in the site's own fonts and colours.
+# Builds the Round 1 feedback overview PDF for the client, in the site's own fonts and colours.
+# (Round 1: the first build of her copy, plus our questions back to her. Not a final review.)
 # Run from the project folder:
 #   python3 documentation/pdf-build/checklist.py
-# It writes documentation/Client Deliverables/By_The_Book_Review_Checklist.pdf
+# It writes documentation/Client Deliverables/By_The_Book_Round_1_Feedback_Overview.pdf
 # (that folder is git-ignored, so the PDF stays on this Mac; this script is the record).
 # To change the list, edit the ITEMS below and run it again.
 import os, subprocess, html
 
 P = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-OUT = os.path.join(P, 'documentation', 'Client Deliverables', 'By_The_Book_Review_Checklist.pdf')
+OUT = os.path.join(P, 'documentation', 'Client Deliverables', 'By_The_Book_Round_1_Feedback_Overview.pdf')
 TMP = os.path.join(P, 'documentation', 'pdf-build', 'zz-checklist.html')
 CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 SITE = 'https://mfebres0919.github.io/By-The-Book-Investigations/'
@@ -16,22 +17,22 @@ DATE = 'November 25, 2026'
 # (title, explanation, where on the site or None)
 NEED = [
     ("Investigation Capacity page wording",
-     "This page (for the Investigation Capacity Retainer, with booking built in) is the one page still waiting on copy. Send the wording you would like, or let us know if you would prefer us to draft it from your Services page text for your approval.",
+     "This page (for the Investigation Capacity Retainer, with booking built in) is the one page still waiting on copy. Send the wording you would like, or say if you would prefer a draft based on your Services page text, for your approval.",
      None),
     ("Your Calendly booking link",
-     "The Investigation Capacity page will let visitors book a time with you directly. We need the link to the Calendly event you want them to book.",
+     "The Investigation Capacity page will let visitors book a time with you directly. Still needed: the link to the Calendly event you want them to book.",
      None),
     ("Investigation Readiness Assessment link",
-     "“Take the Investigation Readiness Assessment” appears twice on the Services page and is not connected yet. Per your note, we will switch it on once the assessment and its results have been tested.",
+     "“Take the Investigation Readiness Assessment” appears twice on the Services page and is not connected yet. Per your note, it will be switched on once the assessment and its results have been tested.",
      "Services page"),
     ("Where contact form messages should go",
      "Which email address should receive the messages people send through the contact form?",
      "Contact page"),
     ("Your Privacy Policy",
-     "The contact form links to a Privacy Policy page, which every site that collects names and emails needs. Should we reuse the policy on your current site, or will you send updated text?",
+     "The contact form links to a Privacy Policy page, which every site that collects names and emails needs. Reuse the policy on your current site, or will you send updated text?",
      "Footer and Contact page"),
     ("A larger photo of Haya Abusway",
-     "The copy we have is very small (200 by 200 pixels), so it looks soft on sharper screens.",
+     "The current copy is very small (200 by 200 pixels), so it looks soft on sharper screens.",
      "About page, “Who is behind the work”"),
     ("Light versions of both logos",
      "White (or reversed) versions of the By-the-Book and INVEXTRA logos, ideally as SVG files, so they can sit on the navy and burgundy areas.",
@@ -55,13 +56,13 @@ CONFIRM = [
         ("Organizations you have worked with",
          "The ten logos (including Per Scholas, using the version you sent). Do you have each organization’s permission to show its logo, and is this the set you want?", None),
         ("The INVEXTRA section",
-         "Your new paragraph is in place. We kept the heading “Meet INVEXTRA™” and the line “Bringing CLEAR into the investigation as it happens.” Keep or remove?", None),
+         "Your new paragraph is in place. The heading “Meet INVEXTRA™” and the line “Bringing CLEAR into the investigation as it happens.” were kept. Keep or remove?", None),
         ("The copper plumb line",
          "The photo beside the CLEAR heading shows a copper plumb weight. Your brand guide keeps copper for INVEXTRA. Are you happy with it there?", None),
         ("Motion at the top of the page",
          "The line drawing behind the headline moves gently, with a small pause button for visitors who prefer stillness (an accessibility requirement). Does it feel calm enough?", None),
         ("Highlighted words in headings",
-         "A few words are set in burgundy italics for emphasis (for example “When” and “problem”). These were our design choice. Are you happy with them?", None),
+         "A few words are set in burgundy italics for emphasis (for example “When” and “problem”). These were a design choice, not part of your copy. Are you happy with them?", None),
         ("The five CLEAR marks",
          "Would you like the five marks supplied as files for training materials or INVEXTRA?", None),
     ]),
@@ -69,15 +70,15 @@ CONFIRM = [
         ("The founder story",
          "Your own publication check: is the anonymized story in “The experience that changed how we work” appropriate to publish?", None),
         ("Your team",
-         "Haya Abusway, Yeo Ju Choi and Giovanni Pasquale are shown with photos and names only. Would you like the team on the site? If so, please confirm the spelling of each name and whether you would like roles shown. The small heading “The team” is ours.", None),
+         "Haya Abusway, Yeo Ju Choi and Giovanni Pasquale are shown with photos and names only. Would you like the team on the site? If so, please confirm the spelling of each name and whether you would like roles shown. The small heading “The team” was added for the site and is not from your copy.", None),
         ("Your title",
          "Your photo is captioned “Dr. Marquita M. Booker, Esq.” with “Founder”. Is that the title you want?", None),
     ]),
     ("Contact page", [
         ("The page wording",
-         "We had no Contact page copy, so the top of the page uses your own closing text from the Services page. Keep it, or send different wording?", None),
+         "There was no Contact page copy, so the top of the page uses your own closing text from the Services page. Keep it, or send different wording?", None),
         ("The form’s wording",
-         "The labels, the note asking people not to include names or confidential details, the error messages and the thank-you message are our wording. Please read them and tell us anything to change.", None),
+         "The labels, the note asking people not to include names or confidential details, the error messages and the thank-you message were written for the site, not taken from your copy. Please read them and note anything to change.", None),
     ]),
 ]
 
@@ -153,25 +154,25 @@ ul{list-style:none;margin:0;padding:0}
 ''' % {'f': F}
 
 lines = ''.join('<path d="M0 %d H200 C330 %d 380 120 520 120 H1000" />' % (y, y) for y in (40, 80, 120, 160, 200))
-h = '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>By-the-Book Review Checklist</title><style>' + css + '</style></head><body>'
+h = '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>By-the-Book Round 1 Feedback Overview</title><style>' + css + '</style></head><body>'
 h += '''<section class="cover">
 <div class="cover__top"><img class="cover__logo" src="file://%(p)s/images/brand/by-the-book-logo.png" alt="By-the-Book Workplace Investigations"></div>
 <div class="cover__band">
 <svg viewBox="0 0 1000 240" preserveAspectRatio="none" fill="none" stroke="#D9DCE0" stroke-width="1" vector-effect="non-scaling-stroke">%(lines)s</svg>
-<p class="eyebrow">Website review</p>
-<h1>Your new website is ready for review, <em>and a few things need your eyes.</em></h1>
-<p class="lead">The Homepage, Services, About and Contact pages are built from your final copy. This checklist gathers everything we need from you, and everything we would like you to confirm, in one place.</p>
-<p class="lbl">See the site</p>
+<p class="eyebrow">Round 1 feedback overview</p>
+<h1>Round one: your copy, built, <em>and questions back to you.</em></h1>
+<p class="lead">This is the first round of your new site. The Homepage, Services, About and Contact pages are built from the copy you sent, so you can see it in place. This overview gathers the things that are still needed and the points to look at before round two.</p>
+<p class="lbl">See round one</p>
 <a href="%(site)s">%(site)s</a>
 <div class="howto">
-<div><b>1. Things to send</b>Items only you can provide, so we can finish the last pages.</div>
+<div><b>1. Still needed</b>Items only you can provide, to finish the last pages.</div>
 <div><b>2. Things to confirm</b>A yes, or what you would like changed. Page by page.</div>
-<div><b>3. Before launch</b>Larger decisions we will walk through together.</div>
+<div><b>3. Later, before launch</b>Larger decisions to walk through together.</div>
 </div>
 <p class="prepared">Prepared for Dr. Marquita M. Booker, Esq. &middot; %(date)s &middot; MigsFlow</p>
 </div></section>''' % {'p': P, 'site': SITE, 'date': DATE, 'lines': lines}
 
-h += '<section class="part need"><div class="part__head"><p class="part__num">Part one</p><h2>Things we need <em>from you</em></h2><p class="sub">These are the only things holding back the last two pages (Investigation Capacity and Privacy Policy) and a few finishing touches.</p></div><ul>'
+h += '<section class="part need"><div class="part__head"><p class="part__num">Part one</p><h2>Things that are <em>still needed</em></h2><p class="sub">These are the only things holding back the last two pages (Investigation Capacity and Privacy Policy) and a few finishing touches.</p></div><ul>'
 for i, (t, d, w) in enumerate(NEED, 1):
     h += ('<li class="item"><span class="num">%d</span><div><p class="t">%s</p><p class="d">%s</p>%s</div></li>'
           % (i, e(t), e(d), ('<p class="w">Where: %s</p>' % e(w)) if w else ''))
@@ -182,10 +183,10 @@ for group, items in CONFIRM:
     h += '<h3>%s</h3><ul>' % e(group) + ''.join(box(*it) for it in items) + '</ul>'
 h += '</section>'
 
-h += '<section class="part later"><div class="part__head"><p class="part__num">Part three</p><h2>Before launch, <em>together</em></h2><p class="sub">Nothing to do yet. We will go through these with you closer to launch.</p></div><ul>'
+h += '<section class="part later"><div class="part__head"><p class="part__num">Part three</p><h2>Before launch, <em>together</em></h2><p class="sub">Nothing to do yet. These are for closer to launch.</p></div><ul>'
 h += ''.join('<li class="item"><div><p class="t">%s</p><p class="d">%s</p></div></li>' % (e(t), e(d)) for t, d in LATER) + '</ul>'
 h += '<div class="fyi"><p class="h">For your information</p><ul>' + ''.join('<li>%s</li>' % e(x) for x in FYI) + '</ul></div>'
-h += '<p class="end">Thank you. Reply to our email with your answers, or mark up this PDF, whichever is easier.</p></section></body></html>'
+h += '<p class="end">Thank you. Reply to the email with your answers, or mark up this PDF, whichever is easier. Your feedback shapes round two.</p></section></body></html>'
 
 open(TMP, 'w', encoding='utf-8').write(h)
 os.makedirs(os.path.dirname(OUT), exist_ok=True)

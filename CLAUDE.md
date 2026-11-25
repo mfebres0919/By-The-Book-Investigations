@@ -410,6 +410,10 @@ From the proposal (Section 3a) and the header: **Services** (and its detail page
 
 Newest first. One entry per working session or per significant change: what changed, which files, and anything left unverified.
 
+### 2026-11-25 (later): PDF renamed "Round 1 feedback overview", no "we" wording
+- Miguelle: the site is not "ready for review" (that implies it is done); this is round one, with her feedback on what Marquita sent. The PDF is now `documentation/Client Deliverables/By_The_Book_Round_1_Feedback_Overview.pdf` (old "Review_Checklist" file deleted). Cover: "Round 1 feedback overview" / "Round one: your copy, built, and questions back to you."
+- Miguelle: no "we"/"our"/"us" in the document. Part one is now "Things that are still needed"; every item reworded impersonally (for example "The heading … were kept", "were written for the site, not taken from your copy").
+
 ### 2026-11-25 (late): review checklist PDF for Marquita; Investigation Capacity page on hold
 - **Investigation Capacity page: on hold** (Miguelle). No copy and no Calendly link from Marquita yet; Miguelle is asking her for both (or whether she wants us to draft the copy from her Services retainer text).
 - **Review checklist PDF**, in the site's fonts and colours: `documentation/Client Deliverables/By_The_Book_Review_Checklist.pdf` (git-ignored, like the homepage preview). Built by `documentation/pdf-build/checklist.py` (edit its lists and rerun: `python3 documentation/pdf-build/checklist.py`). 5 pages: navy cover with the preview link; Part one "Things we need from you" (Capacity page copy, Calendly link, assessment link, form inbox, Privacy Policy text, larger Haya photo, light logos); Part two "Things to confirm" by page (site-wide, Homepage, About, Contact); Part three "Before launch, together" (page addresses, domain and accounts, legal) plus a "For your information" box.

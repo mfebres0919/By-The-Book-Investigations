@@ -183,7 +183,7 @@ This is a first look, not the full audit that handbook Section 18 requires.
 | `services/index.html` | The Services page (all six sections built, awaiting review). Copy from `Services Page (Final).docx`. |
 | `contact/index.html` | The Contact page: hero + one contact form (Netlify Forms). Built, awaiting review. |
 | `css/contact.css` | Contact page only. The page loads `global.css` + `contact.css`. |
-| `about/index.html` | The About page (in progress: hero and 02 founder story built; her sections 03 to 08 to come). Copy from `Homepage and About Us.docx`, second half. |
+| `about/index.html` | The About page (in progress: hero, 02 founder story and 03 from the inside built; her sections 04 to 08 to come). Copy from `Homepage and About Us.docx`, second half. |
 | `css/about.css` | About page only. The page loads `global.css` + `about.css`. |
 | `documentation/integrations.md` | Every outside service the site sends data to (the contact form → Netlify Forms), with the before-launch steps. |
 | `css/services.css` | Services page only, one block per section. The page loads `global.css` + `services.css`, not `styles.css`. |
@@ -403,6 +403,13 @@ From the proposal (Section 3a) and the header: **Services** (and its detail page
 ## 10. Change log
 
 Newest first. One entry per working session or per significant change: what changed, which files, and anything left unverified.
+
+### 2026-11-25 (evening): About section 03, What we know from the inside
+- Her three paragraphs, word for word. Navy after the pale grey story, with the homepage's angled divider (in grey) at the top.
+- **The frame:** everything sits inside four silver corner brackets (the bracket shape of the C mark of CLEAR): "from the inside".
+- **The drift:** her second paragraph is set one sentence per line, each stepping further right (0.75rem phones, 2.75rem desktop), with dashed rules; the lines slide in one after another on scroll (`data-draw`; no motion for reduced-motion visitors). Her last sentence ("And the person who engaged the outside firm…") returns to the margin in white under a solid rule. Still one paragraph in the HTML.
+- **The details:** in her third paragraph the six details are white and bold against the grey sentence. Outlined boxes and underlines were tried and dropped: boxes stranded the commas on phones, underlines looked like links.
+- Desktop: heading + first paragraph left, the drift right, the details across the foot. Checked at 390, 768, 1440: no sideways scroll. **Next:** 04 What a fair investigation owes everyone.
 
 ### 2026-11-25 (later still): About section 02, the founder story
 - Her "The experience that changed how we work", word for word. Pale grey (the hero's open-book divider now fills in that grey).

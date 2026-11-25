@@ -226,3 +226,124 @@ html.js .story__sheet:not(.is-drawn)::after { transform: scaleY(0); }
   .story__sheet { padding: 3.5rem 4rem 4rem 4.5rem; }
   .story__sheet::after { left: 2.25rem; }
 }
+
+/* ---------- 03 What we know from the inside ----------
+   Navy. The content sits inside four corner brackets (the shape of the C mark of CLEAR).
+   Her "drift" paragraph steps one sentence per line further to the right, sliding into place
+   when it scrolls into view (global.js adds "is-drawn"); its last sentence returns to the
+   margin in white. The six details in her last paragraph are outlined like file labels. */
+.inside {
+  position: relative;
+  --divider-h: clamp(2.5rem, 7vw, 6.5rem);
+  padding-block: calc(var(--space-section) + var(--divider-h) * 0.75) var(--space-section);
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+.inside__divider {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: var(--divider-h);
+  fill: var(--color-wash);
+}
+
+/* The frame: four corner brackets drawn with background lines (two thin lines per corner).
+   "--arm" is the length of each bracket arm. */
+.inside__frame {
+  --arm: 2rem;
+  --line: var(--color-silver);
+  display: grid;
+  gap: 2.5rem;
+  padding: 2.25rem 1.5rem;
+  background:
+    linear-gradient(var(--line), var(--line)) top left / var(--arm) 1px,
+    linear-gradient(var(--line), var(--line)) top left / 1px var(--arm),
+    linear-gradient(var(--line), var(--line)) top right / var(--arm) 1px,
+    linear-gradient(var(--line), var(--line)) top right / 1px var(--arm),
+    linear-gradient(var(--line), var(--line)) bottom left / var(--arm) 1px,
+    linear-gradient(var(--line), var(--line)) bottom left / 1px var(--arm),
+    linear-gradient(var(--line), var(--line)) bottom right / var(--arm) 1px,
+    linear-gradient(var(--line), var(--line)) bottom right / 1px var(--arm);
+  background-repeat: no-repeat;
+}
+.inside__title {
+  font-size: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);
+  text-wrap: balance;
+}
+.inside__lead {
+  max-width: 34rem;
+  margin-top: 1.25rem;
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  color: var(--color-mist);
+}
+
+/* The drift. "--step" is how far each line moves right of the one before. */
+.drift {
+  --step: 0.75rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.1875rem, 1.05rem + 0.7vw, 1.625rem);
+  line-height: 1.35;
+  color: var(--color-mist);
+}
+.drift__line {
+  display: block;
+  padding-block: 0.625rem;
+  border-bottom: 1px dashed var(--color-rule-on-dark);
+}
+.drift__line:nth-child(2) { margin-left: calc(var(--step) * 1); }
+.drift__line:nth-child(3) { margin-left: calc(var(--step) * 2); }
+.drift__line:nth-child(4) { margin-left: calc(var(--step) * 3); }
+/* The last sentence comes back to the margin, in white, with a solid rule */
+.drift__line--last {
+  margin-top: 0.75rem;
+  border-bottom: 0;
+  border-top: 1px solid var(--color-mist);
+  padding-top: 1rem;
+  color: var(--color-white);
+}
+/* Each line slides in from the left to its place, one after another */
+.drift.is-drawn .drift__line { transition: opacity 0.6s linear, transform 0.6s linear; }
+.drift.is-drawn .drift__line:nth-child(2) { transition-delay: 0.2s; }
+.drift.is-drawn .drift__line:nth-child(3) { transition-delay: 0.4s; }
+.drift.is-drawn .drift__line:nth-child(4) { transition-delay: 0.6s; }
+.drift.is-drawn .drift__line:nth-child(5) { transition-delay: 0.95s; }
+html.js .drift:not(.is-drawn) .drift__line {
+  opacity: 0;
+  transform: translateX(-1.5rem);
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js .drift:not(.is-drawn) .drift__line { opacity: 1; transform: none; }
+}
+
+/* Her last paragraph: the six details picked out in white and bold against the softer grey
+   of the sentence (no underline, so they never look like links). */
+.inside__details {
+  max-width: 62rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-rule-on-dark);
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  line-height: 1.75;
+  color: var(--color-mist);
+}
+.detail {
+  color: var(--color-white);
+  font-weight: 600;
+}
+
+@media (min-width: 48rem) {
+  .inside__frame { --arm: 2.75rem; padding: 3rem 3rem 3.25rem; }
+  .drift { --step: 2rem; }
+}
+/* Desktop: heading and first paragraph left, the drift right, the details across the foot */
+@media (min-width: 62rem) {
+  .inside__frame {
+    --arm: 3.5rem;
+    grid-template-columns: 5fr 7fr;
+    column-gap: clamp(3rem, 6vw, 6rem);
+    row-gap: 3.5rem;
+    padding: 4rem 4.5rem 4.5rem;
+  }
+  .inside__details { grid-column: 1 / -1; }
+  .drift { --step: 2.75rem; align-self: center; }
+}

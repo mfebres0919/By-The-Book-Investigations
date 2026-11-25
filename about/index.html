@@ -145,10 +145,40 @@
             </div>
         </section>
 
-        <!-- Still to build, one section at a time (her About copy, in order): 03 What we know from
-             the inside, 04 What a fair investigation owes everyone, 05 How we put that into practice,
-             06 How we support your team (INVEXTRA: "Early 2027", not her "January 2027"), 07 Who is
-             behind the work, 08 Let's talk. -->
+        <!-- ============ 03 WHAT WE KNOW FROM THE INSIDE ============
+             Her three paragraphs, word for word. Navy, after the pale grey story.
+             THE FRAME: the content sits inside four corner brackets (the same bracket shape as
+             the C mark of CLEAR, "Capture the Complaint"): "from the inside", literally.
+             THE DRIFT: her second paragraph ("what happens when the process drifts") is set one
+             sentence per line, each line stepping further right, sliding into place when it
+             scrolls into view. Her last sentence of it comes back to the margin, in white.
+             It is still one paragraph in the HTML, read normally by screen readers.
+             THE DETAILS: in her third paragraph, the six details are picked out in white and bold.
+             Still one sentence.
+             Desktop: heading and first paragraph on the left, the drift on the right, the details
+             across the foot. Phones: stacked, with a smaller step. -->
+        <section class="inside" aria-labelledby="inside-title">
+            <!-- Divider: the homepage's angled shape, in the pale grey of the story above -->
+            <svg class="inside__divider" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0 0v36L250 4l750 96V0H0z"/></svg>
+
+            <div class="container">
+                <div class="inside__frame">
+                    <div class="inside__head">
+                        <h2 class="inside__title" id="inside-title" data-reveal="up">What we know from the inside</h2>
+                        <p class="inside__lead" data-reveal="up" data-delay="1">When you lead an investigation function, you cannot look at a case in isolation. You have to think about what your policy requires, what the timeline allows, who should and should not be involved, what the parties have been told, and whether the eventual findings will give decision-makers a clear foundation for their next steps.</p>
+                    </div>
+
+                    <p class="drift" data-draw><span class="drift__line">You also know what happens when the process drifts.</span> <span class="drift__line">A case sits while a team is short.</span> <span class="drift__line">The organization loses confidence.</span> <span class="drift__line">The people involved are left waiting.</span> <span class="drift__line drift__line--last">And the person who engaged the outside firm is the one answering the questions.</span></p>
+
+                    <p class="inside__details" data-reveal="up">That is why we pay attention to the details that can be overlooked from the outside: <span class="detail">scope</span>, <span class="detail">realistic milestones</span>, <span class="detail">communication</span>, <span class="detail">evidentiary discipline</span>, <span class="detail">policy application</span>, and <span class="detail">how the report will function once it leaves our hands</span>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Still to build, one section at a time (her About copy, in order): 04 What a fair
+             investigation owes everyone, 05 How we put that into practice, 06 How we support your
+             team (INVEXTRA: "Early 2027", not her "January 2027"), 07 Who is behind the work,
+             08 Let's talk. -->
 
     </main>
 
